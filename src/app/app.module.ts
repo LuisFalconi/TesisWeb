@@ -10,11 +10,14 @@ import { PlatoComponent } from './pages/plato/plato.component';
 import {AngularFireModule} from '@angular/fire';
 import { environment } from '../environments/environment';
 import {FirestoreSettingsToken, AngularFirestore} from '@angular/fire/firestore';
+import { PlatoEdicionComponent } from './pages/plato/plato-edicion/plato-edicion.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PlatoComponent
+    PlatoComponent,
+    PlatoEdicionComponent
   ],
   imports: [
     BrowserModule,
@@ -22,6 +25,7 @@ import {FirestoreSettingsToken, AngularFirestore} from '@angular/fire/firestore'
     BrowserAnimationsModule,
     MaterialModule,
     AngularFireModule.initializeApp(environment.firebase),
+    ReactiveFormsModule
   ],
   providers: [
       AngularFirestore,

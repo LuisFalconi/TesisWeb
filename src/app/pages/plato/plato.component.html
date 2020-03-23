@@ -1,1 +1,37 @@
-<p>plato works!</p>
+<router-outlet></router-outlet>
+<div style="margin: 45px; padding: 10px;">
+      
+      <mat-table [dataSource]= "dataSource" matSort>
+      
+          <ng-container matColumnDef="nombre">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell> 
+              <mat-cell *matCellDef="let row"> {{row.nombre}}</mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="precio">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Precio</mat-header-cell> 
+              <mat-cell *matCellDef="let row"> {{row.precio}}</mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="acciones">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</mat-header-cell> 
+              <mat-cell *matCellDef="let row">
+                  <button mat-icon-button color="primary" [routerLink]="['edicion', row.id]">
+                      <mat-icon arial-label="Actualizar">assignment</mat-icon>
+                  </button> 
+                  <button mat-icon-button color="accent" (click)="eliminar(row)">
+                      <mat-icon arial-label="Eliminar">highlight_off</mat-icon>
+                  </button> 
+              </mat-cell>
+          </ng-container>
+      
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+      
+      <mat-paginator [pageSize]="10" [pageSizeOptions]="[5,10,25,100]"></mat-paginator>
+      <button mat-fab color="accent" style="float: right;" routerLink='/plato/nuevo'>
+          <mat-icon>send</mat-icon>
+      </button>
+      
+</div>
