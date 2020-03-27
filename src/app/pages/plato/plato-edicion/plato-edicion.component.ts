@@ -5,6 +5,7 @@ import { Plato } from 'src/app/_model/plato';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-plato-edicion',
@@ -23,7 +24,8 @@ export class PlatoEdicionComponent implements OnInit {
   urlImage: string;
 
   constructor(private platoService: PlatoService, private route: ActivatedRoute, 
-    private router: Router, private snackBar: MatSnackBar, private afStorage: AngularFireStorage) { }
+    private router: Router, private snackBar: MatSnackBar, private afStorage: AngularFireStorage, 
+    private afs: AngularFirestore) { }
 
   ngOnInit() {
 
@@ -47,20 +49,33 @@ export class PlatoEdicionComponent implements OnInit {
         'id': new FormControl(data.id),
         'nombre': new FormControl(data.nombre),
         'precio': new FormControl(data.precio),
-        });       
+        });
+        
+        if(data != null){
+          this.afStorage.ref(`plato/${data.id}`).getDownloadURL().subscribe(data => {
+            this.urlImage = data;
+          })
+        }
       });
     }
   }
 
   operar() {
-    // tslint:disable-next-line:prefer-const
+ 
     let plato = new Plato();
-    plato.id = this.form.value['id'];
+    // Guardar la imagen atado al ID
+    if(this.edicion){
+      plato.id = this.form.value['id'];
+    }else{
+      plato.id = this.afs.createId();
+    }
+
     plato.nombre = this.form.value['nombre'];
     plato.precio = this.form.value['precio'];
 
+    // Funcion para subir imagenes
     if(this.file != null){
-      let ref = this.afStorage.ref(`plato/${plato.nombre}`);
+      let ref = this.afStorage.ref(`plato/${plato.id}`);
       ref.put(this.file);
     }
     
