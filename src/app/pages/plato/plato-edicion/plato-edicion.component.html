@@ -14,6 +14,11 @@
         <input matInput placeholder="Precio del Plato" formControlName="precio" type="number">
     </mat-form-field>
 
+    <!-- Boton para subir archivos con el estilo de Angular Material -->
+    <button mat-raised-button onclick="document.getElementById('input_subida').click()" type="button">Examinar</button>
+    <input id="input_subida" type="file" style="display: none" (change)="seleccionar($event)">
+    <p>{{labelFile}}</p>
+
     <button mat-raised-button color="primary" type="submit">
         <mat-icon>done</mat-icon>
         <span>Aceptar</span>

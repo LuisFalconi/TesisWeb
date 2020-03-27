@@ -4,6 +4,8 @@ import { PlatoService } from '../../../_service/plato.service';
 import { Plato } from 'src/app/_model/plato';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { AngularFirestore } from '@angular/fire/firestore';
+//import {AngularFirestore} from 'angularfire2/storage';
 
 @Component({
   selector: 'app-plato-edicion',
@@ -16,7 +18,17 @@ export class PlatoEdicionComponent implements OnInit {
   id: string;
   edicion: boolean;
 
-  constructor(private platoService: PlatoService, private route: ActivatedRoute, private router: Router, private snackBar: MatSnackBar) { }
+  // variables para subir imagen
+  file: any;
+  labelFile: string;
+  urlImage: string;
+
+  constructor(
+    private platoService: PlatoService, 
+    private route: ActivatedRoute, 
+    private router: Router, 
+    private snackBar: MatSnackBar,
+    private afStorage: AngularFirestore) { }
 
   ngOnInit() {
 
@@ -52,6 +64,15 @@ export class PlatoEdicionComponent implements OnInit {
     plato.nombre = this.form.value['nombre'];
     plato.precio = this.form.value['precio'];
 
+    //if(this.file != null){
+    //  let ref = this.afStorage.ref(`platos/${plato.nombre}`);
+    // ref.put(this.file);
+
+     // const filePath = 'images/' + this.file + '/';
+     // const task = this.afStorage.upload(filePath);
+   // }
+  
+
     let mensaje
     if(this.edicion){
       this.platoService.modificar(plato);
@@ -68,4 +89,9 @@ export class PlatoEdicionComponent implements OnInit {
     this.router.navigate(['plato']);
   }
 
+  // Funcion para mostrar el nombre del archivo seleccionado
+  seleccionar(e: any){
+    this.file = e.target.files[0];
+    this.labelFile = e.target.files[0].name;
+  }
 }
