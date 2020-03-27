@@ -9,9 +9,10 @@ import { PlatoComponent } from './pages/plato/plato.component';
 
 import {AngularFireModule} from '@angular/fire';
 import { environment } from '../environments/environment';
-import {FirestoreSettingsToken, AngularFirestore} from '@angular/fire/firestore';
+import {FirestoreSettingsToken, AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore';
 import { PlatoEdicionComponent } from './pages/plato/plato-edicion/plato-edicion.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     MaterialModule,
     AngularFireModule.initializeApp(environment.firebase),
     ReactiveFormsModule,
-    FormsModule,
+    FormsModule,  
+    AngularFireStorageModule 
   ],
   providers: [
       AngularFirestore,

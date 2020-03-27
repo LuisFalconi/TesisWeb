@@ -4,8 +4,7 @@ import { PlatoService } from '../../../_service/plato.service';
 import { Plato } from 'src/app/_model/plato';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import { AngularFirestore } from '@angular/fire/firestore';
-//import {AngularFirestore} from 'angularfire2/storage';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-plato-edicion',
@@ -23,12 +22,8 @@ export class PlatoEdicionComponent implements OnInit {
   labelFile: string;
   urlImage: string;
 
-  constructor(
-    private platoService: PlatoService, 
-    private route: ActivatedRoute, 
-    private router: Router, 
-    private snackBar: MatSnackBar,
-    private afStorage: AngularFirestore) { }
+  constructor(private platoService: PlatoService, private route: ActivatedRoute, 
+    private router: Router, private snackBar: MatSnackBar, private afStorage: AngularFireStorage) { }
 
   ngOnInit() {
 
@@ -64,14 +59,11 @@ export class PlatoEdicionComponent implements OnInit {
     plato.nombre = this.form.value['nombre'];
     plato.precio = this.form.value['precio'];
 
-    //if(this.file != null){
-    //  let ref = this.afStorage.ref(`platos/${plato.nombre}`);
-    // ref.put(this.file);
-
-     // const filePath = 'images/' + this.file + '/';
-     // const task = this.afStorage.upload(filePath);
-   // }
-  
+    if(this.file != null){
+      let ref = this.afStorage.ref(`plato/${plato.nombre}`);
+      ref.put(this.file);
+    }
+    
 
     let mensaje
     if(this.edicion){
