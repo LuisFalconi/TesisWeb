@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../_service/login.service';
 import { Router } from '@angular/router';
 import { auth } from 'firebase';
+import { MenuService } from '../_service/menu.service';
+import { Menu } from '../_model/menu';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +20,7 @@ export class LoginComponent implements OnInit {
   estadoRecuperar: boolean;
   estadoCrear: boolean;
 
-  constructor(private LoginService: LoginService, private route : Router) { }
+  constructor(private LoginService: LoginService, private route : Router, private menuService: MenuService) { }
 
   ngOnInit() {
   }
@@ -32,7 +34,7 @@ export class LoginComponent implements OnInit {
 
   loginFacebook() {
     this.LoginService.loginFacebook().then(() => {
-      //this.listarMenus();
+      this.listarMenus();
     }).catch(err => {
 
       // manejo de error en caso que un usuario tenga el mismo correo con facebook y google
@@ -50,7 +52,7 @@ export class LoginComponent implements OnInit {
 
   loginGoogle() {
     this.LoginService.loginGoogle().then(() => {
-      this.route.navigate(['plato']);
+      this.listarMenus();
     });
   }
 
@@ -80,5 +82,36 @@ export class LoginComponent implements OnInit {
     this.estadoRecuperar = true;
     this.estadoLogin = false;
     this.estadoCrear = false;
+  }
+
+  listarMenus() {
+    this.menuService.listar().subscribe(menus => {
+
+      this.LoginService.user.subscribe(userData => {
+        if (userData) {
+          //console.log(userData);
+          let user_roles: string[] = userData.roles
+          let final_menus: Menu[] = [];
+
+          for (let menu of menus) {
+            n2: for (let rol of menu.roles) {
+              for (let urol of user_roles) {
+                if (rol === urol) {
+                  let m = new Menu();
+                  m.nombre = menu.nombre;
+                  m.icono = menu.icono;
+                  m.url = menu.url;
+                  final_menus.push(m);
+                  break n2;
+                }
+              }
+            }
+
+            this.menuService.menuCambio.next(final_menus);
+            this.route.navigate(['plato']);
+          }
+        }
+      });
+    });
   }
 }

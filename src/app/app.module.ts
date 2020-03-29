@@ -21,7 +21,8 @@ import { ReporteComponent } from './pages/reporte/reporte.component';
 import { DialogoComponent } from './pages/consulta/dialogo/dialogo.component';
 import { LoginComponent } from './login/login.component';
 
-import { AngularFireAuthModule } from '@angular/fire/auth'; //seguridad
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { Not403Component } from './pages/not403/not403.component'; //seguridad
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth'; //seguridad
     PerfilComponent,
     ReporteComponent,
     DialogoComponent,
-    LoginComponent
+    LoginComponent,
+    Not403Component
   ],
   imports: [
     BrowserModule,

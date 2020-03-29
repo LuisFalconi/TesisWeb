@@ -4,13 +4,29 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Usuario } from '../_model/usuario';
 import { Router } from '@angular/router';
 import { auth } from 'firebase/app';
+import { Observable, EMPTY } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor(private afa: AngularFireAuth, private afs: AngularFirestore, private route: Router) { }
+  //Variable para validar el estado del usuario
+  user: Observable<Usuario>;
+
+  constructor(private afa: AngularFireAuth, private afs: AngularFirestore, private route: Router) {
+    // authState: Devolver el estado si alguein acaba de iniciar sesion
+    this.user = this.afa.authState.pipe(
+      switchMap( user => {
+        if(user){
+          return this.afs.doc<Usuario>(`usuarios/${user.uid}`).valueChanges();
+        }else {
+          return EMPTY;
+        }
+      })
+    )
+   }
 
   // Login con correo
   login(usuario: string, clave: string){
@@ -52,14 +68,23 @@ export class LoginService {
   // Funcion para actualizar los usuarios en la base de datos de Firebase
   private actualizarUsuarioData(usuario: any) {
     const userRef: AngularFirestoreDocument<Usuario> = this.afs.doc(`usuarios/${usuario.uid}`);
-
+    // Validacion que permite validar si un usuario ya es Admin en firebase
     userRef.valueChanges().subscribe(data => {
+      if (data) {
+        const datos: Usuario = {
+          uid: usuario.uid,
+          email: usuario.email,
+          roles: data.roles
+        }
+        return userRef.set(datos);
+      } else {
         const datos: Usuario = {
           uid: usuario.uid,
           email: usuario.email,
           roles: ['USER']
         }
         return userRef.set(datos);
+      }
     });
   }
 
@@ -68,5 +93,10 @@ export class LoginService {
       this.route.navigate(['login']);
     });
   }
+
+  estaLogeado(){
+    return this.afa.auth.currentUser != null;
+  }
+
 
 } 

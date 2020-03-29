@@ -4,7 +4,14 @@
     <mat-sidenav #sidenav style="width: 300px;">
         <img src="assets/food.jpg" width="250" style="margin-left:30px;">
 
-        <button mat-menu-item (click)="sidenav.toggle()" routerLink="/consulta" style="cursor: pointer;">
+        <div *ngFor="let m of menus">
+            <button mat-menu-item (click)="sidenav.toggle()" routerLink="{{m.url}}" style="cursor: pointer">
+                <mat-icon>{{m.icono}}</mat-icon>
+                <span>{{m.nombre}}</span>
+            </button>
+        </div>
+
+        <!-- <button mat-menu-item (click)="sidenav.toggle()" routerLink="/consulta" style="cursor: pointer;">
             <mat-icon>search</mat-icon>
             <span>Consultas</span>
         </button>
@@ -31,11 +38,11 @@
         <button mat-menu-item (click)="sidenav.toggle()" routerLink="/reporte" style="cursor: pointer;">
             <mat-icon>search</mat-icon>
             <span>Reportes</span>
-        </button>
+        </button> -->
     </mat-sidenav>
 
     <div class="page-wrap">
-        <header role="banner">
+        <header role="banner" *ngIf="loginService.estaLogeado()">
             <mat-toolbar color="primary" class="example-toolbar">
                 <button mat-icon-button (click)="sidenav.toggle()">
                     <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
