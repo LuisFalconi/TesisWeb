@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginService } from './_service/login.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Tesis-Web';
+
+  constructor(public loginService: LoginService){
+
+  }
+
+
 }

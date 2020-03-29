@@ -13,12 +13,28 @@ import {FirestoreSettingsToken, AngularFirestore, AngularFirestoreModule} from '
 import { PlatoEdicionComponent } from './pages/plato/plato-edicion/plato-edicion.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { ClienteComponent } from './pages/cliente/cliente.component';
+import { ConsultaComponent } from './pages/consulta/consulta.component';
+import { ConsumoComponent } from './pages/consumo/consumo.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
+import { ReporteComponent } from './pages/reporte/reporte.component';
+import { DialogoComponent } from './pages/consulta/dialogo/dialogo.component';
+import { LoginComponent } from './login/login.component';
+
+import { AngularFireAuthModule } from '@angular/fire/auth'; //seguridad
 
 @NgModule({
   declarations: [
     AppComponent,
     PlatoComponent,
-    PlatoEdicionComponent
+    PlatoEdicionComponent,
+    ClienteComponent,
+    ConsultaComponent,
+    ConsumoComponent,
+    PerfilComponent,
+    ReporteComponent,
+    DialogoComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +44,12 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     AngularFireModule.initializeApp(environment.firebase),
     ReactiveFormsModule,
     FormsModule,  
-    AngularFireStorageModule 
+    AngularFireStorageModule,
+    AngularFireAuthModule // logica de seguridad 
+  ],
+  // Para trabajar con dialogos se crea entryComoonents
+  entryComponents: [
+    DialogoComponent
   ],
   providers: [
       AngularFirestore,

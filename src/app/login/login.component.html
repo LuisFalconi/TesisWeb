@@ -1,0 +1,93 @@
+<div class="divCenter">
+    <mat-card *ngIf="estadoLogin">
+        <mat-card-header>
+            <mat-card-title>Login</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <table cellspacing="0">
+                <tr>
+                    <td>
+                        <mat-form-field>
+                            <input matInput placeholder="Usuario" [(ngModel)]="usuario" required>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-form-field>
+                            <input matInput placeholder="Contraseña" [(ngModel)]="clave" type="password" required>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><a style="cursor: pointer" (click)="irRecuperar()">¿Olvidaste tu contraseña?</a></td>
+                </tr>
+            </table>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button (click)="login()" color="primary">Iniciar Sesión</button>
+            <button mat-raised-button (click)="irCrear()" color="default">Crear usuario</button>
+            <br><br>
+            <button mat-raised-button (click)="loginGoogle()" color="accent">Google</button>
+            <button mat-raised-button (click)="loginFacebook()" color="primary">Facebook</button>
+        </mat-card-actions>
+    </mat-card>
+
+    <mat-card *ngIf="estadoRecuperar">
+        <mat-card-header>
+            <mat-card-title>Restablecer Contraseña</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <table cellspacing="0">
+                <tr>
+                    <td>
+                        <mat-form-field>
+                            <input matInput placeholder="Usuario" [(ngModel)]="usuario" required>
+                        </mat-form-field>
+                    </td>
+                </tr>
+                <tr>
+                    <td *ngIf=""></td>
+                </tr>
+            </table>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button (click)="irLogin()" color="default">Atrás</button>
+            <button mat-raised-button (click)="restablecerClave()" color="primary">Enviar Correo</button>
+        </mat-card-actions>
+    </mat-card>
+    <mat-card *ngIf="estadoCrear">
+        <mat-card-header>
+          <mat-card-title>Crear Usuario</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <table cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field>
+                  <input matInput placeholder="Usuario" [(ngModel)]="usuario" required>
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <mat-form-field>
+                  <input matInput placeholder="Contraseña" [(ngModel)]="clave" type="password" required>
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td ></td>
+            </tr>
+          </table>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button (click)="irLogin()" color="default">Atrás</button>
+          <button mat-raised-button (click)="crearUsuario()" color="primary">Crear</button>
+        </mat-card-actions>
+      </mat-card>
+
+</div>
