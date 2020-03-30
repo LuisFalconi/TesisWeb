@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { PlatoService } from '../../../_service/plato.service';
 import { Plato } from 'src/app/_model/plato';
@@ -6,13 +6,15 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-plato-edicion',
   templateUrl: './plato-edicion.component.html',
   styleUrls: ['./plato-edicion.component.css']
 })
-export class PlatoEdicionComponent implements OnInit {
+export class PlatoEdicionComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
   id: string;
@@ -22,6 +24,9 @@ export class PlatoEdicionComponent implements OnInit {
   file: any;
   labelFile: string;
   urlImage: string;
+
+  // Se crear la variable para liberar recursos
+  private ngUnsubscribe: Subject<void> = new Subject();
 
   constructor(private platoService: PlatoService, private route: ActivatedRoute, 
     private router: Router, private snackBar: MatSnackBar, private afStorage: AngularFireStorage, 
@@ -44,13 +49,14 @@ export class PlatoEdicionComponent implements OnInit {
 
   initForm(){
     if(this.edicion){
-      this.platoService.leer(this.id).subscribe((data: Plato) => {
+      this.platoService.leer(this.id).pipe(takeUntil(this.ngUnsubscribe)).subscribe((data: Plato) => {
         this.form = new FormGroup({
         'id': new FormControl(data.id),
         'nombre': new FormControl(data.nombre),
         'precio': new FormControl(data.precio),
         });
         
+        // Aqui no se usa el ngUnsubscribe porque se esta conectando con FireStorage
         if(data != null){
           this.afStorage.ref(`plato/${data.id}`).getDownloadURL().subscribe(data => {
             this.urlImage = data;
@@ -100,5 +106,10 @@ export class PlatoEdicionComponent implements OnInit {
   seleccionar(e: any){
     this.file = e.target.files[0];
     this.labelFile = e.target.files[0].name;
+  }
+
+  ngOnDestroy(){
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

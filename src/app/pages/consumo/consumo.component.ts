@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { map} from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { map, takeUntil } from 'rxjs/operators';
 import { ClienteService } from '../../_service/cliente.service';
 import { PlatoService } from '../../_service/plato.service';
 import { Cliente } from '../../_model/cliente';
@@ -14,7 +14,7 @@ import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
   templateUrl: './consumo.component.html',
   styleUrls: ['./consumo.component.css']
 })
-export class ConsumoComponent implements OnInit {
+export class ConsumoComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
   ctrlCliente: FormControl = new FormControl();
@@ -32,6 +32,10 @@ export class ConsumoComponent implements OnInit {
   total: number = 0;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+
+
+  // Se crear la variable para liberar recursos
+  private ngUnsubscribe: Subject<void> = new Subject();
   
 
   constructor(private builder: FormBuilder, private clienteService: ClienteService, private platoService: PlatoService,) { }
@@ -52,14 +56,14 @@ export class ConsumoComponent implements OnInit {
   }
 
   listarClientes() {
-    this.clienteService.listar().subscribe(data =>{
+    this.clienteService.listar().pipe(takeUntil(this.ngUnsubscribe)).subscribe(data =>{
     console.log(data);
     this.clientes = data;  
     });
   }
 
   listarPlatos() {
-    this.platoService.listar().subscribe(data =>{
+    this.platoService.listar().pipe(takeUntil(this.ngUnsubscribe)).subscribe(data =>{
     console.log(data);
     this.plato = data;  
     });
@@ -93,6 +97,11 @@ export class ConsumoComponent implements OnInit {
 
   mostrarSeleccionPlatos(val: Plato) {
     return val ? `${val.nombre}` : val;
+  }
+
+  ngOnDestroy(){
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
 }

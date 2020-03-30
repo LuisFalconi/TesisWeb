@@ -23,6 +23,7 @@ import { LoginComponent } from './login/login.component';
 
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { Not403Component } from './pages/not403/not403.component'; //seguridad
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { Not403Component } from './pages/not403/not403.component'; //seguridad
     AngularFireModule.initializeApp(environment.firebase),
     ReactiveFormsModule,
     FormsModule,  
+    HttpClientModule,
     AngularFireStorageModule,
     AngularFireAuthModule // logica de seguridad 
   ],

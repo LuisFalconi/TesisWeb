@@ -1,1 +1,6 @@
-<p>perfil works!</p>
+<mat-card>{{usuario}}</mat-card>
+<mat-card> Creado el: {{desde | date: 'dd-MM--yyyy' }}</mat-card>
+<mat-card> Ultima Conexion {{ultimaConexion | date: 'dd-MM-yyyy'}}</mat-card>
+
+<mat-card>Tipo de Sesion {{usuarioSocial}}</mat-card>
+<img mat-card-image [src]="fotoSocial" style="height: 60px; width: 60px;" *ngIf="fotoSocial">

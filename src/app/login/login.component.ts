@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LoginService } from '../_service/login.service';
 import { Router } from '@angular/router';
 import { auth } from 'firebase';
 import { MenuService } from '../_service/menu.service';
 import { Menu } from '../_model/menu';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   usuario: string;
   clave: string;
@@ -19,6 +21,9 @@ export class LoginComponent implements OnInit {
   estadoLogin: boolean = true;
   estadoRecuperar: boolean;
   estadoCrear: boolean;
+
+  // Se crear la variable para liberar recursos
+  private ngUnsubscribe: Subject<void> = new Subject();
 
   constructor(private LoginService: LoginService, private route : Router, private menuService: MenuService) { }
 
@@ -85,9 +90,10 @@ export class LoginComponent implements OnInit {
   }
 
   listarMenus() {
-    this.menuService.listar().subscribe(menus => {
+    // .pipe(takeUntil(this.ngUnsubscribe)): Vas hacer esto hasta que el subscribe sea necesaria para librerar recursos
+    this.menuService.listar().pipe(takeUntil(this.ngUnsubscribe)).subscribe(menus => {
 
-      this.LoginService.user.subscribe(userData => {
+      this.LoginService.user.pipe(takeUntil(this.ngUnsubscribe)).subscribe(userData => {
         if (userData) {
           //console.log(userData);
           let user_roles: string[] = userData.roles
@@ -113,5 +119,10 @@ export class LoginComponent implements OnInit {
         }
       });
     });
+  }
+
+  ngOnDestroy(){
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

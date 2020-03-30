@@ -4,8 +4,8 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Usuario } from '../_model/usuario';
 import { Router } from '@angular/router';
 import { auth } from 'firebase/app';
-import { Observable, EMPTY } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Observable, EMPTY, Subject } from 'rxjs';
+import { switchMap, takeUntil } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,9 @@ export class LoginService {
 
   //Variable para validar el estado del usuario
   user: Observable<Usuario>;
+
+  // Se crear la variable para liberar recursos
+  //private ngUnsubscribe: Subject<void> = new Subject();
 
   constructor(private afa: AngularFireAuth, private afs: AngularFirestore, private route: Router) {
     // authState: Devolver el estado si alguein acaba de iniciar sesion
@@ -69,14 +72,16 @@ export class LoginService {
   private actualizarUsuarioData(usuario: any) {
     const userRef: AngularFirestoreDocument<Usuario> = this.afs.doc(`usuarios/${usuario.uid}`);
     // Validacion que permite validar si un usuario ya es Admin en firebase
-    userRef.valueChanges().subscribe(data => {
+
+    // Utilizaos una variable para liberar recurson ya que estemetedo esta realizando un proceso despues de subcribirse
+    let observable = userRef.valueChanges().subscribe(data => {
       if (data) {
         const datos: Usuario = {
           uid: usuario.uid,
           email: usuario.email,
           roles: data.roles
         }
-        return userRef.set(datos);
+        return userRef.set(datos); // Esta insertando datos, por ellos se crear la variable para liberar recursos al final
       } else {
         const datos: Usuario = {
           uid: usuario.uid,
@@ -86,10 +91,12 @@ export class LoginService {
         return userRef.set(datos);
       }
     });
+    observable.unsubscribe; // libero recursos despues del bloque de insersion 
   }
 
   cerrarSesion(){
     return this.afa.auth.signOut().then( ()=> {
+      window.location.reload() // Esto permite recargar la pagina al cerrar sesion, y asi simular que se esta liberando recursos
       this.route.navigate(['login']);
     });
   }
