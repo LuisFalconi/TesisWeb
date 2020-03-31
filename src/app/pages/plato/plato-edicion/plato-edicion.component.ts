@@ -40,9 +40,12 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
     // Metodo para traer el id del usuario
     this.loginService.user.pipe(takeUntil(this.ngUnsubscribe)).subscribe(data =>{
       this.usuarioLogeado = data.uid;
-      
+      console.log("1.." +this.usuarioLogeado);
+
     })
-    console.log(this.usuarioLogeado);
+
+    console.log("2." +this.usuarioLogeado);
+
     this.form = new FormGroup({
 
       // Setear el formulario
@@ -68,7 +71,7 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
         'id': new FormControl(data.id),
         'nombre': new FormControl(data.nombre),
         'precio': new FormControl(data.precio),
-        //'tipo': new FormControl(data.tipo)
+        'tipo': new FormControl(data.tipo)
         //'userUID': new FormControl(data.userUID)
         });
         
@@ -89,6 +92,13 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
     plato.nombre = this.form.value['nombre'];
     plato.precio = this.form.value['precio'];
     plato.tipo = this.form.value['tipo'];
+    
+    // Guardo el id del putooooooooooo usuario logueado
+    plato.userUID = this.usuarioLogeado;
+    //console.log("3." + this.usuarioLogeado);
+    console.log("4." + plato.userUID);
+
+  
     //plato.userUID = this.form.value['userUID'];
     
     // Guardar la imagen atado al ID
