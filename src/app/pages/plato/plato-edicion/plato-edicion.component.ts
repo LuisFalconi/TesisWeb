@@ -9,6 +9,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { LoginService } from '../../../_service/login.service';
+import { Usuario } from '../../../_model/usuario';
 
 @Component({
   selector: 'app-plato-edicion',
@@ -39,14 +40,16 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
     // Metodo para traer el id del usuario
     this.loginService.user.pipe(takeUntil(this.ngUnsubscribe)).subscribe(data =>{
       this.usuarioLogeado = data.uid;
+      
     })
-
+    console.log(this.usuarioLogeado);
     this.form = new FormGroup({
-
+      
+      
       // Setear el formulario
       // Variables que se colocan en el FormControlName del html
       'id': new FormControl(''),
-      //'userUID': new FormControl(''),
+      //'userUID': new FormControl(this.usuarioLogeado),
       'nombre': new FormControl(''),
       'precio': new FormControl(0),
       'tipo': new FormControl('')
@@ -60,13 +63,14 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
   }
 
   initForm(){
-    if(this.edicion){
+    if(this.edicion){   // Metodo para mostrar lo que esta en la tabla al grid de edicion
       this.platoService.leer(this.id).pipe(takeUntil(this.ngUnsubscribe)).subscribe((data: Plato) => {
         this.form = new FormGroup({
         'id': new FormControl(data.id),
         'nombre': new FormControl(data.nombre),
         'precio': new FormControl(data.precio),
         'tipo': new FormControl(data.tipo)
+        //'userUID': new FormControl(data.userUID)
         });
         
         // Aqui no se usa el ngUnsubscribe porque se esta conectando con FireStorage
@@ -82,9 +86,12 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
   operar() {
  
     let plato = new Plato();
+    let usuario = new Usuario();
     plato.nombre = this.form.value['nombre'];
     plato.precio = this.form.value['precio'];
     plato.tipo = this.form.value['tipo'];
+    //plato.userUID = this.form.value['userUID'];
+    
     // Guardar la imagen atado al ID
     if(this.edicion){
       plato.id = this.form.value['id'];
