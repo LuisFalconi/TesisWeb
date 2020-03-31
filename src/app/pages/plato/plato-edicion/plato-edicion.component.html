@@ -5,7 +5,13 @@
             <input matInput placeholder="id" formControlName="id">
         </mat-form-field>
     </div>
-
+    <!-- Mostrar el uid del usuario logueado -->
+    <!-- formControlName: Nombre que se le da en el componete ts -->
+    <div [hidden]="false">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="userUID" formControlName="userUID" [value]="usuarioLogeado">
+        </mat-form-field>
+    </div>
     <mat-form-field class="example-full-width">
         <input matInput placeholder="Nombre del Plato" formControlName="nombre">
     </mat-form-field>
@@ -13,6 +19,11 @@
     <mat-form-field class="example-full-width">
         <input matInput placeholder="Precio del Plato" formControlName="precio" type="number">
     </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="tipo de Plato" formControlName="tipo" type="text">
+    </mat-form-field>
+
 
     <img mat-card-image [src]="urlImage" *ngIf="urlImage" style="width: 200px;">
     

@@ -14,7 +14,7 @@ import { FunctionService } from '../../_service/function.service';
 export class PlatoComponent implements OnInit, OnDestroy {
 
   dataSource: MatTableDataSource<Plato>;
-  displayedColumns = ['nombre', 'precio', 'acciones'];
+  displayedColumns = ['nombre', 'precio', 'tipo','acciones']; // Datos que se va amostrar en la tabla
 
   // Se crear la variable para liberar recursos
   private ngUnsubscribe: Subject<void> = new Subject();

@@ -8,6 +8,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { LoginService } from '../../../_service/login.service';
 
 @Component({
   selector: 'app-plato-edicion',
@@ -19,6 +20,7 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
   form: FormGroup;
   id: string;
   edicion: boolean;
+  usuarioLogeado: string;
 
   // variables para subir imagen
   file: any;
@@ -30,14 +32,24 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
 
   constructor(private platoService: PlatoService, private route: ActivatedRoute, 
     private router: Router, private snackBar: MatSnackBar, private afStorage: AngularFireStorage, 
-    private afs: AngularFirestore) { }
+    private afs: AngularFirestore, private loginService: LoginService) { }
 
   ngOnInit() {
 
+    // Metodo para traer el id del usuario
+    this.loginService.user.pipe(takeUntil(this.ngUnsubscribe)).subscribe(data =>{
+      this.usuarioLogeado = data.uid;
+    })
+
     this.form = new FormGroup({
+
+      // Setear el formulario
+      // Variables que se colocan en el FormControlName del html
       'id': new FormControl(''),
+      //'userUID': new FormControl(''),
       'nombre': new FormControl(''),
       'precio': new FormControl(0),
+      'tipo': new FormControl('')
     });
 
     this.route.params.subscribe((params: Params) =>{
@@ -54,6 +66,7 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
         'id': new FormControl(data.id),
         'nombre': new FormControl(data.nombre),
         'precio': new FormControl(data.precio),
+        'tipo': new FormControl(data.tipo)
         });
         
         // Aqui no se usa el ngUnsubscribe porque se esta conectando con FireStorage
@@ -69,15 +82,15 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
   operar() {
  
     let plato = new Plato();
+    plato.nombre = this.form.value['nombre'];
+    plato.precio = this.form.value['precio'];
+    plato.tipo = this.form.value['tipo'];
     // Guardar la imagen atado al ID
     if(this.edicion){
       plato.id = this.form.value['id'];
     }else{
       plato.id = this.afs.createId();
-    }
-
-    plato.nombre = this.form.value['nombre'];
-    plato.precio = this.form.value['precio'];
+    }    
 
     // Funcion para subir imagenes
     if(this.file != null){

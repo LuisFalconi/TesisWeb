@@ -22,8 +22,10 @@ export class PlatoService {
      // plato.id = idPlato;
      return this.afs.collection('plato').doc(plato.id).set({
       id: plato.id,
+      //userUID: plato.userUID,
       nombre: plato.nombre,
-      precio: plato.precio
+      precio: plato.precio,
+      tipo: plato.tipo
      });
    }
 
