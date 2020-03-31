@@ -44,15 +44,14 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
     })
     console.log(this.usuarioLogeado);
     this.form = new FormGroup({
-      
-      
+
       // Setear el formulario
       // Variables que se colocan en el FormControlName del html
       'id': new FormControl(''),
-      //'userUID': new FormControl(this.usuarioLogeado),
+      //'userUID': new FormControl(''),
       'nombre': new FormControl(''),
       'precio': new FormControl(0),
-      'tipo': new FormControl('')
+      'tipo': new FormControl('hola carabola')
     });
 
     this.route.params.subscribe((params: Params) =>{
@@ -69,7 +68,7 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
         'id': new FormControl(data.id),
         'nombre': new FormControl(data.nombre),
         'precio': new FormControl(data.precio),
-        'tipo': new FormControl(data.tipo)
+        //'tipo': new FormControl(data.tipo)
         //'userUID': new FormControl(data.userUID)
         });
         
@@ -86,7 +85,7 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
   operar() {
  
     let plato = new Plato();
-    let usuario = new Usuario();
+    //let usuario = new Usuario();
     plato.nombre = this.form.value['nombre'];
     plato.precio = this.form.value['precio'];
     plato.tipo = this.form.value['tipo'];
