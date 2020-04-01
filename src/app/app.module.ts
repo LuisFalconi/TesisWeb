@@ -17,7 +17,6 @@ import { ClienteComponent } from './pages/cliente/cliente.component';
 import { ConsultaComponent } from './pages/consulta/consulta.component';
 import { ConsumoComponent } from './pages/consumo/consumo.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
-import { ReporteComponent } from './pages/reporte/reporte.component';
 import { DialogoComponent } from './pages/consulta/dialogo/dialogo.component';
 import { LoginComponent } from './login/login.component';
 
@@ -36,7 +35,6 @@ import { CrearUsuarioComponent } from './login/crear-usuario/crear-usuario.compo
     ConsultaComponent,
     ConsumoComponent,
     PerfilComponent,
-    ReporteComponent,
     DialogoComponent,
     LoginComponent,
     Not403Component,

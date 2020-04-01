@@ -31,9 +31,13 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
   // Se crear la variable para liberar recursos
   private ngUnsubscribe: Subject<void> = new Subject();
 
-  constructor(private platoService: PlatoService, private route: ActivatedRoute, 
-    private router: Router, private snackBar: MatSnackBar, private afStorage: AngularFireStorage, 
-    private afs: AngularFirestore, private loginService: LoginService) { }
+  constructor(private platoService: PlatoService, 
+              private route: ActivatedRoute, 
+              private router: Router,
+              private snackBar: MatSnackBar, 
+              private afStorage: AngularFireStorage, 
+              private afs: AngularFirestore, 
+              private loginService: LoginService) { }
 
   ngOnInit() {
 
@@ -54,12 +58,13 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
       //'userUID': new FormControl(''),
       'nombre': new FormControl(''),
       'precio': new FormControl(0),
-      'tipo': new FormControl('hola carabola')
+      'tipo': new FormControl('')
     });
 
+    // Esto sirve para mostrar los datos del Grid al componente de edicion
     this.route.params.subscribe((params: Params) =>{
       this.id = params['id'];
-      this.edicion = this.edicion != null;
+      this.edicion = this.id != null;
       this.initForm();
     });
   }
@@ -76,11 +81,11 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
         });
         
         // Aqui no se usa el ngUnsubscribe porque se esta conectando con FireStorage
-        if(data != null){
-          this.afStorage.ref(`plato/${data.id}`).getDownloadURL().subscribe(data => {
+         if(data != null){
+           this.afStorage.ref(`plato/${data.id}`).getDownloadURL().subscribe(data => {
             this.urlImage = data;
-          })
-        }
+           })
+          }
       });
     }
   }

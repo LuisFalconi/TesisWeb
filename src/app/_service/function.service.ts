@@ -15,7 +15,7 @@ export class FunctionService {
 
     // return this.http.get(url);
     return this.afa.auth.currentUser.getIdToken().then(authToken => { 
-      console.log(authToken);
+      //console.log(authToken);
       const headers = new HttpHeaders({ 'Authorization': 'Bearer ' + authToken});
       const body = { uid: this.afa.auth.currentUser.uid};
 

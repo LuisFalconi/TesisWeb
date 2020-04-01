@@ -6,7 +6,6 @@ import { PlatoComponent } from './pages/plato/plato.component';
 import { PlatoEdicionComponent } from './pages/plato/plato-edicion/plato-edicion.component';
 import { ConsumoComponent } from './pages/consumo/consumo.component';
 import { ConsultaComponent } from './pages/consulta/consulta.component';
-import { ReporteComponent } from './pages/reporte/reporte.component';
 import { ClienteComponent } from './pages/cliente/cliente.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { LoginComponent } from './login/login.component';
@@ -23,7 +22,6 @@ const routes: Routes = [
   {path: 'consumo', component: ConsumoComponent, canActivate: [LoginGuardService]},
   {path: 'inicio', component: HomeComponent},
   {path: 'consulta', component: ConsultaComponent, canActivate: [LoginGuardService]},
-  {path: 'reporte', component: ReporteComponent, canActivate: [LoginGuardService]},
   {path: 'cliente', component: ClienteComponent, canActivate: [LoginGuardService]},
   {path: 'perfil', component: PerfilComponent, canActivate: [LoginGuardService]},
   {path: 'not-403', component: Not403Component, canActivate: [LoginGuardService]},

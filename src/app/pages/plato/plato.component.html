@@ -1,32 +1,47 @@
 <router-outlet></router-outlet>
 <div style="margin: 45px; padding: 10px;">
       
-      <mat-table [dataSource]= "dataSource" matSort>
-      
-          <ng-container matColumnDef="nombre">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell> 
-              <mat-cell *matCellDef="let row"> {{row.nombre}}</mat-cell>
+      <mat-table [dataSource]= "dataSource" matSort >
+        <div>
+            <ng-container matColumnDef="nombre">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell> 
+                <mat-cell *matCellDef="let row"> {{row.nombre}}</mat-cell>
+            </ng-container>
+  
+            <ng-container matColumnDef="ID">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>ID Plato</mat-header-cell> 
+              <mat-cell *matCellDef="let row"> {{row.id}}</mat-cell>
           </ng-container>
-      
-          <ng-container matColumnDef="precio">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>Precio</mat-header-cell> 
-              <mat-cell *matCellDef="let row"> {{row.precio}}</mat-cell>
+        
+            <ng-container matColumnDef="precio">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Precio</mat-header-cell> 
+                <mat-cell *matCellDef="let row"> {{row.precio}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="tipo">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Tipo</mat-header-cell> 
+              <mat-cell *matCellDef="let row"> {{row.tipo}}</mat-cell>
           </ng-container>
-          <ng-container matColumnDef="tipo">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Tipo</mat-header-cell> 
-            <mat-cell *matCellDef="let row"> {{row.tipo}}</mat-cell>
-        </ng-container>
+          <ng-container matColumnDef="userUid">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Usuario Logueado</mat-header-cell> 
+              <mat-cell *matCellDef="let row">{{row.userUID}}</mat-cell>
+          </ng-container>
+        </div>
+          
           
           
           <ng-container matColumnDef="acciones">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</mat-header-cell> 
+              <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell> 
               <mat-cell *matCellDef="let row">
-                  <button mat-icon-button color="primary" [routerLink]="['edicion', row.id]">
-                      <mat-icon arial-label="Actualizar">assignment</mat-icon>
-                  </button> 
-                  <button mat-icon-button color="accent" (click)="eliminar(row)">
-                      <mat-icon arial-label="Eliminar">highlight_off</mat-icon>
-                  </button> 
+                   <div *ngIf="usuarioLog == row.userUID">   <!--Valido si el usuario logueado es el que edito el plato-->
+                    <button mat-icon-button color="primary" [routerLink]="['edicion', row.id]">
+                        <mat-icon arial-label="Actualizar">assignment</mat-icon>
+                    </button>  
+                 </div>
+                  <div *ngIf="usuarioLog == row.userUID">
+                    <button mat-icon-button color="accent" (click)="eliminar(row)">
+                        <mat-icon arial-label="Eliminar">highlight_off</mat-icon>
+                    </button> 
+                  </div>
               </mat-cell>
           </ng-container>
       
@@ -38,5 +53,10 @@
       <button mat-fab color="accent" style="float: right;" routerLink='/plato/nuevo'>
           <mat-icon>send</mat-icon>
       </button>
+      <p>Usuario Loguedo</p>
+
+      <mat-list role="list">
+        <mat-list-item role="listitem">{{usuarioLog}}</mat-list-item>
+    </mat-list>
       
 </div>
