@@ -1,4 +1,12 @@
-<!-- <router-outlet></router-outlet> -->
+<mat-toolbar color="Warm" *ngIf="loginService.noEstaLogeado()">
+    <span>MuertosDeHambre.com</span>
+
+    <span class="example-fill-remaining-space"></span>
+  
+    <button mat-button routerLink='/login'color="primary">Iniciar Sesión</button>
+    <button mat-button routerLink='/crearUsuario' color="primary">Crear Usuario</button>
+  </mat-toolbar>
+
 <mat-sidenav-container class="all-wrap" fullscream>
 
     <mat-sidenav #sidenav style="width: 300px;">

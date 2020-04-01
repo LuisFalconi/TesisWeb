@@ -97,12 +97,16 @@ export class LoginService {
   cerrarSesion(){
     return this.afa.auth.signOut().then( ()=> {
       window.location.reload() // Esto permite recargar la pagina al cerrar sesion, y asi simular que se esta liberando recursos
-      this.route.navigate(['login']);
+      this.route.navigate(['inicio']);
     });
   }
 
   estaLogeado(){
     return this.afa.auth.currentUser != null;
+  }
+
+  noEstaLogeado(){
+    return this.afa.auth.currentUser == null;
   }
 
 

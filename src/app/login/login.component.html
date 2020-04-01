@@ -8,7 +8,7 @@
                 <tr>
                     <td>
                         <mat-form-field>
-                            <input matInput placeholder="Usuario" [(ngModel)]="usuario" required>
+                            <input matInput placeholder="Usuario" [(ngModel)]="usuario" autocomplete="off" required>
                         </mat-form-field>
                     </td>
                 </tr>
@@ -33,6 +33,7 @@
             <br><br>
             <button mat-raised-button (click)="loginGoogle()" color="accent">Google</button>
             <button mat-raised-button (click)="loginFacebook()" color="primary">Facebook</button>
+            <button mat-raised-button routerLink="/inicio" color="accent">Inicio</button>
         </mat-card-actions>
     </mat-card>
 
@@ -45,7 +46,7 @@
                 <tr>
                     <td>
                         <mat-form-field>
-                            <input matInput placeholder="Usuario" [(ngModel)]="usuario" required>
+                            <input matInput placeholder="Usuario" [(ngModel)]="usuario" autocomplete="off" required>
                         </mat-form-field>
                     </td>
                 </tr>

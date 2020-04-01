@@ -24,6 +24,8 @@ import { LoginComponent } from './login/login.component';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { Not403Component } from './pages/not403/not403.component'; //seguridad
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import { CrearUsuarioComponent } from './login/crear-usuario/crear-usuario.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { HttpClientModule } from '@angular/common/http';
     ReporteComponent,
     DialogoComponent,
     LoginComponent,
-    Not403Component
+    Not403Component,
+    HomeComponent,
+    CrearUsuarioComponent
   ],
   imports: [
     BrowserModule,

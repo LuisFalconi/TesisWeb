@@ -1,3 +1,4 @@
+import { HomeComponent } from './home/home.component';
 import { LoginGuardService } from './_service/login-guard.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -10,6 +11,7 @@ import { ClienteComponent } from './pages/cliente/cliente.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { LoginComponent } from './login/login.component';
 import { Not403Component } from './pages/not403/not403.component';
+import { CrearUsuarioComponent } from './login/crear-usuario/crear-usuario.component';
 
 
 const routes: Routes = [
@@ -19,14 +21,16 @@ const routes: Routes = [
     ], canActivate: [LoginGuardService]  // Permite dar seguridad a una pagina que no se quiere ver si no esta algun usuario logueado
   },
   {path: 'consumo', component: ConsumoComponent, canActivate: [LoginGuardService]},
+  {path: 'inicio', component: HomeComponent},
   {path: 'consulta', component: ConsultaComponent, canActivate: [LoginGuardService]},
   {path: 'reporte', component: ReporteComponent, canActivate: [LoginGuardService]},
   {path: 'cliente', component: ClienteComponent, canActivate: [LoginGuardService]},
   {path: 'perfil', component: PerfilComponent, canActivate: [LoginGuardService]},
-  {path: 'not-403', component: Not403Component},
+  {path: 'not-403', component: Not403Component, canActivate: [LoginGuardService]},
   {path: 'login', component: LoginComponent},
+  {path: 'crearUsuario', component: CrearUsuarioComponent},
   // PAgina que carga por defecto
-  {path:  '', redirectTo: 'login', pathMatch: 'full'}
+  {path:  '', redirectTo: 'inicio', pathMatch: 'full'}
 ];
  
 @NgModule({
