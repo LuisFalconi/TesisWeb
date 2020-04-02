@@ -1,16 +1,24 @@
 <mat-card>{{usuario}}</mat-card>
+<mat-card>{{usuarioLog}}</mat-card>
 <!-- <mat-card> Creado el: {{desde | date: 'dd-MM--yyyy' }}</mat-card>
 <mat-card> Ultima Conexion {{ultimaConexion | date: 'dd-MM-yyyy'}}</mat-card> -->
 
 <mat-card>Tipo de Sesion {{usuarioSocial}}</mat-card>
 <img mat-card-image [src]="fotoSocial" style="height: 60px; width: 60px;" *ngIf="fotoSocial">
-
-<mat-list role="list" *ngFor="let p of perfil">
-    <mat-list-item role="listitem">{{p.nombreRestaurante}}</mat-list-item>
-    <mat-list-item role="listitem">{{p.tipoRestaurante}}</mat-list-item>
-    <mat-list-item role="listitem">{{p.fotoRestaurante}}</mat-list-item>
-    <mat-list-item role="listitem">{{p.direccionRestaurante}}</mat-list-item>
-    <mat-list-item role="listitem">{{p.capacidadRestaurante}}</mat-list-item>
-    <mat-list-item role="listitem">{{p.id}}</mat-list-item>
-    <mat-list-item role="listitem">{{p.horarioRestaurate}}</mat-list-item>
-</mat-list>
+<div *ngIf="perfilUsuario()">
+    <mat-list role="list" *ngFor="let p of perfil">
+        
+        <div *ngIf="usuarioLog == p.userUID">
+            <p>Usuario que edito el perfil</p>
+        <mat-list-item role="listitem">{{p.userUID}}</mat-list-item> 
+        <mat-list-item role="listitem">{{p.nombreRestaurante}}</mat-list-item>
+        <mat-list-item role="listitem">{{p.tipoRestaurante}}</mat-list-item>
+        <mat-list-item role="listitem">{{p.fotoRestaurante}}</mat-list-item>
+        <mat-list-item role="listitem">{{p.direccionRestaurante}}</mat-list-item>
+        <mat-list-item role="listitem">{{p.capacidadRestaurante}}</mat-list-item>
+        <mat-list-item role="listitem">{{p.horarioRestaurate}}</mat-list-item> 
+        </div>
+        
+        
+    </mat-list>
+</div>

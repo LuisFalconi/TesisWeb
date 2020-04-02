@@ -33,10 +33,10 @@
               <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell> 
               <mat-cell *matCellDef="let row">
                    <div *ngIf="usuarioLog == row.userUID">   <!--Valido si el usuario logueado es el que edito el plato-->
-                    <button mat-icon-button color="primary" [routerLink]="['edicion', row.id]">
+                        <button mat-icon-button color="primary" [routerLink]="['edicion', row.id]">
                         <mat-icon arial-label="Actualizar">assignment</mat-icon>
-                    </button>  
-                 </div>
+                        </button>  
+                    </div>
                   <div *ngIf="usuarioLog == row.userUID">
                     <button mat-icon-button color="accent" (click)="eliminar(row)">
                         <mat-icon arial-label="Eliminar">highlight_off</mat-icon>

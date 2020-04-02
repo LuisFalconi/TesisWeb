@@ -21,7 +21,7 @@ export class LoginGuardService implements CanActivate{
       .pipe(map(authState => !!authState))
       .pipe(switchMap((auntenticado: boolean) => {
         if (!auntenticado) {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/inicio']);
           return of(false);
         } else {
           // verifica que rol tiene el usuario logueado

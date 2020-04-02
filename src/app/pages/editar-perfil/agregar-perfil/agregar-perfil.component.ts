@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -8,13 +8,14 @@ import { Perfil } from 'src/app/_model/perfil';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material';
+import { LoginService } from '../../../_service/login.service';
 
 @Component({
   selector: 'app-agregar-perfil',
   templateUrl: './agregar-perfil.component.html',
   styleUrls: ['./agregar-perfil.component.css']
 })
-export class AgregarPerfilComponent implements OnInit {
+export class AgregarPerfilComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
   id: string;
@@ -32,16 +33,15 @@ export class AgregarPerfilComponent implements OnInit {
               private afStorage: AngularFireStorage,
               private afs: AngularFirestore,
               private snackBar: MatSnackBar,
-              private router: Router ) { }
+              private router: Router,
+              private loginService: LoginService) { }
 
   ngOnInit() {
 
-    // // Metodo para traer el id del usuario
-    // this.loginService.user.pipe(takeUntil(this.ngUnsubscribe)).subscribe(data =>{
-    //   this.usuarioLogeado = data.uid;
-    //   console.log("1.." +this.usuarioLogeado);
-
-    // })
+    // Metodo para traer el id del usuario
+    this.loginService.user.pipe(takeUntil(this.ngUnsubscribe)).subscribe(data =>{
+      this.usuarioLogeado = data.uid;
+    })
 
     this.form = new FormGroup({
       // Setear el formulario
@@ -96,6 +96,9 @@ export class AgregarPerfilComponent implements OnInit {
     perfil.horarioRestaurate = this.form.value['horarioR'];
     perfil.direccionRestaurante = this.form.value['direccionR'];
     perfil.capacidadRestaurante = this.form.value['capacidadR'];
+    
+
+    perfil.userUID = this.usuarioLogeado;
     
     // Guardar la imagen atado al ID
     if(this.edicion){

@@ -34,25 +34,45 @@
           <ng-container matColumnDef="acciones">
               <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell> 
               <mat-cell *matCellDef="let row">
-                   <div> 
+                <div *ngIf="usuarioLog == row.userUID"> 
                     <button mat-icon-button color="primary" [routerLink]="['edicion', row.id]">
                         <mat-icon arial-label="Actualizar">assignment</mat-icon>
                     </button>  
-                 </div>
-                  <div>
+                </div>
+                <div *ngIf="usuarioLog == row.userUID">
                     <button mat-icon-button color="accent" (click)="eliminar(row)">
                         <mat-icon arial-label="Eliminar">highlight_off</mat-icon>
                     </button> 
-                  </div>
+                </div>
+                <div *ngFor="let p of perfil">
+                    <div *ngIf="usuarioLog == row.userUID && p.userUID != null">
+                        <button mat-icon-button color="primary" routerLink='/editar/nuevo'>
+                            <mat-icon arial-label="">create</mat-icon>
+                        </button> 
+                    </div>
+                    <div *ngIf="usuarioLog == row.userUID && p.userUID != null">
+                        <button mat-icon-button color="primary" routerLink='/editar/nuevo'>
+                            <mat-icon arial-label="">create</mat-icon>
+                        </button> 
+                    </div>
+                </div>
               </mat-cell>
           </ng-container>
-      
+          
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
       </mat-table>
-      
       <mat-paginator [pageSize]="10" [pageSizeOptions]="[5,10,25,100]"></mat-paginator>
-      <button mat-fab color="accent" style="float: right;" routerLink='/editar/nuevo'>
-          <mat-icon>send</mat-icon>
-      </button>
+      <div *ngIf="estadoEditar()">
+        <button mat-fab color="accent" style="float: right;" routerLink='/editar/nuevo'>
+            <mat-icon>send</mat-icon>
+        </button>
+      </div>
+      
+      <p>Usuario Loguedo</p>
+
+      <mat-list role="list">
+        <mat-list-item role="listitem">{{usuarioLog}}</mat-list-item>
+        <mat-list-item role="listitem">{{useremailLog}}</mat-list-item>
+    </mat-list>
 </div>

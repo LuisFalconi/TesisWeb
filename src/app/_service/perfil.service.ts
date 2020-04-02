@@ -1,19 +1,37 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Perfil } from '../_model/perfil';
-import { Observable } from 'rxjs';
+import { Observable, EMPTY } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PerfilService {
 
-  //Variable para validar el estado del usuario
-  //user: Observable<Perfil>;
-  constructor(private afs: AngularFirestore) { }
+  // Variable para validar el estado del usuario
+  user: Observable<Perfil>;
+  constructor(private afs: AngularFirestore, private afa: AngularFireAuth) { 
+    this.user = this.afa.authState.pipe(
+      switchMap( user => {
+        if(user){
+          return this.afs.doc<Perfil>(`usuarios/${user.uid}`).valueChanges();
+        }else {
+          return EMPTY;
+        }
+      })
+    )
+  }
 
   listar() {
     return this.afs.collection<Perfil>('perfiles').valueChanges();
+    //return this.afs.collection<Perfil>('perfiles').snapshotChanges();
+  }
+
+  recuperar() {
+    return this.afs.collection<Perfil>('perfiles').snapshotChanges();
+    //return this.afs.collection<Perfil>('perfiles').snapshotChanges();
   }
 
   // Registrar el perfil
@@ -24,7 +42,7 @@ export class PerfilService {
     // plato.id = idPlato;
     return this.afs.collection('perfiles').doc(perfil.id).set({
      id: perfil.id,
-     //userUID: perfil.userUID,
+     userUID: perfil.userUID,
      nombreRestaurante: perfil.nombreRestaurante,
      fotoRestaurante: perfil.fotoRestaurante,
      tipoRestaurante: perfil.tipoRestaurante,

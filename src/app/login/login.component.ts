@@ -114,7 +114,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             }
 
             this.menuService.menuCambio.next(final_menus);
-            this.route.navigate(['plato']);
+            this.route.navigate(['perfil']);
           }
         }
       });
