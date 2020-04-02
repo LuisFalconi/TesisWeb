@@ -5,9 +5,8 @@
 
 <mat-card>Tipo de Sesion {{usuarioSocial}}</mat-card>
 <img mat-card-image [src]="fotoSocial" style="height: 60px; width: 60px;" *ngIf="fotoSocial">
-<div *ngIf="perfilUsuario()">
+<div>
     <mat-list role="list" *ngFor="let p of perfil">
-        
         <div *ngIf="usuarioLog == p.userUID">
             <p>Usuario que edito el perfil</p>
         <mat-list-item role="listitem">{{p.userUID}}</mat-list-item> 
@@ -17,8 +16,6 @@
         <mat-list-item role="listitem">{{p.direccionRestaurante}}</mat-list-item>
         <mat-list-item role="listitem">{{p.capacidadRestaurante}}</mat-list-item>
         <mat-list-item role="listitem">{{p.horarioRestaurate}}</mat-list-item> 
-        </div>
-        
-        
+</div>
     </mat-list>
 </div>

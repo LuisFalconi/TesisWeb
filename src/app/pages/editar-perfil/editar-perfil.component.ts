@@ -62,13 +62,6 @@ export class EditarPerfilComponent implements OnInit, OnDestroy {
   }
 
   estadoEditar(){
-    //console.log(this.usuarioLog);
-    this.perfilService.recuperar().subscribe(data =>{
-      data.forEach((x: any) =>{
-        console.log(x.payload.doc.id);
-        console.log(x.payload.doc().userUID);
-      });
-    });
           this.n = 5;
           if(this.n == 5){
             return true;
