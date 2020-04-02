@@ -55,14 +55,14 @@ export class PlatoComponent implements OnInit, OnDestroy {
     });
   }
 
-  mostrarUsuerLog():Boolean{
-    if(this.usuarioLog == 'BoJ4UPCPHvSHot2Eb415Y5Wlz0a2'){
-      return true;
-    } else{
-      return false;
-    }
+  // mostrarUsuerLog():Boolean{
+  //   if(this.usuarioLog == 'BoJ4UPCPHvSHot2Eb415Y5Wlz0a2'){
+  //     return true;
+  //   } else{
+  //     return false;
+  //   }
 
-  }
+  // }
 
 
   ngOnDestroy(){

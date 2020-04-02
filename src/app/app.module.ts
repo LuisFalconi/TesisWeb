@@ -25,6 +25,9 @@ import { Not403Component } from './pages/not403/not403.component'; //seguridad
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { CrearUsuarioComponent } from './login/crear-usuario/crear-usuario.component';
+import { EditarPerfilComponent } from './pages/editar-perfil/editar-perfil.component';
+import { AgregarPerfilComponent } from './pages/editar-perfil/agregar-perfil/agregar-perfil.component';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +42,9 @@ import { CrearUsuarioComponent } from './login/crear-usuario/crear-usuario.compo
     LoginComponent,
     Not403Component,
     HomeComponent,
-    CrearUsuarioComponent
+    CrearUsuarioComponent,
+    EditarPerfilComponent,
+    AgregarPerfilComponent
   ],
   imports: [
     BrowserModule,

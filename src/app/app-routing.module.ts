@@ -11,6 +11,8 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
 import { LoginComponent } from './login/login.component';
 import { Not403Component } from './pages/not403/not403.component';
 import { CrearUsuarioComponent } from './login/crear-usuario/crear-usuario.component';
+import { EditarPerfilComponent } from './pages/editar-perfil/editar-perfil.component';
+import { AgregarPerfilComponent } from './pages/editar-perfil/agregar-perfil/agregar-perfil.component';
 
 
 const routes: Routes = [
@@ -24,7 +26,12 @@ const routes: Routes = [
   {path: 'consulta', component: ConsultaComponent, canActivate: [LoginGuardService]},
   {path: 'cliente', component: ClienteComponent, canActivate: [LoginGuardService]},
   {path: 'perfil', component: PerfilComponent, canActivate: [LoginGuardService]},
-  {path: 'not-403', component: Not403Component, canActivate: [LoginGuardService]},
+  {path: 'not-403', component: Not403Component},
+  {path: 'editar', component: EditarPerfilComponent, children: [
+    {path: 'nuevo', component: AgregarPerfilComponent},
+    {path: 'edicion/:id', component: AgregarPerfilComponent},
+    ],canActivate: [LoginGuardService] 
+  },
   {path: 'login', component: LoginComponent},
   {path: 'crearUsuario', component: CrearUsuarioComponent},
   // PAgina que carga por defecto

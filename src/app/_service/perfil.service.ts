@@ -26,7 +26,7 @@ export class PerfilService {
      id: perfil.id,
      //userUID: perfil.userUID,
      nombreRestaurante: perfil.nombreRestaurante,
-     fotoRestaurrate: perfil.fotoRestaurante,
+     fotoRestaurante: perfil.fotoRestaurante,
      tipoRestaurante: perfil.tipoRestaurante,
      capacidadRestaurante: perfil.capacidadRestaurante,
      horarioRestaurante: perfil.capacidadRestaurante,
@@ -44,11 +44,11 @@ export class PerfilService {
 
   leer(documentId: string){
     return this.afs.collection<Perfil>('perfiles').doc(documentId).valueChanges();
-}
+  }
 
-  // eliminar(perfil: Perfil){
-  //   return this.afs.collection('perfiles').doc(perfil.id).delete();
-  // }
+  eliminar(perfil: Perfil){
+    return this.afs.collection('perfiles').doc(perfil.id).delete();
+  }
 
 
 }
