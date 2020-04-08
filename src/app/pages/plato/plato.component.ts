@@ -15,7 +15,11 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class PlatoComponent implements OnInit, OnDestroy {
 
   dataSource: MatTableDataSource<Plato>;
-  displayedColumns = ['nombre', 'ID' ,'precio', 'tipo', 'userUid', 'acciones']; // Datos que se va amostrar en la tabla
+  dataSource2: MatTableDataSource<Plato>;
+  dataSource3: MatTableDataSource<Plato>;
+  displayedColumns1 = ['platoDes', 'detalleDes' ,'precioDes','userUid', 'acciones']; // Datos que se va amostrar en la tabla
+  displayedColumns2 = ['platoAlm', 'detalleAlm' ,'precioAlm','userUid', 'acciones']; // Datos que se va amostrar en la tabla
+  displayedColumns3 = ['platoEsp', 'detalleEsp' ,'precioEsp','userUid', 'acciones']; // Datos que se va amostrar en la tabla
 
   usuarioLog: string;// Validar usuario logueado
 
@@ -41,9 +45,16 @@ export class PlatoComponent implements OnInit, OnDestroy {
     // Programacion reactiva:s
     this.platoService.listar().pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
+      this.dataSource2 = new MatTableDataSource(data);
+      this.dataSource3 = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
+      this.dataSource2.paginator = this.paginator;
+      this.dataSource3.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      console.log("Data:" + this.displayedColumns);
+      this.dataSource2.sort = this.sort;
+      this.dataSource3.sort = this.sort;
+      //console.log("Data:" + this.displayedColumns);
+      //console.log("Data:" + this.displayedColumns2);
     });
   }
 

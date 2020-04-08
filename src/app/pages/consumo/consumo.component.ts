@@ -51,8 +51,7 @@ export class ConsumoComponent implements OnInit, OnDestroy {
     this.listarClientes();
     this.listarPlatos();
 
-    this.clientesFiltrados = this.ctrlCliente.valueChanges.pipe(map(val => this.filtrarClientes(val)));
-    this.platosFiltrados = this.ctrlPlato.valueChanges.pipe(map(val => this.filtrarPlatos(val)));
+    // this.clientesFiltrados = this.ctrlCliente.valueChanges.pipe(map(val => this.filtrarClientes(val)));
   }
 
   listarClientes() {
@@ -81,23 +80,23 @@ export class ConsumoComponent implements OnInit, OnDestroy {
     }
   }
 
-  filtrarPlatos(val: any) {
-    if (val != null && val.nombre != null) {
-      return this.plato.filter(option =>
-        option.nombre.toLowerCase().includes(val.nombre.toLowerCase()));
-    } else {
-      return this.plato.filter(option =>
-        option.nombre.toLowerCase().includes(val.toLowerCase()));
-    }
-  }
+  // filtrarPlatos(val: any) {
+  //   if (val != null && val.nombre != null) {
+  //     return this.plato.filter(option =>
+  //       option.nombre.toLowerCase().includes(val.nombre.toLowerCase()));
+  //   } else {
+  //     return this.plato.filter(option =>
+  //       //option.nombre.toLowerCase().includes(val.toLowerCase()));
+  //   }
+  // }
 
-  mostrarSeleccion(val: Cliente) {
-    return val ? `${val.nombreCompleto}` : val;
-  }
+  // mostrarSeleccion(val: Cliente) {
+  //   return val ? `${val.nombreCompleto}` : val;
+  // }
 
-  mostrarSeleccionPlatos(val: Plato) {
-    return val ? `${val.nombre}` : val;
-  }
+  // mostrarSeleccionPlatos(val: Plato) {
+  //   return val ? `${val.nombre}` : val;
+  // }
 
   ngOnDestroy(){
     this.ngUnsubscribe.next();

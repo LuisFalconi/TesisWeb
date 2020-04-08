@@ -27,6 +27,7 @@ import { HomeComponent } from './home/home.component';
 import { CrearUsuarioComponent } from './login/crear-usuario/crear-usuario.component';
 import { EditarPerfilComponent } from './pages/editar-perfil/editar-perfil.component';
 import { AgregarPerfilComponent } from './pages/editar-perfil/agregar-perfil/agregar-perfil.component';
+import { MiMenuComponent } from './pages/mi-menu/mi-menu.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { AgregarPerfilComponent } from './pages/editar-perfil/agregar-perfil/agr
     HomeComponent,
     CrearUsuarioComponent,
     EditarPerfilComponent,
-    AgregarPerfilComponent
+    AgregarPerfilComponent,
+    MiMenuComponent
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,7 @@ import { Not403Component } from './pages/not403/not403.component';
 import { CrearUsuarioComponent } from './login/crear-usuario/crear-usuario.component';
 import { EditarPerfilComponent } from './pages/editar-perfil/editar-perfil.component';
 import { AgregarPerfilComponent } from './pages/editar-perfil/agregar-perfil/agregar-perfil.component';
+import { MiMenuComponent } from './pages/mi-menu/mi-menu.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'consulta', component: ConsultaComponent, canActivate: [LoginGuardService]},
   {path: 'cliente', component: ClienteComponent, canActivate: [LoginGuardService]},
   {path: 'perfil', component: PerfilComponent, canActivate: [LoginGuardService]},
+  {path: 'miMenu', component: MiMenuComponent, canActivate: [LoginGuardService]},
   {path: 'not-403', component: Not403Component},
   {path: 'editar', component: EditarPerfilComponent, children: [
     {path: 'nuevo', component: AgregarPerfilComponent},

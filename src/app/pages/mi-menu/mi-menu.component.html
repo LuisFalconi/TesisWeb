@@ -1,0 +1,27 @@
+<mat-card>{{usuario}}</mat-card>
+<mat-card>{{usuarioLog}}</mat-card>
+
+<mat-card>Tipo de Sesion {{usuarioSocial}}</mat-card>
+<img mat-card-image [src]="fotoSocial" style="height: 60px; width: 60px;" *ngIf="fotoSocial">
+<div>
+    <mat-list role="list" *ngFor="let p of platos">
+        <div *ngIf="usuarioLog == p.userUID">
+            <p>Usuario que edito el perfil</p>
+            <p>Desayuno del Día</p><br>
+        <mat-list-item role="listitem">{{p.userUID}}</mat-list-item> 
+        <mat-list-item role="listitem">{{p.platoDesayuno}}</mat-list-item>
+        <mat-list-item role="listitem">{{p.detalleDesayuno}}</mat-list-item>
+        <mat-list-item role="listitem">{{p.precioDesayuno}}</mat-list-item>
+        <p>Almuerzo del Día</p><br>
+        <mat-list-item role="listitem">{{p.userUID}}</mat-list-item> 
+        <mat-list-item role="listitem">{{p.platoAlmuerzo}}</mat-list-item>
+        <mat-list-item role="listitem">{{p.detalleAlmuerzo}}</mat-list-item>
+        <mat-list-item role="listitem">{{p.precioAlmuerzo}}</mat-list-item>
+        <p>Especial del Día</p><br>
+        <mat-list-item role="listitem">{{p.userUID}}</mat-list-item> 
+        <mat-list-item role="listitem">{{p.platoEspecial}}</mat-list-item>
+        <mat-list-item role="listitem">{{p.detalleEspecial}}</mat-list-item>
+        <mat-list-item role="listitem">{{p.precioEspecial}}</mat-list-item>
+</div>
+    </mat-list>
+</div>

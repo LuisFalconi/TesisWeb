@@ -2,35 +2,41 @@
 <div style="margin: 45px; padding: 10px;">
       
       <mat-table [dataSource]= "dataSource" matSort >
-        <div>
-            <ng-container matColumnDef="nombreR">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Restaurante</mat-header-cell> 
-                <mat-cell *matCellDef="let row"> {{row.nombreRestaurante}}</mat-cell>
-            </ng-container>
-  
-            <ng-container matColumnDef="fotoR">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>Foto</mat-header-cell> 
-              <mat-cell *matCellDef="let row"> {{row.fotoRestaurante}}</mat-cell>
-          </ng-container>
-        
-            <ng-container matColumnDef="tipoR">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Tipo</mat-header-cell> 
-                <mat-cell *matCellDef="let row"> {{row.tipoRestaurante}}</mat-cell>
-            </ng-container>
-            <ng-container matColumnDef="direccionR">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>Direccion</mat-header-cell> 
-              <mat-cell *matCellDef="let row"> {{row.direccionRestaurante}}</mat-cell>
-          </ng-container>
-        <ng-container matColumnDef="horarioR">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Horario</mat-header-cell> 
-            <mat-cell *matCellDef="let row"> {{row.horarioRestaurante}}</mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="capacidadR">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Capacidad</mat-header-cell> 
-            <mat-cell *matCellDef="let row"> {{row.capacidadRestaurante}}</mat-cell>
-        </ng-container>
+          <!-- <mat-cell *matCellDef="let row">
+            <div *ngIf="usuarioLog == row.userUID"> -->
+                <ng-container matColumnDef="nombreR">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Restaurante</mat-header-cell> 
+                    <mat-cell *matCellDef="let row"> {{row.nombreRestaurante}}</mat-cell>
+                </ng-container>
+      
+                <ng-container matColumnDef="fotoR">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Foto</mat-header-cell> 
+                  <mat-cell *matCellDef="let row"> {{row.fotoRestaurante}}</mat-cell>
+              </ng-container>
+            
+                <ng-container matColumnDef="tipoR">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Tipo</mat-header-cell> 
+                    <mat-cell *matCellDef="let row"> {{row.tipoRestaurante}}</mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="direccionR">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Direccion</mat-header-cell> 
+                  <mat-cell *matCellDef="let row"> {{row.direccionRestaurante}}</mat-cell>
+                </ng-container>
+    
+                <ng-container matColumnDef="horarioR">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Horario</mat-header-cell> 
+                    <mat-cell *matCellDef="let row"> {{row.horarioRestaurante}}</mat-cell>
+                </ng-container>
+            
+                <ng-container matColumnDef="capacidadR">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Capacidad</mat-header-cell> 
+                <mat-cell *matCellDef="let row"> {{row.capacidadRestaurante}}</mat-cell>
+                </ng-container>
 
-    </div>
+            <!-- </div>
+          </mat-cell> -->
+
           <ng-container matColumnDef="acciones">
               <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell> 
               <mat-cell *matCellDef="let row">
@@ -44,26 +50,29 @@
                         <mat-icon arial-label="Eliminar">highlight_off</mat-icon>
                     </button> 
                 </div>
-                <div *ngIf="usuarioLog == row.userUID && row.userUID != null">
+                <!-- <div *ngIf="usuarioLog == row.userUID && row.userUID == null">
                     <button mat-icon-button color="primary" routerLink='/editar/nuevo'>
                         <mat-icon arial-label="">create</mat-icon>
                     </button> 
-                </div>
+                </div> -->
               </mat-cell>
           </ng-container>
           
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
       </mat-table>
-      <mat-paginator [pageSize]="10" [pageSizeOptions]="[5,10,25,100]"></mat-paginator>
-      <button mat-fab color="accent" style="float: right;" routerLink='/editar/nuevo'>
-        <mat-icon>send</mat-icon>
-    </button>
+
+      <!-- <mat-paginator [pageSize]="10" [pageSizeOptions]="[5,10,25,100]"></mat-paginator> -->
+      <!-- <div *ngIf="this.estadoEditar()">
+        <button mat-fab color="accent" style="float: right;" routerLink='/editar/nuevo'>
+            <mat-icon>send</mat-icon>
+        </button>
+      </div> -->
  
       <p>Usuario Loguedo</p>
 
       <mat-list role="list">
-        <mat-list-item role="listitem">{{usuarioLog}}</mat-list-item>
+        <mat-list-item role="listitem">{{"ID: " + usuarioLog}}</mat-list-item>
         <mat-list-item role="listitem">{{useremailLog}}</mat-list-item>
     </mat-list>
 </div>

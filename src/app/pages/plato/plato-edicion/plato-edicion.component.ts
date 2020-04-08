@@ -44,11 +44,8 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
     // Metodo para traer el id del usuario
     this.loginService.user.pipe(takeUntil(this.ngUnsubscribe)).subscribe(data =>{
       this.usuarioLogeado = data.uid;
-      console.log("1.." +this.usuarioLogeado);
+  })
 
-    })
-
-    console.log("2." +this.usuarioLogeado);
 
     this.form = new FormGroup({
 
@@ -56,9 +53,15 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
       // Variables que se colocan en el FormControlName del html
       'id': new FormControl(''),
       //'userUID': new FormControl(''),
-      'nombre': new FormControl(''),
-      'precio': new FormControl(0),
-      'tipo': new FormControl('')
+      'platoDes': new FormControl(''),
+      'platoAlm': new FormControl(''),
+      'platoEsp': new FormControl(''),
+      'detalleDes': new FormControl(''),
+      'detalleAlm': new FormControl(''),
+      'detalleEsp': new FormControl(''),
+      'precioDes': new FormControl(0),
+      'precioAlm': new FormControl(0),
+      'precioEsp': new FormControl(0)
     });
 
     // Esto sirve para mostrar los datos del Grid al componente de edicion
@@ -74,9 +77,15 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
       this.platoService.leer(this.id).pipe(takeUntil(this.ngUnsubscribe)).subscribe((data: Plato) => {
         this.form = new FormGroup({
         'id': new FormControl(data.id),
-        'nombre': new FormControl(data.nombre),
-        'precio': new FormControl(data.precio),
-        'tipo': new FormControl(data.tipo)
+        'platoDes': new FormControl(data.platoDesayuno),
+        'platoAlm': new FormControl(data.platoAlmuerzo),
+        'platoEsp': new FormControl(data.platoEspecial),
+        'detalleDes': new FormControl(data.detalleDesayuno),
+        'detalleAlm': new FormControl(data.detalleAlmuerzo),
+        'detalleEsp': new FormControl(data.detalleEspecial),
+        'precioDes': new FormControl(data.precioDesayuno),
+        'precioAlm': new FormControl(data.precioAlmuerzo),
+        'precioEsp': new FormControl(data.precioEspecial)
         //'userUID': new FormControl(data.userUID)
         });
         
@@ -94,14 +103,18 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
  
     let plato = new Plato();
     //let usuario = new Usuario();
-    plato.nombre = this.form.value['nombre'];
-    plato.precio = this.form.value['precio'];
-    plato.tipo = this.form.value['tipo'];
+    plato.platoDesayuno = this.form.value['platoDes'];
+    plato.platoAlmuerzo = this.form.value['platoAlm'];
+    plato.platoEspecial = this.form.value['platoEsp'];
+    plato.detalleDesayuno = this.form.value['detalleDes'];
+    plato.detalleAlmuerzo = this.form.value['detalleAlm'];
+    plato.detalleEspecial = this.form.value['detalleEsp'];
+    plato.precioDesayuno = this.form.value['precioDes'];
+    plato.precioAlmuerzo = this.form.value['precioAlm'];
+    plato.precioEspecial = this.form.value['precioEsp'];
     
     // Guardo el id del putooooooooooo usuario logueado
     plato.userUID = this.usuarioLogeado;
-    //console.log("3." + this.usuarioLogeado);
-    console.log("4." + plato.userUID);
 
   
     //plato.userUID = this.form.value['userUID'];
@@ -123,10 +136,10 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
     let mensaje
     if(this.edicion){
       this.platoService.modificar(plato);
-      mensaje = "Plato modificado";
+      mensaje = "Desayuno editado con exito";
     } else{
       this.platoService.registrar(plato);   
-      mensaje = "Plato Registrado con existo";
+      mensaje = "Desayuno agregado con exito";
 
     }
 
