@@ -22,6 +22,7 @@ export class PlatoComponent implements OnInit, OnDestroy {
   displayedColumns3 = ['platoEsp', 'detalleEsp' ,'precioEsp','userUid', 'acciones']; // Datos que se va amostrar en la tabla
 
   usuarioLog: string;// Validar usuario logueado
+  usuarioLogeado: Plato[]; // variable para guardar la coleccion de los campos de los usuarios logueados
 
   private ngUnsubscribe: Subject<void> = new Subject();// Se crear la variable para liberar recursos
 
@@ -44,9 +45,25 @@ export class PlatoComponent implements OnInit, OnDestroy {
 
     // Programacion reactiva:s
     this.platoService.listar().pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource2 = new MatTableDataSource(data);
-      this.dataSource3 = new MatTableDataSource(data);
+      data.forEach((menus: Plato) =>{
+        if(this.usuarioLog == menus.userUID){
+          console.log("Si");
+          this.usuarioLogeado = [menus];
+          console.log(this.usuarioLogeado);
+          this.dataSource = new MatTableDataSource(this.usuarioLogeado);
+          this.dataSource2 = new MatTableDataSource(this.usuarioLogeado);
+          this.dataSource3 = new MatTableDataSource(this.usuarioLogeado);
+          
+        }else{
+          console.log("No");
+          //this.dataSource = new MatTableDataSource(this.usuarioLogeado);
+          //this.dataSource2 = new MatTableDataSource(this.usuarioLogeado);
+          //  this.dataSource3 = new MatTableDataSource(this.usuarioLogeado);
+        } 
+      });
+      //this.dataSource = new MatTableDataSource(data);
+      //this.dataSource2 = new MatTableDataSource(data);
+      //this.dataSource3 = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource2.paginator = this.paginator;
       this.dataSource3.paginator = this.paginator;

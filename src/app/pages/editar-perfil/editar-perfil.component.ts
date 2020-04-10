@@ -54,32 +54,15 @@ export class EditarPerfilComponent implements OnInit, OnDestroy {
               this.dataSource = new MatTableDataSource(this.loginuserlog);
             }       
         });
-        // for (let perf of data){
-        //   console.log("A: "  +perf.userUID);
-        //   if(this.usuarioLog == perf.userUID){
-        //     this.perfil = data[this.n];
-        //     this.n++;
-        //     console.log("Perfil: " + this.perfil);
-        //   }else{
-        //     data;
-        //   }
-        // }
+
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;;
-      console.log("ID Login" + this.usuarioLog);
-
-      //console.log(data[3].userUID);
-
-      console.log("Usuario logueado : " + this.useremailLog);
-      //this.dataSource = new MatTableDataSource(data);
-      //this.dataSource.paginator = this.paginator;
-      //this.dataSource.sort = this.sort;
+      // console.log("ID Login" + this.usuarioLog);
+      //console.log("Usuario logueado : " + this.useremailLog);
       
     });
   }
-
-
-
+  
   eliminar(perfil: Perfil){
     this.perfilService.eliminar(perfil).then(() =>{
       this.snackBar.open('Se Elimino', 'AVISO', {
@@ -88,51 +71,8 @@ export class EditarPerfilComponent implements OnInit, OnDestroy {
     });
   }
 
-  // estadoEditar(n: number){
-  //   if(n == 5){
-  //     //console.log("verdadero");
-  //     return true;
-  //   }else{
-  //     //console.log("falso");
-  //     return false;
-  //   }
-  // }
-
   ngOnDestroy(){
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }
-
-
-//   mostrarRestaurantes(){
-//     this.restauranteService.getRestaurantes().subscribe(resta =>{
-//     this.restaurantes = resta
-//     console.log(this.restaurantes)
-//     for (let  rest of this.restaurantes){
-//       let latLong = [
-//         rest.direccion._lat,
-//         rest.direccion._long
-//       ]
-//       this.marker = marker(latLong);
-//       this.marker.addTo(this.map).bindPopup('Restaurante');
-//     }
-//   });
-// }
-
-// puede Valer
-// data.forEach((x: any) =>{
-//   //console.log(x.payload.doc.id);
-//   this.loginuser = x.payload.doc.data().userUID; 
-
-//   console.log(x.payload.doc.data().userUID);
-//   if(this.usuarioLog == x.payload.doc.data().userUID){
-//   let ayuda = x.payload.doc.data().userUID;
-//   let ayuda2 = x.payload.doc.data();
-//   console.log("ayuda: "+ayuda); 
-//   console.log("ayuda: "+ayuda2); 
-//     console.log(x.payload.doc.data().userUID);
-//   }else{
-//     console.log("no")
-//   }
-// });
 }

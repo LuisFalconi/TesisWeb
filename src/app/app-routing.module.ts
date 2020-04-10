@@ -5,7 +5,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { PlatoComponent } from './pages/plato/plato.component';
 import { PlatoEdicionComponent } from './pages/plato/plato-edicion/plato-edicion.component';
 import { ConsumoComponent } from './pages/consumo/consumo.component';
-import { ConsultaComponent } from './pages/consulta/consulta.component';
 import { ClienteComponent } from './pages/cliente/cliente.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { LoginComponent } from './login/login.component';
@@ -14,6 +13,8 @@ import { CrearUsuarioComponent } from './login/crear-usuario/crear-usuario.compo
 import { EditarPerfilComponent } from './pages/editar-perfil/editar-perfil.component';
 import { AgregarPerfilComponent } from './pages/editar-perfil/agregar-perfil/agregar-perfil.component';
 import { MiMenuComponent } from './pages/mi-menu/mi-menu.component';
+import { CrearMenuComponent } from './pages/crear-menu/crear-menu.component';
+import { CrearRestauranteComponent } from './pages/crear-restaurante/crear-restaurante.component';
 
 
 const routes: Routes = [
@@ -24,10 +25,11 @@ const routes: Routes = [
   },
   {path: 'consumo', component: ConsumoComponent, canActivate: [LoginGuardService]},
   {path: 'inicio', component: HomeComponent},
-  {path: 'consulta', component: ConsultaComponent, canActivate: [LoginGuardService]},
-  {path: 'cliente', component: ClienteComponent, canActivate: [LoginGuardService]},
+  {path: 'cliente', component: ClienteComponent},
+  {path: 'crearMenu', component: CrearMenuComponent, canActivate: [LoginGuardService]},
   {path: 'perfil', component: PerfilComponent, canActivate: [LoginGuardService]},
   {path: 'miMenu', component: MiMenuComponent, canActivate: [LoginGuardService]},
+  {path: 'crearRestaurante', component: CrearRestauranteComponent, canActivate: [LoginGuardService]},
   {path: 'not-403', component: Not403Component},
   {path: 'editar', component: EditarPerfilComponent, children: [
     {path: 'nuevo', component: AgregarPerfilComponent},

@@ -75,6 +75,7 @@ export class LoginService {
 
     // Utilizaos una variable para liberar recurson ya que estemetedo esta realizando un proceso despues de subcribirse
     let observable = userRef.valueChanges().subscribe(data => {
+      // Condicion que sirve para validar si un usuario ya existente retorne el rol correspondiente
       if (data) {
         const datos: Usuario = {
           uid: usuario.uid,

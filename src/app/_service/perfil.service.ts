@@ -12,6 +12,7 @@ export class PerfilService {
 
   // Variable para validar el estado del usuario
   user: Observable<Perfil>;
+  
   constructor(private afs: AngularFirestore, private afa: AngularFireAuth) { 
     this.user = this.afa.authState.pipe(
       switchMap( user => {
