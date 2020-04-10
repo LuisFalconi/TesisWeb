@@ -1,3 +1,4 @@
+<!-- header('Access-Control-Allow-Origin: *'); -->
   <!-- <mat-toolbar color="Warm">
     <span>MuertosDeHambre.com</span>
 
@@ -29,6 +30,9 @@
                 aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud 
                 organic, assumenda labore aesthetic magna delectus mollit.</p>
                 <img src="assets/food.jpg" width="650" style="margin-left:30px;">
+                <div style="text-align: center;">
+                  <app-cliente></app-cliente>
+                </div>
             </mat-tab>
             <mat-tab label="Nuestra App Móvil">
               <p>Link a la PlayStore</p>
@@ -37,12 +41,8 @@
               <img src="assets/app2.jpg" width="350" style="margin-left:30px;">
             </mat-tab>
             <mat-tab label="Menu del Dia">
-              <p>Raw denim you probably haven't heard of them jean shorts Austin.
-                Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche 
-                tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh d
-                reamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. A
-                liquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel,
-               butcher voluptate nisi qui.</p>
+              <p>Al Día</p>
+               <app-menus></app-menus>
             </mat-tab>
           </mat-tab-group>
     </div>     

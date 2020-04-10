@@ -1,0 +1,82 @@
+<router-outlet></router-outlet>
+<div style="margin: 45px; padding: 10px;">
+      <p>Desayuno del Día</p>
+      <mat-table [dataSource]= "dataSource" matSort >
+        <div>
+            <ng-container matColumnDef="platoDes">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Desayuno</mat-header-cell> 
+                <mat-cell *matCellDef="let row"> {{row.platoDesayuno}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="detalleDes">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Detalle/Ingredientes</mat-header-cell> 
+                <mat-cell *matCellDef="let row"> {{row.detalleDesayuno}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="precioDes">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Precio</mat-header-cell> 
+              <mat-cell *matCellDef="let row"> {{row.precioDesayuno}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="userUid">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Usuario Logueado</mat-header-cell> 
+              <mat-cell *matCellDef="let row">{{row.userUID}}</mat-cell>
+          </ng-container>
+        </div>
+          <mat-header-row *matHeaderRowDef="displayedColumns1"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns1;"></mat-row>
+      </mat-table>  
+      <mat-paginator [pageSize]="10" [pageSizeOptions]="[5,10,25,100]"></mat-paginator>
+
+    <p>Almuerzo del Día</p>
+      <mat-table [dataSource]= "dataSource2" matSort >
+        <div>
+            <ng-container matColumnDef="platoAlm">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Almuerzo</mat-header-cell> 
+                <mat-cell *matCellDef="let row"> {{row.platoAlmuerzo}}</mat-cell>
+            </ng-container>
+        
+            <ng-container matColumnDef="detalleAlm">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Detalle/Ingredientes</mat-header-cell> 
+                <mat-cell *matCellDef="let row"> {{row.detalleAlmuerzo}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="precioAlm">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Precio</mat-header-cell> 
+              <mat-cell *matCellDef="let row"> {{row.precioAlmuerzo}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="userUid">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Usuario Logueado</mat-header-cell> 
+              <mat-cell *matCellDef="let row">{{row.userUID}}</mat-cell>
+          </ng-container>
+        </div>
+          <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns2;"></mat-row>
+      </mat-table> 
+      
+      <mat-paginator [pageSize]="10" [pageSizeOptions]="[5,10,25,100]"></mat-paginator>
+
+      <p>Especial del Día</p>
+
+      <mat-table [dataSource]= "dataSource3" matSort >
+        <div>
+            <ng-container matColumnDef="platoEsp">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Especial</mat-header-cell> 
+                <mat-cell *matCellDef="let row"> {{row.platoEspecial}}</mat-cell>
+            </ng-container>
+        
+            <ng-container matColumnDef="detalleEsp">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Detalle/Ingredientes</mat-header-cell> 
+                <mat-cell *matCellDef="let row"> {{row.detalleEspecial}}</mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="precioEsp">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Precio</mat-header-cell> 
+              <mat-cell *matCellDef="let row"> {{row.precioEspecial}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="userUid">
+              <mat-header-cell *matHeaderCellDef mat-sort-header>Usuario Logueado</mat-header-cell> 
+              <mat-cell *matCellDef="let row">{{row.userUID}}</mat-cell>
+          </ng-container>
+        </div>
+          <mat-header-row *matHeaderRowDef="displayedColumns3"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns3;"></mat-row>
+      </mat-table>
+      
+      <mat-paginator [pageSize]="10" [pageSizeOptions]="[5,10,25,100]"></mat-paginator>
+</div>

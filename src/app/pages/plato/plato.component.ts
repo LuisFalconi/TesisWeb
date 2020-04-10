@@ -28,7 +28,9 @@ export class PlatoComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true}) sort: MatSort;
-  constructor(private platoService: PlatoService, private snackBar: MatSnackBar, private functionService: FunctionService,
+  constructor(private platoService: PlatoService, 
+              private snackBar: MatSnackBar, 
+              private functionService: FunctionService,
               private afa: AngularFireAuth) {
 
   }

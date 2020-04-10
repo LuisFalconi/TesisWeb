@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../_service/login.service';
 import { LoginComponent } from '../login/login.component';
 import { Usuario } from '../_model/usuario';
+import { ClienteComponent } from '../pages/cliente/cliente.component';
 
 @Component({
   selector: 'app-home',

@@ -56,7 +56,7 @@ export class EditarPerfilComponent implements OnInit, OnDestroy {
         });
 
       this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;;
+      this.dataSource.sort = this.sort;
       // console.log("ID Login" + this.usuarioLog);
       //console.log("Usuario logueado : " + this.useremailLog);
       
