@@ -30,21 +30,6 @@ export class PerfilService {
     //return this.afs.collection<Perfil>('perfiles').snapshotChanges();
   }
 
-  listarVacio(perfil: Perfil) {
-    return this.afs.collection('perfiles').doc(perfil.id).set({
-    
-     id: '',
-     userUID: '',
-     nombreRestaurante: '',
-     fotoRestaurante: '',
-     tipoRestaurante: '',
-     capacidadRestaurante: '',
-     horarioRestaurante: '',
-     direccionRestaurante: '',
-    });
-    //return this.afs.collection<Perfil>('perfiles').snapshotChanges();
-  }
-
   recuperar() {
     return this.afs.collection<Perfil>('perfiles').snapshotChanges();
     //return this.afs.collection<Perfil>('perfiles').snapshotChanges();
