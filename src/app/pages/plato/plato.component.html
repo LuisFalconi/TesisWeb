@@ -13,7 +13,7 @@
             </ng-container>
             <ng-container matColumnDef="precioDes">
               <mat-header-cell *matHeaderCellDef mat-sort-header>Precio</mat-header-cell> 
-              <mat-cell *matCellDef="let row"> {{row.precioDesayuno}}</mat-cell>
+              <mat-cell *matCellDef="let row"> {{row.precioDesayuno | currency}}</mat-cell>
           </ng-container>
           <ng-container matColumnDef="userUid">
               <mat-header-cell *matHeaderCellDef mat-sort-header>Usuario Logueado</mat-header-cell> 
@@ -56,7 +56,7 @@
             </ng-container>
             <ng-container matColumnDef="precioAlm">
               <mat-header-cell *matHeaderCellDef mat-sort-header>Precio</mat-header-cell> 
-              <mat-cell *matCellDef="let row"> {{row.precioAlmuerzo}}</mat-cell>
+              <mat-cell *matCellDef="let row"> {{row.precioAlmuerzo | currency}}</mat-cell>
           </ng-container>
           <ng-container matColumnDef="userUid">
               <mat-header-cell *matHeaderCellDef mat-sort-header>Usuario Logueado</mat-header-cell> 
@@ -100,7 +100,7 @@
             </ng-container>
             <ng-container matColumnDef="precioEsp">
               <mat-header-cell *matHeaderCellDef mat-sort-header>Precio</mat-header-cell> 
-              <mat-cell *matCellDef="let row"> {{row.precioEspecial}}</mat-cell>
+              <mat-cell *matCellDef="let row"> {{row.precioEspecial | currency}}</mat-cell>
           </ng-container>
           <ng-container matColumnDef="userUid">
               <mat-header-cell *matHeaderCellDef mat-sort-header>Usuario Logueado</mat-header-cell> 

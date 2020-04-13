@@ -4,6 +4,8 @@ import { Plato } from '../../_model/plato';
 import { PlatoService } from '../../_service/plato.service';
 import { FunctionService } from '../../_service/function.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { PerfilService } from '../../_service/perfil.service';
+import { Perfil } from '../../_model/perfil';
 
 @Component({
   selector: 'app-menus',
@@ -15,14 +17,19 @@ export class MenusComponent implements OnInit {
   dataSource: MatTableDataSource<Plato>;
   dataSource2: MatTableDataSource<Plato>;
   dataSource3: MatTableDataSource<Plato>;
+  dataSource4: MatTableDataSource<Perfil>;
   displayedColumns1 = ['platoDes', 'detalleDes' ,'precioDes','userUid']; // Datos que se va amostrar en la tabla
   displayedColumns2 = ['platoAlm', 'detalleAlm' ,'precioAlm','userUid']; // Datos que se va amostrar en la tabla
   displayedColumns3 = ['platoEsp', 'detalleEsp' ,'precioEsp','userUid'];
+  displayedColumns4 = ['nombreRes']; // Datos que se va amostrar en la tabla
+
+  perfil: Perfil[];
 
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true}) sort: MatSort;
 
-  constructor(private platoService: PlatoService) { }
+  constructor(private platoService: PlatoService, 
+              private PerfilService: PerfilService) { }
 
   ngOnInit() {
 
@@ -35,9 +42,15 @@ export class MenusComponent implements OnInit {
           this.dataSource.paginator = this.paginator;
           this.dataSource2.paginator = this.paginator;
           this.dataSource3.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
-          this.dataSource2.sort = this.sort;
-          this.dataSource3.sort = this.sort;
+    });
+
+    this.PerfilService.listar().subscribe(datos =>{
+      this.dataSource4 = new MatTableDataSource(datos);
+    })
+
+    this.PerfilService.recuperarDatos().subscribe( data =>{
+      console.log("Datos", data);
+      
     });
   }
 

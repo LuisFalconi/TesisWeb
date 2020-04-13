@@ -3,7 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Perfil } from '../_model/perfil';
 import { Observable, EMPTY } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +33,20 @@ export class PerfilService {
   recuperar() {
     return this.afs.collection<Perfil>('perfiles').snapshotChanges();
     //return this.afs.collection<Perfil>('perfiles').snapshotChanges();
+  }
+
+  recuperarDatos(): Observable<Perfil[]>{
+    return this.afs
+      .collection('perfiles')
+      .snapshotChanges()
+      .pipe(
+        map(actions => actions.map(a =>{
+          const data = a.payload.doc.data() as Perfil;
+          const id = a.payload.doc.id;
+          return {id, ...data};
+        }))
+      );
+
   }
 
   // Registrar el perfil
