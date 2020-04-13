@@ -1,4 +1,4 @@
-<router-outlet></router-outlet>
+
 <div style="margin: 45px; padding: 10px;">
       
       <mat-table [dataSource]= "dataSource" matSort >
@@ -71,5 +71,7 @@
       <mat-list role="list">
         <mat-list-item role="listitem">{{"ID: " + usuarioLog}}</mat-list-item>
         <mat-list-item role="listitem">{{useremailLog}}</mat-list-item>
+        <mat-list-item role="listitem">{{loginuserlog}}</mat-list-item>
     </mat-list>
 </div>
+<router-outlet></router-outlet>
