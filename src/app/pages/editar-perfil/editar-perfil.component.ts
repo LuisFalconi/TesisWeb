@@ -47,7 +47,7 @@ export class EditarPerfilComponent implements OnInit, OnDestroy {
         data.forEach((x: Perfil) =>{
             if(this.usuarioLog == x.userUID){
               console.log("Si");
-              console.log("Si");
+              //console.log("Si");
               this.loginuserlog = [x];
               this.dataSource = new MatTableDataSource(this.loginuserlog);
             }else{
