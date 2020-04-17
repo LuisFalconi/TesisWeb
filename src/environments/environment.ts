@@ -5,14 +5,14 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyACjBCfExeI-8K1n_cgdUBy_YoF0QqTK_w',
-    authDomain: 'tesis-web.firebaseapp.com',
-    databaseURL: 'https://tesis-web.firebaseio.com',
-    projectId: 'tesis-web',
-    storageBucket: 'tesis-web.appspot.com',
-    messagingSenderId: '147160724780',
-    appId: '1:147160724780:web:df879b4455bb9d7c616889',
-    measurementId: 'G-XTVWLXHJC8'
+    apiKey: "AIzaSyDGzjtS_GEUrQ6JAPm3vPvwiUVFKKvb3eA",
+    authDomain: "muertosdehambre.firebaseapp.com",
+    databaseURL: "https://muertosdehambre.firebaseio.com",
+    projectId: "muertosdehambre",
+    storageBucket: "muertosdehambre.appspot.com",
+    messagingSenderId: "794079665373",
+    appId: "1:794079665373:web:5068cd0106fc6c25f88f34",
+    measurementId: "G-VVTHJJ4RT6"
   }
 };
 
