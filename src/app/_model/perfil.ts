@@ -1,12 +1,10 @@
 export class Perfil{
-    id?: string;
+    id: string;
     nombreRestaurante: string;
     fotoRestaurante: string;
     tipoRestaurante: string;
     capacidadRestaurante: number;
     direccionRestaurante: string;
     horarioRestaurante: string;
-    userUID?: string; // id del usuario logueado (el que actualiza el perfil) 
-    fotoImg?: any;
-    fileRef?: string; 
+    userUID: string; // id del usuario logueado (el que actualiza el perfil) 
 }

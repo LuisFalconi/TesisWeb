@@ -163,19 +163,16 @@ export class CrearRestauranteComponent implements OnInit, OnDestroy {
   }
 
 
-  addPerfil(data: Perfil) {
-    console.log('New perfil', data);
-    this.perfilService.subirPerfilconImagen(data, this.file);
-  }
+  // addPerfil(data: Perfil) {
+  //   console.log('New perfil', data);
+  //   this.perfilService.subirPerfilconImagen(data, this.file);
+  // }
 
   // Funcion para mostrar el nombre del archivo seleccionado
   seleccionar(e: any): void{
     this.file = e.target.files[0];
     //this.labelFile = e.target.files[0].name;
   }
-
-
-  
 
   ngOnDestroy(){
     this.ngUnsubscribe.next();
