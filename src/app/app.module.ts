@@ -12,7 +12,7 @@ import { environment } from '../environments/environment';
 import {FirestoreSettingsToken, AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore';
 import { PlatoEdicionComponent } from './pages/plato/plato-edicion/plato-edicion.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
 import { ClienteComponent } from './pages/cliente/cliente.component';
 import { ConsumoComponent } from './pages/consumo/consumo.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
@@ -29,6 +29,7 @@ import { MiMenuComponent } from './pages/mi-menu/mi-menu.component';
 import { CrearMenuComponent } from './pages/crear-menu/crear-menu.component';
 import { CrearRestauranteComponent } from './pages/crear-restaurante/crear-restaurante.component';
 import { MenusComponent } from './pages/menus/menus.component';
+import { SubirImagenComponent } from './_pruebas/subir-imagen/subir-imagen.component';
 
 
 @NgModule({
@@ -48,15 +49,17 @@ import { MenusComponent } from './pages/menus/menus.component';
     MiMenuComponent,
     CrearMenuComponent,
     CrearRestauranteComponent,
-    MenusComponent
+    MenusComponent,
+    SubirImagenComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     MaterialModule,
     AngularFireModule.initializeApp(environment.firebase),
     ReactiveFormsModule,
+    AngularFirestoreModule,
     FormsModule,  
     HttpClientModule,
     AngularFireStorageModule,
@@ -67,7 +70,8 @@ import { MenusComponent } from './pages/menus/menus.component';
   ],
   providers: [
       AngularFirestore,
-    { provide: FirestoreSettingsToken, useValue: {} }
+    { provide: FirestoreSettingsToken, useValue: {} },
+    { provide: StorageBucket, useValue: 'gs://muertosdehambre.appspot.com'}
   ],
   bootstrap: [AppComponent]
 })

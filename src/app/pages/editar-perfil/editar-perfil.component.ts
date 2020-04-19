@@ -7,6 +7,8 @@ import { takeUntil } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { stripSummaryForJitFileSuffix } from '@angular/compiler/src/aot/util';
 import { analytics } from 'firebase';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-editar-perfil',
@@ -34,7 +36,8 @@ export class EditarPerfilComponent implements OnInit, OnDestroy {
 
   constructor(private perfilService: PerfilService,
               private snackBar: MatSnackBar,
-              private afa: AngularFireAuth) { }
+              private afa: AngularFireAuth,
+              private router: Router) { }
 
   ngOnInit() {
 
@@ -65,12 +68,83 @@ export class EditarPerfilComponent implements OnInit, OnDestroy {
   }
   
   eliminar(perfil: Perfil){
-    this.perfilService.eliminar(perfil).then(() =>{
-      this.snackBar.open('Se Elimino', 'AVISO', {
-        duration: 3000
-      });
-    });
+    Swal.fire({
+      title: 'Deseas eliminar tu restaurante?',
+      text: "No podras revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "No!",
+      confirmButtonText: 'Si!'
+    }).then((result) => {
+      if (result.value) {
+        this.perfilService.eliminar(perfil).then(() =>{
+          //this.timer();
+          //window.location.reload(true);
+          Swal.fire('Eliminado!','Tu Restaurante ha sido eliminado','success')
+            .then(() =>{
+              this.router.navigate(['/perfil']);
+            });
+          }).catch((error =>{
+            Swal.fire('Error!', error ,'error');
+          }));
+      }else {
+        Swal.fire("Cancelado", "Tu restaurante esta a salvo :)", "error");
+    }
+    })
   }
+
+  // editar(){
+  //   Swal.fire({
+  //     title: 'Deseas editar tu restaurante?',
+  //     text: "No podras revertir esto!",
+  //     icon: 'warning',
+  //     showCancelButton: true,
+  //     confirmButtonColor: '#3085d6',
+  //     cancelButtonColor: '#d33',
+  //     cancelButtonText: "No!",
+  //     confirmButtonText: 'Si!'
+  //   }).then((result) => {
+  //     if (result.value) {
+  //       this.router.navigate(['/edicion']);
+  //     }else {
+  //       Swal.fire("Cancelado", "Tu restaurante esta a salvo :)", "error");
+  //   }
+  //   })
+
+  // }
+
+
+  // timer(){
+  //   let timerInterval
+  //   Swal.fire({
+  //     title: 'Auto close alert!',
+  //     html: 'I will close in <b></b> milliseconds.',
+  //     timer: 2000,
+  //     timerProgressBar: true,
+  //     onBeforeOpen: () => {
+  //       Swal.showLoading()
+  //       timerInterval = setInterval(() => {
+  //         const content = Swal.getContent()
+  //         if (content) {
+  //           const b = content.querySelector('b')
+  //           if (b) {
+  //             b.textContent = Swal.getTimerLeft()
+  //           }
+  //         }
+  //       }, 100)
+  //     },
+  //     onClose: () => {
+  //       clearInterval(timerInterval)
+  //     }
+  //   }).then((result) => {
+  //     /* Read more about handling dismissals below */
+  //     if (result.dismiss === Swal.DismissReason.timer) {
+  //       console.log('I was closed by the timer')
+  //     }
+  //   })
+  // }
 
   ngOnDestroy(){
     this.ngUnsubscribe.next();

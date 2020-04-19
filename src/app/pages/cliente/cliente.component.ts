@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Perfil } from '../../_model/perfil';
 import { PerfilService } from '../../_service/perfil.service';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cliente',
@@ -12,7 +13,10 @@ import { takeUntil } from 'rxjs/operators';
 })
 export class ClienteComponent implements OnInit {
 
-  constructor(private perfilService: PerfilService) { }
+  perfil$: Observable<Perfil[]>;  // Se utiliza $ para diferenciar que es un obserbable 
+
+
+  constructor(private perfilService: PerfilService, private route: ActivatedRoute) { }
 
   dataSource: MatTableDataSource<Perfil>;
   displayedColumns = ['nombreR', 'fotoR' ,'tipoR', 'direccionR', 'horarioR', 'capacidadR'];
@@ -30,6 +34,15 @@ export class ClienteComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     }));
+
+    //const idPerfil = this.route.snapshot.params.id;
+    //this.perfil$ = this.perfilService.recibirPerfil(idPerfil);
+
+    // Ya no es necesario el subscribe porque en el html usamos el pipe ASYNC
+    // this.perfilService.recuperarDatos().subscribe(res => console.log('Perfiles', res)); 
+
+    this.perfil$ = this.perfilService.recuperarDatos(); // recuperamos esta data con ASYNC
   }
+
 
 }

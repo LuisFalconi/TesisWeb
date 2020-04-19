@@ -16,6 +16,7 @@ import { MiMenuComponent } from './pages/mi-menu/mi-menu.component';
 import { CrearMenuComponent } from './pages/crear-menu/crear-menu.component';
 import { CrearRestauranteComponent } from './pages/crear-restaurante/crear-restaurante.component';
 import { MenusComponent } from './pages/menus/menus.component';
+import { SubirImagenComponent } from './_pruebas/subir-imagen/subir-imagen.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   },
   {path: 'consumo', component: ConsumoComponent, canActivate: [LoginGuardService]},
   {path: 'inicio', component: HomeComponent},
+  {path: 'prueba', component: SubirImagenComponent},
   {path: 'cliente', component: ClienteComponent},
   {path: 'menus', component: MenusComponent},
   {path: 'crearMenu', component: CrearMenuComponent, canActivate: [LoginGuardService]},

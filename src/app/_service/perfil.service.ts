@@ -49,6 +49,10 @@ export class PerfilService {
 
   }
 
+  public recibirPerfil(id: Perfil): Observable<Perfil> {
+    return this.afs.doc<Perfil>(`posts/${id}`).valueChanges();
+  }
+
   // Registrar el perfil
   registrar(perfil: Perfil){
 

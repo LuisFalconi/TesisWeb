@@ -9,6 +9,7 @@ import { LoginService } from '../../_service/login.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Perfil } from '../../_model/perfil';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-crear-restaurante',
@@ -97,46 +98,59 @@ export class CrearRestauranteComponent implements OnInit, OnDestroy {
   }
 
   operar() {
- 
-    let perfil = new Perfil();
-    perfil.nombreRestaurante = this.form.value['nombreR'];
-    perfil.fotoRestaurante = this.form.value['fotoR'];
-    perfil.tipoRestaurante = this.form.value['tipoR'];
-    perfil.horarioRestaurate = this.form.value['horarioR'];
-    perfil.direccionRestaurante = this.form.value['direccionR'];
-    perfil.capacidadRestaurante = this.form.value['capacidadR'];
-    
 
-    perfil.userUID = this.usuarioLogeado;
+    Swal.fire({
+      title: '¿Deseas crear tu restaurante?',
+      //text: "No podras revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "No!",
+      confirmButtonText: 'Si!'
+    }).then((result) => {
+      if (result.value) {
     
-    // Guardar la imagen atado al ID
-    if(this.edicion){
-      perfil.id = this.form.value['id'];
-    }else{
-      perfil.id = this.afs.createId();
-    }    
+        let perfil = new Perfil();
+        perfil.nombreRestaurante = this.form.value['nombreR'];
+        perfil.fotoRestaurante = this.form.value['fotoR'];
+        perfil.tipoRestaurante = this.form.value['tipoR'];
+        perfil.horarioRestaurate = this.form.value['horarioR'];
+        perfil.direccionRestaurante = this.form.value['direccionR'];
+        perfil.capacidadRestaurante = this.form.value['capacidadR'];
+        perfil.userUID = this.usuarioLogeado;
+    
+        // Guardar la imagen atado al ID
+        if(this.edicion){
+          perfil.id = this.form.value['id'];
+        }else{
+          perfil.id = this.afs.createId();
+        }    
 
-    // Funcion para subir imagenes
-    if(this.file != null){
-      let ref = this.afStorage.ref(`perfiles/${perfil.id}`);
-      ref.put(this.file);
-    }
+        // Funcion para subir imagenes
+        if(this.file != null){
+          let ref = this.afStorage.ref(`perfiles/${perfil.id}`);
+          ref.put(this.file);
+        }
     
 
     let mensaje
     if(this.edicion){
       this.perfilService.modificar(perfil);
-      mensaje = "Perfil modificado";
+      //Swal.fire('Eliminado!','Tu Restaurante ha sido eliminado','success')
     } else{
       this.perfilService.registrar(perfil);   
-      mensaje = "Perfil Registrado con existo";
-
+      Swal.fire('Agregado!','Tu Restaurante ha sido agregado','success')
     }
 
-    this.snackBar.open(mensaje, 'AVISO', {
-      duration: 5000
-    });
     this.router.navigate(['editar']);
+  
+    }else {
+        Swal.fire("Cancelado", "Puedes seguir pensando :)", "error");
+      }
+    })
+
+
   }
 
   // Funcion para mostrar el nombre del archivo seleccionado
