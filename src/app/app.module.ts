@@ -30,6 +30,7 @@ import { CrearMenuComponent } from './pages/crear-menu/crear-menu.component';
 import { CrearRestauranteComponent } from './pages/crear-restaurante/crear-restaurante.component';
 import { MenusComponent } from './pages/menus/menus.component';
 import { SubirImagenComponent } from './_pruebas/subir-imagen/subir-imagen.component';
+import { ModalComponent } from './modal/modal/modal.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { SubirImagenComponent } from './_pruebas/subir-imagen/subir-imagen.compo
     CrearMenuComponent,
     CrearRestauranteComponent,
     MenusComponent,
-    SubirImagenComponent
+    SubirImagenComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -67,11 +69,12 @@ import { SubirImagenComponent } from './_pruebas/subir-imagen/subir-imagen.compo
   ],
   // Para trabajar con dialogos se crea entryComoonents
   entryComponents: [
+    ModalComponent
   ],
   providers: [
       AngularFirestore,
     { provide: FirestoreSettingsToken, useValue: {} },
-    { provide: StorageBucket, useValue: 'gs://muertosdehambre.appspot.com'}
+    { provide: StorageBucket, useValue: 'gs://muertosdehambre.appspot.com'} // Sirve par subir archivos a Firebase
   ],
   bootstrap: [AppComponent]
 })

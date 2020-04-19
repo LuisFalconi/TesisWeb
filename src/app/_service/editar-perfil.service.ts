@@ -20,7 +20,7 @@ export class EditarPerfilService {
      precio: perfil.fotoRestaurante,
      tipo: perfil.tipoRestaurante,
      direccion: perfil.direccionRestaurante,
-     horario: perfil.horarioRestaurate,
+     horario: perfil.horarioRestaurante,
      capacidad: perfil.capacidadRestaurante,
     });
   }

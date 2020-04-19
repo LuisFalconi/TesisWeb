@@ -31,7 +31,8 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
     MatProgressBarModule,
     MatListModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    
   ],
   exports: [
     MatMenuModule,

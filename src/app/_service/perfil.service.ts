@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Perfil } from '../_model/perfil';
 import { Observable, EMPTY } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { switchMap, map } from 'rxjs/operators';
+import { switchMap, map, finalize } from 'rxjs/operators';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { FileI } from '../_model/imagenes';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +14,11 @@ export class PerfilService {
 
   // Variable para validar el estado del usuario
   user: Observable<Perfil>;
+  private perfilCollection: AngularFirestoreCollection<Perfil>;
+  private filePath: any;
+  private UrlImagen: Observable<string>;
   
-  constructor(private afs: AngularFirestore, private afa: AngularFireAuth) { 
+  constructor(private afs: AngularFirestore, private afa: AngularFireAuth, private storage: AngularFireStorage) { 
     this.user = this.afa.authState.pipe(
       switchMap( user => {
         if(user){
@@ -23,6 +28,7 @@ export class PerfilService {
         }
       })
     )
+    this.perfilCollection = afs.collection<Perfil>('perfiles');
   }
 
   listar() {
@@ -35,6 +41,7 @@ export class PerfilService {
     //return this.afs.collection<Perfil>('perfiles').snapshotChanges();
   }
 
+  // Metodo recuperar los datos de la coleccion de Perfil, iterando por el id que devuelve 
   recuperarDatos(): Observable<Perfil[]>{
     return this.afs
       .collection('perfiles')
@@ -43,7 +50,7 @@ export class PerfilService {
         map(actions => actions.map(a =>{
           const data = a.payload.doc.data() as Perfil;
           const id = a.payload.doc.id;
-          return {id, ...data};
+          return {id, ...data}; //SPREAD OPERATOR
         }))
       );
 
@@ -61,12 +68,12 @@ export class PerfilService {
     // plato.id = idPlato;
     return this.afs.collection('perfiles').doc(perfil.id).set({
      id: perfil.id,
-     userUID: perfil.userUID,
+     //userUID: perfil.userUID,
      nombreRestaurante: perfil.nombreRestaurante,
      fotoRestaurante: perfil.fotoRestaurante,
      tipoRestaurante: perfil.tipoRestaurante,
      capacidadRestaurante: perfil.capacidadRestaurante,
-     horarioRestaurante: perfil.capacidadRestaurante,
+     horarioRestaurante: perfil.horarioRestaurante,
      direccionRestaurante: perfil.direccionRestaurante,
     });
   }
@@ -86,6 +93,46 @@ export class PerfilService {
   eliminar(perfil: Perfil){
     return this.afs.collection('perfiles').doc(perfil.id).delete();
   }
+
+  subirPerfilconImagen(perfiles: Perfil, image: FileI): void{
+    this.subirImagen(perfiles, image);
+  }
+
+  private guardarRestaurante(perfil: Perfil) {
+    const postObj = {
+      //id: perfil.id,
+      //userUID: perfil.userUID,
+      nombreRestaurante: perfil.nombreRestaurante,
+      fotoRestaurante: perfil.fotoRestaurante,
+      tipoRestaurante: perfil.tipoRestaurante,
+      capacidadRestaurante: perfil.capacidadRestaurante,
+      horarioRestaurante: perfil.horarioRestaurante,
+      direccionRestaurante: perfil.direccionRestaurante,
+      fotoImg: this.UrlImagen,
+      fileRef: this.filePath
+    };
+      return this.perfilCollection.add(postObj);
+  }
+
+  
+
+  private subirImagen(perfil: Perfil, image: FileI){
+    this.filePath = `imagenes/${image.name}`;
+    const fileRef = this.storage.ref(this.filePath);
+    const task = this.storage.upload(this.filePath, image);
+    task.snapshotChanges()
+      .pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe(urlImage => {
+            this.UrlImagen = urlImage;
+            this.guardarRestaurante(perfil);
+          });
+        })
+      ).subscribe();
+
+  }
+
+
 
 
 }

@@ -74,7 +74,7 @@ export class AgregarPerfilComponent implements OnInit, OnDestroy {
           'fotoR': new FormControl(data.fotoRestaurante),
           'tipoR': new FormControl(data.tipoRestaurante),
           'direccionR': new FormControl(data.direccionRestaurante),
-          'horarioR': new FormControl(data.horarioRestaurate),
+          'horarioR': new FormControl(data.horarioRestaurante),
           'capacidadR': new FormControl(data.capacidadRestaurante),
         });
         
@@ -106,7 +106,7 @@ export class AgregarPerfilComponent implements OnInit, OnDestroy {
         perfil.nombreRestaurante = this.form.value['nombreR'];
         perfil.fotoRestaurante = this.form.value['fotoR'];
         perfil.tipoRestaurante = this.form.value['tipoR'];
-        perfil.horarioRestaurate = this.form.value['horarioR'];
+        perfil.horarioRestaurante = this.form.value['horarioR'];
         perfil.direccionRestaurante = this.form.value['direccionR'];
         perfil.capacidadRestaurante = this.form.value['capacidadR'];
         
