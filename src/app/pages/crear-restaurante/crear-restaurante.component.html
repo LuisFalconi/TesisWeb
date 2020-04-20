@@ -1,7 +1,7 @@
 <div class="restaurante-container">
     <form [formGroup]="newPostForm" (ngSubmit)="addPerfil(newPostForm.value)" class="container">
 
-        <div [hidden]="false">
+        <div [hidden]="true">
             <mat-form-field class="example-full-width">
                 <input matInput placeholder="id" [value]="id">
             </mat-form-field>

@@ -2,7 +2,7 @@
 
     <div [hidden]="true">
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="id" formControlName="id">
+            <input matInput placeholder="id" [value]="id">
         </mat-form-field>
     </div>
     <!-- Mostrar el uid del usuario logueado -->
@@ -35,21 +35,30 @@
     <mat-form-field class="example-full-width">
         <input matInput placeholder="Capacidad del Restaurante" formControlName="capacidadR">
     </mat-form-field>
-    <!-- <mat-form-field class="example-full-width">
-        <input matInput placeholder="Imagen del Restaurante" formControlName="img">
-    </mat-form-field> -->
+
+     <img mat-card-image [src]="urlImage" *ngIf="urlImage" style="width: 200px;"> 
+    
 
 
     <!-- <img mat-card-image [src]="urlImage" *ngIf="urlImage" style="width: 200px;"> -->
     
     <!-- Boton para subir archivos con el estilo de Angular Material -->
-    <button mat-raised-button onclick="document.getElementById('input_subida').click()" type="button">Examinar</button>
-    <input id="input_subida" type="file" style="display: none" (change)="seleccionar($event)">
+    <!-- <button mat-raised-button onclick="document.getElementById('input_subida').click()" type="button"><mat-icon>cloud_upload</mat-icon>  <span>Foto Restaurante</span></button>
+    <input id="input_subida"  type="file" style="display: none" (change)="seleccionar($event)">
+     -->
+    <!-- <button mat-raised-button onclick="document.getElementById('input_subida').click()" type="button"><mat-icon>cloud_upload</mat-icon>  <span>Foto Restaurante</span></button>
+    <input id="input_subida"  type="file" style="display: none" (change)="seleccionar($event)">
+     -->
+    <label class="custom-file">
+        <input type="file" (change)="seleccionar($event)" />
+        <mat-icon>cloud_upload</mat-icon><span>CHOOSE IMAGE</span>
+      </label>
+
     <p>{{labelFile}}</p>
 
     <button mat-raised-button color="primary" type="submit">
         <mat-icon>done</mat-icon>
-        <span>Aceptar</span>
+        <span>Aceptar</span>   
     </button>
 
     <button mat-raised-button color="accent" routerLink='/editar' type="button">

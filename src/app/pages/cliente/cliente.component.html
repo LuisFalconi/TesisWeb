@@ -5,10 +5,11 @@
             <div mat-card-avatar class="example-header-image"></div>
               <mat-card-title>{{perfil.id}}</mat-card-title>
               <mat-card-subtitle>{{perfil.nombreRestaurante}}</mat-card-subtitle>
+              <mat-card-subtitle>{{perfil.fotoRestaurante}}</mat-card-subtitle>
         </mat-card-header>
             <p>{{perfil.capacidadRestaurante}}</p>
             <mat-card-content>
-                <img matCardImage [src]="perfil.tipoRestaurante" width="200px" height="200px"/>
+                <img matCardImage [src]="perfil.imagenRes" width="500px" height="300px"/>
             </mat-card-content>
             <mat-card-actions>
               <button mat-button>LIKE</button>
