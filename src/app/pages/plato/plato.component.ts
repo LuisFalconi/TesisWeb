@@ -38,9 +38,9 @@ export class PlatoComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     // Esto permite traer la data del cloud service
-    this.functionService.probar().then( data =>{
-      console.log(data);
-    });
+    // this.functionService.probar().then( data =>{
+    //   console.log(data);
+    // });
 
     let currenUser = this.afa.auth.currentUser;
     this.usuarioLog = currenUser.uid;

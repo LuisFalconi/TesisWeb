@@ -31,6 +31,7 @@ import { CrearRestauranteComponent } from './pages/crear-restaurante/crear-resta
 import { MenusComponent } from './pages/menus/menus.component';
 import { SubirImagenComponent } from './_pruebas/subir-imagen/subir-imagen.component';
 import { ModalComponent } from './modal/modal/modal.component';
+import { ListaRestaurantesComponent } from './restaurantes/lista-restaurantes/lista-restaurantes.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { ModalComponent } from './modal/modal/modal.component';
     CrearRestauranteComponent,
     MenusComponent,
     SubirImagenComponent,
-    ModalComponent
+    ModalComponent,
+    ListaRestaurantesComponent
   ],
   imports: [
     BrowserModule,

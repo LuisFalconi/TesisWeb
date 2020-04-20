@@ -19,6 +19,8 @@ export class PerfilService {
    private filePath: any;
    private UrlImagen: Observable<string>;
    usuarioLogeado: string;
+   idPerfil: string;
+   
    
 
   constructor(private afs: AngularFirestore, private afa: AngularFireAuth, private storage: AngularFireStorage, private loginService: LoginService) { 
@@ -35,6 +37,8 @@ export class PerfilService {
 
     this.loginService.user.subscribe(data =>{
     this.usuarioLogeado = data.uid;
+
+    //this.idPerfil = this.afs.createId();
 
     })
   }
@@ -63,11 +67,10 @@ export class PerfilService {
           return {id, ...data}; //SPREAD OPERATOR
         }))
       );
-
   }
 
   public recibirPerfil(id: Perfil): Observable<Perfil> {
-    return this.afs.doc<Perfil>(`posts/${id}`).valueChanges();
+    return this.afs.doc<Perfil>(`perfiles/${id}`).valueChanges();
   }
 
   // Registrar el perfil
@@ -105,26 +108,35 @@ export class PerfilService {
     return this.afs.collection('perfiles').doc(perfil.id).delete();
   }
 
+  // Prueba
+  eliminarPorID(perfil: Perfil) {
+    return this.perfilCollection.doc(perfil.id).delete();
+  }
+
    subirPerfilconImagen(perfiles: Perfil, image: FileI): void{
      this.subirImagen(perfiles, image);
    }
 
   private guardarRestaurante(perfil: Perfil) {
-      let idPerfil = this.afs.createId(); 
-    const postObj = {
-
-       id: idPerfil,
-       userUID: this.usuarioLogeado,
-       nombreRestaurante: perfil.nombreRestaurante,
-       fotoRestaurante: perfil.fotoRestaurante,
-       tipoRestaurante: perfil.tipoRestaurante,
-       capacidadRestaurante: perfil.capacidadRestaurante,
-       horarioRestaurante: perfil.horarioRestaurante,
-       direccionRestaurante: perfil.direccionRestaurante,
-       imagenRes: this.UrlImagen,
-       fileRef: this.filePath
-     };
-        this.perfilCollection.add(postObj);
+    
+    let idPlato = this.afs.createId();
+    perfil.id = idPlato;
+    this.afs.collection('perfiles').doc(idPlato).set({
+      id: perfil.id,
+      userUID: this.usuarioLogeado,
+      nombreRestaurante: perfil.nombreRestaurante,
+      fotoRestaurante: perfil.fotoRestaurante,
+      tipoRestaurante: perfil.tipoRestaurante,
+      capacidadRestaurante: perfil.capacidadRestaurante,
+      horarioRestaurante: perfil.horarioRestaurante,
+      direccionRestaurante: perfil.direccionRestaurante,
+      imagenRes: this.UrlImagen,
+      fileRef: this.filePath
+    });
+    //   const postObj = {
+       
+    //  };
+        //this.perfilCollection.add(postObj);
    }
 
   

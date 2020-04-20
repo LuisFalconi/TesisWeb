@@ -179,9 +179,9 @@ export class CrearRestauranteComponent implements OnInit, OnDestroy {
 
    addPerfil(data: Perfil) {
      console.log('New perfil', data);
-    let perfil = new Perfil();
-    this.id = this.afs.createId();
-    perfil.id = this.id;
+     let perfil = new Perfil();
+    //this.id = this.afs.createId();
+    //perfil.id = this.id;
     //perfil.userUID = this.usuarioLogeado;
      this.perfilService.subirPerfilconImagen(data, this.file);
      this.router.navigate(['editar']);

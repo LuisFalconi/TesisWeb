@@ -1,0 +1,55 @@
+<h1>Restaurantes</h1>
+
+<mat-form-field>
+    <input
+      matInput
+      (keyup)="applicarFiltro($event.target.value)"
+      placeholder="Filter"
+    />
+  </mat-form-field>
+  <div class="container-btn-new">
+    <button mat-stroked-button (click)="nuevoRestaurante()">
+      <mat-icon>note_add</mat-icon>&nbsp; Nuevo Restaurante
+   </button>
+  </div>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+    <ng-container matColumnDef="nombreR">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Restaurante</th>
+      <td mat-cell *matCellDef="let element">{{ element.nombreRestaurante }}</td>
+    </ng-container>
+  
+    <ng-container matColumnDef="tipoR">
+      <th mat-header-cell *matHeaderCellDef>Tipo</th>
+      <td mat-cell *matCellDef="let element">{{ element.tipoRestaurante }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="userUID">
+        <th mat-header-cell *matHeaderCellDef>UserUID</th>
+        <td mat-cell *matCellDef="let element">{{ element.userUID }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="capacidadR">
+        <th mat-header-cell *matHeaderCellDef>Capacidad</th>
+        <td mat-cell *matCellDef="let element">{{ element.capacidadRestaurante }}</td>
+    </ng-container> 
+  
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef>Acciones</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-stroked-button color="accent" (click)="editarRestaurante(element)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-stroked-button color="warn" (click)="eliminarRestaurante(element)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
