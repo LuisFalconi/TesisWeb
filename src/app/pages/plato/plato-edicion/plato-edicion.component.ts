@@ -54,14 +54,13 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
       'id': new FormControl(''),
       //'userUID': new FormControl(''),
       'platoDes': new FormControl(''),
-      'platoAlm': new FormControl(''),
       'platoEsp': new FormControl(''),
       'detalleDes': new FormControl(''),
-      'detalleAlm': new FormControl(''),
-      'detalleEsp': new FormControl(''),
+      'entradaAlm': new FormControl(''),
+      'segundoAlm': new FormControl(''),
+      'jugoAlm': new FormControl(''),
       'precioDes': new FormControl(0),
-      'precioAlm': new FormControl(0),
-      'precioEsp': new FormControl(0)
+      'precioAlm': new FormControl(0)
     });
 
     // Esto sirve para mostrar los datos del Grid al componente de edicion
@@ -78,14 +77,13 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
         this.form = new FormGroup({
         'id': new FormControl(data.id),
         'platoDes': new FormControl(data.platoDesayuno),
-        'platoAlm': new FormControl(data.platoAlmuerzo),
         'platoEsp': new FormControl(data.platoEspecial),
+        'entradaAlm': new FormControl(data.entradaAlmuerzo),
+        'segundoAlm': new FormControl(data.segundoAlmuerzo),
+        'jugoAlm': new FormControl(data.jugoAlmuerzo),
         'detalleDes': new FormControl(data.detalleDesayuno),
-        'detalleAlm': new FormControl(data.detalleAlmuerzo),
-        'detalleEsp': new FormControl(data.detalleEspecial),
         'precioDes': new FormControl(data.precioDesayuno),
         'precioAlm': new FormControl(data.precioAlmuerzo),
-        'precioEsp': new FormControl(data.precioEspecial)
         //'userUID': new FormControl(data.userUID)
         });
         
@@ -104,14 +102,13 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
     let plato = new Plato();
     //let usuario = new Usuario();
     plato.platoDesayuno = this.form.value['platoDes'];
-    plato.platoAlmuerzo = this.form.value['platoAlm'];
     plato.platoEspecial = this.form.value['platoEsp'];
     plato.detalleDesayuno = this.form.value['detalleDes'];
-    plato.detalleAlmuerzo = this.form.value['detalleAlm'];
-    plato.detalleEspecial = this.form.value['detalleEsp'];
     plato.precioDesayuno = this.form.value['precioDes'];
     plato.precioAlmuerzo = this.form.value['precioAlm'];
-    plato.precioEspecial = this.form.value['precioEsp'];
+    plato.entradaAlmuerzo = this.form.value['entradaAlm'];
+    plato.segundoAlmuerzo = this.form.value['segundoAlm'];
+    plato.jugoAlmuerzo = this.form.value['jugoAlm'];
     
     // Guardo el id del putooooooooooo usuario logueado
     plato.userUID = this.usuarioLogeado;

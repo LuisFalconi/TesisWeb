@@ -5,6 +5,8 @@ import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { Subject, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
+import { Plato } from '../../_model/plato';
+import { PlatoService } from '../../_service/plato.service';
 
 @Component({
   selector: 'app-cliente',
@@ -14,9 +16,11 @@ import { ActivatedRoute } from '@angular/router';
 export class ClienteComponent implements OnInit {
 
   perfil$: Observable<Perfil[]>;  // Se utiliza $ para diferenciar que es un obserbable 
+  plato$: Observable<Plato[]>;
 
 
-  constructor(private perfilService: PerfilService, private route: ActivatedRoute) { }
+
+  constructor(private perfilService: PerfilService, private route: ActivatedRoute, private platoService: PlatoService) { }
 
   dataSource: MatTableDataSource<Perfil>;
   displayedColumns = ['nombreR', 'fotoR' ,'tipoR', 'direccionR', 'horarioR', 'capacidadR'];
@@ -42,6 +46,7 @@ export class ClienteComponent implements OnInit {
     // this.perfilService.recuperarDatos().subscribe(res => console.log('Perfiles', res)); 
 
     this.perfil$ = this.perfilService.recuperarDatos(); // recuperamos esta data con ASYNC
+    this.plato$ = this.platoService.recuperarMenus(); // recuperamos esta data con ASYNC
   }
 
 

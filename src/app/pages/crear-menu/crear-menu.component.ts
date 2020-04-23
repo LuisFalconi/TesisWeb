@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { Subject } from 'rxjs';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Subject, Observable } from 'rxjs';
 import { LoginService } from '../../_service/login.service';
 import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -9,6 +9,7 @@ import { Plato } from '../../_model/plato';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { MatSnackBar } from '@angular/material';
+import { Menu } from '../../_model/menu';
 
 @Component({
   selector: 'app-crear-menu',
@@ -38,26 +39,36 @@ export class CrearMenuComponent implements OnInit, OnDestroy {
               private snackBar: MatSnackBar, 
               private router: Router) { }
 
+public menuForm = new FormGroup({
+    id: new FormControl (''),
+    platoDesayuno: new FormControl ('', Validators.required),  
+    detalleDesayuno: new FormControl('', Validators.required),
+    precioDesayuno: new FormControl('', Validators.required),
+    entradaAlmuerzo: new FormControl('', Validators.required),
+    segundoAlmuerzo: new FormControl('', Validators.required),
+    jugoAlmuerzo: new FormControl('', Validators.required),
+    precioAlmuerzo: new FormControl('', Validators.required),
+    platoEspecial: new FormControl('', Validators.required),
+    imgEsp: new FormControl('', Validators.required)
+  });
+
   ngOnInit() {
+
     this.loginService.user.pipe(takeUntil(this.ngUnsubscribe)).subscribe(data =>{
       this.usuarioLogeado = data.uid;
     });
 
     this.form = new FormGroup({
-
-      // Setear el formulario
-      // Variables que se colocan en el FormControlName del html
       'id': new FormControl(''),
       //'userUID': new FormControl(''),
       'platoDes': new FormControl(''),
-      'platoAlm': new FormControl(''),
       'platoEsp': new FormControl(''),
       'detalleDes': new FormControl(''),
-      'detalleAlm': new FormControl(''),
-      'detalleEsp': new FormControl(''),
+      'entradaAlm': new FormControl(''),
+      'segundoAlm': new FormControl(''),
+      'jugoAlm': new FormControl(''),
       'precioDes': new FormControl(0),
-      'precioAlm': new FormControl(0),
-      'precioEsp': new FormControl(0)
+      'precioAlm': new FormControl(0)
     });
 
 
@@ -67,7 +78,7 @@ export class CrearMenuComponent implements OnInit, OnDestroy {
       
       this.id = params['id'];
       this.edicion = this.id != null;
-      this.initForm();
+      //this.initForm();
     });
 
   }
@@ -76,18 +87,17 @@ export class CrearMenuComponent implements OnInit, OnDestroy {
     if(this.edicion){   // Metodo para mostrar lo que esta en la tabla al grid de edicion
       this.platoService.leer(this.id).pipe(takeUntil(this.ngUnsubscribe)).subscribe((data: Plato) => {
         this.form = new FormGroup({
-        'id': new FormControl(data.id),
-        'platoDes': new FormControl(data.platoDesayuno),
-        'platoAlm': new FormControl(data.platoAlmuerzo),
-        'platoEsp': new FormControl(data.platoEspecial),
-        'detalleDes': new FormControl(data.detalleDesayuno),
-        'detalleAlm': new FormControl(data.detalleAlmuerzo),
-        'detalleEsp': new FormControl(data.detalleEspecial),
-        'precioDes': new FormControl(data.precioDesayuno),
-        'precioAlm': new FormControl(data.precioAlmuerzo),
-        'precioEsp': new FormControl(data.precioEspecial)
-        //'userUID': new FormControl(data.userUID)
-        });
+          'id': new FormControl(data.id),
+          'platoDes': new FormControl(data.platoDesayuno),
+          'platoEsp': new FormControl(data.platoEspecial),
+          'entradaAlm': new FormControl(data.entradaAlmuerzo),
+          'segundoAlm': new FormControl(data.segundoAlmuerzo),
+          'jugoAlm': new FormControl(data.jugoAlmuerzo),
+          'detalleDes': new FormControl(data.detalleDesayuno),
+          'precioDes': new FormControl(data.precioDesayuno),
+          'precioAlm': new FormControl(data.precioAlmuerzo),
+          //'userUID': new FormControl(data.userUID)
+          });
         
         // Aqui no se usa el ngUnsubscribe porque se esta conectando con FireStorage
          if(data != null){
@@ -104,14 +114,13 @@ export class CrearMenuComponent implements OnInit, OnDestroy {
     let plato = new Plato();
     //let usuario = new Usuario();
     plato.platoDesayuno = this.form.value['platoDes'];
-    plato.platoAlmuerzo = this.form.value['platoAlm'];
     plato.platoEspecial = this.form.value['platoEsp'];
     plato.detalleDesayuno = this.form.value['detalleDes'];
-    plato.detalleAlmuerzo = this.form.value['detalleAlm'];
-    plato.detalleEspecial = this.form.value['detalleEsp'];
     plato.precioDesayuno = this.form.value['precioDes'];
     plato.precioAlmuerzo = this.form.value['precioAlm'];
-    plato.precioEspecial = this.form.value['precioEsp'];
+    plato.entradaAlmuerzo = this.form.value['entradaAlm'];
+    plato.segundoAlmuerzo = this.form.value['segundoAlm'];
+    plato.jugoAlmuerzo = this.form.value['jugoAlm'];
     
    
     plato.userUID = this.usuarioLogeado;
@@ -149,10 +158,18 @@ export class CrearMenuComponent implements OnInit, OnDestroy {
     this.router.navigate(['plato']);
   }
 
+  addMenu(menu: Plato) {
+    console.log('New menu', menu);
+    this.platoService.subirMenuconImagen(menu, this.file);
+    this.router.navigate(['miMenu']);
+  }
+
   // Funcion para mostrar el nombre del archivo seleccionado
   seleccionar(e: any){
     this.file = e.target.files[0];
     this.labelFile = e.target.files[0].name;
+    console.log(this.file);
+    
   }
 
   ngOnDestroy(){

@@ -18,8 +18,8 @@ export class PlatoComponent implements OnInit, OnDestroy {
   dataSource2: MatTableDataSource<Plato>;
   dataSource3: MatTableDataSource<Plato>;
   displayedColumns1 = ['platoDes', 'detalleDes' ,'precioDes','userUid', 'acciones']; // Datos que se va amostrar en la tabla
-  displayedColumns2 = ['platoAlm', 'detalleAlm' ,'precioAlm','userUid', 'acciones']; // Datos que se va amostrar en la tabla
-  displayedColumns3 = ['platoEsp', 'detalleEsp' ,'precioEsp','userUid', 'acciones']; // Datos que se va amostrar en la tabla
+  displayedColumns2 = ['entradaAlm', 'segundoAlm' ,'jugoAlm','precioAlm','userUid', 'acciones']; // Datos que se va amostrar en la tabla
+  displayedColumns3 = ['platoEsp', 'acciones']; // Datos que se va amostrar en la tabla
 
   usuarioLog: string;// Validar usuario logueado
   usuarioLogeado: Plato[]; // variable para guardar la coleccion de los campos de los usuarios logueados
@@ -45,6 +45,7 @@ export class PlatoComponent implements OnInit, OnDestroy {
 
     let currenUser = this.afa.auth.currentUser;
     this.usuarioLog = currenUser.uid;
+    
 
     // Programacion reactiva:s
     this.platoService.listar().pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {

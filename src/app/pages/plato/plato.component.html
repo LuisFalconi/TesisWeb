@@ -45,15 +45,21 @@
     <p>Almuerzo del Día</p>
       <mat-table [dataSource]= "dataSource2" matSort >
         <div>
-            <ng-container matColumnDef="platoAlm">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Almuerzo</mat-header-cell> 
-                <mat-cell *matCellDef="let row"> {{row.platoAlmuerzo}}</mat-cell>
+            <ng-container matColumnDef="entradaAlm">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Entrada</mat-header-cell> 
+                <mat-cell *matCellDef="let row"> {{row.entradaAlmuerzo}}</mat-cell>
             </ng-container>
         
-            <ng-container matColumnDef="detalleAlm">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Detalle/Ingredientes</mat-header-cell> 
-                <mat-cell *matCellDef="let row"> {{row.detalleAlmuerzo}}</mat-cell>
+            <ng-container matColumnDef="segundoAlm">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Segundo</mat-header-cell> 
+                <mat-cell *matCellDef="let row"> {{row.segundoAlmuerzo}}</mat-cell>
             </ng-container>
+
+            <ng-container matColumnDef="jugoAlm">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Jugos</mat-header-cell> 
+                <mat-cell *matCellDef="let row"> {{row.jugoAlmuerzo}}</mat-cell>
+            </ng-container>
+
             <ng-container matColumnDef="precioAlm">
               <mat-header-cell *matHeaderCellDef mat-sort-header>Precio</mat-header-cell> 
               <mat-cell *matCellDef="let row"> {{row.precioAlmuerzo | currency}}</mat-cell>
@@ -86,15 +92,16 @@
       <mat-paginator [pageSize]="10" [pageSizeOptions]="[5,10,25,100]"></mat-paginator>
 
       <p>Especial del Día</p>
+      <p>Ingesar imagenes de sus platos especiales</p>
 
       <mat-table [dataSource]= "dataSource3" matSort >
         <div>
             <ng-container matColumnDef="platoEsp">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Especial</mat-header-cell> 
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Platos Especiales</mat-header-cell> 
                 <mat-cell *matCellDef="let row"> {{row.platoEspecial}}</mat-cell>
             </ng-container>
         
-            <ng-container matColumnDef="detalleEsp">
+            <!-- <ng-container matColumnDef="detalleEsp">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Detalle/Ingredientes</mat-header-cell> 
                 <mat-cell *matCellDef="let row"> {{row.detalleEspecial}}</mat-cell>
             </ng-container>
@@ -105,7 +112,7 @@
           <ng-container matColumnDef="userUid">
               <mat-header-cell *matHeaderCellDef mat-sort-header>Usuario Logueado</mat-header-cell> 
               <mat-cell *matCellDef="let row">{{row.userUID}}</mat-cell>
-          </ng-container>
+          </ng-container> -->
         </div>
           <ng-container matColumnDef="acciones">
               <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell> 
@@ -132,7 +139,9 @@
           <mat-icon>send</mat-icon>
       </button> -->
        
-      <p>Usuario</p>
+      <p>
+          
+      </p>
 
       <mat-list role="list">
         <mat-list-item role="listitem">{{usuarioLog}}</mat-list-item>
