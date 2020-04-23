@@ -54,7 +54,6 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
       'id': new FormControl(''),
       //'userUID': new FormControl(''),
       'platoDes': new FormControl(''),
-      'platoEsp': new FormControl(''),
       'detalleDes': new FormControl(''),
       'entradaAlm': new FormControl(''),
       'segundoAlm': new FormControl(''),
@@ -77,7 +76,6 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
         this.form = new FormGroup({
         'id': new FormControl(data.id),
         'platoDes': new FormControl(data.platoDesayuno),
-        'platoEsp': new FormControl(data.platoEspecial),
         'entradaAlm': new FormControl(data.entradaAlmuerzo),
         'segundoAlm': new FormControl(data.segundoAlmuerzo),
         'jugoAlm': new FormControl(data.jugoAlmuerzo),
@@ -102,7 +100,6 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
     let plato = new Plato();
     //let usuario = new Usuario();
     plato.platoDesayuno = this.form.value['platoDes'];
-    plato.platoEspecial = this.form.value['platoEsp'];
     plato.detalleDesayuno = this.form.value['detalleDes'];
     plato.precioDesayuno = this.form.value['precioDes'];
     plato.precioAlmuerzo = this.form.value['precioAlm'];
@@ -110,7 +107,6 @@ export class PlatoEdicionComponent implements OnInit, OnDestroy {
     plato.segundoAlmuerzo = this.form.value['segundoAlm'];
     plato.jugoAlmuerzo = this.form.value['jugoAlm'];
     
-    // Guardo el id del putooooooooooo usuario logueado
     plato.userUID = this.usuarioLogeado;
 
   

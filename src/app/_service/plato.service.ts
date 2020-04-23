@@ -59,7 +59,7 @@ export class PlatoService {
       jugoAlmuerzo: plato.jugoAlmuerzo,
       segundoAlmuerzo: plato.segundoAlmuerzo,
       precioAlmuerzo: plato.precioAlmuerzo, 
-      platoEspecial: plato.platoEspecial,
+      //platoEspecial: plato.platoEspecial,
       //detalleEspecial: plato.detalleEspecial,
       //precioEspecial: plato.precioEspecial, 
      });
@@ -99,7 +99,7 @@ private guardarMenu(plato: Plato) {
     jugoAlmuerzo: plato.jugoAlmuerzo,
     segundoAlmuerzo: plato.segundoAlmuerzo,
     precioAlmuerzo: plato.precioAlmuerzo, 
-    platoEspecial: plato.platoEspecial,
+    //platoEspecial: plato.platoEspecial,
     imgPlato: this.UrlImagen,
     fileRef: this.filePath
   });

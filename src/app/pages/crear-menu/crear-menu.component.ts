@@ -62,7 +62,6 @@ public menuForm = new FormGroup({
       'id': new FormControl(''),
       //'userUID': new FormControl(''),
       'platoDes': new FormControl(''),
-      'platoEsp': new FormControl(''),
       'detalleDes': new FormControl(''),
       'entradaAlm': new FormControl(''),
       'segundoAlm': new FormControl(''),
@@ -89,7 +88,6 @@ public menuForm = new FormGroup({
         this.form = new FormGroup({
           'id': new FormControl(data.id),
           'platoDes': new FormControl(data.platoDesayuno),
-          'platoEsp': new FormControl(data.platoEspecial),
           'entradaAlm': new FormControl(data.entradaAlmuerzo),
           'segundoAlm': new FormControl(data.segundoAlmuerzo),
           'jugoAlm': new FormControl(data.jugoAlmuerzo),
@@ -114,7 +112,6 @@ public menuForm = new FormGroup({
     let plato = new Plato();
     //let usuario = new Usuario();
     plato.platoDesayuno = this.form.value['platoDes'];
-    plato.platoEspecial = this.form.value['platoEsp'];
     plato.detalleDesayuno = this.form.value['detalleDes'];
     plato.precioDesayuno = this.form.value['precioDes'];
     plato.precioAlmuerzo = this.form.value['precioAlm'];

@@ -19,7 +19,7 @@ export class PlatoComponent implements OnInit, OnDestroy {
   dataSource3: MatTableDataSource<Plato>;
   displayedColumns1 = ['platoDes', 'detalleDes' ,'precioDes','userUid', 'acciones']; // Datos que se va amostrar en la tabla
   displayedColumns2 = ['entradaAlm', 'segundoAlm' ,'jugoAlm','precioAlm','userUid', 'acciones']; // Datos que se va amostrar en la tabla
-  displayedColumns3 = ['platoEsp', 'acciones']; // Datos que se va amostrar en la tabla
+  displayedColumns3 = ['acciones']; // Datos que se va amostrar en la tabla
 
   usuarioLog: string;// Validar usuario logueado
   usuarioLogeado: Plato[]; // variable para guardar la coleccion de los campos de los usuarios logueados

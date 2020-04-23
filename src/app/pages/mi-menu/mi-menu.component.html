@@ -40,7 +40,7 @@
         
             <p>{{plato.imgPlato}}</p>
             <mat-card-content>
-                <img matCardImage [src]="plato.imgPlato" width="500px" height="300px"/>
+                <img matCardImage [src]="plato.imgPlato" *ngIf="plato.imgPlato" width="500px" height="300px"/>
             </mat-card-content>
             <mat-card-actions>
               <button mat-button>LIKE</button>
