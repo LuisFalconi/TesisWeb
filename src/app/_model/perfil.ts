@@ -10,4 +10,5 @@ export class Perfil{
     userUID?: string; // id del usuario logueado (el que actualiza el perfil) 
     imagenRes?: any;
     fileRef?: string;
+    //promocion?: any;
 }

@@ -45,13 +45,17 @@
         <!-- <button mat-raised-button onclick="document.getElementById('input_subida').click()" type="button"><mat-icon>cloud_upload</mat-icon>  <span>Foto Restaurante</span></button>
         <input id="input_subida"  type="file" style="display: none" (change)="seleccionar($event)">
          -->
-        <!-- <button mat-raised-button onclick="document.getElementById('input_subida').click()" type="button"><mat-icon>cloud_upload</mat-icon>  <span>Foto Restaurante</span></button>
+        <button mat-raised-button onclick="document.getElementById('input_subida').click()" type="button"><mat-icon>cloud_upload</mat-icon>  <span>Foto Restaurante</span></button>
         <input id="input_subida"  type="file" style="display: none" (change)="seleccionar($event)">
-         -->
-        <label class="custom-file">
+
+         <p>¿Tu restaurante tiene alguna promoción? Subela muerto de hambre!</p>
+        <button mat-raised-button onclick="document.getElementById('promo').click()" type="button"><mat-icon>cloud_upload</mat-icon><span>Promocion</span></button>
+        <input id="promo"  type="file" style="display: none" (change)="seleccionar_promo($event)">
+
+        <!-- <label class="custom-file">
             <input type="file" formControlName="imagePost" (change)="seleccionar($event)" />
             <mat-icon>cloud_upload</mat-icon><span>CHOOSE IMAGE</span>
-        </label>
+        </label> -->
 
         <p>{{labelFile}}</p>
         <button mat-raised-button color="primary" type="submit" [mat-dialog-close]="true">

@@ -1,5 +1,5 @@
 export interface FileI {
-    name: string;
+    name?: string;
     imageFile: File;
     size: string;
     type: string;

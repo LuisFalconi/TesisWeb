@@ -27,8 +27,9 @@ export class CrearRestauranteComponent implements OnInit, OnDestroy {
   perfil : Perfil[];
 
   file: any;
+  file_promo: any;
   labelFile: string;
-  urlImage: string;
+
 
   private filePath: any;
   rutaImagen: Observable<string>;
@@ -110,8 +111,8 @@ export class CrearRestauranteComponent implements OnInit, OnDestroy {
         // Aqui no se usa el ngUnsubscribe porque se esta conectando con FireStorage
          if(data != null){
            this.afStorage.ref(`perfiles/${data.id}`).getDownloadURL().subscribe(data => {
-            this.urlImage = data;
-            console.log("Es la imagen?? ", this.urlImage);
+            //this.urlImage = data;
+            //console.log("Es la imagen?? ", this.urlImage);
             
            })
           }
@@ -191,6 +192,10 @@ export class CrearRestauranteComponent implements OnInit, OnDestroy {
   seleccionar(e: any): void{
     this.file = e.target.files[0];
     this.labelFile = e.target.files[0].name;
+  }
+
+  seleccionar_promo(e: any): void{
+    this.file_promo = e.target.files[0];
   }
 
       //   task.snapshotChanges()

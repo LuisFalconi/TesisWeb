@@ -32,7 +32,7 @@ import { MenusComponent } from './pages/menus/menus.component';
 import { SubirImagenComponent } from './_pruebas/subir-imagen/subir-imagen.component';
 import { ModalComponent } from './modal/modal/modal.component';
 import { ListaRestaurantesComponent } from './restaurantes/lista-restaurantes/lista-restaurantes.component';
-
+import { ListaClientesComponent } from './pages/cliente/lista-clientes/lista-clientes.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +54,8 @@ import { ListaRestaurantesComponent } from './restaurantes/lista-restaurantes/li
     MenusComponent,
     SubirImagenComponent,
     ModalComponent,
-    ListaRestaurantesComponent
+    ListaRestaurantesComponent,
+    ListaClientesComponent
   ],
   imports: [
     BrowserModule,

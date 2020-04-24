@@ -4,7 +4,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
-import {MatIconModule, MatPaginatorModule, MatSortModule, MatSnackBarModule, MatSidenavModule, MatDivider, MatDividerModule, MatToolbarModule, MatAutocomplete, MatAutocompleteModule, MatDatepicker, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MatCardModule, MatProgressBarModule, MatListModule, MatSelectModule, MatDialogModule} from '@angular/material';
+import {MatIconModule, MatPaginatorModule, MatSortModule, MatSnackBarModule, MatSidenavModule, MatDivider, MatDividerModule, MatToolbarModule, MatAutocomplete, MatAutocompleteModule, MatDatepicker, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MatCardModule, MatProgressBarModule, MatListModule, MatSelectModule, MatDialogModule, MatProgressSpinnerModule} from '@angular/material';
 import { MatFormFieldModule, MatInputModule } from '@angular/material';
 
 @NgModule({
@@ -32,6 +32,7 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
     MatListModule,
     MatSelectModule,
     MatDialogModule,
+    MatProgressSpinnerModule
     
   ],
   exports: [
@@ -55,7 +56,9 @@ import { MatFormFieldModule, MatInputModule } from '@angular/material';
     MatProgressBarModule,
     MatListModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule
+
     
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-ES'}]

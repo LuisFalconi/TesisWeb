@@ -16,7 +16,7 @@
         <mat-list-item role="listitem">{{p.direccionRestaurante}}</mat-list-item>
         <mat-list-item role="listitem">{{p.capacidadRestaurante}}</mat-list-item>
         <mat-list-item role="listitem">{{p.imagenRes}}</mat-list-item>
-        <img matCardImage [src]="p.imagenRes" width="500px" height="300px"/>
+        <img matCardImage [src]="p.imagenRes" *ngIf="p.imagenRes" width="500px" height="300px"/>
 
         <!-- <mat-list-item role="listitem">{{p.horarioRestaurate}}</mat-list-item>  -->
 </div>
