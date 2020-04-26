@@ -228,8 +228,8 @@ export class PerfilService {
       capacidadRestaurante: perfil.capacidadRestaurante,
       horarioRestaurante: perfil.horarioRestaurante,
       direccionRestaurante: perfil.direccionRestaurante,
-      //imagenRes: this.UrlImagen,
-      //fileRef: this.filePath
+      imagenRes: "",
+      fileRef: ""
     });
     //   const postObj = {
        

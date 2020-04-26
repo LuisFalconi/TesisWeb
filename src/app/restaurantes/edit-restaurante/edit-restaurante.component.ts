@@ -34,7 +34,6 @@ export class EditRestauranteComponent implements OnInit {
     this.iniciarForm();
   }
 
-
   editPerfil(perfil: Perfil){
     console.log('Newimg', this.imagen);
     console.log('original', this.imagenOriginal);

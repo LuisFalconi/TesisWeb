@@ -1,5 +1,6 @@
+import { ModalEditRestautanteComponent } from './../../modal/modal-edit-restautante/modal-edit-restautante.component';
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatSort, MatSnackBar } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatSnackBar, MatDialog } from '@angular/material';
 import { Perfil } from '../../_model/perfil';
 import { Subject } from 'rxjs';
 import { PerfilService } from '../../_service/perfil.service';
@@ -37,7 +38,8 @@ export class EditarPerfilComponent implements OnInit, OnDestroy {
   constructor(private perfilService: PerfilService,
               private snackBar: MatSnackBar,
               private afa: AngularFireAuth,
-              private router: Router) { }
+              private router: Router,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
 
@@ -95,59 +97,26 @@ export class EditarPerfilComponent implements OnInit, OnDestroy {
     })
   }
 
-  // editar(){
-  //   Swal.fire({
-  //     title: 'Deseas editar tu restaurante?',
-  //     text: "No podras revertir esto!",
-  //     icon: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonColor: '#3085d6',
-  //     cancelButtonColor: '#d33',
-  //     cancelButtonText: "No!",
-  //     confirmButtonText: 'Si!'
-  //   }).then((result) => {
-  //     if (result.value) {
-  //       this.router.navigate(['/edicion']);
-  //     }else {
-  //       Swal.fire("Cancelado", "Tu restaurante esta a salvo :)", "error");
-  //   }
-  //   })
-
-  // }
-
-
-  // timer(){
-  //   let timerInterval
-  //   Swal.fire({
-  //     title: 'Auto close alert!',
-  //     html: 'I will close in <b></b> milliseconds.',
-  //     timer: 2000,
-  //     timerProgressBar: true,
-  //     onBeforeOpen: () => {
-  //       Swal.showLoading()
-  //       timerInterval = setInterval(() => {
-  //         const content = Swal.getContent()
-  //         if (content) {
-  //           const b = content.querySelector('b')
-  //           if (b) {
-  //             b.textContent = Swal.getTimerLeft()
-  //           }
-  //         }
-  //       }, 100)
-  //     },
-  //     onClose: () => {
-  //       clearInterval(timerInterval)
-  //     }
-  //   }).then((result) => {
-  //     /* Read more about handling dismissals below */
-  //     if (result.dismiss === Swal.DismissReason.timer) {
-  //       console.log('I was closed by the timer')
-  //     }
-  //   })
-  // }
+  editarRestaurante(perfil: Perfil) {
+    console.log('Edit posta', perfil);
+    this.openEditDialgo(perfil);
+  }
 
   ngOnDestroy(){
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
+  }
+
+  openEditDialgo(perfil?: Perfil): void {
+    const config ={
+      data:{
+        contenido: perfil,
+        panelClass: 'myapp-no-padding-dialog'
+      }
+    };
+    const dialogRef = this.dialog.open(ModalEditRestautanteComponent, config);
+    dialogRef.afterClosed().subscribe(resultado => {
+      console.log(`Dialog result ${resultado}`);
+    });
   }
 }

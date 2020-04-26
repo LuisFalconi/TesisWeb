@@ -36,6 +36,7 @@ import { ListaClientesComponent } from './pages/cliente/lista-clientes/lista-cli
 import { NuevoRestauranteComponent } from './restaurantes/nuevo-restaurante/nuevo-restaurante.component';
 import { NuevoResComponent } from './modal/nuevo-res/nuevo-res.component';
 import { EditRestauranteComponent } from './restaurantes/edit-restaurante/edit-restaurante.component';
+import { ModalEditRestautanteComponent } from './modal/modal-edit-restautante/modal-edit-restautante.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { EditRestauranteComponent } from './restaurantes/edit-restaurante/edit-r
     ListaClientesComponent,
     NuevoRestauranteComponent,
     NuevoResComponent,
-    EditRestauranteComponent
+    EditRestauranteComponent,
+    ModalEditRestautanteComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +81,8 @@ import { EditRestauranteComponent } from './restaurantes/edit-restaurante/edit-r
   // Para trabajar con dialogos se crea entryComoonents
   entryComponents: [
     ModalComponent,
-    NuevoResComponent
+    NuevoResComponent,
+    ModalEditRestautanteComponent
   ],
   providers: [
       AngularFirestore,

@@ -41,9 +41,12 @@
               <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell> 
               <mat-cell *matCellDef="let row">
                 <div *ngIf="usuarioLog == row.userUID"> 
-                    <button mat-icon-button color="primary" [routerLink]="['edicion', row.id]">
+                        <button mat-icon-button color="primary" (click)="editarRestaurante(row)">
+                            <mat-icon arial-label="Actualizar">edit</mat-icon>
+                        </button>
+                    <!-- <button mat-icon-button color="primary" [routerLink]="['edicion', row.id]">
                         <mat-icon arial-label="Actualizar">assignment</mat-icon>
-                    </button>  
+                    </button> -->
                 </div>
                 <div *ngIf="usuarioLog == row.userUID">
                     <button mat-icon-button color="accent" (click)="eliminar(row)">
