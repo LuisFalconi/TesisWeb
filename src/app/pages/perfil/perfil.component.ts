@@ -22,10 +22,11 @@ export class PerfilComponent implements OnInit {
   fotoSocial: string;
 
   perfil : Perfil[];
+  restaurantelog : Perfil[];
 
   usuarioLog: string;
 
-  valor: number = 5;
+  valor: boolean=true;
 
   
   constructor(private afa: AngularFireAuth, private perfilService: PerfilService,
@@ -43,23 +44,53 @@ export class PerfilComponent implements OnInit {
     this.usuarioSocial = currenUser.displayName;
     this.fotoSocial = currenUser.photoURL;
     
-
-
-    this.perfilService.listar().subscribe(data =>{
+    // Programacion reactiva: Me permite mostrar los datos de la tabla del usuario logueado para que el pueda editar
+    this.perfilService.listar().subscribe(data => {
+      for(let x of data){
+        if(this.usuarioLog == x.userUID){
+          console.log("Si");
+          //console.log("Si");
+          this.restaurantelog = [x];
+          this.valor = true;
+          this.validacion(this.valor);
+          console.log("Validacion", this.validacion(this.valor));
+          console.log("Valor:", this.valor);
+          console.log("Este restaurante", this.restaurantelog); 
+          break;   
+        }else{
+          console.log("No");
+          this.valor = false;
+          console.log("Valor:", this.valor);
+          console.log("Validacion", this.validacion(this.valor));
+        } 
+      }
+      // data.forEach((x: Perfil) =>{
+      //     if(this.usuarioLog == x.userUID){
+      //       console.log("Si");
+      //       //console.log("Si");
+      //       this.restaurantelog = [x];
+      //       this.valor = true;
+      //       console.log("Valor:", this.valor);
+      //       console.log("Este restaurante", this.restaurantelog); 
+      //       return;   
+      //     }else{
+      //       console.log("No");
+      //       this.valor = false;
+      //       console.log("Valor:", this.valor);
+      //     }       
+      // });
+  });
+   
+    this.perfilService.listar().subscribe(data=>{
       this.perfil = data;
-      console.log("Perfil", this.perfil);
-      console.log("Perfil", data);
-      for (let numero of this.perfil){
-        console.log(numero.userUID);
-      } 
-    });
-
-
-
+      //console.log(this.perfil);
+      
+    })
+  
   }
 
-    perfilUsuario(){
-      if (this.valor == 5){
+  validacion(valor: boolean){
+      if (valor){
         return true;
       }else{
         return false;

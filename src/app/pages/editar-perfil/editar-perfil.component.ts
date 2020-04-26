@@ -19,7 +19,7 @@ import { Router } from '@angular/router';
 export class EditarPerfilComponent implements OnInit, OnDestroy {
 
   dataSource: MatTableDataSource<Perfil>;
-  displayedColumns = ['nombreR', 'fotoR' ,'tipoR', 'direccionR', 'horarioR', 'capacidadR', 'acciones'];
+  displayedColumns = ['nombreR','tipoR', 'direccionR', 'horarioR', 'capacidadR', 'acciones'];
 
   private ngUnsubscribe: Subject<void> = new Subject();// Se crear la variable para liberar recursos
   usuarioLog: string;

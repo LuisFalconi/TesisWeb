@@ -21,7 +21,6 @@ export class EditRestauranteComponent implements OnInit {
   public editResForm = new FormGroup({
     id: new FormControl (''),
     nombreRestaurante: new FormControl ('', Validators.required),  
-    fotoRestaurante: new FormControl('', Validators.required),
     tipoRestaurante: new FormControl('', Validators.required),
     capacidadRestaurante: new FormControl('', Validators.required),
     horarioRestaurante: new FormControl('', Validators.required),
@@ -60,7 +59,6 @@ export class EditRestauranteComponent implements OnInit {
     this.editResForm.patchValue({
       id: this.perfil.id,
       nombreRestaurante: this.perfil.nombreRestaurante,
-      fotoRestaurante: this.perfil.fotoRestaurante,
       tipoRestaurante: this.perfil.tipoRestaurante, 
       capacidadRestaurante: this.perfil.capacidadRestaurante,
       horarioRestaurante: this.perfil.horarioRestaurante,

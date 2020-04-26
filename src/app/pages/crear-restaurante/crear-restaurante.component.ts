@@ -51,7 +51,6 @@ export class CrearRestauranteComponent implements OnInit, OnDestroy {
   public newPostForm = new FormGroup({
     id: new FormControl (''),
     nombreRestaurante: new FormControl ('', Validators.required),  
-    fotoRestaurante: new FormControl('', Validators.required),
     tipoRestaurante: new FormControl('', Validators.required),
     capacidadRestaurante: new FormControl('', Validators.required),
     horarioRestaurante: new FormControl('', Validators.required),
@@ -70,7 +69,6 @@ export class CrearRestauranteComponent implements OnInit, OnDestroy {
       // Variables que se colocan en el FormControlName del html
       'id': new FormControl(''),
       'nombreR': new FormControl('', Validators.required),
-      'fotoR': new FormControl('', Validators.required),
       'tipoR': new FormControl('', Validators.required),
       'direccionR': new FormControl('', Validators.required),
       'horarioR': new FormControl('', Validators.required),
@@ -100,7 +98,6 @@ export class CrearRestauranteComponent implements OnInit, OnDestroy {
         this.form = new FormGroup({
           'id': new FormControl(data.id),
           'nombreR': new FormControl(data.nombreRestaurante),
-          'fotoR': new FormControl(data.fotoRestaurante),
           'tipoR': new FormControl(data.tipoRestaurante),
           'direccionR': new FormControl(data.direccionRestaurante),
           'horarioR': new FormControl(data.horarioRestaurante),
@@ -136,7 +133,6 @@ export class CrearRestauranteComponent implements OnInit, OnDestroy {
     
         let perfil = new Perfil();
         perfil.nombreRestaurante = this.form.value['nombreR'];
-        perfil.fotoRestaurante = this.form.value['fotoR'];
         perfil.tipoRestaurante = this.form.value['tipoR'];
         perfil.horarioRestaurante = this.form.value['horarioR'];
         perfil.direccionRestaurante = this.form.value['direccionR'];

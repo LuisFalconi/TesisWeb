@@ -18,7 +18,6 @@ export class NuevoRestauranteComponent implements OnInit {
   public newResForm = new FormGroup({
     id: new FormControl (''),
     nombreRestaurante: new FormControl ('', Validators.required),  
-    fotoRestaurante: new FormControl('', Validators.required),
     tipoRestaurante: new FormControl('', Validators.required),
     capacidadRestaurante: new FormControl('', Validators.required),
     horarioRestaurante: new FormControl('', Validators.required),

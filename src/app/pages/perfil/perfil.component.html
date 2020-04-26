@@ -5,26 +5,40 @@
 
 <mat-card>Tipo de Sesion {{usuarioSocial}}</mat-card>
 <img mat-card-image [src]="fotoSocial" style="height: 60px; width: 60px;" *ngIf="fotoSocial">
-<div>
-    <mat-list role="list" *ngFor="let p of perfil">
+<div style="text-align: center;">
+    <mat-list role="list" *ngFor="let p of perfil" style="text-align: center;">
         <div *ngIf="usuarioLog == p.userUID">
-            <p>Usuario que edito el perfil</p>
-        <mat-list-item role="listitem">{{p.userUID}}</mat-list-item> 
-        <mat-list-item role="listitem">{{p.nombreRestaurante}}</mat-list-item>
-        <mat-list-item role="listitem">{{p.tipoRestaurante}}</mat-list-item>
-        <mat-list-item role="listitem">{{p.fotoRestaurante}}</mat-list-item>
-        <mat-list-item role="listitem">{{p.direccionRestaurante}}</mat-list-item>
-        <mat-list-item role="listitem">{{p.capacidadRestaurante}}</mat-list-item>
-        <mat-list-item role="listitem">{{p.imagenRes}}</mat-list-item>
-        <img matCardImage [src]="p.imagenRes" *ngIf="p.imagenRes" width="500px" height="300px"/>
-
-        <!-- <mat-list-item role="listitem">{{p.horarioRestaurate}}</mat-list-item>  -->
-</div>
+            <h3>Restaurante Muerto de Hambre</h3>
+            <mat-list-item role="listitem"><mat-icon>storefront</mat-icon>{{p.nombreRestaurante}}</mat-list-item>
+            <mat-list-item role="listitem"><mat-icon>local_dining</mat-icon>{{p.tipoRestaurante}}</mat-list-item>
+            <mat-list-item role="listitem"><mat-icon>business</mat-icon>{{p.direccionRestaurante}}</mat-list-item>
+            <mat-list-item role="listitem"><mat-icon>directions_run</mat-icon>{{p.capacidadRestaurante}}</mat-list-item>
+            <mat-list-item role="listitem"><mat-icon>directions_run</mat-icon>{{p.horarioRestaurante}}</mat-list-item>
+            <img matCardImage [src]="p.imagenRes" *ngIf="p.imagenRes"/>
+        </div>
     </mat-list>
 </div>
-<p>Deseas agregar informacion de tu restaurante ahora?</p>
-<div class="container-btn-new">
+<!-- <mat-list role="list" *ngFor="let p of perfil" style="text-align: center;">
+        <div *ngIf="p.userUID != usuarioLog && p.nombreRestaurante == 'res'">
+            <div>
+                <p>Deseas agregar informacion de tu restaurante ahora?</p>
+                <button mat-stroked-button (click)="onNewPost()">
+                      <mat-icon>note_add</mat-icon>&nbsp; Agregar Restaurante
+                </button>
+            </div>
+        </div>    
+</mat-list> -->
+<p>{{validacion(valor)}}</p>
+<div *ngIf="validacion(valor) == false">
+    
+    <p>Deseas agregar informacion de tu restaurante ahora?</p>
     <button mat-stroked-button (click)="onNewPost()">
-      <mat-icon>note_add</mat-icon>&nbsp; Agregar Restaurante
+        <mat-icon>note_add</mat-icon>&nbsp; Agregar Restaurante
     </button>
-  </div>
+</div>
+
+
+
+
+
+
