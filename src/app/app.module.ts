@@ -33,6 +33,9 @@ import { SubirImagenComponent } from './_pruebas/subir-imagen/subir-imagen.compo
 import { ModalComponent } from './modal/modal/modal.component';
 import { ListaRestaurantesComponent } from './restaurantes/lista-restaurantes/lista-restaurantes.component';
 import { ListaClientesComponent } from './pages/cliente/lista-clientes/lista-clientes.component';
+import { NuevoRestauranteComponent } from './restaurantes/nuevo-restaurante/nuevo-restaurante.component';
+import { NuevoResComponent } from './modal/nuevo-res/nuevo-res.component';
+import { EditRestauranteComponent } from './restaurantes/edit-restaurante/edit-restaurante.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,10 @@ import { ListaClientesComponent } from './pages/cliente/lista-clientes/lista-cli
     SubirImagenComponent,
     ModalComponent,
     ListaRestaurantesComponent,
-    ListaClientesComponent
+    ListaClientesComponent,
+    NuevoRestauranteComponent,
+    NuevoResComponent,
+    EditRestauranteComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +78,8 @@ import { ListaClientesComponent } from './pages/cliente/lista-clientes/lista-cli
   ],
   // Para trabajar con dialogos se crea entryComoonents
   entryComponents: [
-    ModalComponent
+    ModalComponent,
+    NuevoResComponent
   ],
   providers: [
       AngularFirestore,

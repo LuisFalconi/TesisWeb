@@ -16,14 +16,14 @@ import { PlatoService } from '../../_service/plato.service';
 export class ClienteComponent implements OnInit {
 
   perfil$: Observable<Perfil[]>;  // Se utiliza $ para diferenciar que es un obserbable 
-  plato$: Observable<Plato[]>;
+  //plato$: Observable<Plato[]>;
 
 
 
   constructor(private perfilService: PerfilService, private route: ActivatedRoute, private platoService: PlatoService) { }
 
-  dataSource: MatTableDataSource<Perfil>;
-  displayedColumns = ['nombreR', 'fotoR' ,'tipoR', 'direccionR', 'horarioR', 'capacidadR'];
+  // dataSource: MatTableDataSource<Perfil>;
+  // displayedColumns = ['nombreR', 'fotoR' ,'tipoR', 'direccionR', 'horarioR', 'capacidadR'];
   perfil:  Perfil[];
 
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
@@ -31,13 +31,13 @@ export class ClienteComponent implements OnInit {
 
   ngOnInit() {
 
-    this.perfilService.listar().subscribe((data =>{
-      console.log(data);
-      this.perfil = data;
-      this.dataSource = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    }));
+    // this.perfilService.listar().subscribe((data =>{
+    //   console.log(data);
+    //   this.perfil = data;
+    //   this.dataSource = new MatTableDataSource(data);
+    //   this.dataSource.paginator = this.paginator;
+    //   this.dataSource.sort = this.sort;
+    // }));
 
     //const idPerfil = this.route.snapshot.params.id;
     //this.perfil$ = this.perfilService.recibirPerfil(idPerfil);
@@ -46,7 +46,7 @@ export class ClienteComponent implements OnInit {
     // this.perfilService.recuperarDatos().subscribe(res => console.log('Perfiles', res)); 
 
     this.perfil$ = this.perfilService.recuperarDatos(); // recuperamos esta data con ASYNC
-    this.plato$ = this.platoService.recuperarMenus(); // recuperamos esta data con ASYNC
+    //this.plato$ = this.platoService.recuperarMenus(); // recuperamos esta data con ASYNC
   }
 
 

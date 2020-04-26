@@ -20,6 +20,8 @@ export class PerfilService {
    private UrlImagen: Observable<string>;
    usuarioLogeado: string;
    idPerfil: string;
+
+   idRes: string;
    
    
 
@@ -74,7 +76,63 @@ export class PerfilService {
     return this.afs.doc<Perfil>(`perfiles/${id}`).valueChanges();
   }
 
+  public eliminarPerfil(perfil: Perfil){
+    return this.perfilCollection.doc(perfil.id).delete();
+  }
+
+  public editarPerfil(perfil: Perfil, nuevaImagen?: FileI){
+
+    if(nuevaImagen){
+      this.obternerImagen(perfil, nuevaImagen);
+    }else{
+      return this.perfilCollection.doc(perfil.id).update(perfil);
+    }
+  }
+
+
+  private obternerImagen(perfil: Perfil ,image?: FileI){
+      this.filePath = `imagenes/${image.name}`;
+      const fileRef = this.storage.ref(this.filePath);
+      const task = this.storage.upload(this.filePath, image);
+      task.snapshotChanges()
+       .pipe(
+         finalize(() => {
+          fileRef.getDownloadURL().subscribe(urlImage => {
+             this.UrlImagen = urlImage;
+            console.log('urlImagen', this.UrlImagen);
+             this.guardarRestaurante(perfil);          
+           });
+        })
+       ).subscribe();     
+   }
+
+  subirRestauranteconImagen(perfiles: Perfil, image?: FileI): void{
+    this.obternerImagen(perfiles, image);
+  }
+
+  // Logica para editar y guardar un restaurante
+  // private guardarRestaurantes(perfil: Perfil) {
+  //   let idPlato = this.afs.createId();
+  //   perfil.id = idPlato;
+  //   const ResObj = {
+  //     id: this.afs.createId(),
+  //     userUID: this.usuarioLogeado,
+  //     nombreRestaurante: perfil.nombreRestaurante,
+  //     fotoRestaurante: perfil.fotoRestaurante,
+  //     tipoRestaurante: perfil.tipoRestaurante,
+  //     capacidadRestaurante: perfil.capacidadRestaurante,
+  //     horarioRestaurante: perfil.horarioRestaurante,
+  //     direccionRestaurante: perfil.direccionRestaurante,
+  //     imagenRes: this.UrlImagen,
+  //     fileRef: this.filePath 
+  //   };
+  //       this.perfilCollection.add(ResObj);
+  //  }
+
+
+
   // Registrar el perfil
+  
   registrar(perfil: Perfil){
 
     // Debido a que estamos validadndo en lato edicion que se guarde con el IDno necesitamos esto
@@ -119,25 +177,42 @@ export class PerfilService {
    }
 
   private guardarRestaurante(perfil: Perfil) {
-    
-    let idPlato = this.afs.createId();
-    perfil.id = idPlato;
-    this.afs.collection('perfiles').doc(idPlato).set({
-      id: perfil.id,
-      userUID: this.usuarioLogeado,
-      nombreRestaurante: perfil.nombreRestaurante,
-      fotoRestaurante: perfil.fotoRestaurante,
-      tipoRestaurante: perfil.tipoRestaurante,
-      capacidadRestaurante: perfil.capacidadRestaurante,
-      horarioRestaurante: perfil.horarioRestaurante,
-      direccionRestaurante: perfil.direccionRestaurante,
-      imagenRes: this.UrlImagen,
-      fileRef: this.filePath
-    });
-    //   const postObj = {
-       
-    //  };
-        //this.perfilCollection.add(postObj);
+    //this.idRes =perfil.id;
+    let idExiste = perfil.id;
+    if(idExiste){
+      const perfilObj = {
+        //id: perfil.id,
+        userUID: this.usuarioLogeado,
+        nombreRestaurante: perfil.nombreRestaurante,
+        fotoRestaurante: perfil.fotoRestaurante,
+        tipoRestaurante: perfil.tipoRestaurante,
+        capacidadRestaurante: perfil.capacidadRestaurante,
+        horarioRestaurante: perfil.horarioRestaurante,
+        direccionRestaurante: perfil.direccionRestaurante,
+        imagenRes: this.UrlImagen,
+        fileRef: this.filePath
+      };
+      console.log("Estoy editando un restaurante");
+      console.log("ID: ", idExiste);
+
+      return this.perfilCollection.doc(perfil.id).update(perfilObj);      
+    }else{
+      console.log("Estoy creando un restaurante");
+      let idPlato = this.afs.createId();
+      perfil.id = idPlato; 
+      this.afs.collection('perfiles').doc(idPlato).set({
+        id: perfil.id,
+        userUID: this.usuarioLogeado,
+        nombreRestaurante: perfil.nombreRestaurante,
+        fotoRestaurante: perfil.fotoRestaurante,
+        tipoRestaurante: perfil.tipoRestaurante,
+        capacidadRestaurante: perfil.capacidadRestaurante,
+        horarioRestaurante: perfil.horarioRestaurante,
+        direccionRestaurante: perfil.direccionRestaurante,
+        imagenRes: this.UrlImagen,
+        fileRef: this.filePath
+      });
+    }
    }
 
    private guardarRestauranteSinFoto(perfil: Perfil) {
@@ -174,7 +249,8 @@ export class PerfilService {
          finalize(() => {
           fileRef.getDownloadURL().subscribe(urlImage => {
              this.UrlImagen = urlImage;
-             console.log('urlImagen', this.UrlImagen);
+             console.log('urlImagen: ', this.UrlImagen);
+             console.log("id del restaurante: ", perfil.id);
              this.guardarRestaurante(perfil);           
            });
         }) 
@@ -184,31 +260,6 @@ export class PerfilService {
     }
      
    }
-
-   private subirPromocion(perfil: Perfil ,image?: FileI){
-    if(image){
-      this.filePath = `imagenes/${image.name}`;
-      const fileRef = this.storage.ref(this.filePath);
-      const task = this.storage.upload(this.filePath, image);
-      task.snapshotChanges()
-       .pipe(
-         finalize(() => {
-          fileRef.getDownloadURL().subscribe(urlImage => {
-             this.UrlImagen = urlImage;
-             console.log('urlImagen', this.UrlImagen);
-             this.guardarRestaurante(perfil);           
-           });
-        })
-       ).subscribe();
-    }else{
-      this.guardarRestauranteSinFoto(perfil);
-    }
-     
-   }
-
-   
-
-
 
 
 }

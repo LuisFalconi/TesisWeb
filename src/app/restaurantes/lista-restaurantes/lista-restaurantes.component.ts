@@ -4,6 +4,8 @@ import { PerfilService } from '../../_service/perfil.service';
 import { Perfil } from '../../_model/perfil';
 import Swal from 'sweetalert2';
 import { ModalComponent } from '../../modal/modal/modal.component';
+import { NuevoRestauranteComponent } from '../nuevo-restaurante/nuevo-restaurante.component';
+import { NuevoResComponent } from '../../modal/nuevo-res/nuevo-res.component';
 
 @Component({
   selector: 'app-lista-restaurantes',
@@ -34,8 +36,8 @@ export class ListaRestaurantesComponent implements OnInit, AfterViewInit {
   }
 
   editarRestaurante(perfil: Perfil) {
-    console.log('Edit post', perfil);
-    this.openDialog(perfil);
+    console.log('Edit posta', perfil);
+    this.dialogoNuevoRestaurante(perfil);
   }
 
   eliminarRestaurante(perfil: Perfil) {
@@ -62,7 +64,7 @@ export class ListaRestaurantesComponent implements OnInit, AfterViewInit {
   }
 
   nuevoRestaurante() {
-    this.openDialog();
+    this.dialogoNuevoRestaurante();
   }
 
   openDialog(perfil?: Perfil): void {
@@ -76,6 +78,19 @@ export class ListaRestaurantesComponent implements OnInit, AfterViewInit {
     const dialogRef = this.dialog.open(ModalComponent, config);
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result ${result}`);
+    });
+  }
+
+  dialogoNuevoRestaurante(perfil?: Perfil): void {
+    const config ={
+      data:{
+        mensaje: perfil ? 'Edit Perfil': 'Nuevo Perfil',
+        contenido: perfil
+      }
+    };
+    const dialogRef = this.dialog.open(NuevoResComponent, config);
+    dialogRef.afterClosed().subscribe(resultado => {
+      console.log(`Dialog result ${resultado}`);
     });
   }
 }
