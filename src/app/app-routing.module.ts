@@ -19,6 +19,7 @@ import { MenusComponent } from './pages/menus/menus.component';
 import { SubirImagenComponent } from './_pruebas/subir-imagen/subir-imagen.component';
 import { ListaRestaurantesComponent } from './restaurantes/lista-restaurantes/lista-restaurantes.component';
 import { ListaClientesComponent } from './pages/cliente/lista-clientes/lista-clientes.component';
+import { PromocionesComponent } from './pages/promociones/promociones.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,7 @@ const routes: Routes = [
   {path: 'cliente/:id', component: ListaClientesComponent},
   {path: 'cliente', component: ClienteComponent},
   {path: 'menus', component: MenusComponent},
+  {path: 'promociones', component: PromocionesComponent},
   {path: 'crearMenu', component: CrearMenuComponent, canActivate: [LoginGuardService]},
   {path: 'perfil', component: PerfilComponent, canActivate: [LoginGuardService]},
   {path: 'miMenu', component: MiMenuComponent, canActivate: [LoginGuardService]},

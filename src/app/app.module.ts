@@ -37,6 +37,7 @@ import { NuevoRestauranteComponent } from './restaurantes/nuevo-restaurante/nuev
 import { NuevoResComponent } from './modal/nuevo-res/nuevo-res.component';
 import { EditRestauranteComponent } from './restaurantes/edit-restaurante/edit-restaurante.component';
 import { ModalEditRestautanteComponent } from './modal/modal-edit-restautante/modal-edit-restautante.component';
+import { PromocionesComponent } from './pages/promociones/promociones.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { ModalEditRestautanteComponent } from './modal/modal-edit-restautante/mo
     NuevoRestauranteComponent,
     NuevoResComponent,
     EditRestauranteComponent,
-    ModalEditRestautanteComponent
+    ModalEditRestautanteComponent,
+    PromocionesComponent
   ],
   imports: [
     BrowserModule,

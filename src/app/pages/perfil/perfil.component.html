@@ -13,7 +13,7 @@
             <mat-list-item role="listitem"><mat-icon>local_dining</mat-icon>{{p.tipoRestaurante}}</mat-list-item>
             <mat-list-item role="listitem"><mat-icon>business</mat-icon>{{p.direccionRestaurante}}</mat-list-item>
             <mat-list-item role="listitem"><mat-icon>directions_run</mat-icon>{{p.capacidadRestaurante}}</mat-list-item>
-            <mat-list-item role="listitem"><mat-icon>directions_run</mat-icon>{{p.horarioRestaurante}}</mat-list-item>
+            <mat-list-item role="listitem"><mat-icon>schedule</mat-icon>{{p.horarioRestaurante}}</mat-list-item>
             <img matCardImage [src]="p.imagenRes" *ngIf="p.imagenRes"/>
         </div>
     </mat-list>
@@ -28,13 +28,16 @@
             </div>
         </div>    
 </mat-list> -->
-<p>{{validacion(valor)}}</p>
 <div *ngIf="validacion(valor) == false">
     
     <p>Deseas agregar informacion de tu restaurante ahora?</p>
     <button mat-stroked-button (click)="onNewPost()">
         <mat-icon>note_add</mat-icon>&nbsp; Agregar Restaurante
     </button>
+</div>
+
+<div *ngIf="validacion(valor)" style="text-align: center;">
+    <app-promociones></app-promociones>
 </div>
 
 
