@@ -38,6 +38,7 @@ import { NuevoResComponent } from './modal/nuevo-res/nuevo-res.component';
 import { EditRestauranteComponent } from './restaurantes/edit-restaurante/edit-restaurante.component';
 import { ModalEditRestautanteComponent } from './modal/modal-edit-restautante/modal-edit-restautante.component';
 import { PromocionesComponent } from './pages/promociones/promociones.component';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { PromocionesComponent } from './pages/promociones/promociones.component'
     NuevoResComponent,
     EditRestauranteComponent,
     ModalEditRestautanteComponent,
-    PromocionesComponent
+    PromocionesComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -76,6 +78,7 @@ import { PromocionesComponent } from './pages/promociones/promociones.component'
     ReactiveFormsModule,
     AngularFirestoreModule,
     FormsModule,  
+    AngularFireDatabaseModule,
     HttpClientModule,
     AngularFireStorageModule,
     AngularFireAuthModule // logica de seguridad 

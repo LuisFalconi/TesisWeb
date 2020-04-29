@@ -7,6 +7,7 @@ import { map, finalize } from 'rxjs/operators';
 import { FileI } from '../_model/imagenes';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FileP } from '../_model/promosImg';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +19,12 @@ export class PromocionService {
   private UrlImagen: Observable<string>;
   private UrlImagen2: Observable<string>[];
   private promocionCollection: AngularFirestoreCollection<Promocion>;
+  imageDetailList: AngularFireList<any>;
 
   constructor(private afs: AngularFirestore,
               private loginService: LoginService,
-              private storage: AngularFireStorage) { 
+              private storage: AngularFireStorage,
+              private firebase: AngularFireDatabase) { 
 
     this.promocionCollection = afs.collection<Promocion>('promociones');
     
@@ -30,6 +33,14 @@ export class PromocionService {
       this.usuarioLogeado = data.uid;
     });
 
+  }
+
+  getImageDetailList() {
+    this.imageDetailList = this.firebase.list('imageDetails');
+  }
+
+  insertImageDetails(imageDetails) {
+    this.imageDetailList.push(imageDetails);
   }
 
   listar() {

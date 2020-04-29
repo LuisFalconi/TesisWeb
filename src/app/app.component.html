@@ -1,5 +1,6 @@
-<mat-toolbar color="Warm" *ngIf="loginService.noEstaLogeado()">
-    <span>MuertosDeHambre.com</span>
+<mat-toolbar  class="body-content" color="Warm" *ngIf="loginService.noEstaLogeado()">
+    <mat-icon>fastfood</mat-icon>
+    <span> MuertosDeHambre.com</span>
 
     <span class="example-fill-remaining-space"></span>
   
@@ -53,11 +54,11 @@
         <header role="banner" *ngIf="loginService.estaLogeado()">
             <mat-toolbar color="primary" class="example-toolbar">
                 <button mat-icon-button (click)="sidenav.toggle()">
-                    <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
-                    <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+                    <mat-icon *ngIf="!sidenav.opened">fastfood</mat-icon>
+                    <mat-icon *ngIf="sidenav.opened">restaurant_menu</mat-icon>
                 </button>
 
-                <h1 class="app-name">Muertos de Hambre</h1>
+                <h1 class="app-name">MuertosDeHambre.com</h1>
 
                 <span class="spacer"></span>
 
@@ -67,7 +68,7 @@
 
                 <mat-menu #menu="matMenu">
                     <button mat-menu-item routerLink="/perfil">
-                        <mat-icon>account_box</mat-icon>
+                        <mat-icon>store</mat-icon>
                         <span>Mi Perfil</span>
                     </button>
                     <button mat-menu-item (click)="loginService.cerrarSesion()" (click)="sidenav.opened = false">

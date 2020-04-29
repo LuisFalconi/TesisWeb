@@ -7,6 +7,17 @@
 .all-wrap {
   min-height: 100vh;
 }
+
+.mat-toolbar.mat-primary {
+  background: #71696d;
+  color: #fff;
+}
+
+.mat-sidenav-container.mat-drawer-container{
+  background-color: #fff;
+  color: rgba(0,0,0,.87);
+}
+
  
 .page-wrap {
   display: flex;
@@ -17,7 +28,6 @@
 .content {
   flex: 1;
 }
- 
  
 /*
  * Make the Component injected by Router Outlet full height:

@@ -20,12 +20,15 @@ export class PerfilService {
    private UrlImagen: Observable<string>;
    usuarioLogeado: string;
    idPerfil: string;
-
    idRes: string;
    
    
 
-  constructor(private afs: AngularFirestore, private afa: AngularFireAuth, private storage: AngularFireStorage, private loginService: LoginService) { 
+  constructor(private afs: AngularFirestore, 
+              private afa: AngularFireAuth, 
+              private storage: AngularFireStorage, 
+              private loginService: LoginService) { 
+                
     this.user = this.afa.authState.pipe(
       switchMap( user => {
         if(user){
