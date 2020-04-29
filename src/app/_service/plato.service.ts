@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Plato } from '../_model/plato';
 import { Lexer } from '@angular/compiler';
 import { imgMenu } from '../_model/imagenesMenu';
@@ -14,16 +14,22 @@ import { finalize, map } from 'rxjs/operators';
 export class PlatoService {
 
   usuarioLogeado: string;
+  private platoCollection: AngularFirestoreCollection<Plato>;
   private filePath: any;
   private UrlImagen: Observable<string>;
    
 
-  constructor(private afs: AngularFirestore, private storage: AngularFireStorage,private loginService: LoginService) {
+  constructor(private afs: AngularFirestore,
+              private storage: AngularFireStorage,
+              private loginService: LoginService) {
 
 
     this.loginService.user.subscribe(data =>{
     this.usuarioLogeado = data.uid;
     });
+
+    this.platoCollection = afs.collection<Plato>('plato');
+
    }
 
    listar() {
@@ -80,12 +86,60 @@ export class PlatoService {
     return this.afs.collection('plato').doc(plato.id).delete();
 }
 
+public editarMenu(plato: Plato, nuevaImagen?: imgMenu){
+  if(nuevaImagen){
+    this.obtenerImagen(plato, nuevaImagen);
+  }else{
+    return this.platoCollection.doc(plato.id).update(plato);
+  }
+}
+
 subirMenuconImagen(menus: Plato, image: imgMenu): void{
   this.subirImagen(menus, image);
 }
 
 
 private guardarMenu(plato: Plato) {
+
+      //this.idRes =perfil.id;
+      let idExiste = plato.id;
+      if(idExiste){
+        const menuObj = {
+          //id: perfil.id,
+          userUID: this.usuarioLogeado,
+          platoDesayuno: plato.platoDesayuno,
+          detalleDesayuno: plato.detalleDesayuno,
+          precioDesayuno: plato.precioDesayuno, 
+          entradaAlmuerzo: plato.entradaAlmuerzo,
+          jugoAlmuerzo: plato.jugoAlmuerzo,
+          segundoAlmuerzo: plato.segundoAlmuerzo,
+          precioAlmuerzo: plato.precioAlmuerzo, 
+          imgPlato: this.UrlImagen,
+          fileRef: this.filePath
+        };
+        console.log("Estoy editando un menu");
+        console.log("ID: ", idExiste);
+        return this.platoCollection.doc(plato.id).update(menuObj);      
+      }else{      
+        let idPlato = this.afs.createId();
+        plato.id = idPlato;
+        this.afs.collection('plato').doc(idPlato).set({
+          id: plato.id,
+          userUID: this.usuarioLogeado,
+          platoDesayuno: plato.platoDesayuno,
+          detalleDesayuno: plato.detalleDesayuno,
+          precioDesayuno: plato.precioDesayuno, 
+          entradaAlmuerzo: plato.entradaAlmuerzo,
+          jugoAlmuerzo: plato.jugoAlmuerzo,
+          segundoAlmuerzo: plato.segundoAlmuerzo,
+          precioAlmuerzo: plato.precioAlmuerzo, 
+          imgPlato: this.UrlImagen,
+          fileRef: this.filePath
+        });
+      }
+ }
+
+ private guardarMenuSinPlatoEspecial(plato: Plato) {
     
   let idPlato = this.afs.createId();
   plato.id = idPlato;
@@ -100,29 +154,50 @@ private guardarMenu(plato: Plato) {
     segundoAlmuerzo: plato.segundoAlmuerzo,
     precioAlmuerzo: plato.precioAlmuerzo, 
     //platoEspecial: plato.platoEspecial,
-    imgPlato: this.UrlImagen,
-    fileRef: this.filePath
+    imgPlato: "",
+    fileRef: ""
   });
-  //   const postObj = {
-     
-  //  };
-      //this.perfilCollection.add(postObj);
  }
 
- private subirImagen(plato: Plato ,image: imgMenu){
-  this.filePath = `imagenesM/${image.names}`;
-  const fileRef = this.storage.ref(this.filePath);
-  const task = this.storage.upload(this.filePath, image);
-  task.snapshotChanges()
-    .pipe(
-      finalize(() => {
-       fileRef.getDownloadURL().subscribe(urlImage => {
-          this.UrlImagen = urlImage;
-          //console.log('urlImagen', this.UrlImagen);
-          this.guardarMenu(plato);     
-        });
-     })
-    ).subscribe();
+ 
+
+ private subirImagen(plato: Plato ,image?: imgMenu){
+  if(image){
+    this.filePath = `imagenesM/${image.names}`;
+    const fileRef = this.storage.ref(this.filePath);
+    const task = this.storage.upload(this.filePath, image);
+    task.snapshotChanges()
+      .pipe(
+        finalize(() => {
+        fileRef.getDownloadURL().subscribe(urlImage => {
+            this.UrlImagen = urlImage;
+            //console.log('urlImagen', this.UrlImagen);
+            this.guardarMenu(plato);     
+          });
+      })
+      ).subscribe();
+    }else{
+      this.guardarMenuSinPlatoEspecial(plato);
+    }
+
   }
+
+  // Estoy repitiendo codigo, lo se 
+  private obtenerImagen(plato: Plato ,image?: imgMenu){
+      this.filePath = `imagenesM/${image.names}`;
+      const fileRef = this.storage.ref(this.filePath);
+      const task = this.storage.upload(this.filePath, image);
+      task.snapshotChanges()
+        .pipe(
+          finalize(() => {
+          fileRef.getDownloadURL().subscribe(urlImage => {
+              this.UrlImagen = urlImage;
+              //console.log('urlImagen', this.UrlImagen);
+              this.guardarMenu(plato);     
+            });
+        })
+        ).subscribe();
+    }
+  
 
 }

@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 export class Plato {
-    id: string;
+    id?: string;
     platoDesayuno: string;
     detalleDesayuno: string;
     precioDesayuno: number;

@@ -39,6 +39,9 @@ import { EditRestauranteComponent } from './restaurantes/edit-restaurante/edit-r
 import { ModalEditRestautanteComponent } from './modal/modal-edit-restautante/modal-edit-restautante.component';
 import { PromocionesComponent } from './pages/promociones/promociones.component';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AddMenuModalComponent } from './modal/add-menu-modal/add-menu-modal.component';
+import { EditMenuModalComponent } from './modal/edit-menu-modal/edit-menu-modal.component';
+import { EditMenusComponent } from './restaurantes/edit-menus/edit-menus.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +70,9 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
     EditRestauranteComponent,
     ModalEditRestautanteComponent,
     PromocionesComponent,
+    AddMenuModalComponent,
+    EditMenuModalComponent,
+    EditMenusComponent,
     
   ],
   imports: [
@@ -85,9 +91,11 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
   ],
   // Para trabajar con dialogos se crea entryComoonents
   entryComponents: [
-    ModalComponent,
-    NuevoResComponent,
-    ModalEditRestautanteComponent
+    ModalComponent, // Modal para nuevo Restaurante
+    NuevoResComponent, // Modal para nuevo Restaurante
+    ModalEditRestautanteComponent,// Modal para editar Restaurante
+    AddMenuModalComponent,
+    EditMenuModalComponent
   ],
   providers: [
       AngularFirestore,

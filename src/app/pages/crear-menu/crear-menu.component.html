@@ -54,7 +54,7 @@
     <input id="subida" formControlName="imgEsp" style="display: none" type="file" (change)="seleccionar($event)"> 
     <p>{{labelFile}}</p>
 
-    <button mat-raised-button color="primary" type="submit">
+    <button mat-raised-button color="primary" type="submit" [mat-dialog-close]="true">
         <mat-icon>done</mat-icon>
         <span>Aceptar</span>
     </button>

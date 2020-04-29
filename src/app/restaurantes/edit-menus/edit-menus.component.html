@@ -1,0 +1,59 @@
+<div class="restaurante-container">
+    <form [formGroup]="editMenuForm" (ngSubmit)="editMenu(editMenuForm.value)" class="container">
+
+        <p>Desayuno</p>
+        <!-- De esta manera uso el input -->
+        <!-- {{perfil | json}} -->
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Desayuno" formControlName="platoDesayuno">
+        </mat-form-field>
+    
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Detalle/Ingredientes" formControlName="detalleDesayuno">
+        </mat-form-field>
+    
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Precio" formControlName="precioDesayuno" type="number">
+        </mat-form-field>
+    
+        <p>Almuerzo</p>
+    
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Entrada" formControlName="entradaAlmuerzo" type="text">
+        </mat-form-field>
+    
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Segundo" formControlName="segundoAlmuerzo" type="text">
+        </mat-form-field>
+    
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Jugo" formControlName="jugoAlmuerzo">
+        </mat-form-field>
+    
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Precio" formControlName="precioAlmuerzo" type="number">
+        </mat-form-field>
+        <p>Plato Especial</p>
+
+        <button mat-raised-button onclick="document.getElementById('input_subida').click()" type="button"><mat-icon>cloud_upload</mat-icon>  <span>Agregar menu Especial</span></button>
+        <input id="input_subida"  type="file" style="display: none" formControlName="imagenPlato" (change)="seleccionar($event)">
+
+        <!-- <label class="custom-file">
+            <input type="file" formControlName="imagePost" (change)="seleccionar($event)" />
+            <mat-icon>cloud_upload</mat-icon><span>CHOOSE IMAGE</span>
+        </label> -->
+
+        <!-- <p>{{labelFile}}</p> -->
+        <button mat-raised-button color="primary" type="submit" [mat-dialog-close]="true">
+            <mat-icon>done</mat-icon>
+            <span>Aceptar</span>
+            
+        </button>
+    
+        <button mat-raised-button color="accent" type="button" [mat-dialog-close]="true">
+            <mat-icon>close</mat-icon>
+            <span>Cancelar</span>
+        </button>
+     
+    </form>
+</div>

@@ -15,19 +15,15 @@
               <mat-header-cell *matHeaderCellDef mat-sort-header>Precio</mat-header-cell> 
               <mat-cell *matCellDef="let row"> {{row.precioDesayuno | currency}}</mat-cell>
           </ng-container>
-          <ng-container matColumnDef="userUid">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>Usuario Logueado</mat-header-cell> 
-              <mat-cell *matCellDef="let row">{{row.userUID}}</mat-cell>
-          </ng-container>
         </div>
 
           <ng-container matColumnDef="acciones">
               <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell> 
               <mat-cell *matCellDef="let row">
                    <div *ngIf="usuarioLog == row.userUID">   <!--Valido si el usuario logueado es el que edito el plato-->
-                        <button mat-icon-button color="primary" [routerLink]="['edicion', row.id]">
-                        <mat-icon arial-label="Actualizar">assignment</mat-icon>
-                        </button>  
+                        <button mat-icon-button color="primary" (click)="editarMenu(row)">
+                            <mat-icon arial-label="Actualizar">edit</mat-icon>
+                        </button>
                     </div>
                   <div *ngIf="usuarioLog == row.userUID">
                     <button mat-icon-button color="accent" (click)="eliminar(row)">
@@ -64,18 +60,17 @@
               <mat-header-cell *matHeaderCellDef mat-sort-header>Precio</mat-header-cell> 
               <mat-cell *matCellDef="let row"> {{row.precioAlmuerzo | currency}}</mat-cell>
           </ng-container>
-          <ng-container matColumnDef="userUid">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>Usuario Logueado</mat-header-cell> 
-              <mat-cell *matCellDef="let row">{{row.userUID}}</mat-cell>
-          </ng-container>
         </div>
           <ng-container matColumnDef="acciones">
               <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell> 
               <mat-cell *matCellDef="let row">
                    <div *ngIf="usuarioLog == row.userUID">
-                        <button mat-icon-button color="primary" [routerLink]="['edicion', row.id]">
+                        <!-- <button mat-icon-button color="primary" [routerLink]="['edicion', row.id]">
                         <mat-icon arial-label="Actualizar">assignment</mat-icon>
-                        </button>  
+                        </button>   -->
+                        <button mat-icon-button color="primary" (click)="editarMenu(row)">
+                            <mat-icon arial-label="Actualizar">edit</mat-icon>
+                        </button>
                     </div>
                   <div *ngIf="usuarioLog == row.userUID">
                     <button mat-icon-button color="accent" (click)="eliminar(row)">
@@ -88,60 +83,26 @@
           <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns2;"></mat-row>
       </mat-table> 
-      
-      <mat-paginator [pageSize]="10" [pageSizeOptions]="[5,10,25,100]"></mat-paginator>
-
-      <p>Especial del Día</p>
-      <p>Ingesar imagenes de sus platos especiales</p>
-
-      <mat-table [dataSource]= "dataSource3" matSort >
-        <div>
-
-        
-            <!-- <ng-container matColumnDef="detalleEsp">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Detalle/Ingredientes</mat-header-cell> 
-                <mat-cell *matCellDef="let row"> {{row.detalleEspecial}}</mat-cell>
-            </ng-container>
-            <ng-container matColumnDef="precioEsp">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>Precio</mat-header-cell> 
-              <mat-cell *matCellDef="let row"> {{row.precioEspecial | currency}}</mat-cell>
-          </ng-container>
-          <ng-container matColumnDef="userUid">
-              <mat-header-cell *matHeaderCellDef mat-sort-header>Usuario Logueado</mat-header-cell> 
-              <mat-cell *matCellDef="let row">{{row.userUID}}</mat-cell>
-          </ng-container> -->
-        </div>
-          <ng-container matColumnDef="acciones">
-              <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell> 
-              <mat-cell *matCellDef="let row">
-                   <div *ngIf="usuarioLog == row.userUID"> 
-                        <button mat-icon-button color="primary" [routerLink]="['edicion', row.id]">
-                        <mat-icon arial-label="Actualizar">assignment</mat-icon>
-                        </button>  
-                    </div>
-                  <div *ngIf="usuarioLog == row.userUID">
-                    <button mat-icon-button color="accent" (click)="eliminar(row)">
-                        <mat-icon arial-label="Eliminar">highlight_off</mat-icon>
-                    </button> 
-                  </div>
-              </mat-cell>
-          </ng-container>
-      
-          <mat-header-row *matHeaderRowDef="displayedColumns3"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns3;"></mat-row>
-      </mat-table>
-      
       <mat-paginator [pageSize]="10" [pageSizeOptions]="[5,10,25,100]"></mat-paginator>
       <!-- <button mat-fab color="accent" style="float: right;" routerLink='/plato/nuevo'>
           <mat-icon>send</mat-icon>
       </button> -->
-       
-      <p>
-          
-      </p>
 
       <mat-list role="list">
         <mat-list-item role="listitem">{{usuarioLog}}</mat-list-item>
     </mat-list>
+
+    <div  *ngFor="let plato of plato$ | async ">
+        <div *ngIf="usuarioLog == plato.userUID">
+            <mat-card class="example-card" >
+                <mat-card-header>
+                    <h3>Plato Especial</h3>
+                </mat-card-header>
+                    <mat-card-content>
+                        <img matCardImage [src]="plato.imgPlato" *ngIf="plato.imgPlato" width="200px" height="300px"/>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
       
 </div>
