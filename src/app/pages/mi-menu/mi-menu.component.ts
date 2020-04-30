@@ -5,6 +5,8 @@ import { PlatoService } from '../../_service/plato.service';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { AddMenuModalComponent } from '../../modal/add-menu-modal/add-menu-modal.component';
+import { PerfilService } from '../../_service/perfil.service';
+import { Perfil } from '../../_model/perfil';
 
 @Component({
   selector: 'app-mi-menu',
@@ -19,14 +21,19 @@ export class MiMenuComponent implements OnInit {
 
   platos : Plato[];
   usuarioLog: string;
-  valor: boolean=true;
   menuLog : Plato[];
+  restaurantelog : Perfil[];
+
+  valor: boolean=true;
+  valorRestaurante: boolean=true;
+
   
   plato$: Observable<Plato[]>;
 
   constructor(private afa:AngularFireAuth,
               private platoService: PlatoService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private perfilService: PerfilService) { }
 
   ngOnInit() {
     let currenUser = this.afa.auth.currentUser;
@@ -57,6 +64,23 @@ export class MiMenuComponent implements OnInit {
       }
     });
     
+    this.perfilService.listar().subscribe(data => {
+      for(let x of data){
+        if(this.usuarioLog == x.userUID){
+          console.log("Si");
+          //console.log("Si");
+          this.restaurantelog = [x];
+          this.valorRestaurante = true;
+          this.validacionRestauranteExiste(this.valorRestaurante);
+          console.log("Este restaurante", this.restaurantelog); 
+          break;   
+        }else{
+          console.log("No");
+          this.valorRestaurante = false;
+          this.validacionRestauranteExiste(this.valorRestaurante);
+        } 
+      }
+  });
 
     this.plato$ = this.platoService.recuperarMenus(); // recuperamos esta data con ASYNC
     
@@ -64,6 +88,14 @@ export class MiMenuComponent implements OnInit {
   }
 
   validacion(valor: boolean){
+    if (valor){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  validacionRestauranteExiste(valor: boolean){
     if (valor){
       return true;
     }else{

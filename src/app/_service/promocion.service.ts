@@ -121,7 +121,7 @@ export class PromocionService {
     const promoObj = {
       //id: perfil.id,
       userUID: this.usuarioLogeado,
-      imagenRes: this.UrlImagen,
+      fotosPromocion: this.UrlImagen,
       fileRef: this.filePath
     };
     return this.promocionCollection.doc(promo.id).update(promoObj);      
@@ -132,7 +132,7 @@ export class PromocionService {
     this.afs.collection('promociones').doc(idPromo).set({
       id: promo.id,
       userUID: this.usuarioLogeado,
-      imagenRes: this.UrlImagen,
+      fotosPromocion: this.UrlImagen,
       fileRef: this.filePath
     });
   }
@@ -145,7 +145,7 @@ export class PromocionService {
     const promoObj = {
       //id: perfil.id,
       userUID: this.usuarioLogeado,
-      imagenRes: this.UrlImagen2,
+      fotosPromocion: this.UrlImagen2,
       fileRef: this.filePath
     };
     return this.promocionCollection.doc(promo.id).update(promoObj);      
@@ -156,7 +156,7 @@ export class PromocionService {
     this.afs.collection('promociones').doc(idPromo).set({
       id: promo.id,
       userUID: this.usuarioLogeado,
-      imagenRes: this.UrlImagen2,
+      fotosPromocion: this.UrlImagen2,
       fileRef: this.filePath
     });
   }

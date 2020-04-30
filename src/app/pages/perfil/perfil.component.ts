@@ -64,21 +64,6 @@ export class PerfilComponent implements OnInit {
           console.log("Validacion", this.validacion(this.valor));
         } 
       }
-      // data.forEach((x: Perfil) =>{
-      //     if(this.usuarioLog == x.userUID){
-      //       console.log("Si");
-      //       //console.log("Si");
-      //       this.restaurantelog = [x];
-      //       this.valor = true;
-      //       console.log("Valor:", this.valor);
-      //       console.log("Este restaurante", this.restaurantelog); 
-      //       return;   
-      //     }else{
-      //       console.log("No");
-      //       this.valor = false;
-      //       console.log("Valor:", this.valor);
-      //     }       
-      // });
   });
    
     this.perfilService.listar().subscribe(data=>{

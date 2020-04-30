@@ -42,6 +42,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AddMenuModalComponent } from './modal/add-menu-modal/add-menu-modal.component';
 import { EditMenuModalComponent } from './modal/edit-menu-modal/edit-menu-modal.component';
 import { EditMenusComponent } from './restaurantes/edit-menus/edit-menus.component';
+import { ListaPromocionesComponent } from './pages/promociones/lista-promociones/lista-promociones.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { EditMenusComponent } from './restaurantes/edit-menus/edit-menus.compone
     AddMenuModalComponent,
     EditMenuModalComponent,
     EditMenusComponent,
+    ListaPromocionesComponent,
     
   ],
   imports: [

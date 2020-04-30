@@ -20,6 +20,7 @@ import { SubirImagenComponent } from './_pruebas/subir-imagen/subir-imagen.compo
 import { ListaRestaurantesComponent } from './restaurantes/lista-restaurantes/lista-restaurantes.component';
 import { ListaClientesComponent } from './pages/cliente/lista-clientes/lista-clientes.component';
 import { PromocionesComponent } from './pages/promociones/promociones.component';
+import { ListaPromocionesComponent } from './pages/promociones/lista-promociones/lista-promociones.component';
 
 
 const routes: Routes = [
@@ -36,10 +37,10 @@ const routes: Routes = [
   {path: 'cliente', component: ClienteComponent},
   {path: 'menus', component: MenusComponent},
   {path: 'promociones', component: PromocionesComponent},
-  {path: 'crearMenu', component: CrearMenuComponent, canActivate: [LoginGuardService]},
+  {path: 'listaPromociones', component: ListaPromocionesComponent, canActivate: [LoginGuardService]},
   {path: 'perfil', component: PerfilComponent, canActivate: [LoginGuardService]},
   {path: 'miMenu', component: MiMenuComponent, canActivate: [LoginGuardService]},
-  {path: 'crearRestaurante', component: CrearRestauranteComponent, canActivate: [LoginGuardService]},
+  // {path: 'crearRestaurante', component: CrearRestauranteComponent, canActivate: [LoginGuardService]},
   {path: 'not-403', component: Not403Component},
   {path: 'editar', component: EditarPerfilComponent, children: [
     {path: 'nuevo', component: AgregarPerfilComponent},

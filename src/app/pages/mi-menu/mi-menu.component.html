@@ -51,10 +51,19 @@
         </div>
     </div>
 
-    <div *ngIf="validacion(valor) == false">
-        <p>Ingresa tu menu del Dia!</p>
-        <button mat-stroked-button (click)="nuevoMenu()">
-            <mat-icon>note_add</mat-icon>&nbsp; Agregar Menu
-        </button>
+
+
+    <div *ngIf="validacionRestauranteExiste(valorRestaurante) == false; else nuevoMenus">
+        <p>Debes Agregar un restaurante prmiero</p>
     </div>
+
+    <ng-template #nuevoMenus>
+    <!-- Si no existe un menu creado se habilita el boton -->
+        <div *ngIf="validacion(valor) == false">
+            <p>Ingresa tu menu del Dia!</p>
+            <button mat-stroked-button (click)="nuevoMenu()">
+                <mat-icon>note_add</mat-icon>&nbsp; Agregar Menu
+            </button>
+        </div>
+    </ng-template>
 </div>

@@ -1,0 +1,28 @@
+<h1 style="text-align: center;"> Promociones </h1>
+<div class="container" *ngIf="promociones$ | async as promocion; else loading">
+    <!-- {{ perfil$ | async | json}} -->
+    <mat-card class="example-card" *ngFor="let promo of promocion">
+        <div *ngIf="usuarioLog === promo.userUID">
+            <mat-card-header>
+                <div mat-card-avatar class="example-header-image"></div>
+                  <mat-card-title>
+                      {{promo.userUID}}                
+                  </mat-card-title>
+            </mat-card-header>
+              <img matCardImage [src]="promo.fotosPromocion" *ngIf="promo.fotosPromocion" width="500px" height="300px"/>               
+            <mat-card-actions>
+                <button mat-button>Ver</button>
+            </mat-card-actions>
+        </div>
+    </mat-card>
+</div>
+
+        <ng-template #loading>
+          <div class="spinner">
+            <p>Cargando ....</p>
+            <mat-spinner></mat-spinner>
+          </div>
+        </ng-template>
+
+
+  
