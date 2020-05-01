@@ -1,39 +1,44 @@
 <div class="divCenter">
+    
     <mat-card *ngIf="estadoLogin">
-        <mat-card-header>
-            <mat-card-title>Login</mat-card-title>
-        </mat-card-header>
+        <div class="titulo">
+            <mat-card-header style="text-align: center;">
+                <mat-card-title>Ingresar</mat-card-title>
+            </mat-card-header>
+        </div>
         <mat-card-content>
-            <table cellspacing="0">
-                <tr>
-                    <td>
-                        <mat-form-field>
-                            <input matInput placeholder="Usuario" [(ngModel)]="usuario" autocomplete="off" required>
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <mat-form-field>
-                            <input matInput placeholder="Contraseña" [(ngModel)]="clave" type="password" required>
-                        </mat-form-field>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td><a style="cursor: pointer" (click)="irRecuperar()">¿Olvidaste tu contraseña?</a></td>
-                </tr>
-            </table>
+            <div class="login-content">
+                <table cellspacing="0">
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                <input matInput placeholder="Usuario" [(ngModel)]="usuario" autocomplete="off" required>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <mat-form-field>
+                                <input matInput placeholder="Contraseña" [(ngModel)]="clave" type="password" required>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><a style="cursor: pointer" (click)="irRecuperar()">¿Olvidaste tu contraseña?</a></td>
+                    </tr>
+                </table>
+            </div>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-raised-button (click)="login()" color="primary">Iniciar Sesión</button>
-            <button mat-raised-button (click)="irCrear()" color="default">Crear usuario</button>
+            <button mat-raised-button class="iniciarS" (click)="login()"><mat-icon svgIcon="iniciar-up"></mat-icon><span>&nbsp; Iniciar Sesión</span></button>
+            <button mat-raised-button class="crear" (click)="irCrear()"><mat-icon svgIcon="cuenta-up"></mat-icon><span>&nbsp; Crear una cuenta</span></button>
             <br><br>
-            <button mat-raised-button (click)="loginGoogle()" color="accent">Google</button>
-            <button mat-raised-button (click)="loginFacebook()" color="primary">Facebook</button>
-            <button mat-raised-button routerLink="/inicio" color="accent">Inicio</button>
+            <button mat-raised-button class="social-g" (click)="loginGoogle()"><mat-icon svgIcon="google-up"></mat-icon><span>&nbsp; Google</span></button><br>
+            <button mat-raised-button class="social-f" (click)="loginFacebook()" color="primary"><mat-icon svgIcon="facebook-up"></mat-icon><span>&nbsp; Facebook</span></button><br>
+            <button mat-raised-button class="inicio" routerLink="/inicio"><mat-icon svgIcon="food-up"></mat-icon><span>&nbsp; Regresar</span></button>
         </mat-card-actions>
     </mat-card>
 

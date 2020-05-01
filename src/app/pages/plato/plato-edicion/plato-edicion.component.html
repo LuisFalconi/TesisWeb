@@ -41,9 +41,11 @@
         <input matInput placeholder="Precio" formControlName="precioAlm" type="number">
     </mat-form-field>
     <p>Plato Especial</p>
-
-    <img mat-card-image [src]="urlImage" *ngIf="urlImage" style="width: 200px;">
-    
+    <mat-card class="example-card">
+        <mat-card-header>
+            <img mat-card-image [src]="urlImage" *ngIf="urlImage" style="width: 200px;">
+        </mat-card-header>
+    </mat-card>    
     <!-- Boton para subir archivos con el estilo de Angular Material -->
     <button mat-raised-button onclick="document.getElementById('input_subida').click()" type="button">Examinar</button>
     <input id="input_subida" type="file" style="display: none" (change)="seleccionar($event)">

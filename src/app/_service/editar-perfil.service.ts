@@ -17,7 +17,7 @@ export class EditarPerfilService {
     return this.afs.collection('perfiles').doc(perfil.id).set({
      id: perfil.id,
      nombre: perfil.nombreRestaurante,
-     precio: perfil.fotoRestaurante,
+     //precio: perfil.fotoRestaurante,
      tipo: perfil.tipoRestaurante,
      direccion: perfil.direccionRestaurante,
      horario: perfil.horarioRestaurante,

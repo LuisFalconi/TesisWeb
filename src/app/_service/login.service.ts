@@ -87,7 +87,7 @@ export class LoginService {
         const datos: Usuario = {
           uid: usuario.uid,
           email: usuario.email,
-          roles: ['USER']
+          roles: ['dueño']
         }
         return userRef.set(datos);
       }

@@ -6,6 +6,8 @@ import { MenuService } from '../_service/menu.service';
 import { Menu } from '../_model/menu';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { MatIconRegistry } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -25,9 +27,22 @@ export class LoginComponent implements OnInit, OnDestroy {
   // Se crear la variable para liberar recursos
   private ngUnsubscribe: Subject<void> = new Subject();
 
-  constructor(private LoginService: LoginService, private route : Router, private menuService: MenuService) { }
+  constructor(private LoginService: LoginService,
+              private route : Router,
+              private menuService: MenuService,
+              private iconRegistry: MatIconRegistry,
+              private sanitizer: DomSanitizer) { 
+
+    this.iconRegistry.addSvgIcon('facebook-up', this.sanitizer.bypassSecurityTrustResourceUrl("assets/facebook.svg"));
+    this.iconRegistry.addSvgIcon('google-up', this.sanitizer.bypassSecurityTrustResourceUrl("assets/google.svg"));
+    this.iconRegistry.addSvgIcon('food-up', this.sanitizer.bypassSecurityTrustResourceUrl("assets/food.svg"));
+    this.iconRegistry.addSvgIcon('iniciar-up', this.sanitizer.bypassSecurityTrustResourceUrl("assets/chef.svg"));
+    this.iconRegistry.addSvgIcon('cuenta-up', this.sanitizer.bypassSecurityTrustResourceUrl("assets/r3.svg"));
+   
+  }
 
   ngOnInit() {
+
   }
 
   login(){
