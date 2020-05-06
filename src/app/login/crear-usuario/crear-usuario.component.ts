@@ -18,8 +18,9 @@ export class CrearUsuarioComponent implements OnInit {
 
   crearUsuario() {
     this.LoginService.registrarUsuario(this.usuario, this.clave).then( () =>{
-      this.route.navigate(['login']);
       console.log("Usuario Creado con exito");
+      window.location.reload();
+      this.route.navigate(['login']);
   });
 
   }

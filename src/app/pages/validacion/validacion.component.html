@@ -1,0 +1,28 @@
+<p>Debes Agregar un documento que pruebe que tu restaurante es Valido!</p>
+<p>Ej: Fotos de tu establecimiento por fuera, patente, o algun documentos que valide que eres dueño del restaurante</p>
+<p>Advertencia: Solo se adminte archivos en Word o pdf, si tienes fotos de restaurantes colocalos ahi</p>
+<form [formGroup]="newValForm" (ngSubmit)="addDocumento(newValForm.value)" class="container">
+    
+    
+    <button mat-raised-button onclick="document.getElementById('input_subida').click()" type="button"><mat-icon>cloud_upload</mat-icon> <span>Validacion Restaurante</span></button>
+    <input id="input_subida" type="file" style="display: none" accept=".doc, .docx, .pdf" (change)="seleccionar_doc($event)">
+    
+    <p>{{"Documento: " + labelFile}}</p>
+
+    <!-- <div>
+        <input type="file" (change)="selectFiles($event)" multiple="multiple" />
+    </div>
+    {{filesName}} -->
+    <div *ngIf="isSubmitted">
+        <button mat-raised-button color="primary" type="submit">
+            <mat-icon>done</mat-icon>
+            <span>Aceptar</span>
+        </button>
+    
+        <button mat-raised-button color="accent" routerLink='/editar' type="button">
+            <mat-icon>close</mat-icon>
+            <span>Cancelar</span>
+        </button>
+    </div>
+    
+</form>

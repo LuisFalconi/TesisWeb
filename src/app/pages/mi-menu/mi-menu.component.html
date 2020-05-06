@@ -51,11 +51,17 @@
         </div>
     </div>
 
+        <div *ngIf="validacionRestauranteExiste(valorRestaurante) == false; else validacionRestaurante">
+            <p>Debes Agregar un restaurante primero</p>
+        </div>
 
-
-    <div *ngIf="validacionRestauranteExiste(valorRestaurante) == false; else nuevoMenus">
-        <p>Debes Agregar un restaurante prmiero</p>
-    </div>
+    <ng-template #validacionRestaurante>
+        
+        <div *ngIf="validacionDocRestauranteExiste(validacionR) == false; else nuevoMenus">
+            <h1>Un paso mas antes de agregar tu menu :) </h1>
+            <app-validacion></app-validacion>
+        </div> 
+    </ng-template>
 
     <ng-template #nuevoMenus>
     <!-- Si no existe un menu creado se habilita el boton -->

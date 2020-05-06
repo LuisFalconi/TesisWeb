@@ -40,8 +40,6 @@ export class ListaUsuariosComponent implements OnInit, AfterViewInit {
   // }
 
   eliminarUsuario(usuario: Usuario) {   
-    console.log("USER: ", usuario.uid);
-    this.usuarioSvc.obtenerUsuario(usuario.uid);
      
     Swal.fire({
       title: 'Are you sure?',

@@ -83,6 +83,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
   crearUsuario() {
     this.LoginService.registrarUsuario(this.usuario, this.clave);
+    window.location.reload();
     this.irLogin();
   }
 

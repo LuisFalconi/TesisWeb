@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material';
 import { AddMenuModalComponent } from '../../modal/add-menu-modal/add-menu-modal.component';
 import { PerfilService } from '../../_service/perfil.service';
 import { Perfil } from '../../_model/perfil';
+import { ValidacionService } from 'src/app/_service/validacion.service';
 
 @Component({
   selector: 'app-mi-menu',
@@ -26,6 +27,7 @@ export class MiMenuComponent implements OnInit {
 
   valor: boolean=true;
   valorRestaurante: boolean=true;
+  validacionR: boolean=true;
 
   
   plato$: Observable<Plato[]>;
@@ -33,7 +35,8 @@ export class MiMenuComponent implements OnInit {
   constructor(private afa:AngularFireAuth,
               private platoService: PlatoService,
               private dialog: MatDialog,
-              private perfilService: PerfilService) { }
+              private perfilService: PerfilService,
+              private validacionService: ValidacionService) { }
 
   ngOnInit() {
     let currenUser = this.afa.auth.currentUser;
@@ -45,24 +48,45 @@ export class MiMenuComponent implements OnInit {
     this.platoService.listar().subscribe(data =>{
       for(let x of data){
         if(this.usuarioLog == x.userUID){
-          console.log("Si");
+          //console.log("Si");
           //console.log("Si");
           this.menuLog = [x];
           this.valor = true;
           this.validacion(this.valor);
-          console.log("Validacion", this.validacion(this.valor));
-          console.log("Valor:", this.valor);
-          console.log("Este restaurante", this.menuLog); 
+          //console.log("Validacion", this.validacion(this.valor));
+          //console.log("Valor:", this.valor);
+          //console.log("Este restaurante", this.menuLog); 
           break;   
         }else{
-          console.log("No");
+          //console.log("No");
           this.valor = false;
-          console.log("Valor:", this.valor);
+          //console.log("Valor:", this.valor);
           this.validacion(this.valor);
-          console.log("Validacion", this.validacion(this.valor));
+          //console.log("Validacion", this.validacion(this.valor));
         } 
       }
     });
+
+    this.validacionService.listar().subscribe(data => {
+      console.log(data);
+      for(let x of data){
+        if(this.usuarioLog == x.userUID){
+          console.log("Si");
+          console.log(x.docValidacion);
+          //this.restaurantelog = [x];
+          this.validacionR = true;
+          this.validacionDocRestauranteExiste(this.validacionR);
+          //console.log("Este restaurante", this.restaurantelog); 
+          break;   
+        }else{
+          console.log("No existe documento");
+          console.log(x.userUID);
+          
+          this.validacionR = false;
+          this.validacionDocRestauranteExiste(this.validacionR);
+        } 
+      }
+  });
     
     this.perfilService.listar().subscribe(data => {
       for(let x of data){
@@ -72,7 +96,7 @@ export class MiMenuComponent implements OnInit {
           this.restaurantelog = [x];
           this.valorRestaurante = true;
           this.validacionRestauranteExiste(this.valorRestaurante);
-          console.log("Este restaurante", this.restaurantelog); 
+          //console.log("Este restaurante", this.restaurantelog); 
           break;   
         }else{
           console.log("No");
@@ -81,6 +105,8 @@ export class MiMenuComponent implements OnInit {
         } 
       }
   });
+
+
 
     this.plato$ = this.platoService.recuperarMenus(); // recuperamos esta data con ASYNC
     
@@ -96,6 +122,15 @@ export class MiMenuComponent implements OnInit {
   }
 
   validacionRestauranteExiste(valor: boolean){
+    if (valor){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  // Validacion si el documento que valide el nuevo restaurante existe
+  validacionDocRestauranteExiste(valor: boolean){
     if (valor){
       return true;
     }else{

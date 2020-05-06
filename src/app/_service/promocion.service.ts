@@ -19,7 +19,7 @@ export class PromocionService {
   private UrlImagen: Observable<string>;
   private UrlImagen2: Observable<string>[];
   private promocionCollection: AngularFirestoreCollection<Promocion>;
-  imageDetailList: AngularFireList<any>;
+  // imageDetailList: AngularFireList<any>;
 
   constructor(private afs: AngularFirestore,
               private loginService: LoginService,
@@ -35,13 +35,13 @@ export class PromocionService {
 
   }
 
-  getImageDetailList() {
-    this.imageDetailList = this.firebase.list('imageDetails');
-  }
+  // getImageDetailList() {
+  //   this.imageDetailList = this.firebase.list('imageDetails');
+  // }
 
-  insertImageDetails(imageDetails) {
-    this.imageDetailList.push(imageDetails);
-  }
+  // insertImageDetails(imageDetails) {
+  //   this.imageDetailList.push(imageDetails);
+  // }
 
   listar() {
     return this.afs.collection<Promocion>('promociones').valueChanges();
