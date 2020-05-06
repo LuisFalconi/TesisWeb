@@ -14,7 +14,6 @@ import { PlatoEdicionComponent } from './pages/plato/plato-edicion/plato-edicion
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
 import { ClienteComponent } from './pages/cliente/cliente.component';
-import { ConsumoComponent } from './pages/consumo/consumo.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { LoginComponent } from './login/login.component';
 
@@ -43,6 +42,7 @@ import { AddMenuModalComponent } from './modal/add-menu-modal/add-menu-modal.com
 import { EditMenuModalComponent } from './modal/edit-menu-modal/edit-menu-modal.component';
 import { EditMenusComponent } from './restaurantes/edit-menus/edit-menus.component';
 import { ListaPromocionesComponent } from './pages/promociones/lista-promociones/lista-promociones.component';
+import { ListaUsuariosComponent } from './usuarios/lista-usuarios/lista-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +50,6 @@ import { ListaPromocionesComponent } from './pages/promociones/lista-promociones
     PlatoComponent,
     PlatoEdicionComponent,
     ClienteComponent,
-    ConsumoComponent,
     PerfilComponent,
     LoginComponent,
     Not403Component,
@@ -75,6 +74,7 @@ import { ListaPromocionesComponent } from './pages/promociones/lista-promociones
     EditMenuModalComponent,
     EditMenusComponent,
     ListaPromocionesComponent,
+    ListaUsuariosComponent,
     
   ],
   imports: [

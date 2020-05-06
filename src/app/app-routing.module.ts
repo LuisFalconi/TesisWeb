@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PlatoComponent } from './pages/plato/plato.component';
 import { PlatoEdicionComponent } from './pages/plato/plato-edicion/plato-edicion.component';
-import { ConsumoComponent } from './pages/consumo/consumo.component';
 import { ClienteComponent } from './pages/cliente/cliente.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { LoginComponent } from './login/login.component';
@@ -21,6 +20,7 @@ import { ListaRestaurantesComponent } from './restaurantes/lista-restaurantes/li
 import { ListaClientesComponent } from './pages/cliente/lista-clientes/lista-clientes.component';
 import { PromocionesComponent } from './pages/promociones/promociones.component';
 import { ListaPromocionesComponent } from './pages/promociones/lista-promociones/lista-promociones.component';
+import { ListaUsuariosComponent } from './usuarios/lista-usuarios/lista-usuarios.component';
 
 
 const routes: Routes = [
@@ -29,10 +29,10 @@ const routes: Routes = [
     {path: 'edicion/:id', component: PlatoEdicionComponent},
     ], canActivate: [LoginGuardService]  // Permite dar seguridad a una pagina que no se quiere ver si no esta algun usuario logueado
   },
-  {path: 'consumo', component: ConsumoComponent, canActivate: [LoginGuardService]},
   {path: 'inicio', component: HomeComponent},
   {path: 'prueba', component: SubirImagenComponent},
-  {path: 'listaR', component: ListaRestaurantesComponent},
+  {path: 'listaR', component: ListaRestaurantesComponent, canActivate: [LoginGuardService]},
+  {path: 'listaU', component: ListaUsuariosComponent, canActivate: [LoginGuardService]},
   {path: 'cliente/:id', component: ListaClientesComponent},
   {path: 'cliente', component: ClienteComponent},
   {path: 'menus', component: MenusComponent},
