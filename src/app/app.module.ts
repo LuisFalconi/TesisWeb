@@ -45,6 +45,8 @@ import { ListaPromocionesComponent } from './pages/promociones/lista-promociones
 import { ListaUsuariosComponent } from './usuarios/lista-usuarios/lista-usuarios.component';
 import { ValidacionComponent } from './pages/validacion/validacion.component';
 import { VerificacionRestaurantesComponent } from './usuarios/verificacion-restaurantes/verificacion-restaurantes.component';
+import { ModalEditRestaurantDuenoComponent } from './modal/modal-edit-restaurant-dueno/modal-edit-restaurant-dueno.component';
+import { EditRestauranteDuenoComponent } from './restaurantes/edit-restaurante-dueno/edit-restaurante-dueno.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +81,8 @@ import { VerificacionRestaurantesComponent } from './usuarios/verificacion-resta
     ListaUsuariosComponent,
     ValidacionComponent,
     VerificacionRestaurantesComponent,
+    ModalEditRestaurantDuenoComponent,
+    EditRestauranteDuenoComponent,
     
   ],
   imports: [
@@ -101,7 +105,8 @@ import { VerificacionRestaurantesComponent } from './usuarios/verificacion-resta
     NuevoResComponent, // Modal para nuevo Restaurante
     ModalEditRestautanteComponent,// Modal para editar Restaurante
     AddMenuModalComponent,
-    EditMenuModalComponent
+    EditMenuModalComponent,
+    ModalEditRestaurantDuenoComponent
   ],
   providers: [
       AngularFirestore,

@@ -10,6 +10,7 @@ import { stripSummaryForJitFileSuffix } from '@angular/compiler/src/aot/util';
 import { analytics } from 'firebase';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { ModalEditRestaurantDuenoComponent } from '../../modal/modal-edit-restaurant-dueno/modal-edit-restaurant-dueno.component';
 
 @Component({
   selector: 'app-editar-perfil',
@@ -99,7 +100,7 @@ export class EditarPerfilComponent implements OnInit, OnDestroy {
 
   editarRestaurante(perfil: Perfil) {
     console.log('Edit posta', perfil);
-    this.openEditDialgo(perfil);
+    this.abrirEditorDialogo(perfil);
   }
 
   ngOnDestroy(){
@@ -115,6 +116,19 @@ export class EditarPerfilComponent implements OnInit, OnDestroy {
       }
     };
     const dialogRef = this.dialog.open(ModalEditRestautanteComponent, config);
+    dialogRef.afterClosed().subscribe(resultado => {
+      console.log(`Dialog result ${resultado}`);
+    });
+  }
+
+  abrirEditorDialogo(perfil?: Perfil): void {
+    const config ={
+      data:{
+        contenido: perfil,
+        panelClass: 'myapp-no-padding-dialog'
+      }
+    };
+    const dialogRef = this.dialog.open(ModalEditRestaurantDuenoComponent, config);
     dialogRef.afterClosed().subscribe(resultado => {
       console.log(`Dialog result ${resultado}`);
     });
