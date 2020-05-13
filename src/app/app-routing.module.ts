@@ -23,6 +23,7 @@ import { ListaPromocionesComponent } from './pages/promociones/lista-promociones
 import { ListaUsuariosComponent } from './usuarios/lista-usuarios/lista-usuarios.component';
 import { ValidacionComponent } from './pages/validacion/validacion.component';
 import { VerificacionRestaurantesComponent } from './usuarios/verificacion-restaurantes/verificacion-restaurantes.component';
+import { MapaComponent } from './pages/mapa/mapa.component';
 
 
 const routes: Routes = [
@@ -38,6 +39,7 @@ const routes: Routes = [
   {path: 'verificacionR', component: VerificacionRestaurantesComponent, canActivate: [LoginGuardService]},
   {path: 'cliente/:id', component: ListaClientesComponent},
   {path: 'cliente', component: ClienteComponent},
+  {path: 'mapa', component: MapaComponent},
   {path: 'menus', component: MenusComponent},
   {path: 'promociones', component: PromocionesComponent},
   {path: 'listaPromociones', component: ListaPromocionesComponent, canActivate: [LoginGuardService]},

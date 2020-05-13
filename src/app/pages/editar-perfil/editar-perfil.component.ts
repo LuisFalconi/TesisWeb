@@ -1,3 +1,4 @@
+import { ModalMapComponent } from './../../modal/modal-map/modal-map.component';
 import { ModalEditRestautanteComponent } from './../../modal/modal-edit-restautante/modal-edit-restautante.component';
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatSnackBar, MatDialog } from '@angular/material';
@@ -103,6 +104,11 @@ export class EditarPerfilComponent implements OnInit, OnDestroy {
     this.abrirEditorDialogo(perfil);
   }
 
+  agregarUbicacion(perfil: Perfil){
+    console.log(perfil);
+    this.abrirEditorDialogoMap(perfil);
+  }
+
   ngOnDestroy(){
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
@@ -129,6 +135,19 @@ export class EditarPerfilComponent implements OnInit, OnDestroy {
       }
     };
     const dialogRef = this.dialog.open(ModalEditRestaurantDuenoComponent, config);
+    dialogRef.afterClosed().subscribe(resultado => {
+      console.log(`Dialog result ${resultado}`);
+    });
+  }
+
+  abrirEditorDialogoMap(perfil?: Perfil): void {
+    const config ={
+      data:{
+        contenido: perfil,
+        panelClass: 'myapp-no-padding-dialog'
+      }
+    };
+    const dialogRef = this.dialog.open(ModalMapComponent, config);
     dialogRef.afterClosed().subscribe(resultado => {
       console.log(`Dialog result ${resultado}`);
     });

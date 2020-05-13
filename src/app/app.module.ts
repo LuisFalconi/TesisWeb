@@ -7,6 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { PlatoComponent } from './pages/plato/plato.component';
 
+// Leaflet
+import {LeafletModule} from '@asymmetrik/ngx-leaflet';
+
+
 import {AngularFireModule} from '@angular/fire';
 import { environment } from '../environments/environment';
 import {FirestoreSettingsToken, AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore';
@@ -47,6 +51,9 @@ import { ValidacionComponent } from './pages/validacion/validacion.component';
 import { VerificacionRestaurantesComponent } from './usuarios/verificacion-restaurantes/verificacion-restaurantes.component';
 import { ModalEditRestaurantDuenoComponent } from './modal/modal-edit-restaurant-dueno/modal-edit-restaurant-dueno.component';
 import { EditRestauranteDuenoComponent } from './restaurantes/edit-restaurante-dueno/edit-restaurante-dueno.component';
+import { ModalMapComponent } from './modal/modal-map/modal-map.component';
+import { MapaComponent } from './pages/mapa/mapa.component';
+
 
 @NgModule({
   declarations: [
@@ -83,6 +90,8 @@ import { EditRestauranteDuenoComponent } from './restaurantes/edit-restaurante-d
     VerificacionRestaurantesComponent,
     ModalEditRestaurantDuenoComponent,
     EditRestauranteDuenoComponent,
+    ModalMapComponent,
+    MapaComponent,
     
   ],
   imports: [
@@ -97,7 +106,8 @@ import { EditRestauranteDuenoComponent } from './restaurantes/edit-restaurante-d
     AngularFireDatabaseModule,
     HttpClientModule,
     AngularFireStorageModule,
-    AngularFireAuthModule // logica de seguridad 
+    AngularFireAuthModule, // logica de seguridad
+    LeafletModule
   ],
   // Para trabajar con dialogos se crea entryComoonents
   entryComponents: [
@@ -106,7 +116,8 @@ import { EditRestauranteDuenoComponent } from './restaurantes/edit-restaurante-d
     ModalEditRestautanteComponent,// Modal para editar Restaurante
     AddMenuModalComponent,
     EditMenuModalComponent,
-    ModalEditRestaurantDuenoComponent
+    ModalEditRestaurantDuenoComponent,
+    ModalMapComponent
   ],
   providers: [
       AngularFirestore,
