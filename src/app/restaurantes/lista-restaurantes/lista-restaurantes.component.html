@@ -23,9 +23,9 @@
       <td mat-cell *matCellDef="let element">{{ element.tipoRestaurante }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="userUID">
-        <th mat-header-cell *matHeaderCellDef>UserUID</th>
-        <td mat-cell *matCellDef="let element">{{ element.userUID }}</td>
+    <ng-container matColumnDef="verificado">
+        <th mat-header-cell *matHeaderCellDef>Estado</th>
+        <td mat-cell *matCellDef="let element">{{ element.resVerificado}}</td>
     </ng-container>
 
     <ng-container matColumnDef="capacidadR">

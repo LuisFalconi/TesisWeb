@@ -1,19 +1,5 @@
 <div class="restaurante-container">
-    <form [formGroup]="editResForm" (ngSubmit)="editPerfil(editResForm.value)" class="container">
-
-        <!-- <div [hidden]="true">
-            <mat-form-field class="example-full-width">
-                <input matInput placeholder="id" [value]="id">
-            </mat-form-field>
-        </div> -->
-        <!-- Mostrar el uid del usuario logueado -->
-        <!-- formControlName: Nombre que se le da en el componete ts -->
-        <!-- <div [hidden]="false">
-            <mat-form-field class="example-full-width">
-                <input matInput placeholder="userUID" [value]="usuarioLogeado">
-            </mat-form-field>
-        </div> -->
-        <mat-label>Titulo</mat-label>
+    <form [formGroup]="editResForm" (ngSubmit)="editPerfil(editResForm.value)" class="container" >
         <!-- De esta manera uso el input -->
         <!-- {{perfil | json}} -->
         <mat-form-field class="example-full-width">
@@ -35,12 +21,19 @@
         <mat-form-field class="example-full-width">
             <input matInput placeholder="Capacidad del Restaurante" formControlName="capacidadRestaurante">
         </mat-form-field>
-
+<!-- 
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Capacidad del Restaurante" formControlName="fotoRes">
+            <input matInput placeholder="Estado del Restaurante" formControlName="resVerificado">
+        </mat-form-field> -->
+
+        <mat-form-field>
+            <mat-label>Estado</mat-label>
+            <mat-select placeholder="Tags" formControlName="resVerificado">
+                <mat-option value="En revisión">En Revisión</mat-option>
+                <mat-option value="Aprovado">Aprobado</mat-option>
+                <mat-option value="Denegado">Denegado</mat-option>
+            </mat-select>
         </mat-form-field>
-        
-    
     
         <!-- <img mat-card-image [src]="imagen" *ngIf="urlImage" style="width: 200px;"> -->
         
@@ -48,8 +41,8 @@
         <!-- <button mat-raised-button onclick="document.getElementById('input_subida').click()" type="button"><mat-icon>cloud_upload</mat-icon>  <span>Foto Restaurante</span></button>
         <input id="input_subida"  type="file" style="display: none" (change)="seleccionar($event)">
          -->
-        <button mat-raised-button onclick="document.getElementById('input_subida').click()" type="button"><mat-icon>cloud_upload</mat-icon>  <span>Foto Restaurante</span></button>
-        <input id="input_subida"  type="file" style="display: none" formControlName="fotoRes" (change)="seleccionar($event)">
+        <!-- <button mat-raised-button onclick="document.getElementById('input_subida').click()" type="button"><mat-icon>cloud_upload</mat-icon>  <span>Foto Restaurante</span></button>
+        <input id="input_subida"  type="file" style="display: none" formControlName="fotoRes" (change)="seleccionar($event)"> -->
 
         <!-- <label class="custom-file">
             <input type="file" formControlName="imagePost" (change)="seleccionar($event)" />

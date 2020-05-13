@@ -196,7 +196,8 @@ export class PerfilService {
         horarioRestaurante: perfil.horarioRestaurante,
         direccionRestaurante: perfil.direccionRestaurante,
         imagenRes: this.UrlImagen,
-        fileRef: this.filePath
+        fileRef: this.filePath,
+        //resVerificado: ""
       };
       console.log("Estoy editando un restaurante");
       console.log("ID: ", idExiste);
@@ -215,7 +216,8 @@ export class PerfilService {
         horarioRestaurante: perfil.horarioRestaurante,
         direccionRestaurante: perfil.direccionRestaurante,
         imagenRes: this.UrlImagen,
-        fileRef: this.filePath
+        fileRef: this.filePath,
+        resVerificado: "En Revisión"
       });
     }
    }
@@ -233,7 +235,8 @@ export class PerfilService {
       horarioRestaurante: perfil.horarioRestaurante,
       direccionRestaurante: perfil.direccionRestaurante,
       imagenRes: "",
-      fileRef: ""
+      fileRef: "",
+      resVerificado: "En Revisión"
     });
     //   const postObj = {
        

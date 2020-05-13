@@ -22,6 +22,7 @@ import { PromocionesComponent } from './pages/promociones/promociones.component'
 import { ListaPromocionesComponent } from './pages/promociones/lista-promociones/lista-promociones.component';
 import { ListaUsuariosComponent } from './usuarios/lista-usuarios/lista-usuarios.component';
 import { ValidacionComponent } from './pages/validacion/validacion.component';
+import { VerificacionRestaurantesComponent } from './usuarios/verificacion-restaurantes/verificacion-restaurantes.component';
 
 
 const routes: Routes = [
@@ -34,7 +35,7 @@ const routes: Routes = [
   {path: 'prueba', component: SubirImagenComponent},
   {path: 'listaR', component: ListaRestaurantesComponent, canActivate: [LoginGuardService]},
   {path: 'listaU', component: ListaUsuariosComponent, canActivate: [LoginGuardService]},
-  {path: 'validacion', component: ValidacionComponent},
+  {path: 'verificacionR', component: VerificacionRestaurantesComponent, canActivate: [LoginGuardService]},
   {path: 'cliente/:id', component: ListaClientesComponent},
   {path: 'cliente', component: ClienteComponent},
   {path: 'menus', component: MenusComponent},

@@ -14,7 +14,7 @@ import { NuevoResComponent } from '../../modal/nuevo-res/nuevo-res.component';
 })
 export class ListaRestaurantesComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['nombreR', 'tipoR', 'capacidadR', 'userUID',  'acciones'];
+  displayedColumns: string[] = ['nombreR', 'tipoR', 'capacidadR', 'verificado', 'acciones'];
   dataSource = new MatTableDataSource();
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;

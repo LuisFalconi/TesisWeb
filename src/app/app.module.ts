@@ -44,6 +44,7 @@ import { EditMenusComponent } from './restaurantes/edit-menus/edit-menus.compone
 import { ListaPromocionesComponent } from './pages/promociones/lista-promociones/lista-promociones.component';
 import { ListaUsuariosComponent } from './usuarios/lista-usuarios/lista-usuarios.component';
 import { ValidacionComponent } from './pages/validacion/validacion.component';
+import { VerificacionRestaurantesComponent } from './usuarios/verificacion-restaurantes/verificacion-restaurantes.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { ValidacionComponent } from './pages/validacion/validacion.component';
     ListaPromocionesComponent,
     ListaUsuariosComponent,
     ValidacionComponent,
+    VerificacionRestaurantesComponent,
     
   ],
   imports: [

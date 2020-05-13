@@ -20,12 +20,13 @@ export class EditRestauranteComponent implements OnInit {
 
   public editResForm = new FormGroup({
     id: new FormControl (''),
-    nombreRestaurante: new FormControl ('', Validators.required),  
-    tipoRestaurante: new FormControl('', Validators.required),
-    capacidadRestaurante: new FormControl('', Validators.required),
-    horarioRestaurante: new FormControl('', Validators.required),
-    direccionRestaurante: new FormControl('', Validators.required),
-    fotoRes: new FormControl('', Validators.required)
+    nombreRestaurante: new FormControl ({value: '', disabled: true },Validators.required),  
+    tipoRestaurante: new FormControl({value: '', disabled: true }, Validators.required),
+    capacidadRestaurante: new FormControl({value: '', disabled: true }, Validators.required),
+    horarioRestaurante: new FormControl({value: '', disabled: true }, Validators.required),
+    direccionRestaurante: new FormControl({value: '', disabled: true }, Validators.required),
+    //fotoRes: new FormControl('', Validators.required)
+    resVerificado: new FormControl ('', Validators.required)
   });
   ngOnInit() {
     this.imagen = this.perfil.imagenRes;
@@ -63,8 +64,14 @@ export class EditRestauranteComponent implements OnInit {
       capacidadRestaurante: this.perfil.capacidadRestaurante,
       horarioRestaurante: this.perfil.horarioRestaurante,
       direccionRestaurante: this.perfil.direccionRestaurante,
+      resVerificado: this.perfil.resVerificado
       //fotoRes: this.perfil.imagenRes
     });
   } 
+
+  deshabilitarTexto() {
+    //your condition, in this case textarea will be disbaled.
+    return true; 
+  }
 
 }

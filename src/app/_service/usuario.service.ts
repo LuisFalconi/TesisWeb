@@ -23,6 +23,10 @@ export class UsuarioService {
     this.usuarioCollection = afs.collection<Usuario>('usuarios');
   }
 
+  listar() {
+    return this.afs.collection<Usuario>('usuarios').valueChanges();
+  }
+
   recuperarDatos(): Observable<Usuario[]>{
     return this.usuarioCollection
       .snapshotChanges()

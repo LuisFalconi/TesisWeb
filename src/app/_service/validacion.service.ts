@@ -33,6 +33,10 @@ export class ValidacionService {
     return this.afs.collection<Validacion>('validaciones').valueChanges();
   }
 
+  leer(documentId: string){
+    return this.afs.collection<Validacion>('validaciones').doc(documentId).valueChanges();
+}
+
    // Metodo recuperar los datos de la coleccion de Perfil, iterando por el id que devuelve 
    recuperarDatos(): Observable<Validacion[]>{
     return this.afs
