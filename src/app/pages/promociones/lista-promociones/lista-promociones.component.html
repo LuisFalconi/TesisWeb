@@ -9,7 +9,11 @@
               <div mat-card-avatar class="example-header-image"></div>
             </mat-card-header>
               <img matCardImage [src]="promo.fotosPromocion" *ngIf="promo.fotosPromocion" width="500px" height="300px"/>
+              <mat-card-actions>
+                <button mat-button color="warm" (click)="eliminar(promo)"><mat-icon arial-label="Eliminar">highlight_off</mat-icon>Eliminar</button>
+              </mat-card-actions>
           </mat-card>
+          
         </div>
       </div>
 </div>

@@ -65,6 +65,10 @@ export class PromocionService {
     return this.promocionCollection.doc(promo.id).delete();
   }
 
+  eliminar(promo: Promocion){
+    return this.afs.collection('promociones').doc(promo.id).delete();
+  }
+
   public editarPromo(promo: Promocion, nuevaImagen?: FileI){
 
     if(nuevaImagen){
@@ -76,6 +80,11 @@ export class PromocionService {
 
   subirRestauranteconPromocion(promo: Promocion, image?: FileI): void{
     this.obternerImagen(promo, image);
+  }
+
+  // Le coloco con Return para usar el swithalert -> then((=>))
+  subirRestauranteconPromociones(promo: Promocion, image?: FileI){
+    return this.obternerImagen(promo, image);
   }
 
   subirPromo(promo: Promocion, image?: FileP): void{

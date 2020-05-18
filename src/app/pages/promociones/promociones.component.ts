@@ -4,6 +4,7 @@ import { PromocionService } from '../../_service/promocion.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FileI } from '../../_model/imagenes';
 import { FileP } from '../../_model/promosImg';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-promociones',
@@ -39,11 +40,35 @@ export class PromocionesComponent implements OnInit {
   }
 
   addPromocion(data: Promocion) {
-    console.log('Nueva Promo', data);
-    this.promoService.subirRestauranteconPromocion(data, this.file_promo);
-    console.log("Datos", data);
-    this.resetForm();
-    
+    Swal.fire({
+      title: '¿Deseas agregar esta promoción ahora?',
+      icon: 'info',
+      showCancelButton: true,
+      focusConfirm: false,
+      confirmButtonText: 'Si',
+      cancelButtonText: 'No',
+    }).then((result) =>{
+      if(result.value){
+        this.promoService.subirRestauranteconPromociones(data, this.file_promo);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Promocion Agregagada',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        this.resetForm();
+      }else{
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'Cancelado',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        this.resetForm();
+      }
+    });    
     //this.router.navigate(['editar']);
   }
 
