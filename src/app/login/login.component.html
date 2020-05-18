@@ -1,45 +1,42 @@
 <div class="divCenter">
-    
     <mat-card *ngIf="estadoLogin">
         <div class="titulo">
-            <mat-card-header style="text-align: center;">
-                <mat-card-title>Ingresar</mat-card-title>
+            <mat-card-header>
+                <mat-card-title>Iniciar Sesión</mat-card-title>
             </mat-card-header>
         </div>
         <mat-card-content>
             <div class="login-content">
-                <table cellspacing="0">
-                    <tr>
-                        <td>
-                            <mat-form-field>
-                                <input matInput placeholder="Usuario" [(ngModel)]="usuario" autocomplete="off" required>
-                            </mat-form-field>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <mat-form-field>
-                                <input matInput placeholder="Contraseña" [(ngModel)]="clave" type="password" required>
-                            </mat-form-field>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td><a style="cursor: pointer" (click)="irRecuperar()">¿Olvidaste tu contraseña?</a></td>
-                    </tr>
-                </table>
+                <mat-form-field style="width: 250px;">
+                    <input matInput placeholder="Email" [(ngModel)]="usuario" autocomplete="off" required>
+                    <mat-icon matSuffix>person_pin</mat-icon>
+                    <mat-hint *ngIf="!usuario">Ingresa tu usuario</mat-hint>
+                </mat-form-field><br>
+                <mat-form-field style="width: 250px;">
+                    <input matInput placeholder="Contraseña" [(ngModel)]="clave" [type]="hide ? 'password' : 'text'"  required width="240px;">
+                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <mat-hint *ngIf="!clave">Ingresa la contraseña</mat-hint>
+                </mat-form-field><br><br><br>
+                <a style="cursor: pointer; padding-left: 40px;" (click)="irRecuperar()"><b>¿Olvidaste tu contraseña?</b></a>
             </div>
         </mat-card-content>
         <mat-card-actions>
             <button mat-raised-button class="iniciarS" (click)="login()"><mat-icon svgIcon="iniciar-up"></mat-icon><span>&nbsp; Iniciar Sesión</span></button>
-            <button mat-raised-button class="crear" (click)="irCrear()"><mat-icon svgIcon="cuenta-up"></mat-icon><span>&nbsp; Crear una cuenta</span></button>
-            <br><br>
+            <!-- <button mat-raised-button class="crear" (click)="irCrear()"><mat-icon svgIcon="cuenta-up"></mat-icon><span>&nbsp; ¿Aun no tienes una cuenta?</span></button> -->
+            <br><br><br><br>
             <button mat-raised-button class="social-g" (click)="loginGoogle()"><mat-icon svgIcon="google-up"></mat-icon><span>&nbsp; Google</span></button><br>
             <button mat-raised-button class="social-f" (click)="loginFacebook()" color="primary"><mat-icon svgIcon="facebook-up"></mat-icon><span>&nbsp; Facebook</span></button><br>
             <button mat-raised-button class="inicio" routerLink="/inicio"><mat-icon svgIcon="food-up"></mat-icon><span>&nbsp; Regresar</span></button>
         </mat-card-actions>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <mat-list>
+                <div style="font-size: 12px; text-align: center;">
+                    <a style="cursor: pointer" (click)="irCrear()"><b>¿Aun no tienes una cuenta?</b></a>
+                    <p>Registrate y se parte de MuertosDeHambre.com</p>
+                </div>
+            </mat-list>
+        </mat-list-item>
     </mat-card>
 
     <mat-card *ngIf="estadoRecuperar">
@@ -66,34 +63,43 @@
         </mat-card-actions>
     </mat-card>
     <mat-card *ngIf="estadoCrear">
-        <mat-card-header>
-          <mat-card-title>Crear Usuario</mat-card-title>
-        </mat-card-header>
+
+        <div class="titulo-Crear">
+            <mat-card-header style="text-align: center;">
+                <mat-card-title>Registrate</mat-card-title>
+            </mat-card-header>
+        </div>
         <mat-card-content>
-          <table cellspacing="0">
-            <tr>
-              <td>
-                <mat-form-field>
-                  <input matInput placeholder="Usuario" [(ngModel)]="usuario" required>
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <mat-form-field>
-                  <input matInput placeholder="Contraseña" [(ngModel)]="clave" type="password" required>
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr>
-              <td ></td>
-            </tr>
-          </table>
+            <div class="login-content">
+                <mat-form-field style="width: 250px;">
+                    <input matInput placeholder="Email" [(ngModel)]="usuario" autocomplete="off" required>
+                    <mat-icon matSuffix>person_pin</mat-icon>
+                    <mat-hint *ngIf="!usuario">Ingresa tu usuario</mat-hint>
+                </mat-form-field><br>
+                <mat-form-field style="width: 250px;">
+                    <input matInput placeholder="Contraseña" [(ngModel)]="clave" [type]="hide ? 'password' : 'text'"  required width="240px;">
+                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    <mat-hint *ngIf="!clave">Ingresa la contraseña</mat-hint>
+                </mat-form-field><br><br>
+            </div>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-raised-button (click)="irLogin()" color="default">Atrás</button>
-          <button mat-raised-button (click)="crearUsuario()" color="primary">Crear</button>
+            <button mat-raised-button class="iniciarS" (click)="crearUsuario()"><mat-icon svgIcon="iniciar-up"></mat-icon><span>&nbsp; Crear Cuenta</span></button>
+            <!-- <button mat-raised-button class="crear" (click)="irCrear()"><mat-icon svgIcon="cuenta-up"></mat-icon><span>&nbsp; ¿Aun no tienes una cuenta?</span></button> -->
+            <br><br><br>
+            <button mat-raised-button class="social-g" (click)="loginGoogle()"><mat-icon svgIcon="google-up"></mat-icon><span>&nbsp; Google</span></button><br>
+            <button mat-raised-button class="social-f" (click)="loginFacebook()" color="primary"><mat-icon svgIcon="facebook-up"></mat-icon><span>&nbsp; Facebook</span></button><br>
+            <button mat-raised-button class="inicio" routerLink="/inicio"><mat-icon svgIcon="food-up"></mat-icon><span>&nbsp; Regresar</span></button>
         </mat-card-actions>
-      </mat-card>
+        <mat-divider></mat-divider>
+        <mat-list-item>
+            <mat-list>
+                <div style="font-size: 12px; text-align: center;">
+                    <a style="cursor: pointer" (click)="irLogin()"><b>¿Ya tienes una cuenta?</b></a>
+                    <p>Inicia sesión para continuar.</p>
+                </div>
+            </mat-list>
+        </mat-list-item>
+    </mat-card>
 
 </div>

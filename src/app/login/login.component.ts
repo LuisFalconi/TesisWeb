@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   usuario: string;
   clave: string;
+  hide = true;
 
   // Validar cajas activas
   estadoLogin: boolean = true;
@@ -51,6 +52,8 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.route.navigate(['perfil']);
     });
   }
+
+  get password() {return this.clave};
 
   loginFacebook() {
     this.LoginService.loginFacebook().then(() => {
