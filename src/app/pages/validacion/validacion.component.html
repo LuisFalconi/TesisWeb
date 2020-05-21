@@ -16,13 +16,12 @@
     <div *ngIf="isSubmitted">
         <button mat-raised-button color="primary" type="submit">
             <mat-icon>done</mat-icon>
-            <span>Aceptar</span>
-        </button>
-    
-        <button mat-raised-button color="accent" routerLink='/editar' type="button">
+            <span>Validar</span>
+        </button>    
+        <!-- <button mat-raised-button color="accent" (change)="isSubmitted==false" type="button">
             <mat-icon>close</mat-icon>
             <span>Cancelar</span>
-        </button>
+        </button> -->
     </div>
     
 </form>

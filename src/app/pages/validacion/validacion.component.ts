@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ValidacionService } from 'src/app/_service/validacion.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Validacion } from '../../_model/validacion';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-validacion',
@@ -28,10 +29,38 @@ export class ValidacionComponent implements OnInit {
   }
 
   addDocumento(data: Validacion) {
-    console.log('Nueva validacion', data);
-    this.validacionService.subirRestauranteconValidacion(data, this.file_val);
-    console.log("Datos", data);
-    this.resetForm();
+    Swal.fire({
+      title: '¿Agregar documento?',
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "No!",
+      confirmButtonText: 'Si!'
+    }).then((result) => {
+      if (result.value) { 
+          this.validacionService.subirRestauranteconValidacion(data, this.file_val);
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Documento agregado',
+            text: 'Tu documentos va ser revisado por el Administrador',
+            showConfirmButton: false,
+            timer: 2500
+          });
+        this.resetForm();
+
+      }else {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'Cancelado',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      this.resetForm();
+    }
+    });
     
     //this.router.navigate(['editar']);
   }

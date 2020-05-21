@@ -8,6 +8,7 @@ import { AddMenuModalComponent } from '../../modal/add-menu-modal/add-menu-modal
 import { PerfilService } from '../../_service/perfil.service';
 import { Perfil } from '../../_model/perfil';
 import { ValidacionService } from 'src/app/_service/validacion.service';
+import { Usuario } from '../../_model/usuario';
 
 @Component({
   selector: 'app-mi-menu',
@@ -31,6 +32,7 @@ export class MiMenuComponent implements OnInit {
 
   
   plato$: Observable<Plato[]>;
+  perfil$: Observable<Perfil[]>;
 
   constructor(private afa:AngularFireAuth,
               private platoService: PlatoService,
@@ -67,11 +69,12 @@ export class MiMenuComponent implements OnInit {
       }
     });
 
+    // Esto funciona para verificar si un restaurant tiene un documento subido
     this.validacionService.listar().subscribe(data => {
       console.log(data);
       for(let x of data){
         if(this.usuarioLog == x.userUID){
-          console.log("Si");
+          console.log("Si existe documento");
           console.log(x.docValidacion);
           //this.restaurantelog = [x];
           this.validacionR = true;
@@ -87,6 +90,8 @@ export class MiMenuComponent implements OnInit {
         } 
       }
   });
+
+  
     
     this.perfilService.listar().subscribe(data => {
       for(let x of data){
@@ -108,7 +113,8 @@ export class MiMenuComponent implements OnInit {
 
 
 
-    this.plato$ = this.platoService.recuperarMenus(); // recuperamos esta data con ASYNC
+  this.plato$ = this.platoService.recuperarMenus(); // recuperamos esta data con ASYNC
+  this.perfil$ = this.perfilService.recuperarDatos(); // recuperamos esta data con ASYNC
     
 
   }
@@ -131,6 +137,14 @@ export class MiMenuComponent implements OnInit {
 
   // Validacion si el documento que valide el nuevo restaurante existe
   validacionDocRestauranteExiste(valor: boolean){
+    if (valor){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  validacionDocumento(valor: boolean){
     if (valor){
       return true;
     }else{
