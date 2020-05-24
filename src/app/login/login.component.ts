@@ -18,6 +18,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   usuario: string;
   clave: string;
+  nombre: string;
+  telefono: string;
   hide = true;
 
   // Validar cajas activas
@@ -85,9 +87,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     });  
   }
   crearUsuario() {
-    this.LoginService.registrarUsuario(this.usuario, this.clave);
-    window.location.reload();
-    this.irLogin();
+    this.LoginService.registrarUsuario(this.usuario, this.clave, this.nombre, this.telefono).then( login =>{
+      this.route.navigate(['perfil']);
+    }).catch(err => console.log(err));
+    //window.location.reload();
+    //this.irLogin();
   }
 
   irCrear() {

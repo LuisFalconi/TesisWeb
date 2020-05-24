@@ -72,9 +72,19 @@
         <mat-card-content>
             <div class="login-content">
                 <mat-form-field style="width: 250px;">
-                    <input matInput placeholder="Email" [(ngModel)]="usuario" autocomplete="off" required>
+                    <input matInput placeholder="Nombre" [(ngModel)]="nombre" autocomplete="off" required>
                     <mat-icon matSuffix>person_pin</mat-icon>
-                    <mat-hint *ngIf="!usuario">Ingresa tu usuario</mat-hint>
+                    <mat-hint *ngIf="!nombre">Ingresa tu nombre</mat-hint>
+                </mat-form-field><br>
+                <mat-form-field style="width: 250px;">
+                    <input matInput placeholder="Teléfono" [(ngModel)]="telefono" autocomplete="off" required>
+                    <mat-icon matSuffix>phone_android</mat-icon>
+                    <mat-hint *ngIf="!telefono">Ingresa tu número celular</mat-hint>
+                </mat-form-field><br>
+                <mat-form-field style="width: 250px;">
+                    <input matInput placeholder="Email" [(ngModel)]="usuario" autocomplete="off" required>
+                    <mat-icon matSuffix>mail</mat-icon>
+                    <mat-hint *ngIf="!usuario">Ingresa tu email</mat-hint>
                 </mat-form-field><br>
                 <mat-form-field style="width: 250px;">
                     <input matInput placeholder="Contraseña" [(ngModel)]="clave" [type]="hide ? 'password' : 'text'"  required width="240px;">

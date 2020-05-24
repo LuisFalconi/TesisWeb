@@ -1,7 +1,7 @@
+import { Usuario } from './../_model/usuario';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Usuario } from '../_model/usuario';
 import { Router } from '@angular/router';
 import { auth } from 'firebase/app';
 import { Observable, EMPTY, Subject } from 'rxjs';
@@ -56,15 +56,25 @@ export class LoginService {
     return this.afa.auth.sendPasswordResetEmail(email);
   }
 
-  registrarUsuario(usuario: string, clave: string) {
-    return this.afa.auth.createUserWithEmailAndPassword(usuario, clave);
+  registrarUsuario(usuario: string, clave: string, nombre: string, telefono:string) {
+    return this.afa.auth.createUserWithEmailAndPassword(usuario, clave).then( res =>{
+      const uid = res.user.uid;
+      this.afs.collection('usuarios').doc(uid).set({
+       email: usuario,
+       //clave: clave, 
+       uid: uid,
+       telefono: telefono,
+       nombre: nombre,
+       roles: ['dueño']
+      }); 
+    });
   }
 
   // Mecanismo que trabaja firebase ppara autentificar con redes sociales 
   private oAuthLogin(provider: any) {
     return this.afa.auth.signInWithPopup(provider).then( credencial => {
       console.log(credencial);
-      this.actualizarUsuarioData(credencial.user);
+      this.actualizarUsuarioDataSocial(credencial.user);
     });
   }
 
@@ -79,6 +89,8 @@ export class LoginService {
       if (data) {
         const datos: Usuario = {
           uid: usuario.uid,
+          nombre: data.nombre,
+          telefono: data.telefono,
           email: usuario.email,
           roles: data.roles
         }
@@ -87,6 +99,41 @@ export class LoginService {
         const datos: Usuario = {
           uid: usuario.uid,
           email: usuario.email,
+          telefono: usuario.telefono,
+          nombre: usuario.nombre,
+          roles: ['dueño']
+        }
+        return userRef.set(datos);
+      }
+    });
+    observable.unsubscribe; // libero recursos despues del bloque de insersion 
+  }
+
+
+    // Metodo que se usar cuando un usuario ingresa con una red Social
+  private actualizarUsuarioDataSocial(usuario: any) {
+    const userRef: AngularFirestoreDocument<Usuario> = this.afs.doc(`usuarios/${usuario.uid}`);
+    // Validacion que permite validar si un usuario ya es Admin en firebase
+
+
+    // Utilizaos una variable para liberar recurson ya que estemetedo esta realizando un proceso despues de subcribirse
+    let observable = userRef.valueChanges().subscribe(data => {
+      // Condicion que sirve para validar si un usuario ya existente retorne el rol correspondiente
+      if (data) {
+        const datos: Usuario = {
+          uid: usuario.uid,
+          //nombre: data.nombre,
+          //telefono: data.telefono,
+          email: usuario.email,
+          roles: data.roles
+        }
+        return userRef.set(datos); // Esta insertando datos, por ellos se crear la variable para liberar recursos al final
+      } else {
+        const datos: Usuario = {
+          uid: usuario.uid,
+          email: usuario.email,
+          //telefono: usuario.telefono,
+          //nombre: usuario.nombre,
           roles: ['dueño']
         }
         return userRef.set(datos);
@@ -97,7 +144,7 @@ export class LoginService {
 
   cerrarSesion(){
     return this.afa.auth.signOut().then( ()=> {
-      window.location.reload() // Esto permite recargar la pagina al cerrar sesion, y asi simular que se esta liberando recursos
+      //window.location.reload() // Esto permite recargar la pagina al cerrar sesion, y asi simular que se esta liberando recursos
       this.route.navigate(['inicio']);
     });
   }
