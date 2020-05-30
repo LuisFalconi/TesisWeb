@@ -23,6 +23,7 @@ import { ListaPromocionesComponent } from './pages/promociones/lista-promociones
 import { ListaUsuariosComponent } from './usuarios/lista-usuarios/lista-usuarios.component';
 import { ValidacionComponent } from './pages/validacion/validacion.component';
 import { VerificacionRestaurantesComponent } from './usuarios/verificacion-restaurantes/verificacion-restaurantes.component';
+import { InfoPerfilComponent } from './pages/info-perfil/info-perfil.component';
 
 
 const routes: Routes = [
@@ -42,6 +43,7 @@ const routes: Routes = [
   {path: 'promociones', component: PromocionesComponent},
   {path: 'listaPromociones', component: ListaPromocionesComponent, canActivate: [LoginGuardService]},
   {path: 'perfil', component: PerfilComponent, canActivate: [LoginGuardService]},
+  {path: 'infoPerfil', component: InfoPerfilComponent, canActivate: [LoginGuardService]},
   {path: 'miMenu', component: MiMenuComponent, canActivate: [LoginGuardService]},
   // {path: 'crearRestaurante', component: CrearRestauranteComponent, canActivate: [LoginGuardService]},
   {path: 'not-403', component: Not403Component},

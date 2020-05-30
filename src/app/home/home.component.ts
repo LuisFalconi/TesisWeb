@@ -31,9 +31,9 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  crearUsuario() {
-    this.loginService.registrarUsuario(this.usuario, this.clave);
-    console.log("Usuario creado con exito")
-  }
+  // crearUsuario() {
+  //   this.loginService.registrarUsuario(this.usuario, this.clave);
+  //   console.log("Usuario creado con exito")
+  // }
 
 }

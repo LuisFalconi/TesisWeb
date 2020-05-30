@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   login(){
     // Al momento de iniciar sesion se redirige al component "Plato"
     this.LoginService.login(this.usuario, this.clave).then( () =>{
-      this.route.navigate(['perfil']);
+      this.route.navigate(['infoPerfil']);
     });
   }
 

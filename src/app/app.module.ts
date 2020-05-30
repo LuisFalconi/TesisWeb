@@ -48,6 +48,7 @@ import { VerificacionRestaurantesComponent } from './usuarios/verificacion-resta
 import { ModalEditRestaurantDuenoComponent } from './modal/modal-edit-restaurant-dueno/modal-edit-restaurant-dueno.component';
 import { EditRestauranteDuenoComponent } from './restaurantes/edit-restaurante-dueno/edit-restaurante-dueno.component';
 import { AppPassDirective } from './_directivas/app-pass.directive';
+import { InfoPerfilComponent } from './pages/info-perfil/info-perfil.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { AppPassDirective } from './_directivas/app-pass.directive';
     ModalEditRestaurantDuenoComponent,
     EditRestauranteDuenoComponent,
     AppPassDirective,
+    InfoPerfilComponent,
     
   ],
   imports: [

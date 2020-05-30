@@ -16,12 +16,12 @@ export class CrearUsuarioComponent implements OnInit {
   ngOnInit() {
   }
 
-  crearUsuario() {
-    this.LoginService.registrarUsuario(this.usuario, this.clave).then( () =>{
-      console.log("Usuario Creado con exito");
-      window.location.reload();
-      this.route.navigate(['login']);
-  });
+  // crearUsuario() {
+  //   this.LoginService.registrarUsuario(this.usuario, this.clave).then( () =>{
+  //     console.log("Usuario Creado con exito");
+  //     window.location.reload();
+  //     this.route.navigate(['login']);
+  // });
 
-  }
+  // }
 }
