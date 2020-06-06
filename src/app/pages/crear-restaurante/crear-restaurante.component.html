@@ -8,15 +8,21 @@
         </div>
         <!-- Mostrar el uid del usuario logueado -->
         <!-- formControlName: Nombre que se le da en el componete ts -->
-        <div [hidden]="false">
+        <div [hidden]="true">
             <mat-form-field class="example-full-width">
                 <input matInput placeholder="userUID" [value]="usuarioLogeado">
             </mat-form-field>
         </div>
+
         <mat-form-field class="example-full-width">
             <input matInput placeholder="Nombre del Restaurante" formControlName="nombreRestaurante">
+            <div *ngIf="newPostForm.get('nombreRestaurante').errors && newPostForm.get('nombreRestaurante').dirty">
+                <p class="error" *ngIf="newPostForm.get('nombreRestaurante').hasError('required')">El campo no debe estar vacio</p>
+                <p class="error" *ngIf="newPostForm.get('nombreRestaurante').hasError('minlength')">Minimo 3 caracteres</p>
+                <p class="error" *ngIf="newPostForm.get('nombreRestaurante').hasError('maxlength')">Maximo 20 caracteres</p>
+            </div>
         </mat-form-field>
-        
+                
         <mat-form-field class="example-full-width">
             <input matInput placeholder="Tipo de Restaurante" formControlName="tipoRestaurante">
         </mat-form-field>

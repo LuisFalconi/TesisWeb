@@ -23,8 +23,7 @@ export class PromocionService {
 
   constructor(private afs: AngularFirestore,
               private loginService: LoginService,
-              private storage: AngularFireStorage,
-              private firebase: AngularFireDatabase) { 
+              private storage: AngularFireStorage) { 
 
     this.promocionCollection = afs.collection<Promocion>('promociones');
     
@@ -69,27 +68,27 @@ export class PromocionService {
     return this.afs.collection('promociones').doc(promo.id).delete();
   }
 
-  public editarPromo(promo: Promocion, nuevaImagen?: FileI){
+  // public editarPromo(promo: Promocion, nuevaImagen?: FileI){
 
-    if(nuevaImagen){
-      this.obternerImagen(promo, nuevaImagen);
-    }else{
-      return this.promocionCollection.doc(promo.id).update(promo);
-    }
-  }
+  //   if(nuevaImagen){
+  //     this.obternerImagen(promo, nuevaImagen);
+  //   }else{
+  //     return this.promocionCollection.doc(promo.id).update(promo);
+  //   }
+  // }
 
-  subirRestauranteconPromocion(promo: Promocion, image?: FileI): void{
-    this.obternerImagen(promo, image);
-  }
+  // subirRestauranteconPromocion(promo: Promocion, image?: FileI): void{
+  //   this.obternerImagen(promo, image);
+  // }
 
   // Le coloco con Return para usar el swithalert -> then((=>))
   subirRestauranteconPromociones(promo: Promocion, image?: FileI){
     return this.obternerImagen(promo, image);
   }
 
-  subirPromo(promo: Promocion, image?: FileP): void{
-    this.obternerImagen2(promo, image);
-  }
+  // subirPromo(promo: Promocion, image?: FileP): void{
+  //   this.obternerImagen2(promo, image);
+  // }
 
   private obternerImagen(promo: Promocion ,image?: FileI){
     this.filePath = `imagenesPromo/${image.name}`;
@@ -107,21 +106,21 @@ export class PromocionService {
      ).subscribe();     
  }
 
- private obternerImagen2(promo: Promocion ,image?: FileP){
-  this.filePath = `imagenesPromo/${image.name}`;
-  const fileRef = this.storage.ref(this.filePath);
-  const task = this.storage.upload(this.filePath, image);
-  task.snapshotChanges()
-   .pipe(
-     finalize(() => {
-      fileRef.getDownloadURL().subscribe(urlImage => {
-         this.UrlImagen2 = urlImage;
-        console.log('urlImagen', this.UrlImagen);
-         this.guardarPromo2(promo);          
-       });
-    })
-   ).subscribe();     
-}
+//  private obternerImagen2(promo: Promocion ,image?: FileP){
+//   this.filePath = `imagenesPromo/${image.name}`;
+//   const fileRef = this.storage.ref(this.filePath);
+//   const task = this.storage.upload(this.filePath, image);
+//   task.snapshotChanges()
+//    .pipe(
+//      finalize(() => {
+//       fileRef.getDownloadURL().subscribe(urlImage => {
+//          this.UrlImagen2 = urlImage;
+//         console.log('urlImagen', this.UrlImagen);
+//          this.guardarPromo2(promo);          
+//        });
+//     })
+//    ).subscribe();     
+// }
 
  private guardarPromo(promo: Promocion) {
   //this.idRes =perfil.id;
@@ -147,29 +146,29 @@ export class PromocionService {
   }
  }
 
- private guardarPromo2(promo: Promocion) {
-  //this.idRes =perfil.id;
-  let idExiste = promo.id;
-  if(idExiste){
-    const promoObj = {
-      //id: perfil.id,
-      userUID: this.usuarioLogeado,
-      fotosPromocion: this.UrlImagen2,
-      fileRef: this.filePath
-    };
-    return this.promocionCollection.doc(promo.id).update(promoObj);      
-  }else{
-    console.log("Estoy creando un restaurante");
-    let idPromo = this.afs.createId();
-    promo.id = idPromo; 
-    this.afs.collection('promociones').doc(idPromo).set({
-      id: promo.id,
-      userUID: this.usuarioLogeado,
-      fotosPromocion: this.UrlImagen2,
-      fileRef: this.filePath
-    });
-  }
- }
+//  private guardarPromo2(promo: Promocion) {
+//   //this.idRes =perfil.id;
+//   let idExiste = promo.id;
+//   if(idExiste){
+//     const promoObj = {
+//       //id: perfil.id,
+//       userUID: this.usuarioLogeado,
+//       fotosPromocion: this.UrlImagen2,
+//       fileRef: this.filePath
+//     };
+//     return this.promocionCollection.doc(promo.id).update(promoObj);      
+//   }else{
+//     console.log("Estoy creando un restaurante");
+//     let idPromo = this.afs.createId();
+//     promo.id = idPromo; 
+//     this.afs.collection('promociones').doc(idPromo).set({
+//       id: promo.id,
+//       userUID: this.usuarioLogeado,
+//       fotosPromocion: this.UrlImagen2,
+//       fileRef: this.filePath
+//     });
+//   }
+//  }
 
 
 

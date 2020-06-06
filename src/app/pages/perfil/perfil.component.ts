@@ -37,7 +37,7 @@ export class PerfilComponent implements OnInit {
   ngOnInit() {
     let currenUser = this.afa.auth.currentUser;
     this.usuario = currenUser.phoneNumber;
-    this.usuarioLog = currenUser.uid;
+      
 
     //this.ultimaConexion = currenUser.metadata.lastSignInTime;
     //this.desde = currenUser.metadata.creationTime;
@@ -85,7 +85,8 @@ export class PerfilComponent implements OnInit {
     onNewPost() {
       this.openDialog();
     }
-  
+    
+    // Abre el modal de nuevo Restaurante
     openDialog(): void {
       const dialogRef = this.dialog.open(ModalComponent, {panelClass: 'myapp-no-padding-dialog'});
       dialogRef.afterClosed().subscribe(result => {
