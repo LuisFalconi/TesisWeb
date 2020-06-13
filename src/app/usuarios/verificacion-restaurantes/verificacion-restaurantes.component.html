@@ -2,7 +2,7 @@
 
 <mat-accordion class="example-headers-align">
     <mat-expansion-panel *ngFor="let users of users" hideToggle>
-      <mat-expansion-panel-header *ngIf="users.roles.toString() === 'dueño'">
+      <mat-expansion-panel-header *ngIf="users.roles && users.roles.toString() === 'dueño'">
         <mat-panel-title>{{users.roles}}</mat-panel-title>
         <mat-panel-description>
             {{users.email}}
