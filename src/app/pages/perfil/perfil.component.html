@@ -4,7 +4,7 @@
 <mat-card> Ultima Conexion {{ultimaConexion | date: 'dd-MM-yyyy'}}</mat-card> -->
 
 <mat-card>Tipo de Sesion {{usuarioSocial}}</mat-card>
-<img mat-card-image [src]="fotoSocial" style="height: 60px; width: 60px;" *ngIf="fotoSocial">
+<!-- <img mat-card-image [src]="fotoSocial" style="height: 60px; width: 60px;" *ngIf="fotoSocial"> -->
 <div style="text-align: center;">
     <mat-list role="list" *ngFor="let p of perfil" style="text-align: center;">
         <div *ngIf="usuarioLog == p.userUID">
@@ -35,10 +35,15 @@
         <mat-icon>note_add</mat-icon>&nbsp; Agregar Restaurante
     </button>
 </div>
-
+<!-- Forma de validar si un restaurante esta aprobado, poder agregar promociones -->
 <div *ngIf="validacion(valor)" style="text-align: center;">
-    <app-promociones></app-promociones>
-    
+    <div *ngFor="let p of perfil">
+        <div *ngIf="usuarioLog == p.userUID">
+            <div *ngIf="p.resVerificado && p.resVerificado.toString() === 'Aprovado'">
+                <app-promociones></app-promociones> 
+            </div>
+        </div>
+    </div>  
 </div>
 
 
