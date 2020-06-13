@@ -35,14 +35,12 @@ export class ListaRestaurantesComponent implements OnInit, AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+    // De esta manera abro el Dialogo
   editarRestaurante(perfil: Perfil) {
-    console.log('Edit posta', perfil);
     this.dialogoNuevoRestaurante(perfil);
   }
 
   eliminarRestaurante(perfil: Perfil) {
-    console.log("perfil Eliminaod?", perfil);
-    
     Swal.fire({
       title: 'Are you sure?',
       text: `You won't be able to revert this!`,
@@ -63,28 +61,15 @@ export class ListaRestaurantesComponent implements OnInit, AfterViewInit {
 
   }
 
-  nuevoRestaurante() {
-    this.dialogoNuevoRestaurante();
-  }
 
-  openDialog(perfil?: Perfil): void {
-    const config = {
-      data: {
-        message: perfil ? 'Edit Post' : 'New Post',
-        content: perfil
-      }
-    };
-
-    const dialogRef = this.dialog.open(ModalComponent, config);
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result ${result}`);
-    });
-  }
-
+  // Dialogo que valida si al abrir el Dialogo, me muestra el contenido
+  // para crear o editar un Restaurante
+  // OBSERVACION: Esta  de prueba, en realidad en el Admin no deberia crear un restaurante
+  // solo editarlo o eliminarlo
   dialogoNuevoRestaurante(perfil?: Perfil): void {
     const config ={
       data:{
-        mensaje: perfil ? 'Edit Perfil': 'Nuevo Perfil',
+        mensaje: perfil ? 'Cambiar Estado': 'Nuevo Perfil',
         contenido: perfil
       }
     };
@@ -93,5 +78,27 @@ export class ListaRestaurantesComponent implements OnInit, AfterViewInit {
       console.log(`Dialog result ${resultado}`);
     });
   }
+
+  
+  // nuevoRestaurante() {
+  //   this.dialogoNuevoRestaurante();
+  // }
+
+  
+  // openDialog(perfil?: Perfil): void {
+  //   const config = {
+  //     data: {
+  //       message: perfil ? 'Edit Post' : 'New Post',
+  //       content: perfil
+  //     }
+  //   };
+
+  //   const dialogRef = this.dialog.open(ModalComponent, config);
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log(`Dialog result ${result}`);
+  //   });
+  // }
+
+
 }
 

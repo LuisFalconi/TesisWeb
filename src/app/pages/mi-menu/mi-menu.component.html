@@ -65,7 +65,7 @@
         <ng-template #verificacionRes>
             <div *ngFor="let perfil of perfil$ | async ">
                 <div *ngIf="usuarioLog == perfil.userUID">
-                    <ng-template [ngIf]="perfil.resVerificado.toString() === 'En Revisión'">
+                    <ng-template [ngIf]="perfil.resVerificado.toString() === 'En revisión'">
                         <p>Tu restaurante esta siendo verificado por el Administrador</p>
                         <mat-card-title>Estado:{{perfil.resVerificado}}</mat-card-title>
                     </ng-template>
@@ -74,20 +74,16 @@
                             <p>Resraurante Aprobado</p>
                             <p>Ingresa tu menu del Dia!</p>
                             <button mat-stroked-button (click)="nuevoMenu()">
-                                <mat-icon>note_add</mat-icon>&nbsp; Agregar Menu
+                                <mat-icon>note_add</mat-icon>&nbsp; Agregar Menú
                             </button>
                         </div>
                     </ng-template>
-                    <ng-template [ngIf]="perfil.resVerificado.toString() === 'Denegado'">
+                    <ng-template [ngIf]="perfil.resVerificado.toString() === 'Rechazado'">
                         <div *ngIf="validacionDocRestauranteExiste(validacionR) == true">
                             <h1>Tu restaurante no ha sido Aprovado :( </h1>
-                            
-                            <!-- nuevoComonente donde se pueda editar y elimnar el documento -->
-                            <app-validacion></app-validacion>
-                            <!-- Agregar un nuevo componente que al dar clic en enviar, se muestre el estado
-                            del restaurante -->
-                            <p>Puedes volver a ingresar un documento que verifique que eres dueño de este restaurante</p>
-                            <p>Si no es valido se eliminara tu Restaurante</p>
+                            <p>La información de tu restaurante será eliminado por el administrador.</p>
+                            <br>
+                            <p>Si crees que es un error, puedes volver a cargar información real.</p>
                         </div> 
                     </ng-template>
                 </div>

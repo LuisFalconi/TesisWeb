@@ -4,6 +4,9 @@
       <div *ngIf="datos.contenido ; else showNuevoRes">
             <app-edit-restaurante [perfil]= "datos.contenido"></app-edit-restaurante>   
       </div>
+
+      
+      <!-- En realidad esto no lo uso, ya que es un administrador -->
       <ng-template #showNuevoRes>
             <app-nuevo-restaurante></app-nuevo-restaurante>
       </ng-template>
