@@ -50,7 +50,7 @@ export class CrearRestauranteComponent implements OnInit, OnDestroy {
 
   public newPostForm = new FormGroup({
     id: new FormControl (''),
-    nombreRestaurante: new FormControl ('' ,[Validators.required, Validators.minLength(3), Validators.maxLength(20)]),  
+    nombreRestaurante: new FormControl ('', Validators.required),  
     tipoRestaurante: new FormControl('', Validators.required),
     capacidadRestaurante: new FormControl('', Validators.required),
     horarioRestaurante: new FormControl('', Validators.required),

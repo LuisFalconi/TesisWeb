@@ -57,6 +57,7 @@ export class PerfilService {
 
   listar() {
     return this.afs.collection<Perfil>('perfiles').valueChanges();
+    //return this.afs.collection<Perfil>('perfiles').snapshotChanges();
   }
 
   recuperar() {
