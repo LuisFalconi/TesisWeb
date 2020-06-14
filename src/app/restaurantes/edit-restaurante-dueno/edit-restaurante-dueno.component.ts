@@ -26,7 +26,8 @@ export class EditRestauranteDuenoComponent implements OnInit {
     nombreRestaurante: new FormControl ('' ,[Validators.required, Validators.minLength(3), Validators.maxLength(20)]),  
     tipoRestaurante: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
     capacidadRestaurante: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(5), Validators.pattern(/^[1-9]/)]),
-    horarioRestaurante: new FormControl('',  [Validators.required, Validators.minLength(3), Validators.maxLength(20),  Validators.pattern(/^[0-9]{2}:[0-9]{2}/)]),
+    horaApertura: new FormControl('',  [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
+    horaCierre: new FormControl('',  [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
     direccionRestaurante: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
     fotoRes: new FormControl('')
     //resVerificado: new FormControl ('', Validators.required)
@@ -90,7 +91,8 @@ export class EditRestauranteDuenoComponent implements OnInit {
       nombreRestaurante: this.perfil.nombreRestaurante,
       tipoRestaurante: this.perfil.tipoRestaurante, 
       capacidadRestaurante: this.perfil.capacidadRestaurante,
-      horarioRestaurante: this.perfil.horarioRestaurante,
+      horaApertura: this.perfil.horaApertura,
+      horaCierre: this.perfil.horaCierre,
       direccionRestaurante: this.perfil.direccionRestaurante,
       resVerificado: this.perfil.resVerificado
       //fotoRes: this.perfil.imagenRes

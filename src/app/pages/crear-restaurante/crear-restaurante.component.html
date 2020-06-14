@@ -8,7 +8,7 @@
         </div>
         <!-- Mostrar el uid del usuario logueado -->
         <!-- formControlName: Nombre que se le da en el componete ts -->
-        <div [hidden]="false">
+        <div [hidden]="true">
             <mat-form-field class="example-full-width">
                 <input matInput placeholder="userUID" [value]="usuarioLogeado">
             </mat-form-field>
@@ -22,7 +22,11 @@
         </mat-form-field>
     
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Horario del Restaurante" formControlName="horarioRestaurante">
+            <input matInput placeholder="Horario de apertura" formControlName="horaApertura">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Horario de cierre" formControlName="horaCierre">
         </mat-form-field>
     
         <mat-form-field class="example-full-width">
@@ -52,9 +56,10 @@
         <p>{{labelFile}}</p>
         <button mat-raised-button color="primary" type="submit" [mat-dialog-close]="true">
             <mat-icon>done</mat-icon>
-            <span>Aceptar</span>
-            
+            <span>Aceptar</span> 
         </button>
+        <br><mat-divider>
+        </mat-divider>
     
         <button mat-raised-button color="accent" routerLink='/editar' type="button">
             <mat-icon>close</mat-icon>

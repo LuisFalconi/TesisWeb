@@ -11,7 +11,7 @@
             
                 <ng-container matColumnDef="tipoR">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Tipo</mat-header-cell> 
-                    <mat-cell *matCellDef="let row"> {{row.tipoRestaurante}}</mat-cell>
+                    <mat-cell *matCellDef="let row"> {{row.tipoRestaurante}} </mat-cell>
                 </ng-container>
     
                 <ng-container matColumnDef="direccionR">
@@ -19,14 +19,19 @@
                   <mat-cell *matCellDef="let row"> {{row.direccionRestaurante}}</mat-cell>
                 </ng-container>
     
-                <ng-container matColumnDef="horarioR">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>Horario</mat-header-cell> 
-                    <mat-cell *matCellDef="let row"> {{row.horarioRestaurante}}</mat-cell>
+                <ng-container matColumnDef="horarioA">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Hora de Apertura</mat-header-cell> 
+                    <mat-cell *matCellDef="let row"> {{row.horaApertura}} &nbsp; A.M</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="horarioC">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Hora de Cierre</mat-header-cell> 
+                    <mat-cell *matCellDef="let row"> {{row.horaCierre}} &nbsp; PM</mat-cell>
                 </ng-container>
             
                 <ng-container matColumnDef="capacidadR">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Capacidad</mat-header-cell> 
-                <mat-cell *matCellDef="let row"> {{row.capacidadRestaurante}}</mat-cell>
+                <mat-cell *matCellDef="let row"> {{row.capacidadRestaurante}} &nbsp; personas </mat-cell>
                 </ng-container>
 
             <!-- </div>

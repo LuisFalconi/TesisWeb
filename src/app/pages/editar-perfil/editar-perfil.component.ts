@@ -20,7 +20,7 @@ import { ModalEditRestaurantDuenoComponent } from '../../modal/modal-edit-restau
 export class EditarPerfilComponent implements OnInit, OnDestroy {
 
   dataSource: MatTableDataSource<Perfil>;
-  displayedColumns = ['nombreR','tipoR', 'direccionR', 'horarioR', 'capacidadR', 'acciones'];
+  displayedColumns = ['nombreR','tipoR', 'direccionR', 'horarioA', 'horarioC',  'capacidadR', 'acciones'];
 
   private ngUnsubscribe: Subject<void> = new Subject();// Se crear la variable para liberar recursos
   usuarioLog: string;

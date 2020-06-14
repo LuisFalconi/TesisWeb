@@ -48,20 +48,15 @@ export class PerfilComponent implements OnInit {
     this.perfilService.listar().subscribe(data => {
       for(let x of data){
         if(this.usuarioLog == x.userUID){
-          console.log("Si");
-          //console.log("Si");
           this.restaurantelog = [x];
           this.valor = true;
           this.validacion(this.valor);
-          console.log("Validacion", this.validacion(this.valor));
-          console.log("Valor:", this.valor);
+          console.log("Existe informacion del restaurante", this.validacion(this.valor));
           console.log("Este restaurante", this.restaurantelog); 
           break;   
         }else{
-          console.log("No");
           this.valor = false;
-          console.log("Valor:", this.valor);
-          console.log("Validacion", this.validacion(this.valor));
+          console.log("No exite informacion del restaurante", this.validacion(this.valor));
         } 
       }
   });
@@ -74,6 +69,8 @@ export class PerfilComponent implements OnInit {
   
   }
 
+  // Metodo para validar si existe informacion del restaurante
+  // y mostrar la opcion para cargar promociones
   validacion(valor: boolean){
       if (valor){
         return true;

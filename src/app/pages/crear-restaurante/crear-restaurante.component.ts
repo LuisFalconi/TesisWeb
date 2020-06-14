@@ -53,7 +53,8 @@ export class CrearRestauranteComponent implements OnInit, OnDestroy {
     nombreRestaurante: new FormControl ('', Validators.required),  
     tipoRestaurante: new FormControl('', Validators.required),
     capacidadRestaurante: new FormControl('', Validators.required),
-    horarioRestaurante: new FormControl('', Validators.required),
+    horaApertura: new FormControl('', Validators.required),
+    horaCierre: new FormControl('', Validators.required),
     direccionRestaurante: new FormControl('', Validators.required),
     imagePost: new FormControl('', Validators.required)
   });
@@ -72,6 +73,7 @@ export class CrearRestauranteComponent implements OnInit, OnDestroy {
       'tipoR': new FormControl('', Validators.required),
       'direccionR': new FormControl('', Validators.required),
       'horarioR': new FormControl('', Validators.required),
+      'horarioC': new FormControl('', Validators.required),
       'capacidadR': new FormControl('', Validators.required),
       //'imagenPerfil': new FormControl('', Validators.required)
     });
@@ -100,7 +102,8 @@ export class CrearRestauranteComponent implements OnInit, OnDestroy {
           'nombreR': new FormControl(data.nombreRestaurante),
           'tipoR': new FormControl(data.tipoRestaurante),
           'direccionR': new FormControl(data.direccionRestaurante),
-          'horarioR': new FormControl(data.horarioRestaurante),
+          'horarioA': new FormControl(data.horaApertura),
+          'horarioC': new FormControl(data.horaCierre),
           'capacidadR': new FormControl(data.capacidadRestaurante),
           //'imagenPerfil': new FormControl(data.imagePost),
         });
@@ -134,7 +137,8 @@ export class CrearRestauranteComponent implements OnInit, OnDestroy {
         let perfil = new Perfil();
         perfil.nombreRestaurante = this.form.value['nombreR'];
         perfil.tipoRestaurante = this.form.value['tipoR'];
-        perfil.horarioRestaurante = this.form.value['horarioR'];
+        perfil.horaApertura = this.form.value['horarioR'];
+        perfil.horaCierre = this.form.value['horarioC'];
         perfil.direccionRestaurante = this.form.value['direccionR'];
         perfil.capacidadRestaurante = this.form.value['capacidadR'];
         perfil.userUID = this.usuarioLogeado;

@@ -13,7 +13,8 @@
             <mat-list-item role="listitem"><mat-icon>local_dining</mat-icon>{{p.tipoRestaurante}}</mat-list-item>
             <mat-list-item role="listitem"><mat-icon>business</mat-icon>{{p.direccionRestaurante}}</mat-list-item>
             <mat-list-item role="listitem"><mat-icon>directions_run</mat-icon>{{p.capacidadRestaurante}}</mat-list-item>
-            <mat-list-item role="listitem"><mat-icon>schedule</mat-icon>{{p.horarioRestaurante}}</mat-list-item>
+            <mat-list-item role="listitem"><mat-icon>schedule</mat-icon>{{p.horaApertura}}</mat-list-item>
+            <mat-list-item role="listitem"><mat-icon>schedule</mat-icon>{{p.horaCierre}}</mat-list-item>
             <img matCardImage [src]="p.imagenRes" *ngIf="p.imagenRes"/>
         </div>
     </mat-list>
@@ -35,7 +36,7 @@
         <mat-icon>note_add</mat-icon>&nbsp; Agregar Restaurante
     </button>
 </div>
-<!-- Forma de validar si un restaurante esta aprobado, poder agregar promociones -->
+<!-- Forma de validar si un restaurante esta aprobado, poder agregar promocionesq -->
 <div *ngIf="validacion(valor)" style="text-align: center;">
     <div *ngFor="let p of perfil">
         <div *ngIf="usuarioLog == p.userUID">
