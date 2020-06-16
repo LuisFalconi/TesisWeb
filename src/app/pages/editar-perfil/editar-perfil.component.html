@@ -75,4 +75,17 @@
         <mat-list-item role="listitem">{{"ID: " + usuarioLog}}</mat-list-item>
         <mat-list-item role="listitem">{{useremailLog}}</mat-list-item>
     </mat-list>
+
+    <div  *ngFor="let p of perfil$ | async ">
+        <div *ngIf="usuarioLog == p.userUID">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <h3>Foto Restaurante</h3>
+                </mat-card-header>
+                    <mat-card-content>
+                        <img matCardImage [src]="p.imagenRes" *ngIf="p.imagenRes" width="50px" height="400px"/>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
 </div>

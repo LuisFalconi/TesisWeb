@@ -2,7 +2,7 @@ import { ModalEditRestautanteComponent } from './../../modal/modal-edit-restauta
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort, MatSnackBar, MatDialog } from '@angular/material';
 import { Perfil } from '../../_model/perfil';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { PerfilService } from '../../_service/perfil.service';
 import { takeUntil } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -32,6 +32,7 @@ export class EditarPerfilComponent implements OnInit, OnDestroy {
   idPerfil: string;
   perfil: any[];
   n: number;
+  perfil$: Observable<Perfil[]>;
 
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true}) sort: MatSort;
@@ -64,6 +65,7 @@ export class EditarPerfilComponent implements OnInit, OnDestroy {
 
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.perfil$ = this.perfilService.recuperarDatos();
       // console.log("ID Login" + this.usuarioLog);
       //console.log("Usuario logueado : " + this.useremailLog);
       

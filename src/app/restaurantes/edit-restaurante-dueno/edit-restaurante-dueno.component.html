@@ -65,14 +65,15 @@
         </mat-form-field>
     
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Capacidad del Restaurante" formControlName="capacidadRestaurante">
+            <input matInput  placeholder="Capacidad del Restaurante" formControlName="capacidadRestaurante">
             <div *ngIf="editResForm.get('capacidadRestaurante').errors && editResForm.get('capacidadRestaurante').dirty " >
                 <p class="e" *ngIf="editResForm.get('capacidadRestaurante').hasError('required')">El campo no debe estar vacio</p>
                 <p class="e" *ngIf="editResForm.get('capacidadRestaurante').hasError('minlength')">Minimo 1 caracteres</p>
-                <p class="e" *ngIf="editResForm.get('capacidadRestaurante').hasError('maxlength')">Maximo 5 caracteres</p>
+                <p class="e" *ngIf="editResForm.get('capacidadRestaurante').hasError('maxlength')">Maximo 3 caracteres</p>
                 <p class="e" *ngIf="editResForm.get('capacidadRestaurante').hasError('pattern')">El campo debe contener numeros</p>
             </div>
         </mat-form-field>
+
         <button mat-raised-button onclick="document.getElementById('input_subida').click()" type="button"><mat-icon>cloud_upload</mat-icon>  <span>Foto Restaurante</span></button>
         <input id="input_subida"  type="file" style="display: none" formControlName="fotoRes" (change)="seleccionar($event)">
 

@@ -50,13 +50,13 @@ export class CrearRestauranteComponent implements OnInit, OnDestroy {
 
   public newPostForm = new FormGroup({
     id: new FormControl (''),
-    nombreRestaurante: new FormControl ('', Validators.required),  
-    tipoRestaurante: new FormControl('', Validators.required),
-    capacidadRestaurante: new FormControl('', Validators.required),
-    horaApertura: new FormControl('', Validators.required),
-    horaCierre: new FormControl('', Validators.required),
-    direccionRestaurante: new FormControl('', Validators.required),
-    imagePost: new FormControl('', Validators.required)
+    nombreRestaurante: new FormControl ('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),  
+    tipoRestaurante: new FormControl('',[Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
+    capacidadRestaurante: new FormControl('',  [Validators.required, Validators.minLength(1), Validators.maxLength(3), Validators.pattern(/^[1-9]/)] ),
+    horaApertura: new FormControl('',  [Validators.required, Validators.minLength(3), Validators.maxLength(20)] ),
+    horaCierre: new FormControl('',  [Validators.required, Validators.minLength(3), Validators.maxLength(20)] ),
+    direccionRestaurante: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)] ),
+    imagePost: new FormControl('')
   });
 
   ngOnInit() {

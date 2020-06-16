@@ -62,7 +62,7 @@ export class EditRestauranteComponent implements OnInit {
       nombreRestaurante: this.perfil.nombreRestaurante,
       tipoRestaurante: this.perfil.tipoRestaurante, 
       capacidadRestaurante: this.perfil.capacidadRestaurante,
-      horarioRestaurante: this.perfil.horarioRestaurante,
+      horarioRestaurante: this.perfil.horaApertura,
       direccionRestaurante: this.perfil.direccionRestaurante,
       resVerificado: this.perfil.resVerificado
       //fotoRes: this.perfil.imagenRes

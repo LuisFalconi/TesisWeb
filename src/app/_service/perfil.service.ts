@@ -220,7 +220,7 @@ export class PerfilService {
         direccionRestaurante: perfil.direccionRestaurante,
         imagenRes: this.UrlImagen,
         fileRef: this.filePath,
-        resVerificado: "En Revisión"
+        resVerificado: "En revisión"
       });
     }
    }
@@ -240,7 +240,7 @@ export class PerfilService {
       direccionRestaurante: perfil.direccionRestaurante,
       imagenRes: "",
       fileRef: "",
-      resVerificado: "En Revisión"
+      resVerificado: "En revisión"
     });
     //   const postObj = {
        

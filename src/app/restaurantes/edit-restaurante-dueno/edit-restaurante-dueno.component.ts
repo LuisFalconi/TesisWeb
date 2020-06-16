@@ -25,7 +25,7 @@ export class EditRestauranteDuenoComponent implements OnInit {
     id: new FormControl (''),
     nombreRestaurante: new FormControl ('' ,[Validators.required, Validators.minLength(3), Validators.maxLength(20)]),  
     tipoRestaurante: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
-    capacidadRestaurante: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(5), Validators.pattern(/^[1-9]/)]),
+    capacidadRestaurante: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(3), Validators.pattern(/^[1-9]/)]),
     horaApertura: new FormControl('',  [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
     horaCierre: new FormControl('',  [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
     direccionRestaurante: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]),
