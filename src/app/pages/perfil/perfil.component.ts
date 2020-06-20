@@ -7,6 +7,7 @@ import { LoginService } from '../../_service/login.service';
 import { PlatoService } from '../../_service/plato.service';
 import { MatDialog } from '@angular/material';
 import { ModalComponent } from '../../modal/modal/modal.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-perfil',
@@ -27,6 +28,8 @@ export class PerfilComponent implements OnInit {
   usuarioLog: string;
 
   valor: boolean=true;
+
+  perfil$: Observable<Perfil[]>;
 
   
   constructor(private afa: AngularFireAuth, private perfilService: PerfilService,
@@ -65,7 +68,9 @@ export class PerfilComponent implements OnInit {
       this.perfil = data;
       //console.log(this.perfil);
       
-    })
+    });
+
+    this.perfil$ = this.perfilService.recuperarDatos();
   
   }
 

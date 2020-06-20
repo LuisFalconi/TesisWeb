@@ -15,7 +15,19 @@
     filter: contrast(4) invert(1);
 }
 
+.example-card {
+    max-width: 300px;
+    display: inline-block;
+    border-radius: 21px;
+    margin: 10px;
+    /* grid-template-columns: repeat(4,24%); */
+    /* grid-column-gap: 10px; */
+    /* grid-row-gap: 15px;
+    justify-content: center; */
+    
+  }
+
 .mat-card-image {
-    width: calc(25% + 60px);
+    width: calc(71% + 40px);
     margin: 0 -16px 16px -16px;
 }
