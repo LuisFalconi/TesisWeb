@@ -7,6 +7,8 @@ import { takeUntil } from 'rxjs/operators';
 import { FunctionService } from '../../_service/function.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { EditMenuModalComponent } from '../../modal/edit-menu-modal/edit-menu-modal.component';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-plato',
@@ -27,13 +29,14 @@ export class PlatoComponent implements OnInit, OnDestroy {
 
   private ngUnsubscribe: Subject<void> = new Subject();// Se crear la variable para liberar recursos
 
-  @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true}) sort: MatSort;
+  // @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
+  // @ViewChild(MatSort, { static: true}) sort: MatSort;
   
   constructor(private platoService: PlatoService, 
               private snackBar: MatSnackBar, 
               private functionService: FunctionService,
               private afa: AngularFireAuth,
+              private router: Router,
               public dialog: MatDialog) {
 
   }
@@ -70,23 +73,38 @@ export class PlatoComponent implements OnInit, OnDestroy {
       //this.dataSource = new MatTableDataSource(data);
       //this.dataSource2 = new MatTableDataSource(data);
       //this.dataSource3 = new MatTableDataSource(data);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource2.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-      this.dataSource2.sort = this.sort;
     });
   }
 
   eliminar(plato: Plato){
-    this.platoService.eliminar(plato).then(() =>{
-      this.snackBar.open('Se Elimino', 'AVISO', {
-        duration: 3000
-      });
-    });
+    Swal.fire({
+      title: 'Deseas eliminar tu menú?',
+      text: "No podras revertir esto!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "No!",
+      confirmButtonText: 'Si!'
+    }).then((result) => {
+      if (result.value) {
+        this.platoService.eliminar(plato).then(() =>{
+          //this.timer();
+          //window.location.reload(true);
+          Swal.fire('Eliminado!','Tu Menú ha sido eliminado','success')
+            .then(() =>{
+              this.router.navigate(['/miMenu']);
+            });
+          }).catch((error =>{
+            Swal.fire('Error!', error ,'error');
+          }));
+      }else {
+        Swal.fire("Cancelado", "Tu menú esta a salvo :)", "error");
+    }
+    })
   }
 
   editarMenu(plato: Plato) {
-    console.log('Edit menu', plato);
     this.openEditDialgo(plato);
   }
 

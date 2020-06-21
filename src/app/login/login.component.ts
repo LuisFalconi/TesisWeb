@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginGoogle() {
     this.LoginService.loginGoogle().then(() => {
       this.listarMenus();
-    });
+    }).catch(err => console.log("Error??", err));
   }
 
   restablecerClave(){
@@ -88,7 +88,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
   crearUsuario() {
     this.LoginService.registrarUsuario(this.usuario, this.clave, this.nombre, this.telefono).then( login =>{
-      this.route.navigate(['perfil']);
+      this.route.navigate(['infoPerfil']);
     }).catch(err => console.log(err));
     //window.location.reload();
     //this.irLogin();
@@ -137,7 +137,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             }
 
             this.menuService.menuCambio.next(final_menus);
-            this.route.navigate(['perfil']);
+            this.route.navigate(['infoPerfil']);
           }
         }
       });

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Plato } from '../../_model/plato';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { PlatoService } from '../../_service/plato.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-menus',
@@ -19,14 +20,14 @@ export class EditMenusComponent implements OnInit {
 
   public editMenuForm = new FormGroup({
     id: new FormControl (''),
-    platoDesayuno: new FormControl ('', Validators.required),  
-    detalleDesayuno: new FormControl('', Validators.required),
-    precioDesayuno: new FormControl('', Validators.required),
-    entradaAlmuerzo: new FormControl('', Validators.required),
-    jugoAlmuerzo: new FormControl('', Validators.required),
-    segundoAlmuerzo: new FormControl('', Validators.required),
-    precioAlmuerzo: new FormControl('', Validators.required),
-    imagenPlato: new FormControl('', Validators.required)
+    platoDesayuno: new FormControl ('', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),  
+    detalleDesayuno: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
+    precioDesayuno: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(3), Validators.pattern(/^[1-9]/)]),
+    entradaAlmuerzo: new FormControl('',  [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
+    jugoAlmuerzo: new FormControl('',  [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
+    segundoAlmuerzo: new FormControl('',  [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
+    precioAlmuerzo: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(3), Validators.pattern(/^[1-9]/)]),
+    imagenPlato: new FormControl('')
   });
 
   ngOnInit() {
@@ -36,17 +37,41 @@ export class EditMenusComponent implements OnInit {
   }
 
   editMenu(menu: Plato){
-    console.log('Newimg', this.imagen);
-    console.log('original', this.imagenOriginal);
-    
-    if(this.imagen === this.imagenOriginal){
-      menu.imgPlato = this.imagenOriginal;
-      console.log("No se cambio nada");
-      this.platoSvc.editarMenu(menu);
+
+    if(this.editMenuForm.invalid){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Error al editar el Menú!',
+      }); 
     }else{
-      console.log("Se cambio la imagen");
-      this.platoSvc.editarMenu(menu, this.imagen); 
-    }
+      if(this.imagen === this.imagenOriginal){
+        menu.imgPlato = this.imagenOriginal;
+        console.log("No se cambio nada");
+        this.platoSvc.editarMenu(menu);
+        Swal.fire({
+          icon: 'success',
+          showConfirmButton: false,
+          text: 'Menú editado!',
+        });
+      }else{
+        console.log("Se cambio la imagen");
+        this.platoSvc.editarMenu(menu, this.imagen); 
+        Swal.fire({
+          icon: 'success',
+          showConfirmButton: false,
+          text: 'Menú editado!',
+        });
+      }
+    }    
+  }
+
+  cancelar(event: any){
+    Swal.fire({
+      icon: 'error',
+      showConfirmButton: false,
+      text: 'Menú no editado!',
+    });
   }
 
   seleccionar(event: any): void{

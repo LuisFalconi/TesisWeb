@@ -40,18 +40,17 @@ export class PerfilService {
     )
     this.perfilCollection = afs.collection<Perfil>('perfiles');
 
+    // Esto sirve para algo pero no recuerdo
     this.loginService.user.subscribe(data =>{
-    if(data.uid){
-      this.usuarioLogeado = data.uid;
-    }else{
-      console.log("Error");
-      
-    }
-
     //this.idPerfil = this.afs.createId();
-
+      if(data.uid){
+        this.usuarioLogeado = data.uid;
+      }else{
+        console.log("Error");
+        this.usuarioLogeado = data.uid;      
+      }
     })
-  }
+}
 
 
 
