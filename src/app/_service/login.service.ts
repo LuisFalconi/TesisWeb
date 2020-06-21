@@ -22,9 +22,12 @@ export class LoginService {
     // authState: Devolver el estado si alguein acaba de iniciar sesion
     this.user = this.afa.authState.pipe(
       switchMap( user => {
+        console.log("Usuario??" , user);
         if(user){
           return this.afs.doc<Usuario>(`usuarios/${user.uid}`).valueChanges();
         }else {
+          console.log("Vacio?");
+           
           return EMPTY;
         }
       })
@@ -48,10 +51,11 @@ export class LoginService {
   // Login con google
   loginGoogle() {
     const provider = new auth.GoogleAuthProvider();
+    console.log("Provider", provider);
+    
     return this.oAuthLogin(provider);
   }
-
-
+  
   restablecerClave(email: string){
     return this.afa.auth.sendPasswordResetEmail(email);
   }
@@ -73,7 +77,8 @@ export class LoginService {
   // Mecanismo que trabaja firebase ppara autentificar con redes sociales 
   private oAuthLogin(provider: any) {
     return this.afa.auth.signInWithPopup(provider).then( credencial => {
-      console.log(credencial);
+      console.log("Credencial", credencial.user);
+      console.log("Credencial", credencial.user);
       this.actualizarUsuarioDataSocial(credencial.user);
     });
   }
@@ -119,6 +124,7 @@ export class LoginService {
     // Utilizaos una variable para liberar recurson ya que estemetedo esta realizando un proceso despues de subcribirse
     let observable = userRef.valueChanges().subscribe(data => {
       // Condicion que sirve para validar si un usuario ya existente retorne el rol correspondiente
+      //const uid = data.user.uid;
       if (data) {
         const datos: Usuario = {
           uid: usuario.uid,

@@ -48,6 +48,7 @@ export class InfoPerfilComponent implements OnInit {
           console.log("No");
         } 
       }
+      
   });
   }
 

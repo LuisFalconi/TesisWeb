@@ -7,6 +7,7 @@ import { switchMap, map, finalize } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { FileI } from '../_model/imagenes';
 import { LoginService } from './login.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -27,33 +28,49 @@ export class PerfilService {
   constructor(private afs: AngularFirestore, 
               private afa: AngularFireAuth, 
               private storage: AngularFireStorage, 
-              private loginService: LoginService) { 
+              private loginService: LoginService,
+              private route : Router) { 
                 
     this.user = this.afa.authState.pipe(
       switchMap( user => {
         if(user){
           return this.afs.doc<Perfil>(`usuarios/${user.uid}`).valueChanges();
         }else {
+          console.log("Vacio?");
+          
           return EMPTY;
         }
       })
     )
     this.perfilCollection = afs.collection<Perfil>('perfiles');
 
-    // Esto sirve para algo pero no recuerdo
+    let currenUser = this.afa.auth.currentUser;
+
+    
+      // Esto sirve para algo pero no recuerdo
     this.loginService.user.subscribe(data =>{
-    //this.idPerfil = this.afs.createId();
-      if(data.uid){
-        this.usuarioLogeado = data.uid;
+      //this.idPerfil = this.afs.createId();
+      console.log("Data login Service??", data);
+      if(typeof data === 'undefined'){
+        console.log("Sin definir");
+        console.log("Navego de nuevo a inPerfil");
+        
+        this.route.navigate(['infoPerfil']);
+        //window.location.reload();
       }else{
-        console.log("Error");
-        this.usuarioLogeado = data.uid;      
-      }
-    })
+        console.log("Data Defiida");
+        
+        if(data.uid){
+          this.usuarioLogeado = data.uid;
+        }else{
+          console.log("Error");
+          //this.usuarioLogeado = data.uid;      
+        }
+      }      
+    });
+    
+
 }
-
-
-
   listar() {
     return this.afs.collection<Perfil>('perfiles').valueChanges();
     //return this.afs.collection<Perfil>('perfiles').snapshotChanges();

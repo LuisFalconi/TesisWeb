@@ -24,10 +24,14 @@ export class PlatoService {
               private loginService: LoginService) {
 
 
+    // LA primera vez que se loguea onfacebook hay un error 
     this.loginService.user.subscribe(data =>{
-    this.usuarioLogeado = data.uid;
+      if(typeof data === 'undefined'){
+        console.log('Data no definida');
+      }else{
+        this.usuarioLogeado = data.uid;
+      }
     });
-
     this.platoCollection = afs.collection<Plato>('plato');
 
    }
