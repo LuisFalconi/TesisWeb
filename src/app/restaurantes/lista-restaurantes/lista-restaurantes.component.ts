@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { ModalComponent } from '../../modal/modal/modal.component';
 import { NuevoRestauranteComponent } from '../nuevo-restaurante/nuevo-restaurante.component';
 import { NuevoResComponent } from '../../modal/nuevo-res/nuevo-res.component';
+import { EditCoordenadasModalComponent } from '../../modal/edit-coordenadas-modal/edit-coordenadas-modal.component';
 
 @Component({
   selector: 'app-lista-restaurantes',
@@ -38,6 +39,10 @@ export class ListaRestaurantesComponent implements OnInit, AfterViewInit {
     // De esta manera abro el Dialogo
   editarRestaurante(perfil: Perfil) {
     this.dialogoNuevoRestaurante(perfil);
+  }
+
+  editarCoordenadasRestaurante(perfil: Perfil) {
+    this.dialogoCoordenadasRestaurante(perfil);
   }
 
   eliminarRestaurante(perfil: Perfil) {
@@ -74,6 +79,19 @@ export class ListaRestaurantesComponent implements OnInit, AfterViewInit {
       }
     };
     const dialogRef = this.dialog.open(NuevoResComponent, config);
+    dialogRef.afterClosed().subscribe(resultado => {
+      console.log(`Dialog result ${resultado}`);
+    });
+  }
+
+  dialogoCoordenadasRestaurante(perfil?: Perfil): void {
+    const config ={
+      data:{
+        mensaje: 'Cambiar coordenadas',
+        contenido: perfil
+      }
+    };
+    const dialogRef = this.dialog.open(EditCoordenadasModalComponent, config);
     dialogRef.afterClosed().subscribe(resultado => {
       console.log(`Dialog result ${resultado}`);
     });

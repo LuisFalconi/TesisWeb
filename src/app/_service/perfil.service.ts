@@ -215,6 +215,7 @@ export class PerfilService {
         direccionRestaurante: perfil.direccionRestaurante,
         imagenRes: this.UrlImagen,
         fileRef: this.filePath,
+        //coordenadas: perfil.coordenadas
         //resVerificado: ""
       };
       console.log("Estoy editando un restaurante");
@@ -236,7 +237,8 @@ export class PerfilService {
         direccionRestaurante: perfil.direccionRestaurante,
         imagenRes: this.UrlImagen,
         fileRef: this.filePath,
-        resVerificado: "En revisión"
+        resVerificado: "En revisión",
+        coordenadas: ""
       });
     }
    }
@@ -256,7 +258,8 @@ export class PerfilService {
       direccionRestaurante: perfil.direccionRestaurante,
       imagenRes: "",
       fileRef: "",
-      resVerificado: "En revisión"
+      resVerificado: "En revisión",
+      coordenadas: ""
     });
     //   const postObj = {
        

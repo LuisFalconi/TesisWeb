@@ -49,6 +49,8 @@ import { ModalEditRestaurantDuenoComponent } from './modal/modal-edit-restaurant
 import { EditRestauranteDuenoComponent } from './restaurantes/edit-restaurante-dueno/edit-restaurante-dueno.component';
 import { AppPassDirective } from './_directivas/app-pass.directive';
 import { InfoPerfilComponent } from './pages/info-perfil/info-perfil.component';
+import { EditCoordenadasModalComponent } from './modal/edit-coordenadas-modal/edit-coordenadas-modal.component';
+import { EditCoordenadasRestaurantComponent } from './restaurantes/edit-coordenadas-restaurant/edit-coordenadas-restaurant.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +89,8 @@ import { InfoPerfilComponent } from './pages/info-perfil/info-perfil.component';
     EditRestauranteDuenoComponent,
     AppPassDirective,
     InfoPerfilComponent,
+    EditCoordenadasModalComponent,
+    EditCoordenadasRestaurantComponent,
     
   ],
   imports: [
@@ -110,7 +114,8 @@ import { InfoPerfilComponent } from './pages/info-perfil/info-perfil.component';
     ModalEditRestautanteComponent,// Modal para editar Restaurante
     AddMenuModalComponent,
     EditMenuModalComponent,
-    ModalEditRestaurantDuenoComponent
+    ModalEditRestaurantDuenoComponent,
+    EditCoordenadasModalComponent
   ],
   providers: [
       AngularFirestore,

@@ -1,0 +1,41 @@
+<div class="restaurante-container">
+    <form [formGroup]="editCoorResForm" (ngSubmit)="editPerfil(editCoorResForm.value)" class="container" >
+        <!-- De esta manera uso el input -->
+        <!-- {{perfil | json}} -->
+        <mat-form-field class="example-full-width">
+            <h2>Restaurante</h2>
+            <input matInput placeholder="" formControlName="nombreRestaurante">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" >
+            <h2>Coordenadas</h2>
+            <input matInput placeholder="" formControlName="coordenadas" autocomplete="false">
+        </mat-form-field>
+<!-- 
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Estado del Restaurante" formControlName="resVerificado">
+        </mat-form-field> -->
+
+        <mat-form-field>
+            <mat-label>Estado</mat-label>
+            <mat-select placeholder="Tags" formControlName="resVerificado">
+                <mat-option value="En revisión">En Revisión</mat-option>
+                <mat-option value="Aprovado">Aprobado</mat-option>
+                <mat-option value="Rechazado">Rechazado</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button color="basic" type="submit" [mat-dialog-close]="true">
+            <mat-icon>done</mat-icon>
+            <span>Aceptar</span>
+        </button>
+        <mat-divider></mat-divider>
+        <br>
+    
+        <button mat-raised-button color="warn" type="button" [mat-dialog-close]="true">
+            <mat-icon>close</mat-icon>
+            <span>Cancelar</span>
+        </button>
+     
+    </form>
+</div>

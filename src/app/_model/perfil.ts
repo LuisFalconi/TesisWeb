@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs';
+import { GeoPoint } from '@google-cloud/firestore';
 export class Perfil{
     id?: string;
     nombreRestaurante: string;
@@ -11,4 +12,5 @@ export class Perfil{
     imagenRes?: any;
     fileRef?: string;
     resVerificado?: string;
+    coordenadas ?: string;
 }
