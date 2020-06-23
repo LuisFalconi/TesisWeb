@@ -48,7 +48,7 @@ public menuForm = new FormGroup({
     segundoAlmuerzo: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
     jugoAlmuerzo: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
     precioAlmuerzo: new FormControl('',  [Validators.required, Validators.minLength(1), Validators.maxLength(3), Validators.pattern(/^[1-9]/)]),
-    imgEsp: new FormControl('')
+    //imgEsp: new FormControl('')
   });
 
   ngOnInit() {
@@ -60,17 +60,16 @@ public menuForm = new FormGroup({
 
   addMenu(menu: Plato) {
     console.log('New menu', menu);
-    this.platoService.subirMenuconImagen(menu, this.file);
+    this.platoService.subirMenu(menu);
     this.router.navigate(['miMenu']);
   }
 
   // Funcion para mostrar el nombre del archivo seleccionado
-  seleccionar(e: any){
-    this.file = e.target.files[0];
-    this.labelFile = e.target.files[0].name;
-    console.log(this.file);
-    
-  }
+  // seleccionar(e: any){
+  //   this.file = e.target.files[0];
+  //   this.labelFile = e.target.files[0].name;
+  //   console.log(this.file);
+  // }
 
   cancelar(event: any){
     Swal.fire({

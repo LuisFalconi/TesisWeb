@@ -90,16 +90,12 @@ export class PlatoService {
     return this.afs.collection('plato').doc(plato.id).delete();
 }
 
-public editarMenu(plato: Plato, nuevaImagen?: imgMenu){
-  if(nuevaImagen){
-    this.obtenerImagen(plato, nuevaImagen);
-  }else{
+public editarMenu(plato: Plato){
     return this.platoCollection.doc(plato.id).update(plato);
-  }
 }
 
-subirMenuconImagen(menus: Plato, image: imgMenu): void{
-  this.subirImagen(menus, image);
+subirMenu(menus: Plato): void{
+  this.guardarMenu(menus);
 }
 
 
@@ -118,8 +114,8 @@ private guardarMenu(plato: Plato) {
           jugoAlmuerzo: plato.jugoAlmuerzo,
           segundoAlmuerzo: plato.segundoAlmuerzo,
           precioAlmuerzo: plato.precioAlmuerzo, 
-          imgPlato: this.UrlImagen,
-          fileRef: this.filePath
+          //imgPlato: this.UrlImagen,
+          //fileRef: this.filePath
         };
         console.log("Estoy editando un menu");
         console.log("ID: ", idExiste);
@@ -137,71 +133,71 @@ private guardarMenu(plato: Plato) {
           jugoAlmuerzo: plato.jugoAlmuerzo,
           segundoAlmuerzo: plato.segundoAlmuerzo,
           precioAlmuerzo: plato.precioAlmuerzo, 
-          imgPlato: this.UrlImagen,
-          fileRef: this.filePath
+          //imgPlato: this.UrlImagen,
+          //fileRef: this.filePath
         });
       }
  }
 
- private guardarMenuSinPlatoEspecial(plato: Plato) {
+//  private guardarMenuSinPlatoEspecial(plato: Plato) {
     
-  let idPlato = this.afs.createId();
-  plato.id = idPlato;
-  this.afs.collection('plato').doc(idPlato).set({
-    id: plato.id,
-    userUID: this.usuarioLogeado,
-    platoDesayuno: plato.platoDesayuno,
-    detalleDesayuno: plato.detalleDesayuno,
-    precioDesayuno: plato.precioDesayuno, 
-    entradaAlmuerzo: plato.entradaAlmuerzo,
-    jugoAlmuerzo: plato.jugoAlmuerzo,
-    segundoAlmuerzo: plato.segundoAlmuerzo,
-    precioAlmuerzo: plato.precioAlmuerzo, 
-    //platoEspecial: plato.platoEspecial,
-    imgPlato: "",
-    fileRef: ""
-  });
- }
+//   let idPlato = this.afs.createId();
+//   plato.id = idPlato;
+//   this.afs.collection('plato').doc(idPlato).set({
+//     id: plato.id,
+//     userUID: this.usuarioLogeado,
+//     platoDesayuno: plato.platoDesayuno,
+//     detalleDesayuno: plato.detalleDesayuno,
+//     precioDesayuno: plato.precioDesayuno, 
+//     entradaAlmuerzo: plato.entradaAlmuerzo,
+//     jugoAlmuerzo: plato.jugoAlmuerzo,
+//     segundoAlmuerzo: plato.segundoAlmuerzo,
+//     precioAlmuerzo: plato.precioAlmuerzo, 
+//     //platoEspecial: plato.platoEspecial,
+//     imgPlato: "",
+//     fileRef: ""
+//   });
+//  }
 
  
 
- private subirImagen(plato: Plato ,image?: imgMenu){
-  if(image){
-    this.filePath = `imagenesM/${image.names}`;
-    const fileRef = this.storage.ref(this.filePath);
-    const task = this.storage.upload(this.filePath, image);
-    task.snapshotChanges()
-      .pipe(
-        finalize(() => {
-        fileRef.getDownloadURL().subscribe(urlImage => {
-            this.UrlImagen = urlImage;
-            //console.log('urlImagen', this.UrlImagen);
-            this.guardarMenu(plato);     
-          });
-      })
-      ).subscribe();
-    }else{
-      this.guardarMenuSinPlatoEspecial(plato);
-    }
+//  private subirImagen(plato: Plato ,image?: imgMenu){
+//   if(image){
+//     this.filePath = `imagenesM/${image.names}`;
+//     const fileRef = this.storage.ref(this.filePath);
+//     const task = this.storage.upload(this.filePath, image);
+//     task.snapshotChanges()
+//       .pipe(
+//         finalize(() => {
+//         fileRef.getDownloadURL().subscribe(urlImage => {
+//             this.UrlImagen = urlImage;
+//             //console.log('urlImagen', this.UrlImagen);
+//             this.guardarMenu(plato);     
+//           });
+//       })
+//       ).subscribe();
+//     }else{
+//       this.guardarMenuSinPlatoEspecial(plato);
+//     }
 
-  }
+//   }
 
   // Estoy repitiendo codigo, lo se 
-  private obtenerImagen(plato: Plato ,image?: imgMenu){
-      this.filePath = `imagenesM/${image.names}`;
-      const fileRef = this.storage.ref(this.filePath);
-      const task = this.storage.upload(this.filePath, image);
-      task.snapshotChanges()
-        .pipe(
-          finalize(() => {
-          fileRef.getDownloadURL().subscribe(urlImage => {
-              this.UrlImagen = urlImage;
-              //console.log('urlImagen', this.UrlImagen);
-              this.guardarMenu(plato);     
-            });
-        })
-        ).subscribe();
-    }
+  // private obtenerImagen(plato: Plato ,image?: imgMenu){
+  //     this.filePath = `imagenesM/${image.names}`;
+  //     const fileRef = this.storage.ref(this.filePath);
+  //     const task = this.storage.upload(this.filePath, image);
+  //     task.snapshotChanges()
+  //       .pipe(
+  //         finalize(() => {
+  //         fileRef.getDownloadURL().subscribe(urlImage => {
+  //             this.UrlImagen = urlImage;
+  //             //console.log('urlImagen', this.UrlImagen);
+  //             this.guardarMenu(plato);     
+  //           });
+  //       })
+  //       ).subscribe();
+  //   }
   
 
 }

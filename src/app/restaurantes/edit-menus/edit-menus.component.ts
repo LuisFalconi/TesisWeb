@@ -11,9 +11,6 @@ import Swal from 'sweetalert2';
 })
 export class EditMenusComponent implements OnInit {
 
-  private imagen: any;
-  private imagenOriginal: any;
-
   // Lo que nos va pasar el modal
   @Input() menu: Plato;
   constructor(private platoSvc: PlatoService ) { }
@@ -26,13 +23,10 @@ export class EditMenusComponent implements OnInit {
     entradaAlmuerzo: new FormControl('',  [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
     jugoAlmuerzo: new FormControl('',  [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
     segundoAlmuerzo: new FormControl('',  [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
-    precioAlmuerzo: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(3), Validators.pattern(/^[1-9]/)]),
-    imagenPlato: new FormControl('')
+    precioAlmuerzo: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(3), Validators.pattern(/^[1-9]/)])
   });
 
   ngOnInit() {
-    this.imagen = this.menu.imgPlato;
-    this.imagenOriginal = this.menu.imgPlato;
     this.iniciarForm();
   }
 
@@ -45,24 +39,12 @@ export class EditMenusComponent implements OnInit {
         text: 'Error al editar el Menú!',
       }); 
     }else{
-      if(this.imagen === this.imagenOriginal){
-        menu.imgPlato = this.imagenOriginal;
-        console.log("No se cambio nada");
         this.platoSvc.editarMenu(menu);
         Swal.fire({
           icon: 'success',
           showConfirmButton: false,
           text: 'Menú editado!',
         });
-      }else{
-        console.log("Se cambio la imagen");
-        this.platoSvc.editarMenu(menu, this.imagen); 
-        Swal.fire({
-          icon: 'success',
-          showConfirmButton: false,
-          text: 'Menú editado!',
-        });
-      }
     }    
   }
 
@@ -74,9 +56,6 @@ export class EditMenusComponent implements OnInit {
     });
   }
 
-  seleccionar(event: any): void{
-    this.imagen = event.target.files[0];
-  }
 
   // Metodo que va recibir lo que tenga en el form @input = menu
   private iniciarForm():void{
@@ -89,7 +68,6 @@ export class EditMenusComponent implements OnInit {
       jugoAlmuerzo: this.menu.jugoAlmuerzo,
       segundoAlmuerzo:this.menu.segundoAlmuerzo,
       precioAlmuerzo:this.menu.precioAlmuerzo,
-      //imagenPlato: this.menu.imgPlato,
     });
   } 
 
