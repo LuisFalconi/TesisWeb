@@ -4,12 +4,12 @@
         <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
               <mat-card-title>
-                  {{perfil.nombreRestaurante}}                
+                  {{perfil.nombreRestaurante}}           
               </mat-card-title>
               <mat-card-subtitle>{{perfil.tipoRestaurante}}</mat-card-subtitle>
         </mat-card-header>
         <a [routerLink]="['/cliente', perfil.id]">
-          <img matCardImage [src]="perfil.imagenRes" *ngIf="perfil.imagenRes" width="500px" height="300px"/>               
+          <img matCardImage [src]="perfil.imagenRes" *ngIf="perfil.imagenRes ; else logo" width="500px" height="300px"/>               
         </a>
         <mat-card-content>
             <p>{{perfil.tipoRestaurante}}</p>
@@ -26,6 +26,10 @@
             <p>Cargando ....</p>
             <mat-spinner></mat-spinner>
           </div>
+        </ng-template>
+
+        <ng-template #logo>
+          <img src="assets/perfil.png" alt="logo" #logo>
         </ng-template>
 
         

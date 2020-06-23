@@ -8,9 +8,9 @@
     <button mat-button routerLink='/crearUsuario' color="primary">Crear Usuario</button>
   </mat-toolbar> -->
 
-  <div style="margin: 50px;">
+  <div class="home">
     <div>
-        <mat-tab-group style="margin-left: 50px;">
+        <mat-tab-group class="tab" mat-align-tabs="center" animationDuration="1000ms">
             <mat-tab label="¿Quiénes somos?">
               <p>Food truck fixie locavore, accusamus mcsweeney's 
                 marfa nulla single-origin coffee squid. Exercitation 
@@ -19,7 +19,7 @@
                 Qui photo booth letterpress, commodo enim craft beer mlkshk 
                 aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud 
                 organic, assumenda labore aesthetic magna delectus mollit.</p>
-                <img src="assets/food.jpg" width="650" style="margin-left:30px;">
+                <img src="assets/food.jpg" width="100%" style="margin: 5%;">
             </mat-tab>
             <mat-tab label="Nuestros clientes">
               <p>Food truck fixie locavore, accusamus mcsweeney's 
@@ -29,7 +29,7 @@
                 Qui photo booth letterpress, commodo enim craft beer mlkshk 
                 aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud 
                 organic, assumenda labore aesthetic magna delectus mollit.</p>
-                <img src="assets/food.jpg" width="650" style="margin-left:30px;">
+                <img src="assets/food.jpg" width="100%">
                 <div style="text-align: center;">
                   <app-cliente></app-cliente>
                 </div>
@@ -42,6 +42,10 @@
             </mat-tab>
             <mat-tab label="Menu del Dia">
               <p>Al Día</p>
+               <app-menus></app-menus>
+            </mat-tab>
+            <mat-tab label="Promociones">
+              <p>Promociones</p>
                <app-menus></app-menus>
             </mat-tab>
           </mat-tab-group>
