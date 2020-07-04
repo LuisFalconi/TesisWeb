@@ -10,5 +10,6 @@ export class Perfil{
     imagenRes?: any;
     fileRef?: string;
     resVerificado?: string;
-    coordenadas ?: string;
+    latitud ?: number;
+    longitud?: number;
 }

@@ -23,7 +23,8 @@ export class EditCoordenadasRestaurantComponent implements OnInit {
   public editCoorResForm = new FormGroup({
     id: new FormControl (''),
     nombreRestaurante: new FormControl ({value: '', disabled: true },Validators.required),  
-    coordenadas:  new FormControl ({value: '', disabled: false },Validators.required),
+    latitud:  new FormControl ({value: '', disabled: false },Validators.required),
+    longitud:  new FormControl ({value: '', disabled: false },Validators.required),
     resVerificado: new FormControl ({value: '', disabled: true}, Validators.required)
   });
 
@@ -56,7 +57,8 @@ export class EditCoordenadasRestaurantComponent implements OnInit {
     this.editCoorResForm.patchValue({
       id: this.perfil.id,
       nombreRestaurante: this.perfil.nombreRestaurante,
-      coordenadas: this.perfil.coordenadas,
+      latitud: this.perfil.latitud,
+      longitud: this.perfil.longitud,
       //tipoRestaurante: this.perfil.tipoRestaurante, 
       //capacidadRestaurante: this.perfil.capacidadRestaurante,
       //horarioRestaurante: this.perfil.horaApertura,

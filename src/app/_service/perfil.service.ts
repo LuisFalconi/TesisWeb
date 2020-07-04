@@ -238,7 +238,8 @@ export class PerfilService {
         imagenRes: this.UrlImagen,
         fileRef: this.filePath,
         resVerificado: "En revisión",
-        coordenadas: ""
+        latitud: "",
+        longitud: ""
       });
     }
    }
@@ -259,7 +260,8 @@ export class PerfilService {
       imagenRes: "",
       fileRef: "",
       resVerificado: "En revisión",
-      coordenadas: ""
+      latitud: "",
+      longitud: ""
     });
     //   const postObj = {
        
