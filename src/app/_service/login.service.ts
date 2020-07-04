@@ -78,7 +78,7 @@ export class LoginService {
   private oAuthLogin(provider: any) {
     return this.afa.auth.signInWithPopup(provider).then( credencial => {
       console.log("Credencial", credencial.user);
-      console.log("Credencial", credencial.user);
+      console.log("Credencial ??", credencial.user);
       this.actualizarUsuarioDataSocial(credencial.user);
     });
   }
@@ -128,8 +128,8 @@ export class LoginService {
       if (data) {
         const datos: Usuario = {
           uid: usuario.uid,
-          //nombre: data.nombre,
-          //telefono: data.telefono,
+          nombre: usuario.displayName,
+          numero: usuario.phoneNumber,
           email: usuario.email,
           roles: data.roles
         }
@@ -138,8 +138,8 @@ export class LoginService {
         const datos: Usuario = {
           uid: usuario.uid,
           email: usuario.email,
-          //telefono: usuario.telefono,
-          //nombre: usuario.nombre,
+          numero: usuario.phoneNumber,
+          nombre: usuario.displayName,
           roles: ['dueño']
         }
         return userRef.set(datos);
