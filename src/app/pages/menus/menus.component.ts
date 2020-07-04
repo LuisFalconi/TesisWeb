@@ -6,6 +6,8 @@ import { FunctionService } from '../../_service/function.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { PerfilService } from '../../_service/perfil.service';
 import { Perfil } from '../../_model/perfil';
+import { Usuario } from 'src/app/_model/usuario';
+import { UsuarioService } from '../../_service/usuario.service';
 
 @Component({
   selector: 'app-menus',
@@ -25,11 +27,16 @@ export class MenusComponent implements OnInit {
 
   perfil: Perfil[];
 
+  restaurante: Perfil[];
+  menu: Plato[];
+  usuario: Usuario[];
+
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true}) sort: MatSort;
 
   constructor(private platoService: PlatoService, 
-              private PerfilService: PerfilService) { }
+              private PerfilService: PerfilService,
+              private UsuarioSVS: UsuarioService) { }
 
   ngOnInit() {
 
@@ -49,9 +56,16 @@ export class MenusComponent implements OnInit {
     })
 
     this.PerfilService.recuperarDatos().subscribe( data =>{
-      console.log("Datos", data);
-      
+      this.restaurante = data;
     });
+
+    this.platoService.recuperarMenus().subscribe(data =>{
+      this.menu = data;
+    });
+
+    this.UsuarioSVS.recuperarDatos().subscribe(data =>{
+      this.usuario = data;
+    })
   }
 
 }
