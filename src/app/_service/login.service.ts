@@ -60,14 +60,14 @@ export class LoginService {
     return this.afa.auth.sendPasswordResetEmail(email);
   }
 
-  registrarUsuario(usuario: string, clave: string, nombre: string, telefono:string) {
+  registrarUsuario(usuario: string, clave: string, nombre: string, numero:string) {
     return this.afa.auth.createUserWithEmailAndPassword(usuario, clave).then( res =>{
       const uid = res.user.uid;
       this.afs.collection('usuarios').doc(uid).set({
        email: usuario,
        //clave: clave, 
        uid: uid,
-       telefono: telefono,
+       numero: numero,
        nombre: nombre,
        roles: ['dueño']
       }); 
@@ -95,7 +95,7 @@ export class LoginService {
         const datos: Usuario = {
           uid: usuario.uid,
           nombre: data.nombre,
-          telefono: data.telefono,
+          numero: data.numero,
           email: usuario.email,
           roles: data.roles
         }
@@ -104,7 +104,7 @@ export class LoginService {
         const datos: Usuario = {
           uid: usuario.uid,
           email: usuario.email,
-          telefono: usuario.telefono,
+          numero: usuario.numero,
           nombre: usuario.nombre,
           roles: ['dueño']
         }

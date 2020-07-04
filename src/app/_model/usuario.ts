@@ -3,5 +3,5 @@ export class Usuario {
     email: string;
     roles: string[];
     nombre?: string;
-    telefono?: string;
+    numero?: string;
 }
