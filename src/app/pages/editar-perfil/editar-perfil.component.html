@@ -1,83 +1,68 @@
 <router-outlet></router-outlet>
-<div style="margin: 45px; padding: 10px;">
-      
-      <mat-table [dataSource]= "dataSource" matSort >
-          <!-- <mat-cell *matCellDef="let row">
-            <div *ngIf="usuarioLog == row.userUID"> -->
-                <ng-container matColumnDef="nombreR">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>Restaurante</mat-header-cell> 
-                    <mat-cell *matCellDef="let row"> {{row.nombreRestaurante}}</mat-cell>
-                </ng-container>
-            
-                <ng-container matColumnDef="tipoR">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>Tipo</mat-header-cell> 
-                    <mat-cell *matCellDef="let row"> {{row.tipoRestaurante}} </mat-cell>
-                </ng-container>
-    
-                <ng-container matColumnDef="direccionR">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>Direccion</mat-header-cell> 
-                  <mat-cell *matCellDef="let row"> {{row.direccionRestaurante}}</mat-cell>
-                </ng-container>
-    
-                <ng-container matColumnDef="horarioA">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>Hora de Apertura</mat-header-cell> 
-                    <mat-cell *matCellDef="let row"> {{row.horaApertura}} &nbsp; A.M</mat-cell>
-                </ng-container>
 
-                <ng-container matColumnDef="horarioC">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>Hora de Cierre</mat-header-cell> 
-                    <mat-cell *matCellDef="let row"> {{row.horaCierre}} &nbsp; PM</mat-cell>
-                </ng-container>
-            
-                <ng-container matColumnDef="capacidadR">
-                    <mat-header-cell *matHeaderCellDef mat-sort-header>Capacidad</mat-header-cell> 
-                <mat-cell *matCellDef="let row"> {{row.capacidadRestaurante}} &nbsp; personas </mat-cell>
-                </ng-container>
+      <div sclass="example-container mat-elevation-z8">
 
-            <!-- </div>
-          </mat-cell> -->
+        <mat-table [dataSource]= "dataSource" matSort >
+            <ng-container matColumnDef="nombreR">
+                <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="Restaurante"> {{row.nombreRestaurante}}</mat-cell>
+            </ng-container>
 
-          <ng-container matColumnDef="acciones">
-              <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell> 
-              <mat-cell *matCellDef="let row">
-                <div *ngIf="usuarioLog == row.userUID"> 
-                        <button mat-icon-button color="primary" (click)="editarRestaurante(row)">
-                            <mat-icon arial-label="Actualizar">edit</mat-icon>
-                        </button>
-                    <!-- <button mat-icon-button color="primary" [routerLink]="['edicion', row.id]">
-                        <mat-icon arial-label="Actualizar">assignment</mat-icon>
-                    </button> -->
-                </div>
-                <div *ngIf="usuarioLog == row.userUID">
-                    <button mat-icon-button color="accent" (click)="eliminar(row)">
-                        <mat-icon arial-label="Eliminar">highlight_off</mat-icon>
-                    </button> 
-                </div>
-                <!-- <div *ngIf="usuarioLog == row.userUID && row.userUID == null">
-                    <button mat-icon-button color="primary" routerLink='/editar/nuevo'>
-                        <mat-icon arial-label="">create</mat-icon>
-                    </button> 
-                </div> -->
-              </mat-cell>
-          </ng-container>
-          
-          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
+            <ng-container matColumnDef="tipoR">
+                <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="Tipo"> {{row.tipoRestaurante}} </mat-cell>
+            </ng-container>
 
-      <!-- <mat-paginator [pageSize]="10" [pageSizeOptions]="[5,10,25,100]"></mat-paginator> -->
-        <!-- <button mat-fab color="accent" style="float: right;" routerLink='/editar/nuevo'>
-            <mat-icon>send</mat-icon>
-        </button> -->
-      <p>Usuario Loguedo</p>
+            <ng-container matColumnDef="direccionR">
+                <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="Dirección"> {{row.direccionRestaurante}}</mat-cell>
+            </ng-container>
 
-      <mat-list role="list">
-        <mat-list-item role="listitem">{{"ID: " + usuarioLog}}</mat-list-item>
-        <mat-list-item role="listitem">{{useremailLog}}</mat-list-item>
-    </mat-list>
+            <ng-container matColumnDef="horarioA">
+                <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="Hora de Apertura"> {{row.horaApertura}} &nbsp; A.M</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="horarioC">
+                <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="Hora de Cierre"> {{row.horaCierre}} &nbsp; PM</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="capacidadR">
+                <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="Capacidad"> {{row.capacidadRestaurante}} &nbsp; personas </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="acciones">
+
+                <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                  <div *ngIf="usuarioLog == row.userUID">
+                          <button mat-icon-button color="primary" (click)="editarRestaurante(row)">
+                              <mat-icon arial-label="Actualizar">edit</mat-icon>
+                          </button>
+                      <!-- <button mat-icon-button color="primary" [routerLink]="['edicion', row.id]">
+                          <mat-icon arial-label="Actualizar">assignment</mat-icon>
+                      </button> -->
+                  </div>
+                  <div *ngIf="usuarioLog == row.userUID">
+                      <button mat-icon-button color="accent" (click)="eliminar(row)">
+                          <mat-icon arial-label="Eliminar">highlight_off</mat-icon>
+                      </button>
+                  </div>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+
+
+      </div>
+
 
     <div  *ngFor="let p of perfil$ | async ">
-        <div *ngIf="usuarioLog == p.userUID">
+        <div *ngIf="usuarioLog == p.userUID && p.imagenRes" >
             <mat-card class="example-card">
                 <mat-card-header>
                     <h3>Foto Restaurante</h3>
@@ -88,4 +73,3 @@
             </mat-card>
         </div>
     </div>
-</div>

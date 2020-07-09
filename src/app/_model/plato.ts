@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs';
 export class Plato {
     id?: string;
     platoDesayuno: string;

@@ -20,7 +20,14 @@ import { ModalEditRestaurantDuenoComponent } from '../../modal/modal-edit-restau
 export class EditarPerfilComponent implements OnInit, OnDestroy {
 
   dataSource: MatTableDataSource<Perfil>;
+  dataSource1: MatTableDataSource<Perfil>;
+  dataSource2: MatTableDataSource<Perfil>;
+  dataSource3: MatTableDataSource<Perfil>;
+
   displayedColumns = ['nombreR','tipoR', 'direccionR', 'horarioA', 'horarioC',  'capacidadR', 'acciones'];
+  displayedColumns1 = ['nombreR','tipoR', 'acciones'];
+  displayedColumns2 = ['direccionR','capacidadR', 'acciones'];
+  displayedColumns3 = ['horarioA','horarioC', 'acciones'];
 
   private ngUnsubscribe: Subject<void> = new Subject();// Se crear la variable para liberar recursos
   usuarioLog: string;
@@ -57,6 +64,9 @@ export class EditarPerfilComponent implements OnInit, OnDestroy {
               //console.log("Si");
               this.loginuserlog = [x];
               this.dataSource = new MatTableDataSource(this.loginuserlog);
+              this.dataSource1 = new MatTableDataSource(this.loginuserlog); 
+              this.dataSource2 = new MatTableDataSource(this.loginuserlog); 
+              this.dataSource3 = new MatTableDataSource(this.loginuserlog); 
             }else{
               console.log("No");
               this.dataSource = new MatTableDataSource(this.loginuserlog);

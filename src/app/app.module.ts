@@ -51,6 +51,7 @@ import { AppPassDirective } from './_directivas/app-pass.directive';
 import { InfoPerfilComponent } from './pages/info-perfil/info-perfil.component';
 import { EditCoordenadasModalComponent } from './modal/edit-coordenadas-modal/edit-coordenadas-modal.component';
 import { EditCoordenadasRestaurantComponent } from './restaurantes/edit-coordenadas-restaurant/edit-coordenadas-restaurant.component';
+import { PromocionesInicioComponent } from './pages/promociones/promociones-inicio/promociones-inicio.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { EditCoordenadasRestaurantComponent } from './restaurantes/edit-coordena
     InfoPerfilComponent,
     EditCoordenadasModalComponent,
     EditCoordenadasRestaurantComponent,
+    PromocionesInicioComponent,
     
   ],
   imports: [

@@ -8,7 +8,7 @@
       </mat-card-header>
       <img matCardImage class="imagen-card" [src]="perfil.imagenRes" *ngIf="perfil.imagenRes ; else logo" />
       <mat-card-content>
-        <h3>Dirección:  <span>{{perfil.direccionRestaurante}} </span> </h3>
+        <h3>Dirección: </h3> {{perfil.direccionRestaurante}}  
         <h3>Capacidad: </h3>{{perfil.capacidadRestaurante}} &nbsp;Personas
         <h3>Hora de Apertura:</h3> {{perfil.horaApertura}} &nbsp; A.M
         <h3>Hora de Cierre: </h3>{{perfil.horaCierre}} &nbsp; P.M

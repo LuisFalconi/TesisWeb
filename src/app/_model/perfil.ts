@@ -12,4 +12,7 @@ export class Perfil{
     resVerificado?: string;
     latitud ?: number;
     longitud?: number;
+
+    // auxialiar: 
+    // suma :
 }

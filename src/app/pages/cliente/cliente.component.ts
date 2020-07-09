@@ -7,6 +7,7 @@ import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { Plato } from '../../_model/plato';
 import { PlatoService } from '../../_service/plato.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-cliente',
@@ -19,8 +20,10 @@ export class ClienteComponent implements OnInit {
   //plato$: Observable<Plato[]>;
 
 
-
-  constructor(private perfilService: PerfilService, private route: ActivatedRoute, private platoService: PlatoService) { }
+  constructor(private perfilService: PerfilService, 
+              private route: ActivatedRoute, 
+              private platoService: PlatoService,
+              private afa: AngularFireAuth) { }
 
   // dataSource: MatTableDataSource<Perfil>;
   // displayedColumns = ['nombreR', 'fotoR' ,'tipoR', 'direccionR', 'horarioR', 'capacidadR'];
@@ -30,6 +33,9 @@ export class ClienteComponent implements OnInit {
   @ViewChild(MatSort, { static: true}) sort: MatSort;
 
   ngOnInit() {
+
+    // let currenUser = this.afa.auth.currentUser;
+    // this.usuarioLogueado = currenUser.uid;
 
     // this.perfilService.listar().subscribe((data =>{
     //   console.log(data);

@@ -8,6 +8,8 @@ import { PerfilService } from '../../_service/perfil.service';
 import { Perfil } from '../../_model/perfil';
 import { Usuario } from 'src/app/_model/usuario';
 import { UsuarioService } from '../../_service/usuario.service';
+import { Promocion } from '../../_model/promocion';
+import { PromocionService } from '../../_service/promocion.service';
 
 @Component({
   selector: 'app-menus',
@@ -16,16 +18,16 @@ import { UsuarioService } from '../../_service/usuario.service';
 })
 export class MenusComponent implements OnInit {
 
-  dataSource: MatTableDataSource<Plato>;
-  dataSource2: MatTableDataSource<Plato>;
-  dataSource3: MatTableDataSource<Plato>;
-  dataSource4: MatTableDataSource<Perfil>;
-  displayedColumns1 = ['platoDes', 'detalleDes' ,'precioDes','userUid']; // Datos que se va amostrar en la tabla
-  displayedColumns2 = ['platoAlm', 'detalleAlm' ,'precioAlm','userUid']; // Datos que se va amostrar en la tabla
-  displayedColumns3 = ['platoEsp', 'detalleEsp' ,'precioEsp','userUid'];
-  displayedColumns4 = ['nombreRes']; // Datos que se va amostrar en la tabla
+  // dataSource: MatTableDataSource<Plato>;
+  // dataSource2: MatTableDataSource<Plato>;
+  // dataSource3: MatTableDataSource<Plato>;
+  // dataSource4: MatTableDataSource<Perfil>;
+  // displayedColumns1 = ['platoDes', 'detalleDes' ,'precioDes','userUid']; // Datos que se va amostrar en la tabla
+  // displayedColumns2 = ['platoAlm', 'detalleAlm' ,'precioAlm','userUid']; // Datos que se va amostrar en la tabla
+  // displayedColumns3 = ['platoEsp', 'detalleEsp' ,'precioEsp','userUid'];
+  // displayedColumns4 = ['nombreRes']; // Datos que se va amostrar en la tabla
 
-  perfil: Perfil[];
+  // perfil: Perfil[];
 
   restaurante: Perfil[];
   menu: Plato[];
@@ -36,24 +38,10 @@ export class MenusComponent implements OnInit {
 
   constructor(private platoService: PlatoService, 
               private PerfilService: PerfilService,
-              private UsuarioSVS: UsuarioService) { }
+              private UsuarioSVS: UsuarioService,
+  ) { }
 
   ngOnInit() {
-
-     // Programacion reactiva:s
-     this.platoService.listar().subscribe(data => {
-
-          this.dataSource = new MatTableDataSource(data);
-          this.dataSource2 = new MatTableDataSource(data);
-          this.dataSource3 = new MatTableDataSource(data);
-          this.dataSource.paginator = this.paginator;
-          this.dataSource2.paginator = this.paginator;
-          this.dataSource3.paginator = this.paginator;
-    });
-
-    this.PerfilService.listar().subscribe(datos =>{
-      this.dataSource4 = new MatTableDataSource(datos);
-    })
 
     this.PerfilService.recuperarDatos().subscribe( data =>{
       this.restaurante = data;
@@ -65,7 +53,8 @@ export class MenusComponent implements OnInit {
 
     this.UsuarioSVS.recuperarDatos().subscribe(data =>{
       this.usuario = data;
-    })
+    });
+
   }
 
 }

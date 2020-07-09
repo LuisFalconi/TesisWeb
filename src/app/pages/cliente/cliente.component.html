@@ -1,9 +1,9 @@
 <div class="container" *ngIf="perfil$ | async as perfil; else loading">
     <!-- {{ perfil$ | async | json}} -->
+
     <div  *ngFor="let perfil of perfil">
       <div *ngIf="perfil.resVerificado.toString() === 'Aprovado'">
         <mat-card class="example-card">
-          <div >
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"></div>
                   <mat-card-title>{{perfil.nombreRestaurante}}</mat-card-title>
@@ -13,11 +13,27 @@
             <a [routerLink]="['/cliente', perfil.id]">
               <img matCardImage [src]="perfil.imagenRes" *ngIf="perfil.imagenRes ; else logo" width="500px" height="300px"/>               
             </a>
-          </div>
         </mat-card>
       </div>
     </div>
 </div>
+
+
+<!-- <div *ngIf="perfil$ | async as perfil">
+  <div *ngFor="let p of perfil">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{p.nombreRestaurante}}</mat-card-title>
+        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div> -->
+
 
         <ng-template #loading>
           <div class="spinner">

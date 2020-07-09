@@ -32,18 +32,18 @@ export class PlatoService {
         this.usuarioLogeado = data.uid;
       }
     });
-    this.platoCollection = afs.collection<Plato>('plato');
+    this.platoCollection = afs.collection<Plato>('platos');
 
    }
 
    listar() {
-     return this.afs.collection<Plato>('plato').valueChanges();
+     return this.afs.collection<Plato>('platos').valueChanges();
    }
 
    // Metodo recuperar los datos de la coleccion de Perfil, iterando por el id que devuelve 
   recuperarMenus(): Observable<Plato[]>{
     return this.afs
-      .collection('plato')
+      .collection('platos')
       .snapshotChanges()
       .pipe(
         map(actions => actions.map(a =>{
@@ -59,7 +59,7 @@ export class PlatoService {
      // Debido a que estamos validadndo en lato edicion que se guarde con el IDno necesitamos esto
      // let idPlato = this.afs.createId();
      // plato.id = idPlato;
-     return this.afs.collection('plato').doc(plato.id).set({
+     return this.afs.collection('platos').doc(plato.id).set({
       id: plato.id,
       userUID: plato.userUID,
       platoDesayuno: plato.platoDesayuno,
@@ -79,15 +79,15 @@ export class PlatoService {
     // return this.afs.collection('plato').doc(plato.id).set(JSON.parse(JSON.stringify(plato)));
     // Objetc.assign() Para transformar el contenido de un objeto normal a un 
     // tipo JSOn una mejor forma de JSON.parse
-    return this.afs.collection('plato').doc(plato.id).set(Object.assign({}, plato));	
+    return this.afs.collection('platos').doc(plato.id).set(Object.assign({}, plato));	
   }
 
   leer(documentId: string){
-      return this.afs.collection<Plato>('plato').doc(documentId).valueChanges();
+      return this.afs.collection<Plato>('platos').doc(documentId).valueChanges();
   }
 
   eliminar(plato: Plato){
-    return this.afs.collection('plato').doc(plato.id).delete();
+    return this.afs.collection('platos').doc(plato.id).delete();
 }
 
 public editarMenu(plato: Plato){
@@ -123,7 +123,7 @@ private guardarMenu(plato: Plato) {
       }else{      
         let idPlato = this.afs.createId();
         plato.id = idPlato;
-        this.afs.collection('plato').doc(idPlato).set({
+        this.afs.collection('platos').doc(idPlato).set({
           id: plato.id,
           userUID: this.usuarioLogeado,
           platoDesayuno: plato.platoDesayuno,
