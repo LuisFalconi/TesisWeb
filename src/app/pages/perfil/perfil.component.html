@@ -1,9 +1,10 @@
-<mat-card>{{usuario}}</mat-card>
-<mat-card>{{usuarioLog}}</mat-card>
+<div class="div-scrollable">
+    <mat-card>{{usuario}}</mat-card>
+    <mat-card>{{usuarioLog}}</mat-card>
 <!-- <mat-card> Creado el: {{desde | date: 'dd-MM--yyyy' }}</mat-card>
 <mat-card> Ultima Conexion {{ultimaConexion | date: 'dd-MM-yyyy'}}</mat-card> -->
 
-<mat-card>Tipo de Sesion {{usuarioSocial}}</mat-card>
+    <mat-card>Tipo de Sesion {{usuarioSocial}}</mat-card>
 <!-- <img mat-card-image [src]="fotoSocial" style="height: 60px; width: 60px;" *ngIf="fotoSocial"> -->
 <!-- <div style="text-align: center;">
     <mat-list role="list" *ngFor="let p of perfil" style="text-align: center;">
@@ -63,6 +64,9 @@
             </div>
         </div>
     </div>  
+</div>
+
+    
 </div>
 
 

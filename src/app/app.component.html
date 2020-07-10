@@ -1,12 +1,11 @@
-<mat-toolbar  class="body-content" color="Warm" *ngIf="loginService.noEstaLogeado()">
+<mat-toolbar color="warm" *ngIf="loginService.noEstaLogeado()">
     <a routerLink="/"><mat-icon>fastfood</mat-icon></a>
     <span> MuertosDeHambre.com</span>
 
     <span class="example-fill-remaining-space"></span>
   
     <button mat-button (click)="irLogin()" color="primary">Iniciar Sesión</button>
-    <!-- <button mat-button routerLink='/crearUsuario' color="primary">Crear Usuario</button> -->
-  </mat-toolbar>
+</mat-toolbar>
 
 <mat-sidenav-container class="all-wrap" fullscream>
 
@@ -20,39 +19,11 @@
             </button>
         </div>
 
-        <!-- <button mat-menu-item (click)="sidenav.toggle()" routerLink="/consulta" style="cursor: pointer;">
-            <mat-icon>search</mat-icon>
-            <span>Consultas</span>
-        </button>
-        <mat-divider></mat-divider>
-
-        <button mat-menu-item (click)="sidenav.toggle()" routerLink="/consumo" style="cursor: pointer;">
-            <mat-icon>search</mat-icon>
-            <span>Consumos</span>
-        </button>
-        <mat-divider></mat-divider>
-
-        <button mat-menu-item (click)="sidenav.toggle()" routerLink="/cliente" style="cursor: pointer;">
-            <mat-icon>search</mat-icon>
-            <span>Clientes</span>
-        </button>
-        <mat-divider></mat-divider>
-
-        <button mat-menu-item (click)="sidenav.toggle()" routerLink="/plato" style="cursor: pointer;">
-            <mat-icon>search</mat-icon>
-            <span>Platos</span>
-        </button>
-        <mat-divider></mat-divider>
-
-        <button mat-menu-item (click)="sidenav.toggle()" routerLink="/reporte" style="cursor: pointer;">
-            <mat-icon>search</mat-icon>
-            <span>Reportes</span>
-        </button> -->
     </mat-sidenav>
 
     <div class="page-wrap">
         <header role="banner" *ngIf="loginService.estaLogeado()">
-            <mat-toolbar color="primary" class="example-toolbar">
+            <mat-toolbar color="warm">
                 <button mat-icon-button (click)="sidenav.toggle()">
                     <mat-icon *ngIf="!sidenav.opened">fastfood</mat-icon>
                     <mat-icon *ngIf="sidenav.opened">restaurant_menu</mat-icon>
@@ -62,29 +33,35 @@
 
                 <span class="spacer"></span>
 
+                <button mat-button routerLink="/" color="primary">Inicio</button>
+                <button mat-button routerLink="/infoPerfil" color="primary">Perfil</button>
+
                 <button mat-icon-button [matMenuTriggerFor]="menu">
                     <mat-icon>more_vert</mat-icon>
                 </button>
 
+
                 <mat-menu #menu="matMenu">
-                    <button mat-menu-item routerLink="/inicio">
-                        <mat-icon>account_box</mat-icon>
-                        <span>Mi Perfil</span>
-                    </button>
                     <button mat-menu-item (click)="loginService.cerrarSesion()" (click)="sidenav.opened = false">
                         <mat-icon>exit_to_app</mat-icon>
                         <span>Cerrar Sesión</span>
+                    </button>
+                    <button mat-menu-item routerLink="/infoPerfil">
+                        <mat-icon>account_box</mat-icon>
+                        <span>About</span>
                     </button>
                 </mat-menu>
             </mat-toolbar>
         </header>
 
         <main class="content">
-            <router-outlet></router-outlet>
+            <div class="div-scrollable">
+                <router-outlet></router-outlet>
+            </div>
         </main>
 
         <footer class="footer">
-            Muertos de Hambre Network - 2020 | Angular Firebase
+            Muertos de Hambre Network - 2020 | Angular - Firebase
         </footer>
 
     </div>
