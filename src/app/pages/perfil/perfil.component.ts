@@ -8,6 +8,7 @@ import { PlatoService } from '../../_service/plato.service';
 import { MatDialog } from '@angular/material';
 import { ModalComponent } from '../../modal/modal/modal.component';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -20,6 +21,7 @@ export class PerfilComponent implements OnInit {
   ultimaConexion: string;
   desde: string;
   usuarioSocial: string;
+  emailVerificado: boolean;
   fotoSocial: string;
 
   perfil : Perfil[];
@@ -31,16 +33,26 @@ export class PerfilComponent implements OnInit {
 
   perfil$: Observable<Perfil[]>;
 
+
+
   
   constructor(private afa: AngularFireAuth, private perfilService: PerfilService,
               private loginService: LoginService,
               private platoService: PlatoService,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private route: Router) { }
 
   ngOnInit() {
     let currenUser = this.afa.auth.currentUser;
     this.usuario = currenUser.phoneNumber;
     this.usuarioLog = currenUser.uid;
+
+    // variable para validar si el correo del usuaro 
+    this.emailVerificado = currenUser.emailVerified;
+
+
+
+
 
     //this.ultimaConexion = currenUser.metadata.lastSignInTime;
     //this.desde = currenUser.metadata.creationTime;
@@ -83,6 +95,11 @@ export class PerfilComponent implements OnInit {
         return false;
       }
     }
+
+
+  enviarEmail(){
+    this.route.navigate(['/verificacionE']);
+  }
   
     onNewPost() {
       this.openDialog();

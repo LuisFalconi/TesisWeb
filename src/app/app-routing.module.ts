@@ -24,6 +24,7 @@ import { ListaUsuariosComponent } from './usuarios/lista-usuarios/lista-usuarios
 import { ValidacionComponent } from './pages/validacion/validacion.component';
 import { VerificacionRestaurantesComponent } from './usuarios/verificacion-restaurantes/verificacion-restaurantes.component';
 import { InfoPerfilComponent } from './pages/info-perfil/info-perfil.component';
+import { VerficacionEmailComponent } from './pages/verficacion-email/verficacion-email.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,7 @@ const routes: Routes = [
   {path: 'listaR', component: ListaRestaurantesComponent, canActivate: [LoginGuardService]},
   {path: 'listaU', component: ListaUsuariosComponent, canActivate: [LoginGuardService]},
   {path: 'verificacionR', component: VerificacionRestaurantesComponent, canActivate: [LoginGuardService]},
+  {path: 'verificacionE', component: VerficacionEmailComponent},
   {path: 'cliente/:id', component: ListaClientesComponent},
   {path: 'cliente', component: ClienteComponent},
   {path: 'menus', component: MenusComponent},

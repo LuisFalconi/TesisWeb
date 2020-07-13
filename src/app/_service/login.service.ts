@@ -37,9 +37,15 @@ export class LoginService {
   // Login con correo
   login(usuario: string, clave: string){
     return this.afa.auth.signInWithEmailAndPassword(usuario, clave).then(res =>{
-      console.log(res);
+      console.log("mailverificado??", res.user.emailVerified);
       this.actualizarUsuarioData(res.user);
-    })
+      if(res.user.emailVerified){
+        this.actualizarUsuarioData(res.user);
+        this.route.navigate(['/infoPerfil']);
+      }else if(res.user.emailVerified === false){
+        this.route.navigate(['verificacionE']);
+      }
+    });
   }
 
   // Login con facebook
@@ -60,17 +66,27 @@ export class LoginService {
     return this.afa.auth.sendPasswordResetEmail(email);
   }
 
+  enviarVerificacionEmail(){
+    return (this.afa.auth.currentUser).sendEmailVerification();
+  }
+
   registrarUsuario(usuario: string, clave: string, nombre: string, numero:string) {
     return this.afa.auth.createUserWithEmailAndPassword(usuario, clave).then( res =>{
+      //this.enviarVerificacionEmail();
       const uid = res.user.uid;
-      this.afs.collection('usuarios').doc(uid).set({
-       email: usuario,
-       //clave: clave, 
-       uid: uid,
-       numero: numero,
-       nombre: nombre,
-       roles: ['dueño']
-      }); 
+        this.afs.collection('usuarios').doc(uid).set({
+         email: usuario,
+         //clave: clave, 
+         uid: uid,
+         numero: numero,
+         nombre: nombre,
+         roles: ['dueño']
+        });
+      if(res.user.emailVerified){
+        this.route.navigate(['infoPerfil']);
+      }else{
+        this.route.navigate(['verificacionE']);
+      }
     });
   }
 
@@ -155,6 +171,13 @@ export class LoginService {
     });
   }
 
+  cerrarSesion2(){
+    return this.afa.auth.signOut().then( ()=> {
+      //window.location.reload() // Esto permite recargar la pagina al cerrar sesion, y asi simular que se esta liberando recursos
+      this.route.navigate(['login']);
+    });
+  }
+
   estaLogeado(){
     return this.afa.auth.currentUser != null;
   }
@@ -162,6 +185,8 @@ export class LoginService {
   noEstaLogeado(){
     return this.afa.auth.currentUser == null;
   }
+
+
 
 
 } 

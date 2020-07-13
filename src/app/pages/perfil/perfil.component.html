@@ -20,6 +20,7 @@
         </div>
     </mat-list>
 </div> -->
+
 <div style="text-align: center;">
     <div  *ngFor="let p of perfil$ | async ">
         <div *ngIf="usuarioLog == p.userUID">
@@ -48,13 +49,24 @@
         </div>
     </div>
 
-<div *ngIf="validacion(valor) == false">
-    
-    <p>Deseas agregar informacion de tu restaurante ahora?</p>
-    <button mat-stroked-button (click)="onNewPost()">
-        <mat-icon>note_add</mat-icon>&nbsp; Agregar Restaurante
-    </button>
-</div>
+<div *ngIf="emailVerificado; else validarEmail ">
+    <div *ngIf="validacion(valor) == false">
+        <p>Deseas agregar informacion de tu restaurante ahora?</p>
+      <button mat-stroked-button (click)="onNewPost()">
+          <mat-icon>note_add</mat-icon>&nbsp; Agregar Restaurante
+      </button>
+  </div>
+</div> 
+
+<ng-template #validarEmail>
+    <p>
+        Tu correo electrónico aun no ha sido verificado
+        revisa tu bandeja de entrada o el correo no deseado o vuelve a enviar el mail
+    </p><br>
+    <button mat-button (click)="enviarEmail()">Enviar</button>
+</ng-template>
+   
+
 <!-- Forma de validar si un restaurante esta aprobado, poder agregar promocionesq -->
 <div *ngIf="validacion(valor)" style="text-align: center;">
     <div *ngFor="let p of perfil">

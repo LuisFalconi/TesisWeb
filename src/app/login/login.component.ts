@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -50,8 +51,46 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login(){
     // Al momento de iniciar sesion se redirige al component "Plato"
-    this.LoginService.login(this.usuario, this.clave).then( () =>{
-      this.route.navigate(['infoPerfil']);
+    this.LoginService.login(this.usuario, this.clave).then( data =>{  
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Bienvenido',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }).catch(err =>{
+      if(err.code === 'auth/argument-error'){
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'Error desconocido',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        this.route.navigate(['login']);
+      }else if(err.code === 'auth/invalid-email'){
+        this.limpiar();
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'La dirección de correo electrónico es incorrecta',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }else if(err.code === 'auth/wrong-password'){
+        this.route.navigate(['login']);
+        this.limpiar();
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'Contraseña incorrecta',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }else if(err.code === 'ERROR' ){
+        this.route.navigate(['/inicio']);
+      }
     });
   }
 
@@ -88,7 +127,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
   crearUsuario() {
     this.LoginService.registrarUsuario(this.usuario, this.clave, this.nombre, this.numero).then( login =>{
-      this.route.navigate(['infoPerfil']);
+      console.log("login", login);
     }).catch(err => console.log(err));
     //window.location.reload();
     //this.irLogin();
@@ -110,6 +149,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.estadoRecuperar = true;
     this.estadoLogin = false;
     this.estadoCrear = false;
+  }
+
+  limpiar(){
+    this.usuario = '';
+    this.clave = '';
   }
 
   listarMenus() {

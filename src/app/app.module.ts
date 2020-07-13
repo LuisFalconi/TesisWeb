@@ -52,6 +52,7 @@ import { InfoPerfilComponent } from './pages/info-perfil/info-perfil.component';
 import { EditCoordenadasModalComponent } from './modal/edit-coordenadas-modal/edit-coordenadas-modal.component';
 import { EditCoordenadasRestaurantComponent } from './restaurantes/edit-coordenadas-restaurant/edit-coordenadas-restaurant.component';
 import { PromocionesInicioComponent } from './pages/promociones/promociones-inicio/promociones-inicio.component';
+import { VerficacionEmailComponent } from './pages/verficacion-email/verficacion-email.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import { PromocionesInicioComponent } from './pages/promociones/promociones-inic
     EditCoordenadasModalComponent,
     EditCoordenadasRestaurantComponent,
     PromocionesInicioComponent,
+    VerficacionEmailComponent,
     
   ],
   imports: [
