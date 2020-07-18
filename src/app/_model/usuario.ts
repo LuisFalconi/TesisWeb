@@ -4,4 +4,5 @@ export class Usuario {
     roles: string[];
     nombre?: string;
     numero?: string;
+    clave?: string;
 }

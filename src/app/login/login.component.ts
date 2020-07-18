@@ -9,6 +9,8 @@ import { takeUntil } from 'rxjs/operators';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import Swal from 'sweetalert2';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Usuario } from '../_model/usuario';
 
 @Component({
   selector: 'app-login',
@@ -45,9 +47,19 @@ export class LoginComponent implements OnInit, OnDestroy {
    
   }
 
+  public nuevoUsuario = new FormGroup({
+    id: new FormControl (''),
+    nombre: new FormControl ('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),  
+    numero: new FormControl('',[Validators.required, Validators.pattern("^[0-9]*$"), Validators.minLength(10) ]),
+    email: new FormControl('',  [Validators.required, Validators.email ]),
+    clave: new FormControl('',  [Validators.required, Validators.minLength(8)])
+  });
+
   ngOnInit() {
 
   }
+
+  
 
   login(){
     // Al momento de iniciar sesion se redirige al component "Plato"
@@ -133,6 +145,46 @@ export class LoginComponent implements OnInit, OnDestroy {
     //this.irLogin();
   }
 
+  agregarUsuario(data: Usuario) {
+    console.log('New usuario', data);
+    this.LoginService.registrarUsuario(data.email, data.clave, data.nombre, data.numero).then(login =>{
+      //console.log(login);
+    }).catch(err =>{
+      console.log(err);
+      
+      if(err.code === 'auth/argument-error'){
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'Error desconocido',
+          showConfirmButton: false,
+          timer: 1500
+        });
+        this.route.navigate(['login']);
+      }else if(err.code === 'auth/email-already-in-use' && err.message === 'The email address is already in use by another account.'){
+        this.resetForm();
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'La dirección de correo electrónico ya existe',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }else if(err.code === 'auth/wrong-password'){
+        this.route.navigate(['login']);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'Contraseña incorrecta',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      }else if(err.code === 'ERROR' ){
+        this.route.navigate(['/inicio']);
+      }
+    });
+  }
+
   irCrear() {
     this.estadoCrear = true;
     this.estadoLogin = false;
@@ -154,6 +206,17 @@ export class LoginComponent implements OnInit, OnDestroy {
   limpiar(){
     this.usuario = '';
     this.clave = '';
+  }
+
+  resetForm() {
+    this.nuevoUsuario.reset();
+    this.nuevoUsuario.setValue({
+      id: '',
+      nombre: '',
+      numero: '',
+      email: '',
+      clave: ''
+    });
   }
 
   listarMenus() {
