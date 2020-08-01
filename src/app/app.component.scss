@@ -4,16 +4,16 @@
   https://github.com/webpack-contrib/sass-loader/issues/530
  * Actual Sticky Footer Styles
  */
-.all-wrap {
-  min-height: 100vh;
-}
+// .all-wrap {
+//   min-height: 100vh;
+// }
 
-.mat-toolbar.mat-primary {
-  background-color: #fff;
-  color: rgba(0,0,0,.87);
-  position: relative;
-  z-index: 0;
-}
+// .mat-toolbar.mat-primary {
+//   background-color: #fff;
+//   color: rgba(0,0,0,.87);
+//   position: relative;
+//   z-index: 0;
+// }
 
 .mat-sidenav-container.mat-drawer-container{
   background-color: #fff;
@@ -21,23 +21,23 @@
 }
 
  
-.page-wrap {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+// .page-wrap {
+//   display: flex;
+//   flex-direction: column;
+//   min-height: 100vh;
+// }
  
 content {
   flex: 1;
  }
 
-.div-scrollable {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  // background-color: yellow;
-  height: 4000px;
-}
+// .div-scrollable {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   // background-color: yellow;
+//   height: 4000px;
+// }
 /*
  * Make the Component injected by Router Outlet full height:
  */
@@ -55,6 +55,7 @@ main {
 }
 
 .footer{
+  padding-top: 30%;;
   text-align: center;
 }
 
@@ -64,6 +65,7 @@ main {
   flex: 1 1 auto;
   display: flex;
 }
+
 // Esto permite que se quede estatico 
 @media screen and (min-width: 960px) {
   mat-toolbar {

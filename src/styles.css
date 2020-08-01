@@ -2,11 +2,27 @@
 
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+html, body { 
+    height: 100%; 
+}
 
+body { 
+    margin: 0; 
+    font-family: Roboto, 
+    "Helvetica Neue", sans-serif; 
+}
 
+  .version-info {
+    font-size: 8pt;
+    float: right;
+  }
+
+  .spinner{
+    justify-content: right;
+}
+
+  
 .myapp-no-padding-dialog .mat-dialog-container {
     padding: -1;
     border-radius: 20px;
@@ -28,4 +44,5 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     -ms-filter: contrast(4) invert(1);
     filter: contrast(4) invert(1);
 }
+  
 
