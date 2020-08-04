@@ -1,12 +1,74 @@
-<mat-toolbar color="warm" *ngIf="loginService.noEstaLogeado()">
-    <a routerLink="/"><mat-icon>fastfood</mat-icon></a>
-    <span> MuertosDeHambre.com</span>
+     <!-- Start header -->
+     <header class="top-header" *ngIf="loginService.noEstaLogeado()">
+        <nav class="navbar header-nav navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" routerLink="/" ><img src="assets/images/logo.png" alt="image">MuertosDeHambre.com</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd" aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
+                    <ul class="navbar-nav">
+                        <li><a class="nav-link active" routerLink="/">Home</a></li>
+                        <li><a class="nav-link" routerLink="/">Aboutus</a></li>
+                        <li><a class="nav-link" routerLink="/">create your cv</a></li>
+                        <li><a class="nav-link" routerLink="/">Contact Us</a></li>
+                        <li><a class="nav-link" (click)="irLogin()">Login</a></li>
+                        <!-- <li><a class="nav-link active" style="background:#fff;color:#000;" href="contact.html">Sinup now</a></li> -->
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+     <!-- Start Banner -->
+     <div class="ulockd-home-slider">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="pogoSlider" id="js-main-slider">
+                    <div class="pogoSlider-slide" style="background-image:url(images/slider-01.jpg);">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="slide_text">
+                                        <h3><span class="theme_color">EASILY</span> CREATE ONLINE</h3>
+                                        <br>
+                                        <h4>CV AND PROFESSIONAL<br>RESUME IN MINUTES</h4>
+                                        <br>
+                                        <p>Showcase your Profile to the world
+                                            <br>using online CV builder and Get Hired Faster</p>
+                                        <a class="contact_bt" href="#">Contact us</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pogoSlider-slide" style="background-image:url(images/slider-01.jpg);">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="slide_text">
+                                        <h3><span class="theme_color">EASILY</span> CREATE ONLINE</h3>
+                                        <br>
+                                        <h4>CV AND PROFESSIONAL<br>RESUME IN MINUTES</h4>
+                                        <br>
+                                        <p>Showcase your Profile to the world
+                                            <br>using online CV builder and Get Hired Faster</p>
+                                        <a class="contact_bt" href="#">Contact us</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- .pogoSlider -->
+            </div>
+        </div>
+    </div>
+    <!-- End Banner -->
 
-    <span class="example-fill-remaining-space"></span>
-  
-    <button mat-button (click)="irLogin()" color="primary">Iniciar Sesión</button>
-</mat-toolbar>
-
+    <!-- <button mat-button (click)="irLogin()" color="primary">Iniciar Sesión</button> -->
+<!--
 <mat-sidenav-container class="all-wrap" fullscream>
 
     <mat-sidenav #sidenav style="width: 300px;">
@@ -68,5 +130,5 @@
 </mat-sidenav-container>
 
 
-
+-->
 
