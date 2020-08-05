@@ -1,71 +1,66 @@
      <!-- Start header -->
-     <header class="top-header" *ngIf="loginService.noEstaLogeado()">
+     <div *ngIf="loginService.noEstaLogeado()">
+        no esta logueado
+     </div>
+     <div *ngIf="loginService.estaLogeado()">
+        esta logueado
+     </div>
+     <header class="top-header">
         <nav class="navbar header-nav navbar-expand-lg">
             <div class="container-fluid">
-                <a class="navbar-brand" routerLink="/" ><img src="assets/images/logo.png" alt="image">MuertosDeHambre.com</a>
+                <a class="navbar-brand" routerLink="/inicio" ><img src="assets/images/logo.png" alt="image">MuertosDeHambre.com</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd" aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
+                <div class="collapse navbar-collapse justify-content-end" id="navbar-wd" *ngIf="loginService.noEstaLogeado()">
                     <ul class="navbar-nav">
                         <li><a class="nav-link active" routerLink="/">Home</a></li>
-                        <li><a class="nav-link" routerLink="/">Aboutus</a></li>
-                        <li><a class="nav-link" routerLink="/">create your cv</a></li>
-                        <li><a class="nav-link" routerLink="/">Contact Us</a></li>
-                        <li><a class="nav-link" (click)="irLogin()">Login</a></li>
+                        <li><a class="nav-link" routerLink="/clientesHome">Clientes</a></li>
+                        <li><a class="nav-link" routerLink="/promocionesHome">Promociones</a></li>
+                        <li><a class="nav-link" routerLink="/aboutHome">About</a></li>
+                        <li><a class="nav-link" routerLink="/contactosHome">Contactos</a></li>
                         <!-- <li><a class="nav-link active" style="background:#fff;color:#000;" href="contact.html">Sinup now</a></li> -->
                     </ul>
                 </div>
+                <div class="collapse navbar-collapse justify-content-end" id="navbar-wd" *ngIf="loginService.estaLogeado()">
+                    <ul class="navbar-nav">
+                        <li><a class="nav-link active" routerLink="/inicio">Inicio</a></li>
+                        <li><a class="nav-link active" routerLink="/infoPerfil">Perfil</a></li>
+                        <li><a class="nav-link" (click)="loginService.cerrarSesion()">Cerrar Sesion</a></li>
+                        <!-- <li><a class="nav-link active" style="background:#fff;color:#000;" href="contact.html">Sinup now</a></li> -->
+                    </ul>
+                </div>              
             </div>
         </nav>
     </header>
-     <!-- Start Banner -->
-     <div class="ulockd-home-slider">
-        <div class="container-fluid">
+ 
+    <main class="content">
+        <div class="div-scrollable">
+            <router-outlet></router-outlet>
+        </div>
+    </main>
+
+    <div class="footer_bottom">
+        <div class="container">
             <div class="row">
-                <div class="pogoSlider" id="js-main-slider">
-                    <div class="pogoSlider-slide" style="background-image:url(images/slider-01.jpg);">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="slide_text">
-                                        <h3><span class="theme_color">EASILY</span> CREATE ONLINE</h3>
-                                        <br>
-                                        <h4>CV AND PROFESSIONAL<br>RESUME IN MINUTES</h4>
-                                        <br>
-                                        <p>Showcase your Profile to the world
-                                            <br>using online CV builder and Get Hired Faster</p>
-                                        <a class="contact_bt" href="#">Contact us</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pogoSlider-slide" style="background-image:url(images/slider-01.jpg);">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="slide_text">
-                                        <h3><span class="theme_color">EASILY</span> CREATE ONLINE</h3>
-                                        <br>
-                                        <h4>CV AND PROFESSIONAL<br>RESUME IN MINUTES</h4>
-                                        <br>
-                                        <p>Showcase your Profile to the world
-                                            <br>using online CV builder and Get Hired Faster</p>
-                                        <a class="contact_bt" href="#">Contact us</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-12">
+                    <p class="crp">© 2020 MuertosDeHambre.com . Todos los derechos reservados.</p>
+                    <ul class="bottom_menu">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Find jobs</a></li>
+                        <li><a href="contact.html">Contact us</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy</a></li>
+                    </ul>
                 </div>
-                <!-- .pogoSlider -->
             </div>
         </div>
     </div>
-    <!-- End Banner -->
+
+    <a href="#" id="scroll-to-top" class="hvr-radial-out"><i class="fa fa-angle-up"></i></a>
+
 
     <!-- <button mat-button (click)="irLogin()" color="primary">Iniciar Sesión</button> -->
 <!--

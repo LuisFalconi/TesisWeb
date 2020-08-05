@@ -25,6 +25,10 @@ import { ValidacionComponent } from './pages/validacion/validacion.component';
 import { VerificacionRestaurantesComponent } from './usuarios/verificacion-restaurantes/verificacion-restaurantes.component';
 import { InfoPerfilComponent } from './pages/info-perfil/info-perfil.component';
 import { VerficacionEmailComponent } from './pages/verficacion-email/verficacion-email.component';
+import { ClientesComponent } from './home/clientes/clientes.component';
+import { PromocionesHomeComponent } from './home/promociones-home/promociones-home.component';
+import { AboutComponent } from './home/about/about.component';
+import { ContactosComponent } from './home/contactos/contactos.component';
 
 
 const routes: Routes = [
@@ -33,7 +37,12 @@ const routes: Routes = [
     {path: 'edicion/:id', component: PlatoEdicionComponent},
     ], canActivate: [LoginGuardService]  // Permite dar seguridad a una pagina que no se quiere ver si no esta algun usuario logueado
   },
+
   {path: 'inicio', component: HomeComponent},
+  {path: 'clientesHome', component: ClientesComponent},
+  {path: 'promocionesHome', component: PromocionesHomeComponent},
+  {path: 'aboutHome', component: AboutComponent},
+  {path: 'contactosHome', component: ContactosComponent},
   {path: 'prueba', component: SubirImagenComponent},
   {path: 'listaR', component: ListaRestaurantesComponent, canActivate: [LoginGuardService]},
   {path: 'listaU', component: ListaUsuariosComponent, canActivate: [LoginGuardService]},

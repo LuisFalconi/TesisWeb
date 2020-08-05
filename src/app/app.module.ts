@@ -53,6 +53,10 @@ import { EditCoordenadasModalComponent } from './modal/edit-coordenadas-modal/ed
 import { EditCoordenadasRestaurantComponent } from './restaurantes/edit-coordenadas-restaurant/edit-coordenadas-restaurant.component';
 import { PromocionesInicioComponent } from './pages/promociones/promociones-inicio/promociones-inicio.component';
 import { VerficacionEmailComponent } from './pages/verficacion-email/verficacion-email.component';
+import { ClientesComponent } from './home/clientes/clientes.component';
+import { AboutComponent } from './home/about/about.component';
+import { ContactosComponent } from './home/contactos/contactos.component';
+import { PromocionesHomeComponent } from './home/promociones-home/promociones-home.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +99,10 @@ import { VerficacionEmailComponent } from './pages/verficacion-email/verficacion
     EditCoordenadasRestaurantComponent,
     PromocionesInicioComponent,
     VerficacionEmailComponent,
+    ClientesComponent,
+    AboutComponent,
+    ContactosComponent,
+    PromocionesHomeComponent,
     
   ],
   imports: [
