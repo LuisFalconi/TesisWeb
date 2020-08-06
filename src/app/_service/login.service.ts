@@ -58,7 +58,7 @@ export class LoginService {
   loginGoogle() {
     const provider = new auth.GoogleAuthProvider();
     console.log("Provider", provider);
-    
+  
     return this.oAuthLogin(provider);
   }
   
@@ -179,11 +179,21 @@ export class LoginService {
   }
 
   estaLogeado(){
-    return this.afa.auth.currentUser != null;
+    
+      this.afa.auth.currentUser != null
+      
+      console.log("true??",this.afa.auth.currentUser != null );
+
+      return true;
+    
   }
 
   noEstaLogeado(){
-    return this.afa.auth.currentUser == null;
+    if(this.afa.auth.currentUser == null){
+      console.log("false??", this.afa.auth.currentUser == null);
+      
+      return false;
+    }
   }
 
 
