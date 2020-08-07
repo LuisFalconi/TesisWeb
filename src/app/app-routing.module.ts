@@ -29,7 +29,7 @@ import { ClientesComponent } from './home/clientes/clientes.component';
 import { PromocionesHomeComponent } from './home/promociones-home/promociones-home.component';
 import { AboutComponent } from './home/about/about.component';
 import { ContactosComponent } from './home/contactos/contactos.component';
-
+import { NologinGuard } from '../app/_service/noLogin-guard.service';
 
 const routes: Routes = [
   {path: 'plato', component: PlatoComponent, children: [
@@ -63,7 +63,7 @@ const routes: Routes = [
     {path: 'edicion/:id', component: AgregarPerfilComponent},
     ],canActivate: [LoginGuardService] 
   },
-  {path: 'login', component: LoginComponent},
+  {path: 'login', component: LoginComponent, canActivate : [NologinGuard]},
   {path: 'crearUsuario', component: CrearUsuarioComponent},
   // PAgina que carga por defecto
   {path:  '', redirectTo: 'inicio', pathMatch: 'full'}
