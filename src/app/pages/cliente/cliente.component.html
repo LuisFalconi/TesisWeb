@@ -1,11 +1,11 @@
-<div class="container" *ngIf="perfil$ | async as perfil; else loading">
+<div class="container" *ngIf="perfil$ | async as perfil; else loading" fxLayout="row wrap">
     <!-- {{ perfil$ | async | json}} -->
 
-    <div  *ngFor="let perfil of perfil">
+    <div  fxFlex="25%"  *ngFor="let perfil of perfil" >
       <div *ngIf="perfil.resVerificado.toString() === 'Aprovado'">
-        <mat-card class="example-card">
+        <mat-card class="mat-elevation-z4">
             <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
+                <div mat-card-avatar></div>
                   <mat-card-title>{{perfil.nombreRestaurante}}</mat-card-title>
                   <mat-divider></mat-divider>
                   <mat-card-subtitle>{{perfil.tipoRestaurante}}</mat-card-subtitle>

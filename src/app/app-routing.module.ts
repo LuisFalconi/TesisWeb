@@ -30,6 +30,7 @@ import { PromocionesHomeComponent } from './home/promociones-home/promociones-ho
 import { AboutComponent } from './home/about/about.component';
 import { ContactosComponent } from './home/contactos/contactos.component';
 import { NologinGuard } from '../app/_service/noLogin-guard.service';
+import { PromocionesInicioComponent } from './pages/promociones/promociones-inicio/promociones-inicio.component';
 
 const routes: Routes = [
   {path: 'plato', component: PlatoComponent, children: [
@@ -53,6 +54,8 @@ const routes: Routes = [
   {path: 'menus', component: MenusComponent},
   {path: 'promociones', component: PromocionesComponent},
   {path: 'listaPromociones', component: ListaPromocionesComponent, canActivate: [LoginGuardService]},
+  {path: 'promocionesInicio', component: PromocionesInicioComponent},
+  {path: 'menuInicio', component: MenusComponent},
   {path: 'perfil', component: PerfilComponent, canActivate: [LoginGuardService]},
   {path: 'infoPerfil', component: InfoPerfilComponent, canActivate: [LoginGuardService]},
   {path: 'miMenu', component: MiMenuComponent, canActivate: [LoginGuardService]},

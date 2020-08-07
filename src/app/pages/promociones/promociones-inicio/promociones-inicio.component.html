@@ -1,59 +1,43 @@
-<router-outlet></router-outlet>
-<div style="margin: 45px; padding: 10px;">
 
-  <mat-accordion class="example-headers-align">
-    <mat-expansion-panel *ngFor="let r of restaurante" hideToggle>
-      <mat-expansion-panel-header *ngIf="r.resVerificado && r.resVerificado.toString() === 'Aprovado'">
-        <mat-panel-title>{{r.nombreRestaurante}}</mat-panel-title>
-        <mat-panel-description>
-            {{r.tipoRestaurante}}
-            <mat-icon>menu_book</mat-icon>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-        <div *ngFor="let pro of promocion">
-            <div *ngIf="pro.userUID == r.userUID && pro.fotosPromocion" >
-                <h3>Promociones / Platos Especiales</h3>
-                <mat-card>
-                    <img matCardImage [src]="pro.fotosPromocion" *ngIf="pro.fotosPromocion" width="500px" height="300px"/>
-                </mat-card>
-            </div>
-        </div>
-
-      </mat-expansion-panel>
-    <mat-divider></mat-divider>
-    <mat-expansion-panel (opened)="panelOpenState = true"
-                         (closed)="panelOpenState = false">
-    </mat-expansion-panel>
-  </mat-accordion>
-<!--      
-      <mat-accordion class="example-headers-align">
-        <mat-expansion-panel *ngFor="let u of usuario" hideToggle>
-          <mat-expansion-panel-header *ngIf="u.roles && u.roles.toString() === 'dueño'">
-            <mat-panel-title>{{u.roles}}</mat-panel-title>
-            <mat-panel-description>
-                {{u.email}}
-                <mat-icon>menu_book</mat-icon>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-            <mat-list-item>{{u.uid}}</mat-list-item>
-            <div *ngFor="let p of restaurante">
-                <div *ngIf="p.userUID == u.uid" >
-                    <mat-list-item><h3>Nombre del Restaurante</h3> {{p.nombreRestaurante}}</mat-list-item>
-                    <mat-list-item><h3>Tipo del Restaurante</h3> {{p.tipoRestaurante}}</mat-list-item>
-                </div>
-            </div>
-            <div *ngFor="let m of menu">
-                <div *ngIf="m.userUID == u.uid" >
-                    <mat-list-item> <h3>Desayuno</h3> {{m.platoDesayuno}}</mat-list-item>
-                    <mat-list-item><h3>Detalle Desayuno {{m.detalleDesayuno}}</h3></mat-list-item>
-                    <mat-list-item><h3>Precio Desayuno {{m.precioDesayuno}}</h3></mat-list-item>
-                </div>
-            </div>
-          </mat-expansion-panel>
-        <mat-divider></mat-divider>
-        <mat-expansion-panel (opened)="panelOpenState = true"
-                             (closed)="panelOpenState = false">
-        </mat-expansion-panel>
-      </mat-accordion> -->
- 
+<div id="promociones" class="page-section">
+  <div class="content-wrapper">
+      <div class="inner-container container">
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="section-heading">
+                      <h4>Promociones</h4>
+                      <div class="line-dec"></div>
+                  </div>
+              </div>
+          </div>
+          <div class="projects-holder-3">
+              <!-- <div class="filter-categories">
+                  <ul class="project-filter">
+                      <li class="filter" data-filter="all"><span>All</span></li>
+                      <li class="filter" data-filter="nature"><span>Nature</span></li>
+                      <li class="filter" data-filter="workspace"><span>Workspace</span></li>
+                      <li class="filter" data-filter="city"><span>City</span></li>
+                      <li class="filter" data-filter="technology"><span>Technology</span></li>
+                  </ul>
+              </div> -->
+              <div class="projects-holder" *ngFor="let pro of promocion" style="display: inline-block;">
+                <div  *ngIf="pro.fotosPromocion && pro.estado === 'verdadero'">
+                    <div class="col-md-3 col-sm-1 project-item workspace">
+                        <div class="thumb">
+                            <div class="image">
+                              <!-- <img src="assets/img/portfolio_01.jpg"> -->
+                              <img width="100em" height="200em" [src]="pro.fotosPromocion" *ngIf="pro.fotosPromocion" >
+                            </div>
+                            <div class="hover-effect">
+                              <!-- <a href="assets/img/portfolio_big_01.jpg" data-lightbox="image-1"><i class="fa fa-search"></i></a> -->
+                              <a [href]="pro.fotosPromocion" data-lightbox="image-1"><i class="fa fa-search"></i></a>
+                            </div>
+                        </div>
+                  </div>
+              </div>
+           </div>
+          </div>
+      </div>
+  </div> 
 </div>
+
