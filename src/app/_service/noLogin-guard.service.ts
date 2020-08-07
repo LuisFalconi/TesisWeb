@@ -24,7 +24,7 @@ export class NologinGuard implements CanActivate {
         if(isNullOrUndefined(auth)){
           return true
         }else{
-          this.router.navigate(['/inicio'])
+          this.router.navigate(['/infoPerfil'])
           return false
         }
       }))
