@@ -1,75 +1,123 @@
 <router-outlet></router-outlet>
 
-      <div sclass="example-container mat-elevation-z8">
+<div>
+    <ng-template [ngIf] ="emailVerificado == false">
+        <p>
+            Tu correo electrónico aun no ha sido verificado
+            revisa tu bandeja de entrada o el correo no deseado o vuelve a enviar el mail
+        </p><br>
+        <button mat-button (click)="enviarEmail()">Enviar</button>
+    </ng-template>
 
-        <mat-table [dataSource]= "dataSource" matSort >
-            <ng-container matColumnDef="nombreR">
-                <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-                <mat-cell *matCellDef="let row" data-label="Restaurante"> {{row.nombreRestaurante}}</mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="tipoR">
-                <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-                <mat-cell *matCellDef="let row" data-label="Tipo"> {{row.tipoRestaurante}} </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="direccionR">
-                <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-                <mat-cell *matCellDef="let row" data-label="Dirección"> {{row.direccionRestaurante}}</mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="horarioA">
-                <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-                <mat-cell *matCellDef="let row" data-label="Hora de Apertura"> {{row.horaApertura}} &nbsp; A.M</mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="horarioC">
-                <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-                <mat-cell *matCellDef="let row" data-label="Hora de Cierre"> {{row.horaCierre}} &nbsp; PM</mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="capacidadR">
-                <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
-                <mat-cell *matCellDef="let row" data-label="Capacidad"> {{row.capacidadRestaurante}} &nbsp; personas </mat-cell>
-            </ng-container>
-
-            <ng-container matColumnDef="acciones">
-
-                <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
-                <mat-cell *matCellDef="let row">
-                  <div *ngIf="usuarioLog == row.userUID">
-                          <button mat-icon-button color="primary" (click)="editarRestaurante(row)">
-                              <mat-icon arial-label="Actualizar">edit</mat-icon>
-                          </button>
-                      <!-- <button mat-icon-button color="primary" [routerLink]="['edicion', row.id]">
-                          <mat-icon arial-label="Actualizar">assignment</mat-icon>
-                      </button> -->
-                  </div>
-                  <div *ngIf="usuarioLog == row.userUID">
-                      <button mat-icon-button color="accent" (click)="eliminar(row)">
-                          <mat-icon arial-label="Eliminar">highlight_off</mat-icon>
-                      </button>
-                  </div>
-                </mat-cell>
-            </ng-container>
-
-            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-        </mat-table>
-
-
-      </div>
-
-
-    <div  *ngFor="let p of perfil$ | async ">
-        <div *ngIf="usuarioLog == p.userUID && p.imagenRes" >
-            <mat-card class="example-card">
-                <mat-card-header>
-                    <h3>Foto Restaurante</h3>
-                </mat-card-header>
-                    <mat-card-content>
-                        <img matCardImage [src]="p.imagenRes" *ngIf="p.imagenRes" width="50px" height="400px"/>
-                </mat-card-content>
-            </mat-card>
+    <ng-template [ngIf] ="emailVerificado == true">
+        <div *ngIf="validacionRestauranteExiste(valorRestaurante) == false; else validacionRestaurante">
+            <p>Debes Agregar un restaurante primero</p>
         </div>
-    </div>
+    </ng-template>
+
+    <!-- Una vez agregado un restaurante valida si tiene ya subio el documento de verificacion -->
+    <ng-template #validacionRestaurante>
+        <div *ngIf="validacionDocRestauranteExiste(validacionR) == false; else verificacionRes">
+            <h1>Un paso mas antes de Editar tu Restaurante :) </h1>
+            <app-validacion></app-validacion>
+        </div> 
+
+        <ng-template #verificacionRes>
+            <div *ngFor="let perfil of perfil$ | async ">
+                <div *ngIf="usuarioLog == perfil.userUID">
+                    <ng-template [ngIf]="perfil.resVerificado.toString() === 'En revisión'">
+                        <p>Tu restaurante esta siendo verificado por el Administrador</p>
+                        <mat-card-title>Estado:{{perfil.resVerificado}}</mat-card-title>
+                    </ng-template>
+                    <ng-template [ngIf]="perfil.resVerificado.toString() === 'Aprovado'">
+                        <div *ngIf="validacion(valor) == false">
+                            <p>Restaurante Aprobado</p>
+                            <div sclass="example-container mat-elevation-z8">
+    
+                                <mat-table [dataSource]= "dataSource" matSort >
+                                    <ng-container matColumnDef="nombreR">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                                        <mat-cell *matCellDef="let row" data-label="Restaurante"> {{row.nombreRestaurante}}</mat-cell>
+                                    </ng-container>
+                        
+                                    <ng-container matColumnDef="tipoR">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                                        <mat-cell *matCellDef="let row" data-label="Tipo"> {{row.tipoRestaurante}} </mat-cell>
+                                    </ng-container>
+                        
+                                    <ng-container matColumnDef="direccionR">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                                        <mat-cell *matCellDef="let row" data-label="Dirección"> {{row.direccionRestaurante}}</mat-cell>
+                                    </ng-container>
+                        
+                                    <ng-container matColumnDef="horarioA">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                                        <mat-cell *matCellDef="let row" data-label="Hora de Apertura"> {{row.horaApertura}} &nbsp; A.M</mat-cell>
+                                    </ng-container>
+                        
+                                    <ng-container matColumnDef="horarioC">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                                        <mat-cell *matCellDef="let row" data-label="Hora de Cierre"> {{row.horaCierre}} &nbsp; PM</mat-cell>
+                                    </ng-container>
+                        
+                                    <ng-container matColumnDef="capacidadR">
+                                        <mat-header-cell *matHeaderCellDef mat-sort-header></mat-header-cell>
+                                        <mat-cell *matCellDef="let row" data-label="Capacidad"> {{row.capacidadRestaurante}} &nbsp; personas </mat-cell>
+                                    </ng-container>
+                        
+                                    <ng-container matColumnDef="acciones">
+                        
+                                        <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+                                        <mat-cell *matCellDef="let row">
+                                          <div *ngIf="usuarioLog == row.userUID">
+                                                  <button mat-icon-button color="primary" (click)="editarRestaurante(row)">
+                                                      <mat-icon arial-label="Actualizar">edit</mat-icon>
+                                                  </button>
+                                              <!-- <button mat-icon-button color="primary" [routerLink]="['edicion', row.id]">
+                                                  <mat-icon arial-label="Actualizar">assignment</mat-icon>
+                                              </button> -->
+                                          </div>
+                                          <div *ngIf="usuarioLog == row.userUID">
+                                              <button mat-icon-button color="accent" (click)="eliminar(row)">
+                                                  <mat-icon arial-label="Eliminar">highlight_off</mat-icon>
+                                              </button>
+                                          </div>
+                                        </mat-cell>
+                                    </ng-container>
+                        
+                                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                                </mat-table>
+                        
+                        
+                              </div>
+                        
+                        
+                            <div  *ngFor="let p of perfil$ | async ">
+                                <div *ngIf="usuarioLog == p.userUID && p.imagenRes" >
+                                    <mat-card class="example-card">
+                                        <mat-card-header>
+                                            <h3>Foto Restaurante</h3>
+                                        </mat-card-header>
+                                            <mat-card-content>
+                                                <img matCardImage [src]="p.imagenRes" *ngIf="p.imagenRes" width="50px" height="400px"/>
+                                        </mat-card-content>
+                                    </mat-card>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <ng-template [ngIf]="perfil.resVerificado.toString() === 'Rechazado'">
+                        <div *ngIf="validacionDocRestauranteExiste(validacionR) == true">
+                            <h1>Tu restaurante no ha sido Aprovado :( </h1>
+                            <p>La información de tu restaurante será eliminado por el administrador.</p>
+                            <br>
+                            <p>Si crees que es un error, puedes volver a cargar información real.</p>
+                        </div> 
+                    </ng-template>
+                </div>
+            </div>
+        </ng-template>
+    </ng-template>
+</div>
+

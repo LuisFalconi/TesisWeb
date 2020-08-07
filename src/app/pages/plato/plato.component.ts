@@ -9,6 +9,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { EditMenuModalComponent } from '../../modal/edit-menu-modal/edit-menu-modal.component';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Perfil } from '../../_model/perfil';
+import { ValidacionService } from 'src/app/_service/validacion.service';
+import { PerfilService } from '../../_service/perfil.service';
 
 @Component({
   selector: 'app-plato',
@@ -27,6 +30,17 @@ export class PlatoComponent implements OnInit, OnDestroy {
   usuarioLogeado: Plato[]; // variable para guardar la coleccion de los campos de los usuarios logueados
   plato$: Observable<Plato[]>;
 
+  emailVerificado: boolean;
+
+  restaurantelog : Perfil[];
+  menuLog : Plato[];
+
+  valor: boolean=true;
+  valorRestaurante: boolean=true;
+  validacionR: boolean=true;
+
+  perfil$: Observable<Perfil[]>;
+
   private ngUnsubscribe: Subject<void> = new Subject();// Se crear la variable para liberar recursos
 
   // @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
@@ -37,7 +51,9 @@ export class PlatoComponent implements OnInit, OnDestroy {
               private functionService: FunctionService,
               private afa: AngularFireAuth,
               private router: Router,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private perfilService: PerfilService,
+              private validacionService: ValidacionService) {
 
   }
 
@@ -50,6 +66,79 @@ export class PlatoComponent implements OnInit, OnDestroy {
 
     let currenUser = this.afa.auth.currentUser;
     this.usuarioLog = currenUser.uid;
+
+    // variable para validar si el correo del usuaro 
+    this.emailVerificado = currenUser.emailVerified;
+
+
+    this.platoService.listar().subscribe(data =>{
+      for(let x of data){
+        if(this.usuarioLog == x.userUID){
+          //console.log("Si");
+          //console.log("Si");
+          this.menuLog = [x];
+          this.valor = true;
+          this.validacion(this.valor);
+          //console.log("Validacion", this.validacion(this.valor));
+          //console.log("Valor:", this.valor);
+          //console.log("Este restaurante", this.menuLog); 
+          break;   
+        }else{
+          //console.log("No");
+          this.valor = false;
+          //console.log("Valor:", this.valor);
+          this.validacion(this.valor);
+          //console.log("Validacion", this.validacion(this.valor));
+        } 
+      }
+    });
+
+
+
+    // Esto funciona para verificar si un restaurant tiene un documento subido
+    this.validacionService.listar().subscribe(data => {
+      console.log(data);
+      for(let x of data){
+        if(this.usuarioLog == x.userUID){
+          console.log("Si existe documento");
+          console.log(x.docValidacion);
+          //this.restaurantelog = [x];
+          this.validacionR = true;
+          this.validacionDocRestauranteExiste(this.validacionR);
+          //console.log("Este restaurante", this.restaurantelog); 
+          break;   
+        }else{
+          console.log("No existe documento");
+          console.log(x.userUID);
+          
+          this.validacionR = false;
+          this.validacionDocRestauranteExiste(this.validacionR);
+        } 
+      }
+  });
+
+  
+    
+    this.perfilService.listar().subscribe(data => {
+      for(let x of data){
+        if(this.usuarioLog == x.userUID){
+          console.log("Si");
+          //console.log("Si");
+          this.restaurantelog = [x];
+          this.valorRestaurante = true;
+          this.validacionRestauranteExiste(this.valorRestaurante);
+          //console.log("Este restaurante", this.restaurantelog); 
+          break;   
+        }else{
+          console.log("No");
+          this.valorRestaurante = false;
+          this.validacionRestauranteExiste(this.valorRestaurante);
+        } 
+      }
+  });
+
+
+
 
     this.plato$ = this.platoService.recuperarMenus(); // recuperamos esta data con ASYNC
     
@@ -74,6 +163,10 @@ export class PlatoComponent implements OnInit, OnDestroy {
       //this.dataSource2 = new MatTableDataSource(data);
       //this.dataSource3 = new MatTableDataSource(data);
     });
+
+    this.plato$ = this.platoService.recuperarMenus(); // recuperamos esta data con ASYNC
+  this.perfil$ = this.perfilService.recuperarDatos(); // recuperamos esta data con ASYNC
+    
   }
 
   eliminar(plato: Plato){
@@ -106,6 +199,43 @@ export class PlatoComponent implements OnInit, OnDestroy {
 
   editarMenu(plato: Plato) {
     this.openEditDialgo(plato);
+  }
+
+  enviarEmail(){
+    this.router.navigate(['/verificacionE']);
+  }
+
+  validacion(valor: boolean){
+    if (valor){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  validacionRestauranteExiste(valor: boolean){
+    if (valor){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  // Validacion si el documento que valide el nuevo restaurante existe
+  validacionDocRestauranteExiste(valor: boolean){
+    if (valor){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  validacionDocumento(valor: boolean){
+    if (valor){
+      return true;
+    }else{
+      return false;
+    }
   }
 
   openEditDialgo(plato?: Plato): void {

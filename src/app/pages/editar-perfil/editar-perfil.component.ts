@@ -10,7 +10,10 @@ import { stripSummaryForJitFileSuffix } from '@angular/compiler/src/aot/util';
 import { analytics } from 'firebase';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { ValidacionService } from 'src/app/_service/validacion.service';
 import { ModalEditRestaurantDuenoComponent } from '../../modal/modal-edit-restaurant-dueno/modal-edit-restaurant-dueno.component';
+import { Plato } from '../../_model/plato';
+import { PlatoService } from '../../_service/plato.service';
 
 @Component({
   selector: 'app-editar-perfil',
@@ -40,6 +43,15 @@ export class EditarPerfilComponent implements OnInit, OnDestroy {
   perfil: any[];
   n: number;
   perfil$: Observable<Perfil[]>;
+  restaurantelog : Perfil[];
+
+  emailVerificado: boolean;
+
+  valorRestaurante: boolean=true;
+  validacionR: boolean=true;
+  valor: boolean=true;
+
+  menuLog : Plato[];
 
   @ViewChild(MatPaginator, { static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true}) sort: MatSort;
@@ -48,13 +60,85 @@ export class EditarPerfilComponent implements OnInit, OnDestroy {
               private snackBar: MatSnackBar,
               private afa: AngularFireAuth,
               private router: Router,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog,
+              private validacionService: ValidacionService,
+              private platoService: PlatoService,) { }
 
   ngOnInit() {
 
     let currenUser = this.afa.auth.currentUser;
     this.usuarioLog = currenUser.uid;
     this.useremailLog = currenUser.email;
+
+    this.emailVerificado = currenUser.emailVerified;
+
+    this.perfilService.listar().subscribe(data =>{
+      this.perfil = data
+
+      this.platoService.listar().subscribe(data =>{
+        for(let x of data){
+          if(this.usuarioLog == x.userUID){
+            //console.log("Si");
+            //console.log("Si");
+            this.menuLog = [x];
+            this.valor = true;
+            this.validacion(this.valor);
+            //console.log("Validacion", this.validacion(this.valor));
+            //console.log("Valor:", this.valor);
+            //console.log("Este restaurante", this.menuLog); 
+            break;   
+          }else{
+            //console.log("No");
+            this.valor = false;
+            //console.log("Valor:", this.valor);
+            this.validacion(this.valor);
+            //console.log("Validacion", this.validacion(this.valor));
+          } 
+        }
+      });
+
+      // Esto funciona para verificar si un restaurant tiene un documento subido
+    this.validacionService.listar().subscribe(data => {
+      console.log(data);
+      for(let x of data){
+        if(this.usuarioLog == x.userUID){
+          console.log("Si existe documento");
+          console.log(x.docValidacion);
+          //this.restaurantelog = [x];
+          this.validacionR = true;
+          this.validacionDocRestauranteExiste(this.validacionR);
+          //console.log("Este restaurante", this.restaurantelog); 
+          break;   
+        }else{
+          console.log("No existe documento");
+          console.log(x.userUID);
+          
+          this.validacionR = false;
+          this.validacionDocRestauranteExiste(this.validacionR);
+        } 
+      }
+  });
+
+
+  this.perfilService.listar().subscribe(data => {
+    for(let x of data){
+      if(this.usuarioLog == x.userUID){
+        console.log("Si");
+        //console.log("Si");
+        this.restaurantelog = [x];
+        this.valorRestaurante = true;
+        this.validacionRestauranteExiste(this.valorRestaurante);
+        //console.log("Este restaurante", this.restaurantelog); 
+        break;   
+      }else{
+        console.log("No");
+        this.valorRestaurante = false;
+        this.validacionRestauranteExiste(this.valorRestaurante);
+      } 
+    }
+});
+
+    })
 
     // Programacion reactiva: Me permite mostrar los datos de la tabla del usuario logueado para que el pueda editar
     this.perfilService.listar().pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
@@ -118,6 +202,43 @@ export class EditarPerfilComponent implements OnInit, OnDestroy {
   ngOnDestroy(){
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
+  }
+
+  enviarEmail(){
+    this.router.navigate(['/verificacionE']);
+  }
+
+  validacionRestauranteExiste(valor: boolean){
+    if (valor){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  validacion(valor: boolean){
+    if (valor){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  // Validacion si el documento que valide el nuevo restaurante existe
+  validacionDocRestauranteExiste(valor: boolean){
+    if (valor){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  validacionDocumento(valor: boolean){
+    if (valor){
+      return true;
+    }else{
+      return false;
+    }
   }
 
   openEditDialgo(perfil?: Perfil): void {
