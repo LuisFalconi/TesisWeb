@@ -128,7 +128,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   loginGoogle() {
     this.LoginService.loginGoogle().then(() => {
+
       this.listarMenus();
+      this.route.navigate(['/infoPerfil']);
     }).catch(err => console.log("Error??", err));
   }
 
@@ -244,7 +246,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             }
 
             this.menuService.menuCambio.next(final_menus);
-            this.route.navigate(['infoPerfil']);
+            this.route.navigate(['/infoPerfil']);
           }
         }
       });

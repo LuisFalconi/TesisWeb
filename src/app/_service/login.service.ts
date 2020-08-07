@@ -15,6 +15,9 @@ export class LoginService {
   //Variable para validar el estado del usuario
   user: Observable<Usuario>;
 
+  // otra variable para validar el estado del usario
+  userData: Observable<firebase.User>
+
   // Se crear la variable para liberar recursos
   //private ngUnsubscribe: Subject<void> = new Subject();
 
@@ -27,12 +30,16 @@ export class LoginService {
           return this.afs.doc<Usuario>(`usuarios/${user.uid}`).valueChanges();
         }else {
           console.log("Vacio?");
-           
           return EMPTY;
         }
       })
-    )
+    );
+
+    // otra forma de validar si hay un usuario logueado
+    this.userData = afa.authState;
    }
+
+
 
   // Login con correo
   login(usuario: string, clave: string){
@@ -58,7 +65,6 @@ export class LoginService {
   loginGoogle() {
     const provider = new auth.GoogleAuthProvider();
     console.log("Provider", provider);
-  
     return this.oAuthLogin(provider);
   }
   
@@ -182,7 +188,7 @@ export class LoginService {
     
       this.afa.auth.currentUser != null
       
-      console.log("true??",this.afa.auth.currentUser != null );
+      //console.log("true??",this.afa.auth.currentUser != null );
 
       return true;
     
@@ -190,7 +196,7 @@ export class LoginService {
 
   noEstaLogeado(){
     if(this.afa.auth.currentUser == null){
-      console.log("false??", this.afa.auth.currentUser == null);
+     // console.log("false??", this.afa.auth.currentUser == null);
       
       return false;
     }
