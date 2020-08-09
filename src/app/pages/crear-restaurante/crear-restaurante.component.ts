@@ -169,7 +169,7 @@ export class CrearRestauranteComponent implements OnInit, OnDestroy {
       Swal.fire('Agregado!','Tu Restaurante ha sido agregado','success')
     }
 
-    this.router.navigate(['editar']);
+    this.router.navigate(['perfil']);
   
     }else {
         Swal.fire("Cancelado", "Puedes seguir pensando :)", "error");
@@ -181,8 +181,10 @@ export class CrearRestauranteComponent implements OnInit, OnDestroy {
    addPerfil(data: Perfil) {
      console.log('New perfil', data);
      this.perfilService.subirPerfilconImagen(data, this.file);
-     this.router.navigate(['editar']);
+     Swal.fire('Agregado!','Tu Restaurante ha sido agregado','success')
+     this.router.navigate(['/perfil']);
    }
+
 
   // Funcion para mostrar el nombre del archivo seleccionado
   seleccionar(e: any): void{

@@ -27,7 +27,7 @@ export class EditarPerfilComponent implements OnInit, OnDestroy {
   dataSource2: MatTableDataSource<Perfil>;
   dataSource3: MatTableDataSource<Perfil>;
 
-  displayedColumns = ['nombreR','tipoR', 'direccionR', 'horarioA', 'horarioC',  'capacidadR', 'acciones'];
+  displayedColumns = ['acciones'];
   displayedColumns1 = ['nombreR','tipoR', 'acciones'];
   displayedColumns2 = ['direccionR','capacidadR', 'acciones'];
   displayedColumns3 = ['horarioA','horarioC', 'acciones'];

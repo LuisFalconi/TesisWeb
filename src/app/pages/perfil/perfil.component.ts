@@ -28,12 +28,10 @@ export class PerfilComponent implements OnInit {
   restaurantelog : Perfil[];
 
   usuarioLog: string;
-
-  valor: boolean=true;
-
   perfil$: Observable<Perfil[]>;
 
-
+  valor: boolean=true;
+  editarMenu: boolean;
 
   
   constructor(private afa: AngularFireAuth, private perfilService: PerfilService,
@@ -46,18 +44,13 @@ export class PerfilComponent implements OnInit {
     let currenUser = this.afa.auth.currentUser;
     this.usuario = currenUser.phoneNumber;
     this.usuarioLog = currenUser.uid;
-
     // variable para validar si el correo del usuaro 
     this.emailVerificado = currenUser.emailVerified;
-
-
-
-
-
+    this.editarMenu = false;
     //this.ultimaConexion = currenUser.metadata.lastSignInTime;
     //this.desde = currenUser.metadata.creationTime;
-    this.usuarioSocial = currenUser.displayName;
-    this.fotoSocial = currenUser.photoURL;
+    // this.usuarioSocial = currenUser.displayName;
+    // this.fotoSocial = currenUser.photoURL;
     
     // Programacion reactiva: Me permite mostrar los datos de la tabla del usuario logueado para que el pueda editar
     this.perfilService.listar().subscribe(data => {
@@ -95,7 +88,6 @@ export class PerfilComponent implements OnInit {
         return false;
       }
     }
-
 
   enviarEmail(){
     this.route.navigate(['/verificacionE']);
