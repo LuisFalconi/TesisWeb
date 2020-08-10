@@ -25,11 +25,11 @@ export class LoginService {
     // authState: Devolver el estado si alguein acaba de iniciar sesion
     this.user = this.afa.authState.pipe(
       switchMap( user => {
-        console.log("Usuario??" , user);
+        // console.log("Usuario??" , user);
         if(user){
           return this.afs.doc<Usuario>(`usuarios/${user.uid}`).valueChanges();
         }else {
-          console.log("Vacio?");
+          // console.log("Vacio?");
           return EMPTY;
         }
       })

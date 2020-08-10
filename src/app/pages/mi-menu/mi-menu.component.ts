@@ -1,3 +1,5 @@
+import { ModalAlmuerzoComponent } from './../../modal/modal-almuerzo/modal-almuerzo.component';
+import { PlatoAlmuerzo } from './../../_model/platoAlmuerzo';
 import { PlatoDesayuno } from './../../_model/platoDesayuno';
 import { Component, OnInit } from '@angular/core';
 import { Plato } from '../../_model/plato';
@@ -12,6 +14,7 @@ import { ValidacionService } from 'src/app/_service/validacion.service';
 import { Usuario } from '../../_model/usuario';
 import { ModalDesayunoComponent } from '../../modal/modal-desayuno/modal-desayuno.component';
 import { PlatoDesayunoService } from '../../_service/plato-desayuno.service';
+import { PlatoAlmuerzoService } from '../../_service/plato-almuerzo.service';
 
 @Component({
   selector: 'app-mi-menu',
@@ -36,11 +39,13 @@ export class MiMenuComponent implements OnInit {
   
   plato$: Observable<Plato[]>;
   platoDes$: Observable<PlatoDesayuno[]>;
+  platoAlm$: Observable<PlatoAlmuerzo[]>;
   perfil$: Observable<Perfil[]>;
 
   constructor(private afa:AngularFireAuth,
               private platoService: PlatoService,
               private desayunoService: PlatoDesayunoService,
+              private almuerzoService: PlatoAlmuerzoService,
               private dialog: MatDialog,
               private perfilService: PerfilService,
               private validacionService: ValidacionService) { }
@@ -76,19 +81,19 @@ export class MiMenuComponent implements OnInit {
 
     // Esto funciona para verificar si un restaurant tiene un documento subido
     this.validacionService.listar().subscribe(data => {
-      console.log(data);
+      // console.log(data);
       for(let x of data){
         if(this.usuarioLog == x.userUID){
-          console.log("Si existe documento");
-          console.log(x.docValidacion);
+          // console.log("Si existe documento");
+          // console.log(x.docValidacion);
           //this.restaurantelog = [x];
           this.validacionR = true;
           this.validacionDocRestauranteExiste(this.validacionR);
           //console.log("Este restaurante", this.restaurantelog); 
           break;   
         }else{
-          console.log("No existe documento");
-          console.log(x.userUID);
+          // console.log("No existe documento");
+          // console.log(x.userUID);
           
           this.validacionR = false;
           this.validacionDocRestauranteExiste(this.validacionR);
@@ -101,7 +106,6 @@ export class MiMenuComponent implements OnInit {
     this.perfilService.listar().subscribe(data => {
       for(let x of data){
         if(this.usuarioLog == x.userUID){
-          console.log("Si");
           //console.log("Si");
           this.restaurantelog = [x];
           this.valorRestaurante = true;
@@ -109,7 +113,7 @@ export class MiMenuComponent implements OnInit {
           //console.log("Este restaurante", this.restaurantelog); 
           break;   
         }else{
-          console.log("No");
+          // console.log("No");
           this.valorRestaurante = false;
           this.validacionRestauranteExiste(this.valorRestaurante);
         } 
@@ -120,6 +124,7 @@ export class MiMenuComponent implements OnInit {
 
   this.plato$ = this.platoService.recuperarMenus(); // recuperamos esta data con ASYNC
   this.platoDes$ = this.desayunoService.recuperarMenus(); // recuperamos esta data con ASYNC
+  this.platoAlm$ = this.almuerzoService.recuperarMenus(); // recuperamos esta data con ASYNC
   this.perfil$ = this.perfilService.recuperarDatos(); // recuperamos esta data con ASYNC
     
 
@@ -166,15 +171,26 @@ export class MiMenuComponent implements OnInit {
     this.desayunoDialog();
   }
 
+  nuevoAlmuerzo() {
+    this.almuerzoDialog();
+  }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(AddMenuModalComponent, {panelClass: 'myapp-no-padding-dialog'});
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result ${result}`);
+      // console.log(`Dialog result ${result}`);
     });
   }
 
   desayunoDialog(): void {
     const dialogRef = this.dialog.open(ModalDesayunoComponent, {panelClass: 'myapp-no-padding-dialog'});
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log(`Dialog result ${result}`);
+    });
+  }
+
+  almuerzoDialog(): void {
+    const dialogRef = this.dialog.open(ModalAlmuerzoComponent, {panelClass: 'myapp-no-padding-dialog'});
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result ${result}`);
     });

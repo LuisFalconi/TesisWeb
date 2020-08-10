@@ -62,6 +62,11 @@ import { CrearDesayunoComponent } from './pages/platos/crear-desayuno/crear-desa
 import { EditarDesayunoComponent } from './pages/platos/editar-desayuno/editar-desayuno.component';
 import { ModalEditarDesayunoComponent } from './modal/modal-editar-desayuno/modal-editar-desayuno.component';
 import { EditDesayunoComponent } from './restaurantes/edit-desayuno/edit-desayuno.component';
+import { CrearAlmuerzoComponent } from './pages/platos/crear-almuerzo/crear-almuerzo.component';
+import { EditarAlmuerzoComponent } from './pages/platos/editar-almuerzo/editar-almuerzo.component';
+import { ModalEditarAlmuerzoComponent } from './modal/modal-editar-almuerzo/modal-editar-almuerzo.component';
+import { EditAlmuerzoComponent } from './restaurantes/edit-almuerzo/edit-almuerzo.component';
+import { ModalAlmuerzoComponent } from './modal/modal-almuerzo/modal-almuerzo.component';
 
 @NgModule({
   declarations: [
@@ -113,6 +118,11 @@ import { EditDesayunoComponent } from './restaurantes/edit-desayuno/edit-desayun
     EditarDesayunoComponent,
     ModalEditarDesayunoComponent,
     EditDesayunoComponent,
+    CrearAlmuerzoComponent,
+    EditarAlmuerzoComponent,
+    ModalEditarAlmuerzoComponent,
+    EditAlmuerzoComponent,
+    ModalAlmuerzoComponent,
     
   ],
   imports: [
@@ -139,7 +149,9 @@ import { EditDesayunoComponent } from './restaurantes/edit-desayuno/edit-desayun
     ModalEditRestaurantDuenoComponent,
     EditCoordenadasModalComponent,
     ModalDesayunoComponent,
-    ModalEditarDesayunoComponent
+    ModalEditarDesayunoComponent,
+    ModalAlmuerzoComponent,
+    ModalEditarAlmuerzoComponent
   ],
   providers: [
       AngularFirestore,

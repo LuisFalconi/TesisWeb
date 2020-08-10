@@ -45,10 +45,10 @@ export class EditarDesayunoComponent implements OnInit, OnDestroy {
        this.desayunoService.listar().pipe(takeUntil(this.ngUnsubscribe)).subscribe(data => {
         data.forEach((menus: PlatoDesayuno) =>{
           if(this.usuarioLog == menus.userUID){
-            console.log("usuario logado", this.usuarioLog);
-            console.log("menu logado", menus.userUID);
+            // console.log("usuario logado", this.usuarioLog);
+            // console.log("menu logado", menus.userUID);
             
-            console.log("Si");
+            // console.log("Si");
             this.usuarioLogeado = [menus];
             this.dataSource = new MatTableDataSource(this.usuarioLogeado);            
           }else{

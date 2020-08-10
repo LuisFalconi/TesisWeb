@@ -50,20 +50,20 @@ export class PerfilService {
       // Esto sirve para algo pero no recuerdo
     this.loginService.user.subscribe(data =>{
       //this.idPerfil = this.afs.createId();
-      console.log("Data login Service??", data);
+      // console.log("Data login Service??", data);
       if(typeof data === 'undefined'){
-        console.log("Sin definir");
-        console.log("Navego de nuevo a inPerfil");
+        // console.log("Sin definir");
+        // console.log("Navego de nuevo a inPerfil");
         
         this.route.navigate(['infoPerfil']);
         //window.location.reload();
       }else{
-        console.log("Data Defiida");
+        // console.log("Data Defiida");
         
         if(data.uid){
           this.usuarioLogeado = data.uid;
         }else{
-          console.log("Error");
+          // console.log("Error");
           //this.usuarioLogeado = data.uid;      
         }
       }      
