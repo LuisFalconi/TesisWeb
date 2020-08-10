@@ -31,7 +31,7 @@
                     <mat-card-title>Estado:{{perfil.resVerificado}}</mat-card-title>
                 </ng-template>
                 <ng-template [ngIf]="perfil.resVerificado.toString() === 'Aprovado'">
-                    <div *ngIf="validacion(valor) == false">
+                    <div>
                         <p>Restaurante Aprobado</p>
                         <h1 style="text-align: center;"> Promociones</h1>
   
@@ -63,13 +63,15 @@
               <mat-spinner></mat-spinner>
             </div>
           </ng-template>
-                    </div>
-                </ng-template>
+
+        </div>
+          </ng-template>
                 <ng-template [ngIf]="perfil.resVerificado.toString() === 'Rechazado'">
-                    <div *ngIf="validacionDocRestauranteExiste(validacionR) == true">
+                    <div>
                         <h1>Tu restaurante no ha sido Aprovado :( </h1>
                         <p>La información de tu restaurante será eliminado por el administrador.</p>
                         <br>
+                        <app-validacion></app-validacion>         
                         <p>Si crees que es un error, puedes volver a cargar información real.</p>
                     </div> 
                 </ng-template>

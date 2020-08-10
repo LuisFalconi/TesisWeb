@@ -33,7 +33,6 @@ export class PlatoService {
       }
     });
     this.platoCollection = afs.collection<Plato>('platos');
-
    }
 
    listar() {
@@ -88,7 +87,7 @@ export class PlatoService {
 
   eliminar(plato: Plato){
     return this.afs.collection('platos').doc(plato.id).delete();
-}
+  }
 
 public editarMenu(plato: Plato){
     return this.platoCollection.doc(plato.id).update(plato);

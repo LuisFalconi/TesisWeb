@@ -57,6 +57,11 @@ import { ClientesComponent } from './home/clientes/clientes.component';
 import { AboutComponent } from './home/about/about.component';
 import { ContactosComponent } from './home/contactos/contactos.component';
 import { PromocionesHomeComponent } from './home/promociones-home/promociones-home.component';
+import { ModalDesayunoComponent } from './modal/modal-desayuno/modal-desayuno.component';
+import { CrearDesayunoComponent } from './pages/platos/crear-desayuno/crear-desayuno.component';
+import { EditarDesayunoComponent } from './pages/platos/editar-desayuno/editar-desayuno.component';
+import { ModalEditarDesayunoComponent } from './modal/modal-editar-desayuno/modal-editar-desayuno.component';
+import { EditDesayunoComponent } from './restaurantes/edit-desayuno/edit-desayuno.component';
 
 @NgModule({
   declarations: [
@@ -103,6 +108,11 @@ import { PromocionesHomeComponent } from './home/promociones-home/promociones-ho
     AboutComponent,
     ContactosComponent,
     PromocionesHomeComponent,
+    ModalDesayunoComponent,
+    CrearDesayunoComponent,
+    EditarDesayunoComponent,
+    ModalEditarDesayunoComponent,
+    EditDesayunoComponent,
     
   ],
   imports: [
@@ -127,7 +137,9 @@ import { PromocionesHomeComponent } from './home/promociones-home/promociones-ho
     AddMenuModalComponent,
     EditMenuModalComponent,
     ModalEditRestaurantDuenoComponent,
-    EditCoordenadasModalComponent
+    EditCoordenadasModalComponent,
+    ModalDesayunoComponent,
+    ModalEditarDesayunoComponent
   ],
   providers: [
       AngularFirestore,

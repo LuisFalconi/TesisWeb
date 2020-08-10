@@ -28,7 +28,7 @@ export class InfoPerfilComponent implements OnInit {
 
   ngOnInit() {
     let currenUser = this.afa.auth.currentUser;
-    this.usuario = currenUser.displayName;
+    // this.usuario = currenUser.displayName;
     this.usuarioLogueado = currenUser.uid;
     this.fotoSocial = currenUser.photoURL;
     this.userEmail= currenUser.email;

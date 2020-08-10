@@ -1,3 +1,4 @@
+import { PlatoDesayuno } from './../../_model/platoDesayuno';
 import { Component, OnInit } from '@angular/core';
 import { Plato } from '../../_model/plato';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -9,6 +10,8 @@ import { PerfilService } from '../../_service/perfil.service';
 import { Perfil } from '../../_model/perfil';
 import { ValidacionService } from 'src/app/_service/validacion.service';
 import { Usuario } from '../../_model/usuario';
+import { ModalDesayunoComponent } from '../../modal/modal-desayuno/modal-desayuno.component';
+import { PlatoDesayunoService } from '../../_service/plato-desayuno.service';
 
 @Component({
   selector: 'app-mi-menu',
@@ -32,10 +35,12 @@ export class MiMenuComponent implements OnInit {
 
   
   plato$: Observable<Plato[]>;
+  platoDes$: Observable<PlatoDesayuno[]>;
   perfil$: Observable<Perfil[]>;
 
   constructor(private afa:AngularFireAuth,
               private platoService: PlatoService,
+              private desayunoService: PlatoDesayunoService,
               private dialog: MatDialog,
               private perfilService: PerfilService,
               private validacionService: ValidacionService) { }
@@ -114,6 +119,7 @@ export class MiMenuComponent implements OnInit {
 
 
   this.plato$ = this.platoService.recuperarMenus(); // recuperamos esta data con ASYNC
+  this.platoDes$ = this.desayunoService.recuperarMenus(); // recuperamos esta data con ASYNC
   this.perfil$ = this.perfilService.recuperarDatos(); // recuperamos esta data con ASYNC
     
 
@@ -156,8 +162,19 @@ export class MiMenuComponent implements OnInit {
     this.openDialog();
   }
 
+  nuevoDesayuno() {
+    this.desayunoDialog();
+  }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(AddMenuModalComponent, {panelClass: 'myapp-no-padding-dialog'});
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result ${result}`);
+    });
+  }
+
+  desayunoDialog(): void {
+    const dialogRef = this.dialog.open(ModalDesayunoComponent, {panelClass: 'myapp-no-padding-dialog'});
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result ${result}`);
     });

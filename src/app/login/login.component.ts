@@ -111,6 +111,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginFacebook() {
     this.LoginService.loginFacebook().then(() => {
       this.listarMenus();
+      this.route.navigate(['/infoPerfil']);
     }).catch(err => {
 
       // manejo de error en caso que un usuario tenga el mismo correo con facebook y google

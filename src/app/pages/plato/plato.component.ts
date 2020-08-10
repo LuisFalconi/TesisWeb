@@ -117,8 +117,6 @@ export class PlatoComponent implements OnInit, OnDestroy {
       }
   });
 
-  
-    
     this.perfilService.listar().subscribe(data => {
       for(let x of data){
         if(this.usuarioLog == x.userUID){
@@ -165,7 +163,7 @@ export class PlatoComponent implements OnInit, OnDestroy {
     });
 
     this.plato$ = this.platoService.recuperarMenus(); // recuperamos esta data con ASYNC
-  this.perfil$ = this.perfilService.recuperarDatos(); // recuperamos esta data con ASYNC
+    this.perfil$ = this.perfilService.recuperarDatos(); // recuperamos esta data con ASYNC
     
   }
 

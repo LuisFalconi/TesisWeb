@@ -63,11 +63,7 @@ export class EditMenusComponent implements OnInit {
       id: this.menu.id,
       platoDesayuno: this.menu.platoDesayuno, 
       detalleDesayuno: this.menu.detalleDesayuno,
-      precioDesayuno: this.menu.precioDesayuno,
-      entradaAlmuerzo: this.menu.entradaAlmuerzo,
-      jugoAlmuerzo: this.menu.jugoAlmuerzo,
-      segundoAlmuerzo:this.menu.segundoAlmuerzo,
-      precioAlmuerzo:this.menu.precioAlmuerzo,
+      precioDesayuno: this.menu.precioDesayuno
     });
   } 
 

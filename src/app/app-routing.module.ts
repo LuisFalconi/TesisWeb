@@ -31,6 +31,7 @@ import { AboutComponent } from './home/about/about.component';
 import { ContactosComponent } from './home/contactos/contactos.component';
 import { NologinGuard } from '../app/_service/noLogin-guard.service';
 import { PromocionesInicioComponent } from './pages/promociones/promociones-inicio/promociones-inicio.component';
+import { EditarDesayunoComponent } from './pages/platos/editar-desayuno/editar-desayuno.component';
 
 const routes: Routes = [
   {path: 'plato', component: PlatoComponent, children: [
@@ -40,6 +41,7 @@ const routes: Routes = [
   },
 
   {path: 'inicio', component: HomeComponent},
+  {path: 'editarDesayuno', component: EditarDesayunoComponent},
   {path: 'clientesHome', component: ClientesComponent},
   {path: 'promocionesHome', component: PromocionesHomeComponent},
   {path: 'aboutHome', component: AboutComponent},
@@ -57,7 +59,7 @@ const routes: Routes = [
   {path: 'promocionesInicio', component: PromocionesInicioComponent},
   {path: 'menuInicio', component: MenusComponent},
   {path: 'perfil', component: PerfilComponent, canActivate: [LoginGuardService]},
-  {path: 'infoPerfil', component: InfoPerfilComponent, canActivate: [LoginGuardService]},
+  {path: 'infoPerfil', component: InfoPerfilComponent},
   {path: 'miMenu', component: MiMenuComponent, canActivate: [LoginGuardService]},
   // {path: 'crearRestaurante', component: CrearRestauranteComponent, canActivate: [LoginGuardService]},
   {path: 'not-403', component: Not403Component},

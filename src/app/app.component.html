@@ -11,7 +11,8 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbar-wd" *ngIf="loginService.estaLogeado()">
                     <ul class="navbar-nav">
-                        <li><a class="nav-link" routerLink="/">Inicio</a></li>
+                        <!-- <li><a class="nav-link" routerLink="/">Inicio</a></li> -->
+                        <li><a class="nav-link" routerLink="/infoPerfil">Perfil</a></li>
                         <li><a class="nav-link" (click)="loginService.cerrarSesion()">Cerrar Sesion</a></li>
                         <!-- <li><a class="nav-link active" style="background:#fff;color:#000;" href="contact.html">Sinup now</a></li> -->
                     </ul>
