@@ -41,7 +41,6 @@ const routes: Routes = [
   },
 
   {path: 'inicio', component: HomeComponent},
-  {path: 'editarDesayuno', component: EditarDesayunoComponent},
   {path: 'clientesHome', component: ClientesComponent},
   {path: 'promocionesHome', component: PromocionesHomeComponent},
   {path: 'aboutHome', component: AboutComponent},
@@ -59,7 +58,7 @@ const routes: Routes = [
   {path: 'promocionesInicio', component: PromocionesInicioComponent},
   {path: 'menuInicio', component: MenusComponent},
   {path: 'perfil', component: PerfilComponent, canActivate: [LoginGuardService]},
-  {path: 'infoPerfil', component: InfoPerfilComponent},
+  {path: 'infoPerfil', component: InfoPerfilComponent, canActivate: [LoginGuardService]},
   {path: 'miMenu', component: MiMenuComponent, canActivate: [LoginGuardService]},
   // {path: 'crearRestaurante', component: CrearRestauranteComponent, canActivate: [LoginGuardService]},
   {path: 'not-403', component: Not403Component},
