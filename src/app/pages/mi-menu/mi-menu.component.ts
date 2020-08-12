@@ -1,3 +1,4 @@
+import { PlatoMerienda } from './../../_model/platoMerienda';
 import { ModalAlmuerzoComponent } from './../../modal/modal-almuerzo/modal-almuerzo.component';
 import { PlatoAlmuerzo } from './../../_model/platoAlmuerzo';
 import { PlatoDesayuno } from './../../_model/platoDesayuno';
@@ -15,6 +16,8 @@ import { Usuario } from '../../_model/usuario';
 import { ModalDesayunoComponent } from '../../modal/modal-desayuno/modal-desayuno.component';
 import { PlatoDesayunoService } from '../../_service/plato-desayuno.service';
 import { PlatoAlmuerzoService } from '../../_service/plato-almuerzo.service';
+import { PlatoMeriendaService } from '../../_service/plato-merienda.service';
+import { ModalMeriendaComponent } from '../../modal/modal-merienda/modal-merienda.component';
 
 @Component({
   selector: 'app-mi-menu',
@@ -40,12 +43,14 @@ export class MiMenuComponent implements OnInit {
   plato$: Observable<Plato[]>;
   platoDes$: Observable<PlatoDesayuno[]>;
   platoAlm$: Observable<PlatoAlmuerzo[]>;
+  platoMer$: Observable<PlatoMerienda[]>;
   perfil$: Observable<Perfil[]>;
 
   constructor(private afa:AngularFireAuth,
               private platoService: PlatoService,
               private desayunoService: PlatoDesayunoService,
               private almuerzoService: PlatoAlmuerzoService,
+              private meriendaService: PlatoMeriendaService,
               private dialog: MatDialog,
               private perfilService: PerfilService,
               private validacionService: ValidacionService) { }
@@ -125,6 +130,7 @@ export class MiMenuComponent implements OnInit {
   this.plato$ = this.platoService.recuperarMenus(); // recuperamos esta data con ASYNC
   this.platoDes$ = this.desayunoService.recuperarMenus(); // recuperamos esta data con ASYNC
   this.platoAlm$ = this.almuerzoService.recuperarMenus(); // recuperamos esta data con ASYNC
+  this.platoMer$ = this.meriendaService.recuperarMenus(); // recuperamos esta data con ASYNC
   this.perfil$ = this.perfilService.recuperarDatos(); // recuperamos esta data con ASYNC
     
 
@@ -175,6 +181,10 @@ export class MiMenuComponent implements OnInit {
     this.almuerzoDialog();
   }
 
+  nuevaMerienda() {
+    this.meriendaDialog();
+  }
+
   openDialog(): void {
     const dialogRef = this.dialog.open(AddMenuModalComponent, {panelClass: 'myapp-no-padding-dialog'});
     dialogRef.afterClosed().subscribe(result => {
@@ -191,6 +201,13 @@ export class MiMenuComponent implements OnInit {
 
   almuerzoDialog(): void {
     const dialogRef = this.dialog.open(ModalAlmuerzoComponent, {panelClass: 'myapp-no-padding-dialog'});
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result ${result}`);
+    });
+  }
+
+  meriendaDialog(): void {
+    const dialogRef = this.dialog.open(ModalMeriendaComponent, {panelClass: 'myapp-no-padding-dialog'});
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result ${result}`);
     });

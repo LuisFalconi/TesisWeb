@@ -67,6 +67,11 @@ import { EditarAlmuerzoComponent } from './pages/platos/editar-almuerzo/editar-a
 import { ModalEditarAlmuerzoComponent } from './modal/modal-editar-almuerzo/modal-editar-almuerzo.component';
 import { EditAlmuerzoComponent } from './restaurantes/edit-almuerzo/edit-almuerzo.component';
 import { ModalAlmuerzoComponent } from './modal/modal-almuerzo/modal-almuerzo.component';
+import { EditarMeriendaComponent } from './pages/platos/editar-merienda/editar-merienda.component';
+import { CrearMeriendaComponent } from './pages/platos/crear-merienda/crear-merienda.component';
+import { ModalEditarMeriendaComponent } from './modal/modal-editar-merienda/modal-editar-merienda.component';
+import { EditMeriendaComponent } from './restaurantes/edit-merienda/edit-merienda.component';
+import { ModalMeriendaComponent } from './modal/modal-merienda/modal-merienda.component';
 
 @NgModule({
   declarations: [
@@ -123,6 +128,11 @@ import { ModalAlmuerzoComponent } from './modal/modal-almuerzo/modal-almuerzo.co
     ModalEditarAlmuerzoComponent,
     EditAlmuerzoComponent,
     ModalAlmuerzoComponent,
+    EditarMeriendaComponent,
+    CrearMeriendaComponent,
+    ModalEditarMeriendaComponent,
+    EditMeriendaComponent,
+    ModalMeriendaComponent,
     
   ],
   imports: [
@@ -151,7 +161,9 @@ import { ModalAlmuerzoComponent } from './modal/modal-almuerzo/modal-almuerzo.co
     ModalDesayunoComponent,
     ModalEditarDesayunoComponent,
     ModalAlmuerzoComponent,
-    ModalEditarAlmuerzoComponent
+    ModalEditarAlmuerzoComponent,
+    ModalMeriendaComponent,
+    ModalEditarMeriendaComponent
   ],
   providers: [
       AngularFirestore,

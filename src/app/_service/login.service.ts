@@ -80,9 +80,10 @@ export class LoginService {
     return this.afa.auth.createUserWithEmailAndPassword(usuario, clave).then( res =>{
       //this.enviarVerificacionEmail();
       const uid = res.user.uid;
+      console.log("que es esto", res.user);
+      
         this.afs.collection('usuarios').doc(uid).set({
          email: usuario,
-         //clave: clave, 
          uid: uid,
          numero: numero,
          nombre: nombre,
