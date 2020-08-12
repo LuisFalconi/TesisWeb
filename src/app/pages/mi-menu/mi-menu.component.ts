@@ -35,16 +35,28 @@ export class MiMenuComponent implements OnInit {
   menuLog : Plato[];
   restaurantelog : Perfil[];
 
+
+  usuarioDes: string;
+
   valor: boolean=true;
+  // Variable para aparecer y desaparecer los botones
+  valorD: boolean=true;
+  valorA: boolean=true;
+  valorM: boolean=true;
+
+
   valorRestaurante: boolean=true;
   validacionR: boolean=true;
 
-  
+
   plato$: Observable<Plato[]>;
   platoDes$: Observable<PlatoDesayuno[]>;
   platoAlm$: Observable<PlatoAlmuerzo[]>;
   platoMer$: Observable<PlatoMerienda[]>;
   perfil$: Observable<Perfil[]>;
+
+  emailVerificado: boolean;
+
 
   constructor(private afa:AngularFireAuth,
               private platoService: PlatoService,
@@ -61,6 +73,8 @@ export class MiMenuComponent implements OnInit {
     this.usuarioLog = currenUser.uid;
     this.usuarioSocial = currenUser.displayName;
     this.fotoSocial = currenUser.photoURL;
+    this.emailVerificado = currenUser.emailVerified;
+
 
     this.platoService.listar().subscribe(data =>{
       for(let x of data){
@@ -80,6 +94,45 @@ export class MiMenuComponent implements OnInit {
           //console.log("Valor:", this.valor);
           this.validacion(this.valor);
           //console.log("Validacion", this.validacion(this.valor));
+        } 
+      }
+    });
+
+    this.desayunoService.listar().subscribe(data =>{
+      for(let d of data){
+        if(this.usuarioLog == d.userUID){
+          this.valorD = true;
+          this.validacionDes(this.valorD);
+          break;   
+        }else{
+          this.valorD = false;
+          this.validacionDes(this.valorD);
+        } 
+      }
+    });
+
+    this.almuerzoService.listar().subscribe(data =>{
+      for(let a of data){
+        if(this.usuarioLog == a.userUID){
+          this.valorA = true;
+          this.validacionAlm(this.valorA);
+          break;   
+        }else{
+          this.valorA = false;
+          this.validacionAlm(this.valorA);
+        } 
+      }
+    });
+
+    this.meriendaService.listar().subscribe(data =>{
+      for(let m of data){
+        if(this.usuarioLog == m.userUID){
+          this.valorM = true;
+          this.validacionMer(this.valorM);
+          break;   
+        }else{
+          this.valorM = false;
+          this.validacionMer(this.valorM);
         } 
       }
     });
@@ -136,8 +189,33 @@ export class MiMenuComponent implements OnInit {
 
   }
 
+  // Funcion que comprueba si exite informacion en la base
   validacion(valor: boolean){
     if (valor){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  validacionAlm(valorA: boolean){
+    if (valorA){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  validacionMer(valorM: boolean){
+    if (valorM){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  validacionDes(valorD: boolean){
+    if (valorD){
       return true;
     }else{
       return false;
