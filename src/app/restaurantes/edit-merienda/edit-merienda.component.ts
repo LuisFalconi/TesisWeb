@@ -16,8 +16,8 @@ export class EditMeriendaComponent implements OnInit {
 
   public editDesayunoForm = new FormGroup({
     id: new FormControl (''),
-    platoMerienda: new FormControl ('', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),  
-    detalleMerienda: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
+    platoMerienda: new FormControl ('', [Validators.required]),  
+    detalleMerienda: new FormControl('', [Validators.required]),
     precioMerienda: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(3), Validators.pattern(/^[1-9]/)])
   });
 

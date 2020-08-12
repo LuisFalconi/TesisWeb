@@ -8,22 +8,18 @@
     <!-- Mostrar el uid del usuario logueado -->
     <!-- formControlName: Nombre que se le da en el componete ts -->
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Nombre de Plato" formControlName="platoMerienda" autocomplete="off">
-        <div *ngIf="desayunoForm.get('platoMerienda').errors && desayunoForm.get('platoMerienda').dirty " >
-            <p class="e" *ngIf="desayunoForm.get('platoMerienda').hasError('required')">El campo no debe estar vacio</p>
-            <p class="e" *ngIf="desayunoForm.get('platoMerienda').hasError('minlength')">Minimo 5 caracteres</p>
-            <p class="e" *ngIf="desayunoForm.get('platoMerienda').hasError('maxlength')">Maximo 50 caracteres</p>
+        <textarea matInput placeholder="Nombre del Plato" formControlName="platoMerienda" ></textarea>
+        <div *ngIf="desayunoForm.get('platoMerienda').errors && desayunoForm.get('platoMerienda').dirty" >
+            <p class="e" *ngIf="desayunoForm.get('platoMerienda').hasError('required')">El campo no puede estar vacio</p>
         </div>
     </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-            <input matInput placeholder="Detalle/Ingredientes" formControlName="detalleMerienda" autocomplete="off">
-            <div *ngIf="desayunoForm.get('detalleMerienda').errors && desayunoForm.get('detalleMerienda').dirty " >
-                <p class="e" *ngIf="desayunoForm.get('detalleMerienda').hasError('required')">El campo no debe estar vacio</p>
-                <p class="e" *ngIf="desayunoForm.get('detalleMerienda').hasError('minlength')">Minimo 5 caracteres</p>
-                <p class="e" *ngIf="desayunoForm.get('detalleMerienda').hasError('maxlength')">Maximo 50 caracteres</p>
-            </div>
-        </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <textarea matInput placeholder="Detalle/Ingredientes" formControlName="detalleMerienda" ></textarea>
+        <div *ngIf="desayunoForm.get('detalleMerienda').errors && desayunoForm.get('detalleMerienda').dirty" >
+            <p class="e" *ngIf="desayunoForm.get('detalleMerienda').hasError('required')">El campo no puede estar vacio</p>
+        </div>
+    </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <input matInput placeholder="Precio" formControlName="precioMerienda" type="number" autocomplete="off" >
@@ -35,7 +31,7 @@
             </div>
         </mat-form-field>
 
-    <button mat-raised-button color="primary" type="submit" [mat-dialog-close]="true" >
+    <button mat-raised-button color="primary" type="submit" [mat-dialog-close]="true"  [disabled]="desayunoForm.invalid">
         <mat-icon>done</mat-icon>
         <span>Aceptar</span>
     </button>

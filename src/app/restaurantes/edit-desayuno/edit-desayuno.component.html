@@ -10,18 +10,16 @@
                 <mat-option value="Continental">Desayuno Continental</mat-option>
             </mat-select>
         </mat-form-field>
-    
+
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Detalle/Ingredientes" formControlName="detalleDesayuno" autocomplete="off">
-            <div *ngIf="editDesayunoForm.get('detalleDesayuno').errors && editDesayunoForm.get('detalleDesayuno').dirty " >
-                <p class="e" *ngIf="editDesayunoForm.get('detalleDesayuno').hasError('required')">El campo no debe estar vacio</p>
-                <p class="e" *ngIf="editDesayunoForm.get('detalleDesayuno').hasError('minlength')">Minimo 5 caracteres</p>
-                <p class="e" *ngIf="editDesayunoForm.get('detalleDesayuno').hasError('maxlength')">Maximo 50 caracteres</p>
+            <textarea matInput placeholder="Detalle/Ingredientes" formControlName="detalleDesayuno" ></textarea>
+            <div *ngIf="editDesayunoForm.get('detalleDesayuno').errors && editDesayunoForm.get('detalleDesayuno').dirty" >
+                <p class="e" *ngIf="editDesayunoForm.get('detalleDesayuno').hasError('required')">El campo no puede estar vacio</p>
             </div>
         </mat-form-field>
     
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Precio" formControlName="precioDesayuno" type="number" autocomplete="off" >
+            <input matInput placeholder="Precio" formControlName="precioDesayuno" type="number" maxlength="10"  autocomplete="off" >
             <div *ngIf="editDesayunoForm.get('precioDesayuno').errors && editDesayunoForm.get('precioDesayuno').dirty " >
                 <p class="e" *ngIf="editDesayunoForm.get('precioDesayuno').hasError('required')">El campo no debe estar vacio</p>
                 <p class="e" *ngIf="editDesayunoForm.get('precioDesayuno').hasError('minlength')">Minimo 1 caracteres</p>

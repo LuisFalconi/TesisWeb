@@ -29,10 +29,10 @@ export class CrearAlmuerzoComponent implements OnInit, OnDestroy {
  
    public almuerzoForm = new FormGroup({
      id: new FormControl (''),
-     entradaAlmuerzo: new FormControl ('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),  
-     segundoAlmuerzo: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
+     entradaAlmuerzo: new FormControl ('', [Validators.required]),  
+     segundoAlmuerzo: new FormControl('', [Validators.required]),
      jugoAlmuerzo: new FormControl('',  [Validators.required]),
-     precioAlmuerzo: new FormControl('',  [Validators.required, Validators.minLength(1), Validators.maxLength(3), Validators.pattern(/^[1-9]/)]),
+     precioAlmuerzo: new FormControl('',  [Validators.required, Validators.pattern(/^[1-9]/)]),
    });
  
  

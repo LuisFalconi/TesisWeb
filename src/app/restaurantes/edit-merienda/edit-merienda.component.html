@@ -3,21 +3,18 @@
         <!-- De esta manera uso el input -->
         <!-- {{perfil | json}} -->
         <h3>Merienda</h3>
+
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Nombre de Plato" formControlName="platoMerienda" autocomplete="off">
-            <div *ngIf="editDesayunoForm.get('platoMerienda').errors && editDesayunoForm.get('platoMerienda').dirty " >
-                <p class="e" *ngIf="editDesayunoForm.get('platoMerienda').hasError('required')">El campo no debe estar vacio</p>
-                <p class="e" *ngIf="editDesayunoForm.get('platoMerienda').hasError('minlength')">Minimo 5 caracteres</p>
-                <p class="e" *ngIf="editDesayunoForm.get('platoMerienda').hasError('maxlength')">Maximo 50 caracteres</p>
+            <textarea matInput placeholder="Nombre del Plato" formControlName="platoMerienda" ></textarea>
+            <div *ngIf="editDesayunoForm.get('platoMerienda').errors && editDesayunoForm.get('platoMerienda').dirty" >
+                <p class="e" *ngIf="editDesayunoForm.get('platoMerienda').hasError('required')">El campo no puede estar vacio</p>
             </div>
         </mat-form-field>
-    
+
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Detalle/Ingredientes" formControlName="detalleMerienda" autocomplete="off">
-            <div *ngIf="editDesayunoForm.get('detalleMerienda').errors && editDesayunoForm.get('detalleMerienda').dirty " >
-                <p class="e" *ngIf="editDesayunoForm.get('detalleMerienda').hasError('required')">El campo no debe estar vacio</p>
-                <p class="e" *ngIf="editDesayunoForm.get('detalleMerienda').hasError('minlength')">Minimo 5 caracteres</p>
-                <p class="e" *ngIf="editDesayunoForm.get('detalleMerienda').hasError('maxlength')">Maximo 50 caracteres</p>
+            <textarea matInput placeholder="Detalle/Ingredientes" formControlName="detalleMerienda" ></textarea>
+            <div *ngIf="editDesayunoForm.get('detalleMerienda').errors && editDesayunoForm.get('detalleMerienda').dirty" >
+                <p class="e" *ngIf="editDesayunoForm.get('detalleMerienda').hasError('required')">El campo no puede estar vacio</p>
             </div>
         </mat-form-field>
     

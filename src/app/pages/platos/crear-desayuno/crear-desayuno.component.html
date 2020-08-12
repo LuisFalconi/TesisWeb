@@ -5,6 +5,8 @@
             <input matInput placeholder="id" formControlName="id">
         </mat-form-field>
     </div>
+
+
     <!-- Mostrar el uid del usuario logueado -->
     <!-- formControlName: Nombre que se le da en el componete ts -->
         <mat-form-field class="example-full-width">
@@ -16,11 +18,9 @@
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-            <input matInput placeholder="Detalle/Ingredientes" formControlName="detalleDesayuno" autocomplete="off">
-            <div *ngIf="desayunoForm.get('detalleDesayuno').errors && desayunoForm.get('detalleDesayuno').dirty " >
-                <p class="e" *ngIf="desayunoForm.get('detalleDesayuno').hasError('required')">El campo no debe estar vacio</p>
-                <p class="e" *ngIf="desayunoForm.get('detalleDesayuno').hasError('minlength')">Minimo 5 caracteres</p>
-                <p class="e" *ngIf="desayunoForm.get('detalleDesayuno').hasError('maxlength')">Maximo 50 caracteres</p>
+            <textarea matInput placeholder="Detalle/Ingredientes" formControlName="detalleDesayuno" ></textarea>
+            <div *ngIf="desayunoForm.get('detalleDesayuno').errors && desayunoForm.get('detalleDesayuno').dirty" >
+                <p class="e" *ngIf="desayunoForm.get('detalleDesayuno').hasError('required')">El campo no puede estar vacio</p>
             </div>
         </mat-form-field>
 

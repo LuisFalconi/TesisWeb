@@ -16,10 +16,10 @@ export class EditAlmuerzoComponent implements OnInit {
 
   public almuerzoForm = new FormGroup({
     id: new FormControl (''),
-    entradaAlmuerzo: new FormControl ('', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]),  
-    segundoAlmuerzo: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
-    jugoAlmuerzo: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
-    precioAlmuerzo: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(3), Validators.pattern(/^[1-9]/)])
+    entradaAlmuerzo: new FormControl ('', [Validators.required]),  
+    segundoAlmuerzo: new FormControl('', [Validators.required]),
+    jugoAlmuerzo: new FormControl('', [Validators.required]),
+    precioAlmuerzo: new FormControl('', [Validators.required, Validators.pattern(/^[1-9]/)])
   });
 
   ngOnInit() {
