@@ -87,41 +87,89 @@ export class PromocionService {
     return this.obternerImagen(promo, image);
   }
 
-  subirPromo(promo: Promocion, image?: FileP): void{
-    this.obternerImagen2(promo, image);
-  }
+  // subirPromo(promo: Promocion, image?: FileP): void{
+  //   this.obternerImagen2(promo, image);
+  // }
 
+  // private obternerImagen(promo: Promocion ,image?: FileI){
+  //   this.filePath = `imagenesPromo/${image.name}`;
+  //   const fileRef = this.storage.ref(this.filePath);
+  //   const task = this.storage.upload(this.filePath, image);
+  //   var message = '5b6p5Y+344GX44G+44GX44Gf77yB44GK44KB44Gn44Go44GG77yB';
+  //   fileRef.putString(message, 'base64').then(()=>
+  //   {
+  //     task.snapshotChanges()
+  //     .pipe(
+  //       finalize(() => {
+  //        fileRef.getDownloadURL().subscribe(urlImage => {
+  //           this.UrlImagen = urlImage;
+  //           this.guardarPromo(promo);          
+  //         });
+  //      })
+  //     ).subscribe();  
+  //     console.log('Uploaded a base64 string!');
+  //   });
+  // }
+
+// Aqui esta sin la opcion de imgen64 por siacaso
   private obternerImagen(promo: Promocion ,image?: FileI){
     this.filePath = `imagenesPromo/${image.name}`;
     const fileRef = this.storage.ref(this.filePath);
     const task = this.storage.upload(this.filePath, image);
-    task.snapshotChanges()
-     .pipe(
-       finalize(() => {
-        fileRef.getDownloadURL().subscribe(urlImage => {
-           this.UrlImagen = urlImage;
-          console.log('urlImagen', this.UrlImagen);
-           this.guardarPromo(promo);          
-         });
-      })
-     ).subscribe();     
- }
+      task.snapshotChanges()
+      .pipe(
+        finalize(() => {
+         fileRef.getDownloadURL().subscribe(urlImage => {
+            this.UrlImagen = urlImage;
+            this.guardarPromo(promo);          
+          });
+       })
+      ).subscribe();  
+  }
 
- private obternerImagen2(promo: Promocion ,image?: FileP){
-  this.filePath = `imagenesPromo/${image.name}`;
-  const fileRef = this.storage.ref(this.filePath);
-  const task = this.storage.upload(this.filePath, image);
-  task.snapshotChanges()
-   .pipe(
-     finalize(() => {
-      fileRef.getDownloadURL().subscribe(urlImage => {
-         this.UrlImagen2 = urlImage;
-        console.log('urlImagen', this.UrlImagen);
-         this.guardarPromo2(promo);          
-       });
-    })
-   ).subscribe();     
-}
+//  private obternerImagen2(promo: Promocion ,image?: FileP){
+//   this.filePath = `imagenesPromo/${image.name}`;
+//   const fileRef = this.storage.ref(this.filePath);
+//   const task = this.storage.upload(this.filePath, image);
+//   task.snapshotChanges()
+//    .pipe(
+//      finalize(() => {
+//       fileRef.getDownloadURL().subscribe(urlImage => {
+//          this.UrlImagen2 = urlImage;
+//         console.log('urlImagen', this.UrlImagen);
+//          this.guardarPromo2(promo);          
+//        });
+//     })
+//    ).subscribe();     
+// }
+
+//Metodo paradeshabilitar promociones
+  editarPromocion(promo: Promocion){
+    let idPromo = promo.id;
+      if(idPromo){
+        const promoObj = {
+          //id: perfil.id,
+          userUID: this.usuarioLogeado,
+          estado: "falso"
+        };
+        return this.promocionCollection.doc(promo.id).update(promoObj); 
+    }
+  }
+
+
+  // Metodo para habilitar promociones
+  habilitarPromocion(promo: Promocion){
+    let idPromo = promo.id;
+      if(idPromo){
+        const promoObj = {
+          //id: perfil.id,
+          userUID: this.usuarioLogeado,
+          estado: "verdadero"
+        };
+        return this.promocionCollection.doc(promo.id).update(promoObj); 
+    }
+  }
+
 
  private guardarPromo(promo: Promocion) {
   //this.idRes =perfil.id;
@@ -135,41 +183,41 @@ export class PromocionService {
     };
     return this.promocionCollection.doc(promo.id).update(promoObj);      
   }else{
-    console.log("Estoy creando un restaurante");
     let idPromo = this.afs.createId();
     promo.id = idPromo; 
     this.afs.collection('promociones').doc(idPromo).set({
       id: promo.id,
       userUID: this.usuarioLogeado,
       fotosPromocion: this.UrlImagen,
-      fileRef: this.filePath
+      fileRef: this.filePath,
+      estado: "verdadero"
     });
   }
  }
 
- private guardarPromo2(promo: Promocion) {
-  //this.idRes =perfil.id;
-  let idExiste = promo.id;
-  if(idExiste){
-    const promoObj = {
-      //id: perfil.id,
-      userUID: this.usuarioLogeado,
-      fotosPromocion: this.UrlImagen2,
-      fileRef: this.filePath
-    };
-    return this.promocionCollection.doc(promo.id).update(promoObj);      
-  }else{
-    console.log("Estoy creando un restaurante");
-    let idPromo = this.afs.createId();
-    promo.id = idPromo; 
-    this.afs.collection('promociones').doc(idPromo).set({
-      id: promo.id,
-      userUID: this.usuarioLogeado,
-      fotosPromocion: this.UrlImagen2,
-      fileRef: this.filePath
-    });
-  }
- }
+//  private guardarPromo2(promo: Promocion) {
+//   //this.idRes =perfil.id;
+//   let idExiste = promo.id;
+//   if(idExiste){
+//     const promoObj = {
+//       //id: perfil.id,
+//       userUID: this.usuarioLogeado,
+//       fotosPromocion: this.UrlImagen2,
+//       fileRef: this.filePath
+//     };
+//     return this.promocionCollection.doc(promo.id).update(promoObj);      
+//   }else{
+//     console.log("Estoy creando un restaurante");
+//     let idPromo = this.afs.createId();
+//     promo.id = idPromo; 
+//     this.afs.collection('promociones').doc(idPromo).set({
+//       id: promo.id,
+//       userUID: this.usuarioLogeado,
+//       fotosPromocion: this.UrlImagen2,
+//       fileRef: this.filePath
+//     });
+//   }
+//  }
 
 
 

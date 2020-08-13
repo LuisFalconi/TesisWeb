@@ -72,6 +72,11 @@ export class PromocionesComponent implements OnInit {
     //this.router.navigate(['editar']);
   }
 
+  revisarImagen(){
+    
+    
+  }
+
   seleccionar_promo(e: any): void{
     this.isSubmitted = true;
     console.log(this.isSubmitted);

@@ -39,14 +39,15 @@
                     <!-- {{ perfil$ | async | json}} -->
                     
                       <div  class="example-card" *ngFor="let promo of promocion">
-                        <div *ngIf="usuarioLog === promo.userUID && promo.userUID">
+                        <div *ngIf="usuarioLog === promo.userUID && promo.userUID && promo.estado ==='verdadero'">
                           <mat-card>
                             <mat-card-header>
                               <div mat-card-avatar class="example-header-image"></div>
                             </mat-card-header>
                               <img matCardImage [src]="promo.fotosPromocion" *ngIf="promo.fotosPromocion" width="500px" height="300px"/>
                               <mat-card-actions>
-                                <button mat-button color="warm" (click)="eliminar(promo)"><mat-icon arial-label="Eliminar">highlight_off</mat-icon>Eliminar</button>
+                                <button mat-button color="warm" (click)="deshabilitarPromo(promo)"><mat-icon arial-label="Eliminar">highlight_off</mat-icon>Deshabilitar</button>
+                                <button mat-button color="warm" (click)="eliminarPromo(promo)"><mat-icon arial-label="Eliminar">highlight_off</mat-icon>Eliminar</button>
                               </mat-card-actions>
                           </mat-card>
                         </div>
@@ -54,7 +55,28 @@
                     </div>
                     <div style="position: static;">
                       <app-promociones></app-promociones>
-                    </div>   
+                    </div>  
+                    <mat-divider></mat-divider>
+                    
+                      <p>Promociones Deshabilitadas</p>
+                      <div class="container" *ngIf="promociones$ | async as promocion; else loading">
+                        <!-- {{ perfil$ | async | json}} -->
+                          <div  class="example-card" *ngFor="let promo of promocion">
+                            <div *ngIf="usuarioLog === promo.userUID && promo.userUID && promo.estado ==='falso'">
+                              <mat-card >
+                                <mat-card-header>
+                                  <div mat-card-avatar class="example-header-image"></div>
+                                </mat-card-header>
+                                  <img matCardImage [src]="promo.fotosPromocion" *ngIf="promo.fotosPromocion" width="500px" height="300px"  />
+                                  <mat-card-actions>
+                                    <button mat-button color="warm" (click)="habilitarPromo(promo)"><mat-icon arial-label="Eliminar">check</mat-icon>Habilitar</button>
+                                    <button mat-button color="warm" (click)="eliminarPromo(promo)"><mat-icon arial-label="Eliminar">highlight_off</mat-icon>Eliminar</button>
+                                  </mat-card-actions>
+                              </mat-card>
+                            </div>
+                          </div>
+                        </div>
+                      
 
 
           <ng-template #loading>
@@ -79,7 +101,8 @@
         </div>
     </ng-template>
 </ng-template>
-  
+
+
   
 </div>
 

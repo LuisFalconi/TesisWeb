@@ -119,12 +119,48 @@ export class ListaPromocionesComponent implements OnInit {
 
   }
 
-  eliminar(promo: Promocion){
-    console.log("zzz", promo);
-    
+  deshabilitarPromo(promo: Promocion){    
+    Swal.fire({
+      title: 'Deseas deshabilitar tu promocion?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "No!",
+      confirmButtonText: 'Si!'
+    }).then((result) => {
+      if (result.value) {       
+        this.promocionSvs.editarPromocion(promo).then(() =>{
+          //this.timer();
+          //window.location.reload(true);
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Promoción deshabilitada',
+            showConfirmButton: false,
+            timer: 1000
+          })
+            .then(() =>{
+              //this.router.navigate(['/perfil']);
+            });
+          }).catch((error =>{
+            Swal.fire('Error!', error ,'error');
+          }));
+      }else {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'Cancelado',
+          showConfirmButton: false,
+          timer: 1000
+        });
+    }
+    })
+  }
+
+  eliminarPromo(promo: Promocion){    
     Swal.fire({
       title: 'Deseas eliminar tu promocion?',
-      text: "No podras revertir esto!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -139,7 +175,47 @@ export class ListaPromocionesComponent implements OnInit {
           Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Promocion Eliminada',
+            title: 'Promoción eliminada',
+            showConfirmButton: false,
+            timer: 1000
+          })
+            .then(() =>{
+              //this.router.navigate(['/perfil']);
+            });
+          }).catch((error =>{
+            Swal.fire('Error!', error ,'error');
+          }));
+      }else {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'Cancelado',
+          showConfirmButton: false,
+          timer: 1000
+        });
+    }
+    })
+  }
+
+  habilitarPromo(promo: Promocion){
+    
+    Swal.fire({
+      title: 'Deseas habilitar tu promocion?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: "No!",
+      confirmButtonText: 'Si!'
+    }).then((result) => {
+      if (result.value) {       
+        this.promocionSvs.habilitarPromocion(promo).then(() =>{
+          //this.timer();
+          //window.location.reload(true);
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Promoción habilitada!',
             showConfirmButton: false,
             timer: 1500
           })
