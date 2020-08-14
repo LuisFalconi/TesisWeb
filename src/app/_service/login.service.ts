@@ -87,6 +87,7 @@ export class LoginService {
          uid: uid,
          numero: numero,
          nombre: nombre,
+         estado: "verdadero",
          roles: ['dueño']
         });
       if(res.user.emailVerified){
@@ -129,6 +130,7 @@ export class LoginService {
           email: usuario.email,
           numero: usuario.numero,
           nombre: usuario.nombre,
+          estado: "verdadero",
           roles: ['dueño']
         }
         return userRef.set(datos);
@@ -163,6 +165,7 @@ export class LoginService {
           email: usuario.email,
           numero: usuario.phoneNumber,
           nombre: usuario.displayName,
+          estado: "verdadero",
           roles: ['dueño']
         }
         return userRef.set(datos);

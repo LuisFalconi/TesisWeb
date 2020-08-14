@@ -2,7 +2,7 @@
 <div style="margin: 45px; padding: 10px;">
   <mat-accordion class="example-headers-align">
     <mat-expansion-panel *ngFor="let r of restaurante" hideToggle>
-      <mat-expansion-panel-header *ngIf="r.resVerificado && r.resVerificado.toString() === 'Aprovado'">
+      <mat-expansion-panel-header *ngIf="r.resVerificado && r.resVerificado.toString() === 'Aprobado'">
         <mat-panel-title>{{r.nombreRestaurante}}</mat-panel-title>
         <mat-panel-description>
             {{r.tipoRestaurante}}

@@ -3,22 +3,21 @@
 <mat-accordion class="example-headers-align">
     <mat-expansion-panel *ngFor="let users of users" hideToggle>
       <mat-expansion-panel-header *ngIf="users.roles && users.roles.toString() === 'dueño'">
-        <mat-panel-title>{{users.roles}}</mat-panel-title>
+        <mat-panel-title> <span> Usuario: {{users.nombre.toUpperCase()}}</span></mat-panel-title>
         <mat-panel-description>
             {{users.email}}
             <mat-icon>menu_book</mat-icon>
         </mat-panel-description>
       </mat-expansion-panel-header>
-        <mat-list-item>{{users.uid}}</mat-list-item>
         <div *ngFor="let p of perfil">
-            <div *ngIf="p.userUID == users.uid" >
-                <mat-list-item><h3>Nombre del Restaurante</h3> {{p.nombreRestaurante}}</mat-list-item>
-                <mat-list-item><h3>Estado del Restaurante</h3> {{p.resVerificado}}</mat-list-item>
+            <div *ngIf="p.userUID == users.uid && users.uid" >
+                <mat-list-item> Nombre del Restaurante: <span style="font-family: Arial, Helvetica, sans-serif;"></span> </mat-list-item>
+                <mat-list-item> Estado del Restaurante: {{p.resVerificado}}</mat-list-item>
             </div>
         </div>
         <div *ngFor="let docu of doc">
             <div *ngIf="docu.userUID == users.uid" >
-                <mat-list-item> <h3>Nombre Documento</h3> {{docu.fileRef}}</mat-list-item>
+                <mat-list-item> <h3>Documento</h3> {{docu.fileRef}}</mat-list-item>
                 <mat-list-item>
                 <mat-divider></mat-divider><br>
                     <a href="{{docu.docValidacion}}">

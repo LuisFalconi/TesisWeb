@@ -237,12 +237,38 @@ export class PerfilService {
         direccionRestaurante: perfil.direccionRestaurante,
         imagenRes: this.UrlImagen,
         fileRef: this.filePath,
-        resVerificado: "En revisión",
+        resVerificado: "En revision",
         latitud: "",
-        longitud: ""
+        longitud: "",
+        estado: "verdadero"
       });
     }
    }
+
+
+   deshabilitarRestaurante(restaurante: Perfil){
+    let idRes = restaurante.id;
+      if(idRes){
+        const promoObj = {
+          //id: perfil.id,
+          //userUID: this.usuarioLogeado,
+          estado: "falso"
+        };
+        return this.perfilCollection.doc(restaurante.id).update(promoObj); 
+    }
+  }
+
+  habilitarRestaurante(restaurante: Perfil){
+    let idRes = restaurante.id;
+      if(idRes){
+        const promoObj = {
+          //id: perfil.id,
+          //userUID: this.usuarioLogeado,
+          estado: "verdadero"
+        };
+      return this.perfilCollection.doc(restaurante.id).update(promoObj); 
+    }
+  }
 
    private guardarRestauranteSinFoto(perfil: Perfil) {
     
@@ -259,7 +285,7 @@ export class PerfilService {
       direccionRestaurante: perfil.direccionRestaurante,
       imagenRes: "",
       fileRef: "",
-      resVerificado: "En revisión",
+      resVerificado: "En revision",
       latitud: "",
       longitud: ""
     });

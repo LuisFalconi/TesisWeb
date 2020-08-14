@@ -26,11 +26,11 @@
     <ng-template #verificacionRes>
         <div *ngFor="let perfil of perfil$ | async ">
             <div *ngIf="usuarioLog == perfil.userUID">
-                <ng-template [ngIf]="perfil.resVerificado.toString() === 'En revisión'">
+                <ng-template [ngIf]="perfil.resVerificado.toString() === 'En revision'">
                     <p>Tu restaurante esta siendo verificado por el Administrador</p>
                     <mat-card-title>Estado:{{perfil.resVerificado}}</mat-card-title>
                 </ng-template>
-                <ng-template [ngIf]="perfil.resVerificado.toString() === 'Aprovado'">
+                <ng-template [ngIf]="perfil.resVerificado.toString() === 'Aprobado'">
                     <div>
                         <p>Restaurante Aprobado</p>
                         <h1 style="text-align: center;"> Promociones</h1>
@@ -90,7 +90,7 @@
           </ng-template>
                 <ng-template [ngIf]="perfil.resVerificado.toString() === 'Rechazado'">
                     <div>
-                        <h1>Tu restaurante no ha sido Aprovado :( </h1>
+                        <h1>Tu restaurante no ha sido Aprobado :( </h1>
                         <p>La información de tu restaurante será eliminado por el administrador.</p>
                         <br>
                         <app-validacion></app-validacion>         

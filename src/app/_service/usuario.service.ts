@@ -71,4 +71,28 @@ export class UsuarioService {
     
   }
 
+  deshabilitarUsuario(user: Usuario){
+    let idUser = user.uid;
+      if(idUser){
+        const promoObj = {
+          //id: perfil.id,
+          //userUID: this.usuarioLogeado,
+          estado: "falso"
+        };
+        return this.usuarioCollection.doc(user.uid).update(promoObj); 
+    }
+  }
+
+  habilitarUsuario(user: Usuario){
+    let idUser = user.uid;
+      if(idUser){
+        const promoObj = {
+          //id: perfil.id,
+          //userUID: this.usuarioLogeado,
+          estado: "verdadero"
+        };
+        return this.usuarioCollection.doc(user.uid).update(promoObj); 
+    }
+  }
+
 }

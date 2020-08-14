@@ -5,4 +5,5 @@ export class Usuario {
     nombre?: string;
     numero?: string;
     clave?: string;
+    estado?: string;
 }

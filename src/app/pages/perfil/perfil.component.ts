@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material';
 import { ModalComponent } from '../../modal/modal/modal.component';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-perfil',
@@ -32,6 +33,7 @@ export class PerfilComponent implements OnInit {
 
   valor: boolean=true;
   editarMenu: boolean;
+  resDeshabilitado: boolean;
 
   
   constructor(private afa: AngularFireAuth, private perfilService: PerfilService,
@@ -71,12 +73,10 @@ export class PerfilComponent implements OnInit {
    
     this.perfilService.listar().subscribe(data=>{
       this.perfil = data;
-      //console.log(this.perfil);
-      
+      //console.log(this.perfil);     
     });
 
     this.perfil$ = this.perfilService.recuperarDatos();
-  
   }
 
   // Metodo para validar si existe informacion del restaurante
@@ -88,6 +88,85 @@ export class PerfilComponent implements OnInit {
         return false;
       }
     }
+
+    deshabilitarRestaurante(res: Perfil){    
+      Swal.fire({
+        title: 'Deseas deshabilitar tu restaurante?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: "No!",
+        confirmButtonText: 'Si!'
+      }).then((result) => {
+        if (result.value) {       
+          this.perfilService.deshabilitarRestaurante(res).then(() =>{
+            //this.timer();
+            // Controlo el Ng model para que aparezca el restaurante Deshabilitad
+            this.resDeshabilitado = true;
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Restaurante deshabilitado',
+              showConfirmButton: false,
+              timer: 1000
+            })
+                .then(() =>{
+                //this.router.navigate(['/perfil']);
+              });
+            }).catch((error =>{
+              Swal.fire('Error!', error ,'error');
+            }));
+        }else {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Cancelado',
+            showConfirmButton: false,
+            timer: 1000
+          });
+      }
+      })
+    }
+
+    habilitarRestaurante(res: Perfil){    
+      Swal.fire({
+        title: 'Desea habilitar su restaurante?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: "No!",
+        confirmButtonText: 'Si!'
+      }).then((result) => {
+        if (result.value) {       
+          this.perfilService.habilitarRestaurante(res).then(() =>{
+            //this.timer();
+            //window.location.reload(true);
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Restaurante habilitado',
+              showConfirmButton: false,
+              timer: 1000
+            })
+              .then(() =>{
+                //this.router.navigate(['/perfil']);
+              });
+            }).catch((error =>{
+              Swal.fire('Error!', error ,'error');
+            }));
+        }else {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Cancelado',
+            showConfirmButton: false,
+            timer: 1000
+        });
+      }
+    })
+  }
 
   enviarEmail(){
     this.route.navigate(['/verificacionE']);

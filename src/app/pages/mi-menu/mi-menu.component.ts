@@ -45,8 +45,12 @@ export class MiMenuComponent implements OnInit {
   valorM: boolean=true;
 
 
+  // Variable para buscar el restaurante
   valorRestaurante: boolean=true;
+  // Variable para alidar si el restaurante subio algun documento
   validacionR: boolean=true;
+  // Variable para validar si el restaurante esta habilitado o no
+  estadoRestaurante: boolean=true;
 
 
   plato$: Observable<Plato[]>;
@@ -168,7 +172,16 @@ export class MiMenuComponent implements OnInit {
           this.restaurantelog = [x];
           this.valorRestaurante = true;
           this.validacionRestauranteExiste(this.valorRestaurante);
-          //console.log("Este restaurante", this.restaurantelog); 
+          // De esta manera valido si el rstaurante esta habilitado
+          this.restaurantelog.forEach(element => {
+            if (element.estado === 'verdadero') {
+              this.estadoRestaurante = true;
+              this.estadoRestauranteActual(this.estadoRestaurante); 
+            } else if (element.estado === 'falso') {
+              this.estadoRestaurante = false;
+              this.estadoRestauranteActual(this.estadoRestaurante); 
+            }
+          }); 
           break;   
         }else{
           // console.log("No");
@@ -240,6 +253,14 @@ export class MiMenuComponent implements OnInit {
   }
 
   validacionDocumento(valor: boolean){
+    if (valor){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  estadoRestauranteActual(valor: boolean){
     if (valor){
       return true;
     }else{

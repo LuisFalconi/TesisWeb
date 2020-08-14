@@ -7,19 +7,11 @@
                 <mat-header-cell *matHeaderCellDef>
                     <h3>Actualizar Información</h3>
                 </mat-header-cell>
-                <mat-cell *matCellDef="let row" style="padding-left: 30%;">
+                <mat-cell *matCellDef="let row" style="padding-left: 40%;">
                   <div *ngIf="usuarioLog == row.userUID">
                           <button mat-icon-button color="primary" (click)="editarRestaurante(row)">
                               <mat-icon arial-label="Actualizar">edit</mat-icon>
                           </button>
-                  </div>
-                  <div>
-                      <p>&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;</p>
-                  </div>
-                  <div *ngIf="usuarioLog == row.userUID">
-                      <button mat-icon-button color="accent" (click)="eliminar(row)">
-                          <mat-icon arial-label="Eliminar">highlight_off</mat-icon>
-                      </button>
                   </div>
                 </mat-cell>
             </ng-container>
