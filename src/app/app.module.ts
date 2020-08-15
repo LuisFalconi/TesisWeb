@@ -1,3 +1,4 @@
+import { ModalEditarAlmuerzoComponent } from './modal/modal-editar-almuerzo/modal-editar-almuerzo.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -64,7 +65,6 @@ import { ModalEditarDesayunoComponent } from './modal/modal-editar-desayuno/moda
 import { EditDesayunoComponent } from './restaurantes/edit-desayuno/edit-desayuno.component';
 import { CrearAlmuerzoComponent } from './pages/platos/crear-almuerzo/crear-almuerzo.component';
 import { EditarAlmuerzoComponent } from './pages/platos/editar-almuerzo/editar-almuerzo.component';
-import { ModalEditarAlmuerzoComponent } from './modal/modal-editar-almuerzo/modal-editar-almuerzo.component';
 import { EditAlmuerzoComponent } from './restaurantes/edit-almuerzo/edit-almuerzo.component';
 import { ModalAlmuerzoComponent } from './modal/modal-almuerzo/modal-almuerzo.component';
 import { EditarMeriendaComponent } from './pages/platos/editar-merienda/editar-merienda.component';
@@ -72,6 +72,7 @@ import { CrearMeriendaComponent } from './pages/platos/crear-merienda/crear-meri
 import { ModalEditarMeriendaComponent } from './modal/modal-editar-merienda/modal-editar-merienda.component';
 import { EditMeriendaComponent } from './restaurantes/edit-merienda/edit-merienda.component';
 import { ModalMeriendaComponent } from './modal/modal-merienda/modal-merienda.component';
+
 
 @NgModule({
   declarations: [
