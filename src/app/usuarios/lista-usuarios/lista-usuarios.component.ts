@@ -2,7 +2,6 @@ import { Usuario } from './../../_model/usuario';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { UsuarioService } from '../../_service/usuario.service';
-import { Usuario } from '../../_model/usuario';
 import Swal from 'sweetalert2';
 import { Observable } from 'rxjs';
 
