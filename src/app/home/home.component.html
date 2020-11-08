@@ -1,18 +1,12 @@
-
-    <!-- Start Banner -->
-
-    <!-- End Banner -->
-    <div>
-
-    
+   
     <div class="section layout_padding">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="full center">
                         <div class="heading_main text_align_center">
-                            <h2><span class="theme_color">MUERTOS DE</span> HAMBRE</h2>
-                            <p class="large">EPN FOOD</p>
+                            <h2 class="large"><span class="theme_color">MUERTOS DE</span> HAMBRE</h2>
+                            <p class="large"></p>
                             <br>
                             <p>Muertos de Hambre es la aplicación oficial de la Escuela Politécnica Nacional, 
                               que permite a los estudiantes, maestros y todo el personal correspondiente a la EPN poder 
@@ -28,6 +22,12 @@
         </div>
     </div>
 
+    <div class="container">
+      {{restaurantes | json}}
+    </div>
+
+
+
     <app-clientes></app-clientes>
     <!-- <app-cliente></app-cliente> -->
     
@@ -37,7 +37,6 @@
     <!-- <app-promociones-inicio></app-promociones-inicio> -->
 
     <app-contactos></app-contactos>
-  </div>
  <!-- <div class="home">
     <div>
         <mat-tab-group class="tab" mat-align-tabs="center" animationDuration="1000ms">

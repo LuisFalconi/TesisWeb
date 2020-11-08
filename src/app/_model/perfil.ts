@@ -13,6 +13,7 @@ export class Perfil{
     latitud ?: number;
     longitud?: number;
     estado?: string;
+    estadoDocumento: string;
     // auxialiar: 
     // suma :
 }

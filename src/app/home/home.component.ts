@@ -3,6 +3,8 @@ import { LoginService } from '../_service/login.service';
 import { LoginComponent } from '../login/login.component';
 import { Usuario } from '../_model/usuario';
 import { ClienteComponent } from '../pages/cliente/cliente.component';
+import { PerfilService } from '../_service/perfil.service';
+import { Perfil } from '../_model/perfil';
 
 @Component({
   selector: 'app-home',
@@ -14,11 +16,15 @@ export class HomeComponent implements OnInit {
   loadinng: boolean;
   usuario: string;
   clave: string;
-  constructor(public loginService: LoginService) { }
+
+  restaurantes: Perfil[] =[];
+  constructor(public loginService: LoginService, public perfilSvc: PerfilService) { }
 
   ngOnInit() {
     this.loadinng = false;
     this.vista();
+
+    this.obtenerRestaurantes();
     
   }
 
@@ -29,6 +35,21 @@ export class HomeComponent implements OnInit {
     }else{
       console.log("ya no estoy aqui")
     }
+  }
+
+  obtenerRestaurantes(){
+    this.perfilSvc.listar().subscribe(data =>{
+      this.restaurantes = [];
+
+      data.forEach(element => {
+        if(element.resVerificado ==='Aprobado' && element.estadoDocumento === 'documento Aprobado'){
+          this.restaurantes.push(element);
+        }
+      });
+
+      console.log("Estos res", this.restaurantes);
+      
+    })
   }
 
   // crearUsuario() {

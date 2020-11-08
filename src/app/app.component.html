@@ -1,90 +1,29 @@
-     <!-- Start header -->
-    <div *ngIf="loginService.userData | async; else mostrarLogin">
-    <header class="top-header" >
-        <nav class="navbar header-nav navbar-expand-lg">
-            <div class="container-fluid">
-                <a class="navbar-brand" routerLink="/infoPerfil" ><img src="assets/logoMH.png" alt="image">MuertosDeHambre.com</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd" aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbar-wd" *ngIf="loginService.estaLogeado()">
-                    <ul class="navbar-nav">
-                        <!-- <li><a class="nav-link" routerLink="/">Inicio</a></li> -->
-                        <li><a class="nav-link" routerLink="/infoPerfil">Perfil</a></li>
-                        <li><a class="nav-link" (click)="loginService.cerrarSesion()">Cerrar Sesion</a></li>
-                        <!-- <li><a class="nav-link active" style="background:#fff;color:#000;" href="contact.html">Sinup now</a></li> -->
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        </header>
-    </div>
-
-    <div *ngIf="loginService.userData | async">
-    <mat-sidenav-container class="all-wrap" fullscream [hasBackdrop]="false">
-        <mat-sidenav [mode]="'push'" style="width: 300px;" opened>
-            <div *ngFor="let m of menus">
-                <button mat-menu-item routerLink="{{m.url}}" style="cursor: pointer">
-                    <mat-icon>{{m.icono}}</mat-icon>
-                    <span>{{m.nombre}}</span>
-                </button>
-            </div>
-        </mat-sidenav>
-
-        <mat-sidenav-content>
-
-        <div class="page-wrap">
-            <!-- Estilos del menu -->
-            <mat-menu #menu="matMenu"></mat-menu>
-
-            <main class="content" style="margin: 40px; margin-bottom: 50%;">
-                <div class="div-scrollable">
-                    <router-outlet></router-outlet>
-                </div>
-            </main>
-        </div>
-            </mat-sidenav-content>
-        </mat-sidenav-container>
-    </div>
-
-    <ng-template #mostrarLogin>
         <div>
             <header class="top-header">
                <nav class="navbar header-nav navbar-expand-lg">
                    <div class="container-fluid">
-                       <a class="navbar-brand" routerLink="/inicio"><img src="assets/logoMH.png" width="150px" height="150px" alt="image">MuertosDeHambre.com</a>
+                       <a class="navbar-brand" routerLink="/inicio"><img src="assets/logoMH.png" width="150px" height="150px" alt="image"></a>
                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd" aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
-                           <span></span>
-                           <span></span>
-                           <span></span>
                        </button>
-                       <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
+                       <!-- <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
                            <ul class="navbar-nav">
                                <li><a class="nav-link active" routerLink="/">Home</a></li>
                                <li><a class="nav-link" routerLink="/clientesHome">Clientes</a></li>
                                <li><a class="nav-link" routerLink="/promocionesHome">Menú Diario</a></li>
                                <li><a class="nav-link" routerLink="/aboutHome">Promociones</a></li>
                                <li><a class="nav-link" routerLink="/contactosHome">Contactos</a></li>
-                               <li><a class="nav-link" (click)="irLogin()">Login</a></li>
-       
-                               <!-- <li><a class="nav-link active" style="background:#fff;color:#000;" href="contact.html">Sinup now</a></li> -->
                            </ul>
-                       </div>
+                       </div> -->
                    </div>
                </nav>
            </header>
+           
            <main class="content" >
-               <div class="div-scrollable" style="margin-bottom: 50%;">
+               <div class="div-scrollable">
                    <router-outlet></router-outlet>
                </div>
            </main>
-       </div>
-    </ng-template>
-    
-
-   
+       </div>  
 
     <div class="footer_bottom">
         <div class="container">

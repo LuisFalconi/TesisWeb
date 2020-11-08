@@ -257,7 +257,7 @@ LOADER
      padding: 5px 0px;
 }
  .top-header {
-     background-image: url("../images/header_img.png");
+     background-image: url("../hbg2.png");
      position: relative;
      top: 0px;
      left: 0px;
@@ -266,7 +266,7 @@ LOADER
      z-index: 20;
      background-position: left;
      background-repeat: no-repeat;
-     background-color: #0892fd;
+     background-color: #16212b;
      background-size: auto 100%;
 }
  .top-header .navbar .navbar-collapse ul li a {
@@ -383,7 +383,7 @@ LOADER
      font-weight: 300;
 }
  .theme_color {
-     color: #0892fd;
+     color: #d85c00;
 }
 /*------------------------------------------------------------------ Banner -------------------------------------------------------------------*/
  .home-slider{
@@ -1376,7 +1376,7 @@ LOADER
      float: left;
 }
  .theme_bg {
-     background: #07528d;
+     background: #16212b;
 }
  h3.small_heading {
      font-size: 35px;
