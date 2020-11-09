@@ -14,6 +14,8 @@ export class Perfil{
     longitud?: number;
     estado?: string;
     estadoDocumento: string;
+    socialF?: string; 
+    socialG?: string; 
     // auxialiar: 
     // suma :
 }

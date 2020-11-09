@@ -15,8 +15,10 @@
 //   z-index: 0;
 // }
 
+
+
 .mat-sidenav-container.mat-drawer-container{
-  background-color: #fff;
+  background-color: black;
   color: rgba(0,0,0,.87);
 }
 
@@ -27,9 +29,9 @@
 //   min-height: 100vh;
 // }
  
-content {
-  flex: 1;
- }
+// content {
+//   flex: 1;
+//  }
 
 // .div-scrollable {
 //   display: flex;
@@ -41,14 +43,14 @@ content {
 /*
  * Make the Component injected by Router Outlet full height:
  */
-main {
-  display: flex;
-  flex-direction: column;
-  > *:not(router-outlet) {
-    flex: 1;
-    display: block;
-  }
-}
+// main {
+//   display: flex;
+//   flex-direction: column;
+//   > *:not(router-outlet) {
+//     flex: 1;
+//     display: block;
+//   }
+// }
 
 .spacer {
   flex: 1 1 auto;
@@ -59,37 +61,37 @@ main {
   text-align: center;
 }
 
-.example-fill-remaining-space {
-  /* This fills the remaining space, by using flexbox. 
-     Every toolbar row uses a flexbox row layout. */
-  flex: 1 1 auto;
-  display: flex;
-}
+// .example-fill-remaining-space {
+//   /* This fills the remaining space, by using flexbox. 
+//      Every toolbar row uses a flexbox row layout. */
+//   flex: 1 1 auto;
+//   display: flex;
+// }
 
 // Esto permite que se quede estatico 
-@media screen and (min-width: 960px) {
-  mat-toolbar {
-     z-index: 50;
-  }
-}
+// @media screen and (min-width: 960px) {
+//   mat-toolbar {
+//      z-index: 50;
+//   }
+// }
 
-@media screen and (max-width: 599px) {
-  mat-toolbar {
-     z-index: 0;
-  }
-}
+// @media screen and (max-width: 599px) {
+//   mat-toolbar {
+//      z-index: 0;
+//   }
+// }
 
-@media screen and (max-width: 599px) {
-  .all-wrap {
-      width: 100%;
-      height: calc(100vh - 56px);
-      z-index: 100;
-  }
-}
+// @media screen and (max-width: 599px) {
+//   .all-wrap {
+//       width: 100%;
+//       height: calc(100vh - 56px);
+//       z-index: 100;
+//   }
+// }
 
-@media screen and (min-width: 600px) {
-.all-wrap {
-    width: 100%;
-    height: calc(100vh - 64px);
-  }
-}
+// @media screen and (min-width: 600px) {
+// .all-wrap {
+//     width: 100%;
+//     height: calc(100vh - 64px);
+//   }
+// }
