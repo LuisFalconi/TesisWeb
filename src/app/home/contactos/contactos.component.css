@@ -28,3 +28,10 @@
     padding-top: 30%;;
     text-align: center;
   }
+
+h3{
+    font-size: 25px;
+    color: black;
+    font-family: 'Open Sans', arial, sans-serif;
+    font-weight: bold;   
+}

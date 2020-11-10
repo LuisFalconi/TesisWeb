@@ -5,6 +5,8 @@ import { Usuario } from '../_model/usuario';
 import { ClienteComponent } from '../pages/cliente/cliente.component';
 import { PerfilService } from '../_service/perfil.service';
 import { Perfil } from '../_model/perfil';
+import { PromocionService } from '../_service/promocion.service';
+import { Promocion } from '../_model/promocion';
 
 @Component({
   selector: 'app-home',
@@ -18,14 +20,21 @@ export class HomeComponent implements OnInit {
   clave: string;
 
   restaurantes: Perfil[] =[];
-  constructor(public loginService: LoginService, public perfilSvc: PerfilService) { }
+  promociones: Promocion[] =[];
+
+  slideIndex: number =  1;
+
+
+  constructor(public loginService: LoginService, public perfilSvc: PerfilService, public pomocionSvc: PromocionService) { }
 
   ngOnInit() {
     this.loadinng = false;
     this.vista();
 
     this.obtenerRestaurantes();
-    
+    this.obtenerPromociones();
+
+    this.showSlides(this.slideIndex);
   }
 
   vista(){
@@ -48,9 +57,53 @@ export class HomeComponent implements OnInit {
       });
 
       console.log("Estos res", this.restaurantes);
+     
       
     })
   }
+
+  obtenerPromociones(){
+    console.log("sss", this.restaurantes);
+    this.pomocionSvc.listar().subscribe(p =>{
+      this.promociones = [];
+      p.forEach(element => {
+        if(element.estado === 'verdadero'){
+          this.promociones.push(element);
+        } 
+      });
+      console.log("pro", this.promociones);
+      
+    });
+  }
+
+
+// showSlides(slideIndex);
+
+// Next/previous controls
+plusSlides(n: number) {
+  this.showSlides(this.slideIndex += n);
+}
+
+// Thumbnail image controls
+currentSlide(n: number) {
+  this.showSlides(this.slideIndex = n);
+}
+
+showSlides(n: number) {
+  let i: number;
+  let slides = document.getElementsByClassName("mySlides") as HTMLCollectionOf<HTMLElement>;;
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {this.slideIndex = 1}
+  if (n < 1) {this.slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[this.slideIndex-1].style.display = "block";
+  dots[this.slideIndex-1].className += " active";
+}
 
   // crearUsuario() {
   //   this.loginService.registrarUsuario(this.usuario, this.clave);

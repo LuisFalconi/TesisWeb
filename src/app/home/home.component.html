@@ -1,4 +1,4 @@
-   
+
     <div class="section layout_padding">
         <div class="container">
             <div class="row">
@@ -8,12 +8,12 @@
                             <h2 class="large"><span class="theme_color">MUERTOS DE</span> HAMBRE</h2>
                             <p class="large"></p>
                             <br>
-                            <p>Muertos de Hambre es la aplicación oficial de la Escuela Politécnica Nacional, 
-                              que permite a los estudiantes, maestros y todo el personal correspondiente a la EPN poder 
-                              disfrutar de la variedad gastronómica del sector. Aqui encontraras los distintos restaurantes 
-                              de la zona, podras disfrutar del menú diario que ofrece cada restaurante, asi como sus horarios 
-                              de atención y capacidad. En nuestra app móvil podras obtener en tiempo real la dirección exacta 
-                              del restaurante y 
+                            <p>Muertos de Hambre es la aplicación oficial de la Escuela Politécnica Nacional,
+                              que permite a los estudiantes, maestros y todo el personal correspondiente a la EPN poder
+                              disfrutar de la variedad gastronómica del sector. Aqui encontraras los distintos restaurantes
+                              de la zona, podras disfrutar del menú diario que ofrece cada restaurante, asi como sus horarios
+                              de atención y capacidad. En nuestra app móvil podras obtener en tiempo real la dirección exacta
+                              del restaurante y
                               podras realizar una reserva y dirigirte con tus panas a degustar lo que mas te apetezca en el día.</p>
                         </div>
                     </div>
@@ -22,8 +22,8 @@
         </div>
     </div>
 
-    
-    
+
+
 
 
 
@@ -35,8 +35,8 @@
                         <span>Popular Places</span>
                         <h2>Integer sapien odio</h2>
                     </div>
-                </div> 
-            </div> 
+                </div>
+            </div>
             <div class="owl-carousel owl-theme">
                 <div class="item popular-item">
                     <div class="thumb">
@@ -221,18 +221,67 @@
             </div>
         </div>
     </section> -->
-      
- 
+
+    <div class="promociones">
+        <div class="promo-text">
+            <p>PROMOCIONES</p>
+            <br>
+            <img src="../../assets/logo.svg" alt="logo" width="40%"><br><br>
+        </div>
+     </div>
+
+    <!-- <div class="section layout_padding theme_bg"> -->
+        <!-- Slideshow container -->
+        <div class="slideshow-container" style="margin-top: 5%;">
+            <div class="mySlides fade">
+                <div class="numbertext"></div>
+                <img src="../../assets/promos.jpg" style="width:100%">
+                <!-- <div class="text">Caption Two</div> -->
+              </div>
+
+    <!-- Full-width images with number and caption text -->
+            <div *ngFor="let p of promociones; let i index">
+                <div class="mySlides">
+                    <!-- <div class="numbertext">1 / 3</div> -->
+                    <img [src]="p.fotosPromocion" style="width:100%">
+                    <!-- <div class="text">Caption Text</div> -->
+                </div>
+                <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
+                <a class="next" (click)="plusSlides(1)">&#10095;</a>
+
+                <!-- <span class="dot" (click)="currentSlide(i)"></span> -->
+
+                
+            </div>  
+        </div>
+
+        <!-- The dots/circles -->
+        <div style="text-align:center; margin-bottom: 15%;" >
+            <span class="dot" (click)="currentSlide(1)"></span>
+            <span class="dot" (click)="currentSlide(2)"></span>
+            <span class="dot" (click)="currentSlide(3)"></span>
+            <span class="dot" (click)="currentSlide(4)"></span>
+            <span class="dot" (click)="currentSlide(5)"></span>
+            <span class="dot" (click)="currentSlide(6)"></span>
+            <span class="dot" (click)="currentSlide(7)"></span>
+            <span class="dot" (click)="currentSlide(8)"></span>
+            <span class="dot" (click)="currentSlide(9)"></span>
+            <span class="dot" (click)="currentSlide(10)"></span>
+            <span class="dot" (click)="currentSlide(11)"></span>
+            <span class="dot" (click)="currentSlide(12)"></span>
+            <span class="dot" (click)="currentSlide(13)"></span>
+        </div>
+    <!-- </div> -->
 
 
-    <!-- <app-clientes></app-clientes> -->
     <div class="app">
       <div class="appmovil-text">
           <p>NUESTROS CLIENTES</p>
           <br>
-          <img src="../../assets/logo.svg" alt="logo" width="40%"><br><br>          
+          <img src="../../assets/logo.svg" alt="logo" width="40%"><br><br>
       </div>
    </div>
+
    <div class="fondores">
     <div class="container">
       <div class="row">
@@ -248,7 +297,7 @@
             <img mat-card-image [src]="r.imagenRes"  height="200px;" alt="Photo of a Shiba Inu">
             <mat-card-content style="margin: 5% 2% 5% 2%; text-align: justify;">
               <p>
-                Este restaurante tiene una capacidad para {{r.capacidadRestaurante}} personas, 
+                Este restaurante tiene una capacidad para {{r.capacidadRestaurante}} personas,
                 se encuentra ubicado en: {{r.direccionRestaurante}}, ven a visitarlo!
                 El restaurante abre sus puertas a las {{r.horaApertura}} a.m y cierra a las {{r.horaCierre}} p.m.
                 <br><br>
@@ -270,9 +319,9 @@
       </div>
     </div>
    </div>
-    
+
     <!-- <app-cliente></app-cliente> -->
-    
+
     <!-- <app-promociones-home></app-promociones-home>
 
     <app-about></app-about> -->
@@ -286,7 +335,7 @@
               <p>Muertos de Hambre es la aplicación oficial de la Escuela Politécnica Nacional, que permite a los estudiantes
                 maestros, y todo el personal correspondiente a la EPN poder disfrutar de la variedad gastronómica del sector,
                 Aqui encontraras los distintos restaurantes de la zona, podras disfrutar del menú diario que ofrece cada restaurante,
-                asi como sus horarios de atención y capacidad. 
+                asi como sus horarios de atención y capacidad.
                 En nuestra app móvil podras obtener en tiempo real la dirección exacta del restaurante y podras realizar una reserva y dirigirte con tus panas
                 a degustar lo que mas te apetezca en el día.
               </p>
@@ -296,7 +345,7 @@
               <p>Muertos de Hambre es la aplicación oficial de la Escuela Politécnica Nacional, que permite a los estudiantes,
                 maestros y todo el personal correspondiente a la EPN poder disfrutar de la variedad gastronómica del sector,
                 Aqui encontraras los distintos restaurantes de la zona, podras disfrutar del menú diario que ofrece cada restaurante,
-                asi como sus horarios de atención y capacidad. 
+                asi como sus horarios de atención y capacidad.
                 En nuestra app móvil podras obtener en tiempo real la dirección exacta del restaurante y podras realizar una reserva y dirigirte con tus panas
                 a degustar lo que mas te apetezca en el día..</p>
                 <div style="text-align: center;">
@@ -318,5 +367,5 @@
               <app-promociones-inicio></app-promociones-inicio>
             </mat-tab>
           </mat-tab-group>
-    </div>     
+    </div>
   </div> -->
