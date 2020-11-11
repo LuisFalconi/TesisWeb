@@ -73,6 +73,7 @@ import { ModalEditarMeriendaComponent } from './modal/modal-editar-merienda/moda
 import { EditMeriendaComponent } from './restaurantes/edit-merienda/edit-merienda.component';
 import { ModalMeriendaComponent } from './modal/modal-merienda/modal-merienda.component';
 import { ModalPromocionesComponent } from './modal/modal-promociones/modal-promociones.component';
+import { ListaPromosComponent } from './home/lista-promos/lista-promos.component';
 
 
 @NgModule({
@@ -136,6 +137,7 @@ import { ModalPromocionesComponent } from './modal/modal-promociones/modal-promo
     EditMeriendaComponent,
     ModalMeriendaComponent,
     ModalPromocionesComponent,
+    ListaPromosComponent,
     
   ],
   imports: [
@@ -166,7 +168,8 @@ import { ModalPromocionesComponent } from './modal/modal-promociones/modal-promo
     ModalAlmuerzoComponent,
     ModalEditarAlmuerzoComponent,
     ModalMeriendaComponent,
-    ModalEditarMeriendaComponent
+    ModalEditarMeriendaComponent,
+    ModalPromocionesComponent
   ],
   providers: [
       AngularFirestore,

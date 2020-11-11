@@ -1,0 +1,33 @@
+
+
+<div style="margin: 5px; text-align: center;" *ngFor="let r of restaurantes">
+    <div *ngIf="r.userUID === promos.userUID">
+        <!-- {{r.nombreRestaurante}} -->
+        
+        <mat-card class="example-card">
+                    <mat-card-header>
+                      <div mat-card-avatar class="example-header-image"></div>
+                      <mat-card-title>{{r.nombreRestaurante}}</mat-card-title>
+                      <mat-card-subtitle>{{r.tipoRestaurante}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <!-- <img mat-card-image [src]="r.imagenRes" *ngIf="r.imagenRes; else sinFoto" width="100px" height="200px;" alt="Photo of a Shiba Inu"> -->
+                        <img [src]="promos.fotosPromocion" style="width: 300px;" height="280px">
+
+                        <mat-card-actions *ngIf="r.socialG || r.socialF">
+                <div style="text-align: center;">
+                  <button  mat-raised-button class="btnF">
+                    <a style="color: white;" href="https://www.facebook.com/{{r.socialF}}" *ngIf="r.socialF" target="_blank" rel="noopener noreferrer">Facebook</a>
+                  </button>
+                  <button  mat-raised-button class="btnI">
+                    <a style="color: white;" href="https://www.instagram.com/{{r.socialG}}" *ngIf="r.socialG" target="_blank" rel="noopener noreferrer">Instagram</a>
+                  </button>
+                </div>
+            </mat-card-actions>
+                      
+        </mat-card>
+    </div>
+</div>
+
+<ng-template #sinFoto>
+    <img class="imagenSinFoto" src = "../../../assets/logoPrueba.png">
+   </ng-template>

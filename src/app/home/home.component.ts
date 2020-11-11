@@ -7,6 +7,8 @@ import { PerfilService } from '../_service/perfil.service';
 import { Perfil } from '../_model/perfil';
 import { PromocionService } from '../_service/promocion.service';
 import { Promocion } from '../_model/promocion';
+import { ModalPromocionesComponent } from '../modal/modal-promociones/modal-promociones.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +27,7 @@ export class HomeComponent implements OnInit {
   slideIndex: number =  1;
 
 
-  constructor(public loginService: LoginService, public perfilSvc: PerfilService, public pomocionSvc: PromocionService) { }
+  constructor(public loginService: LoginService, public perfilSvc: PerfilService, public pomocionSvc: PromocionService,private dialog: MatDialog) { }
 
   ngOnInit() {
     this.loadinng = false;
@@ -51,7 +53,7 @@ export class HomeComponent implements OnInit {
       this.restaurantes = [];
 
       data.forEach(element => {
-        if(element.resVerificado ==='Aprobado' && element.estadoDocumento === 'documento Aprobado'){
+        if(element.resVerificado ==='Aprobado' && element.estadoDocumento === 'documento Aprobado' && element.estado ==='verdadero'){
           this.restaurantes.push(element);
         }
       });
@@ -105,9 +107,20 @@ showSlides(n: number) {
   dots[this.slideIndex-1].className += " active";
 }
 
-  // crearUsuario() {
-  //   this.loginService.registrarUsuario(this.usuario, this.clave);
-  //   console.log("Usuario creado con exito")
-  // }
+openPromo(promociones: Promocion) {
+  this.promoModal(promociones);
+}
+
+  promoModal(promo: Promocion ): void {
+    const config ={
+      data:{
+        contenido: promo
+      }
+    };
+  const dialogRef = this.dialog.open(ModalPromocionesComponent, config);
+  dialogRef.afterClosed().subscribe(result => {
+    // console.log(`Dialog result ${result}`);
+  });
+}
 
 }

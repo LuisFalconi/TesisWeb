@@ -1,0 +1,32 @@
+.example-card {
+    max-width: 390px;
+    /* height: 230px; */
+  }
+  
+  .example-header-image {
+    background-image: url('../../../assets/logoPrueba.png');
+    background-size: cover;
+  }
+
+  .imagenSinFoto{
+    width: 200px;
+    height: 180px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .btnF{
+    background-color: #2139be;
+    color: white;
+    text-transform: initial;
+    width: 40%;
+    font-size: 100%;
+  }
+
+  .btnI{
+    background-color: #db1b9b;
+    color: white;
+    text-transform: initial;
+    width: 40%;
+    font-size: 100%;
+  }

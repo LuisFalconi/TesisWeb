@@ -235,6 +235,7 @@
         <div class="slideshow-container" style="margin-top: 5%;">
             <div class="mySlides fade">
                 <div class="numbertext"></div>
+                
                 <img src="../../assets/promos.jpg" style="width:100%">
                 <!-- <div class="text">Caption Two</div> -->
               </div>
@@ -242,9 +243,10 @@
     <!-- Full-width images with number and caption text -->
             <div *ngFor="let p of promociones; let i index">
                 <div class="mySlides">
-                    <!-- <div class="numbertext">1 / 3</div> -->
-                    <img [src]="p.fotosPromocion" style="width:100%;" height="340px">
-                    <!-- <div class="text">Caption Text</div> -->
+                    <a (click)="openPromo(p)">
+                        <img [src]="p.fotosPromocion" style="width:100%;" height="340px">
+                    </a>
+                    
                 </div>
                 <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
                 <a class="next" (click)="plusSlides(1)">&#10095;</a>

@@ -1,0 +1,8 @@
+mat-dialog-content{
+    width: 450px;
+    height: 600px;
+}
+mat-dialog-container {
+
+    border-radius: 40px;
+}
