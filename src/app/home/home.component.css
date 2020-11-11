@@ -187,3 +187,9 @@
   color: #16212B;
   font-size: 25px;
 }
+
+mat-card-title .texto{
+  font-family: 'titulo1';
+  color: #16212B;
+  font-size: 20px;
+}

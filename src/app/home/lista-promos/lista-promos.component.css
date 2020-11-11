@@ -30,3 +30,40 @@
     width: 40%;
     font-size: 100%;
   }
+
+  
+
+@font-face{
+  font-family: 'titulo1';
+  src: url(../../../assets/fonts/Jiho/titulo.otf);
+}
+
+@font-face{
+  font-family: 'texto';
+  src: url(../../../assets/fonts/Flaticon.svg);
+}
+
+.titulo1{
+  font-family: 'titulo1';
+  color: #d85c00;
+  font-size: 19px;
+}
+
+
+.texto{
+  font-family: 'texto';
+  color: #16212B;
+  font-size: 10px;
+}
+
+.texto2{
+  font-family: 'texto';
+  color: #d85c00;
+  font-size: 20px;
+}
+ 
+mat-card-title .texto{
+  font-family: 'titulo1';
+  color: #16212B;
+  font-size: 20px;
+}
