@@ -17,13 +17,6 @@
     color: white
 }
 
-.appmovil-text p{
-    font-size: 30px;
-    color: black;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: bold;
-}
-
 .footer{
     padding-top: 30%;;
     text-align: center;
@@ -35,3 +28,33 @@ h3{
     font-family: 'Open Sans', arial, sans-serif;
     font-weight: bold;   
 }
+
+
+@font-face{
+    font-family: 'titulo1';
+    src: url(../../../assets/fonts/Jiho/titulo.otf);
+  }
+  
+  @font-face{
+    font-family: 'texto';
+    src: url(../../../assets/fonts/Jiho/texto.otf);
+  }
+  
+  .titulo1{
+    font-family: 'titulo1';
+    color: #d85c00;
+    font-size: 25px;
+  }
+  
+  .titulo2{
+    font-family: 'titulo1';
+    color: #16212B;
+    font-size: 35px;
+  }
+  
+  
+  .texto{
+    font-family: 'texto';
+    color: #16212B;
+    font-size: 20px;
+  }

@@ -5,7 +5,7 @@
                 <div class="col-md-12">
                     <div class="full center">
                         <div class="heading_main text_align_center">
-                            <h2 class="large"><span class="theme_color">MUERTOS DE</span> HAMBRE</h2>
+                            <h2 class="titulo2" style="font-size: 40px;"><span class="theme_color">MUERTOS DE</span> HAMBRE</h2>
                             <p class="large"></p>
                             <br>
                             <p>Muertos de Hambre es la aplicación oficial de la Escuela Politécnica Nacional,
@@ -224,7 +224,7 @@
 
     <div class="promociones">
         <div class="promo-text">
-            <p>PROMOCIONES</p>
+            <p class="titulo1">PROMOCIONES</p>
             <br>
             <img src="../../assets/logo.svg" alt="logo" width="40%"><br><br>
         </div>
@@ -243,7 +243,7 @@
             <div *ngFor="let p of promociones; let i index">
                 <div class="mySlides">
                     <!-- <div class="numbertext">1 / 3</div> -->
-                    <img [src]="p.fotosPromocion" style="width:100%">
+                    <img [src]="p.fotosPromocion" style="width:100%;" height="340px">
                     <!-- <div class="text">Caption Text</div> -->
                 </div>
                 <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
@@ -256,7 +256,7 @@
         </div>
 
         <!-- The dots/circles -->
-        <div style="text-align:center; margin-bottom: 15%;" >
+        <div style="text-align:center; margin-bottom: 5%;" >
             <span class="dot" (click)="currentSlide(1)"></span>
             <span class="dot" (click)="currentSlide(2)"></span>
             <span class="dot" (click)="currentSlide(3)"></span>
@@ -276,7 +276,7 @@
 
     <div class="app">
       <div class="appmovil-text">
-          <p>NUESTROS CLIENTES</p>
+          <p class="titulo1">NUESTROS CLIENTES</p>
           <br>
           <img src="../../assets/logo.svg" alt="logo" width="40%"><br><br>
       </div>
@@ -294,7 +294,7 @@
               <mat-card-subtitle>{{r.tipoRestaurante}}</mat-card-subtitle>
               <hr>
             </mat-card-header>
-            <img mat-card-image [src]="r.imagenRes"  height="200px;" alt="Photo of a Shiba Inu">
+            <img mat-card-image [src]="r.imagenRes" *ngIf="r.imagenRes; else sinFoto"  height="200px;" alt="Photo of a Shiba Inu">
             <mat-card-content style="margin: 5% 2% 5% 2%; text-align: justify;">
               <p>
                 Este restaurante tiene una capacidad para {{r.capacidadRestaurante}} personas,
@@ -319,6 +319,10 @@
       </div>
     </div>
    </div>
+
+   <ng-template #sinFoto>
+    <img class="imagenSinFoto" src = "../../assets/logoPrueba.png">
+   </ng-template>
 
     <!-- <app-cliente></app-cliente> -->
 

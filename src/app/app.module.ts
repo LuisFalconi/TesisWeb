@@ -72,6 +72,7 @@ import { CrearMeriendaComponent } from './pages/platos/crear-merienda/crear-meri
 import { ModalEditarMeriendaComponent } from './modal/modal-editar-merienda/modal-editar-merienda.component';
 import { EditMeriendaComponent } from './restaurantes/edit-merienda/edit-merienda.component';
 import { ModalMeriendaComponent } from './modal/modal-merienda/modal-merienda.component';
+import { ModalPromocionesComponent } from './modal/modal-promociones/modal-promociones.component';
 
 
 @NgModule({
@@ -134,6 +135,7 @@ import { ModalMeriendaComponent } from './modal/modal-merienda/modal-merienda.co
     ModalEditarMeriendaComponent,
     EditMeriendaComponent,
     ModalMeriendaComponent,
+    ModalPromocionesComponent,
     
   ],
   imports: [

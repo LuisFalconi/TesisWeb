@@ -22,6 +22,30 @@
   color: rgba(0,0,0,.87);
 }
 
+
+
+@font-face{
+  font-family: 'titulo1';
+  src: url(../assets/fonts/Jiho/titulo.otf);
+}
+
+@font-face{
+  font-family: 'texto';
+  src: url(../assets/fonts/Jiho/texto.otf);
+}
+
+.titulo1{
+  font-family: 'titulo1';
+  color: #d85c00;
+  font-size: 35px;
+}
+
+
+.texto{
+  font-family: 'texto';
+  color: #16212B;
+  font-size: 10px;
+}
  
 // .page-wrap {
 //   display: flex;

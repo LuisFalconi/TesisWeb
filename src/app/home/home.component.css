@@ -35,21 +35,6 @@
    color: white
 }
 
-.appmovil-text p{
-   font-size: 30px;
-   color: #d85c00;
-   font-family: 'Open Sans', arial, sans-serif;
-   font-weight: bold;
-}
-
-.promo-text p{
-   font-size: 30px;
-   color: #d85c00;
-   font-family: 'Open Sans', arial, sans-serif;
-   font-weight: bold;
-}
-
-
 .tab{
    margin: 5%;
 }
@@ -61,6 +46,13 @@
  .example-header-image {
    background-image: url('../../assets/logoPrueba.png');
    background-size: cover;
+ }
+
+ .imagenSinFoto{
+   width: 200px;
+   height: 180px;
+   margin-left: auto;
+   margin-right: auto;
  }
 
  mat-card-image{
@@ -163,4 +155,35 @@
 @keyframes fade {
   from {opacity: .2}
   to {opacity: 4}
+}
+
+/* CSS letras */
+
+@font-face{
+  font-family: 'titulo1';
+  src: url(../../assets/fonts/Jiho/titulo.otf);
+}
+
+@font-face{
+  font-family: 'texto';
+  src: url(../../assets/fonts/Jiho/texto.otf);
+}
+
+.titulo1{
+  font-family: 'titulo1';
+  color: #d85c00;
+  font-size: 25px;
+}
+
+.titulo2{
+  font-family: 'titulo1';
+  color: #16212B;
+  font-size: 25px;
+}
+
+
+.text{
+  font-family: 'titulo1';
+  color: #16212B;
+  font-size: 25px;
 }
